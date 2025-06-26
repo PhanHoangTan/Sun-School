@@ -94,20 +94,37 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Initialize Swiper Slider
+  // Initialize Swiper Sliders
   var homeSlider = new Swiper(".home-slider", {
+    slidesPerView: 1,
+    spaceBetween: 0,
     loop: true,
     autoplay: {
       delay: 5000,
       disableOnInteraction: false,
     },
     pagination: {
-      el: ".swiper-pagination",
+      el: ".home-slider .swiper-pagination",
       clickable: true,
     },
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".home-slider .swiper-button-next",
+      prevEl: ".home-slider .swiper-button-prev",
+    },
+  });
+
+  // Parent Testimonials Slider
+  var testimonialSlider = new Swiper(".people_say", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".heading-nav-container .swiper-button-next",
+      prevEl: ".heading-nav-container .swiper-button-prev",
     },
   });
 
@@ -123,73 +140,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Initialize Swiper slider for the homepage main slider
-  const mainSlider = new Swiper(".home-slider", {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
+  // Dropdown Menu for Mobile
+  const hasDropdown = document.querySelectorAll(".has-dropdown");
 
-  // Parent opinions slider
-  const peopleSaySlider = new Swiper(".people_say", {
-    slidesPerView: 1,
-    slidesPerGroup: 1,
-    spaceBetween: 20,
-    grabCursor: true,
-    loop: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".heading-nav-container .swiper-button-next",
-      prevEl: ".heading-nav-container .swiper-button-prev",
-    },
-    on: {
-      init: function () {
-        // Đảm bảo hiển thị slide đầu tiên ngay khi tải trang
-        setTimeout(() => {
-          const firstSlide = document.querySelector(
-            ".people_say .swiper-slide"
-          );
-          if (firstSlide) {
-            firstSlide.style.opacity = "1";
-            firstSlide.style.visibility = "visible";
+  if (window.innerWidth < 992) {
+    hasDropdown.forEach(function (item) {
+      const link = item.querySelector(".nav-link");
+      const dropdown = item.querySelector(".dropdown-menu");
+
+      if (link && dropdown) {
+        link.addEventListener("click", function (e) {
+          if (window.innerWidth < 992) {
+            e.preventDefault();
+            dropdown.style.display =
+              dropdown.style.display === "block" ? "none" : "block";
           }
-        }, 100);
-      },
-    },
-  });
-
-  // Dropdown menus for mobile
-  const dropdownItems = document.querySelectorAll(".has-dropdown");
-
-  dropdownItems.forEach((item) => {
-    item.addEventListener("click", function (e) {
-      if (window.innerWidth < 992) {
-        const dropdown = this.querySelector(".dropdown-menu");
-        const link = this.querySelector(".nav-link");
-
-        if (e.target === link || e.target === link.querySelector("i")) {
-          e.preventDefault();
-          this.classList.toggle("open");
-          dropdown.style.display = this.classList.contains("open")
-            ? "block"
-            : "none";
-        }
+        });
       }
     });
-  });
+  }
 });
