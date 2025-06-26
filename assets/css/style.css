@@ -1,5 +1,17 @@
 /* Main Stylesheet for SunShine School Theme */
 
+/* Font Face */
+@font-face {
+  font-family: "bali";
+  src: url("//bizweb.dktcdn.net/100/063/369/themes/877483/assets/bali.woff2?1676015309640")
+      format("woff2"),
+    url("//bizweb.dktcdn.net/100/063/369/themes/877483/assets/bali.woff?1676015309640")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* General Styles */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -174,6 +186,7 @@ body {
   position: relative;
   padding: 15px 0;
   margin-top: 30px;
+  font-family: "bali", sans-serif;
 }
 
 .header-main .row {
@@ -200,32 +213,48 @@ body {
   height: auto;
 }
 
+.header-main .nav-link {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 /* Main Navigation */
 .main-navigation {
   float: left;
   width: calc(100% - 50px);
+  overflow-x: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.main-navigation::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .main-menu {
   display: flex;
+  flex-wrap: nowrap;
   list-style: none;
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 .nav-item {
   position: relative;
-  margin: 0 5px;
+  margin: 0 3px;
+  white-space: nowrap;
 }
 
 .nav-link {
   display: block;
-  padding: 10px 15px;
+  padding: 10px 10px;
   color: #333;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s;
   position: relative;
+  white-space: nowrap;
 }
 
 .nav-item.active .nav-link {
@@ -266,6 +295,8 @@ body {
   list-style: none;
   display: none;
   z-index: 999;
+  text-align: left;
+  white-space: normal;
 }
 
 .dropdown-menu li a {
