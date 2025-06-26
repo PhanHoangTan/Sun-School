@@ -724,6 +724,7 @@ body.menu-open {
 .img-responsive {
   max-width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 
 @media (max-width: 991px) {
