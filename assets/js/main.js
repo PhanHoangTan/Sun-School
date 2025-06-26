@@ -94,37 +94,20 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Initialize Swiper Sliders
+  // Initialize Swiper Slider
   var homeSlider = new Swiper(".home-slider", {
-    slidesPerView: 1,
-    spaceBetween: 0,
     loop: true,
     autoplay: {
       delay: 5000,
       disableOnInteraction: false,
     },
     pagination: {
-      el: ".home-slider .swiper-pagination",
+      el: ".swiper-pagination",
       clickable: true,
     },
     navigation: {
-      nextEl: ".home-slider .swiper-button-next",
-      prevEl: ".home-slider .swiper-button-prev",
-    },
-  });
-
-  // Parent Testimonials Slider
-  var testimonialSlider = new Swiper(".people_say", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".heading-nav-container .swiper-button-next",
-      prevEl: ".heading-nav-container .swiper-button-prev",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
   });
 
@@ -140,23 +123,67 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Dropdown Menu for Mobile
-  const hasDropdown = document.querySelectorAll(".has-dropdown");
+  // Initialize Swiper slider for the homepage main slider
+  const mainSlider = new Swiper(".home-slider", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 
-  if (window.innerWidth < 992) {
-    hasDropdown.forEach(function (item) {
-      const link = item.querySelector(".nav-link");
-      const dropdown = item.querySelector(".dropdown-menu");
+  // Parent opinions slider
+  const peopleSaySlider = new Swiper(".people_say", {
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    spaceBetween: 20,
+    grabCursor: true,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".heading-nav-container .swiper-button-next",
+      prevEl: ".heading-nav-container .swiper-button-prev",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 1,
+      },
+      992: {
+        slidesPerView: 1,
+      },
+    },
+  });
 
-      if (link && dropdown) {
-        link.addEventListener("click", function (e) {
-          if (window.innerWidth < 992) {
-            e.preventDefault();
-            dropdown.style.display =
-              dropdown.style.display === "block" ? "none" : "block";
-          }
-        });
+  // Dropdown menus for mobile
+  const dropdownItems = document.querySelectorAll(".has-dropdown");
+
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      if (window.innerWidth < 992) {
+        const dropdown = this.querySelector(".dropdown-menu");
+        const link = this.querySelector(".nav-link");
+
+        if (e.target === link || e.target === link.querySelector("i")) {
+          e.preventDefault();
+          this.classList.toggle("open");
+          dropdown.style.display = this.classList.contains("open")
+            ? "block"
+            : "none";
+        }
       }
     });
-  }
+  });
 });
