@@ -1250,26 +1250,124 @@ body.menu-open {
 /* Parent Opinions Section */
 .people_say_div {
   margin-top: 0;
+  position: relative;
+}
+
+.heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .people_say_div .default_title {
-  margin-bottom: 30px;
+  margin-bottom: 0;
+  display: inline-block;
+  color: #f6903d;
+  font-family: "Lobster", cursive;
+  padding-right: 0;
+  position: relative;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.people_say_div .default_title:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/line_title.png?1676015309640)
+    no-repeat;
+}
+
+/* Move nav buttons next to the heading */
+.heading-nav-container {
+  display: flex;
+  gap: 10px;
+}
+
+.heading-nav-container .swiper-button-prev,
+.heading-nav-container .swiper-button-next {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  margin-top: 0;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(246, 144, 61, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.heading-nav-container .swiper-button-prev:after,
+.heading-nav-container .swiper-button-next:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-style: solid;
+  border-width: 2px 0 0 2px;
+  display: block;
+  transform: rotate(-45deg);
+}
+
+.heading-nav-container .swiper-button-next:after {
+  transform: rotate(135deg);
 }
 
 .bg-review {
   position: relative;
   background-color: #fff;
-  border-radius: 0;
-  padding: 20px;
-  border: 1px solid #f57f17;
+  border-radius: 5px;
+  padding: 20px 15px;
+  border: 1px dashed #f57f17;
+  margin-top: 10px;
+  overflow: hidden;
 }
 
+.people_say_div:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 6px;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  margin-top: 20px;
+}
+
+/* Parent opinion content styling */
 .people-say-content {
   position: relative;
-  background: #fff;
-  padding: 20px 0;
-  border-radius: 0;
+  padding: 0;
+  background: transparent;
   box-shadow: none;
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.swiper-container.people_say {
+  padding: 0;
+  overflow: hidden;
+}
+
+.swiper-slide.item_ph {
+  height: auto;
+}
+
+/* Điều chỉnh khoảng cách giữa 2 đánh giá trong 1 slide */
+.new-item {
+  margin-bottom: 25px;
+}
+
+.new-item:last-child {
+  margin-bottom: 0;
 }
 
 .people-img {
@@ -1279,6 +1377,7 @@ body.menu-open {
   overflow: hidden;
   margin-right: 15px;
   float: left;
+  border: 3px solid #f6903d;
 }
 
 .people-img img {
@@ -1289,25 +1388,29 @@ body.menu-open {
 
 .people-right {
   overflow: hidden;
+  padding-top: 5px;
 }
 
 .people-name {
   color: #f6903d;
   font-size: 18px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
   font-weight: 600;
+  display: inline-block;
 }
 
 .people-info {
   color: #666;
   font-size: 14px;
   margin-bottom: 5px;
+  margin-top: 0;
 }
 
 .time_pps {
   font-size: 13px;
   color: #999;
   margin-bottom: 15px;
+  margin-top: 0;
 }
 
 .time_pps span {
@@ -1327,108 +1430,83 @@ body.menu-open {
   font-size: 14px;
   color: #666;
   line-height: 1.6;
-  font-style: italic;
   position: relative;
   clear: both;
   padding-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 0;
 }
 
-/* Updated navigation buttons for the parent opinions slider */
-.bg-review .swiper-button-prev,
-.bg-review .swiper-button-next {
-  width: 30px;
-  height: 30px;
-  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/pre-min.png?1653971798732);
-  background-size: 100% 100%;
+/* Style the quote icons */
+.people-description:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23f6903d' d='M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-  border-radius: 0;
-  top: 50%;
+  background-size: contain;
 }
 
-.bg-review .swiper-button-next {
+.people-description:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23f6903d' d='M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 64zm-256 0c0 66.3-53.7 120-120 120H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H64c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32 64z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
   transform: rotate(180deg);
 }
 
-.bg-review .swiper-button-prev:after,
-.bg-review .swiper-button-next:after {
-  content: "";
+/* Swiper container adjustments */
+.swiper-container.people_say {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 30px;
 }
 
-/* Divider after the opinions section */
-.people_say_div:after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 6px;
-  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
-  background-repeat: repeat-x;
-  background-position: center;
-  margin-top: 20px;
+.swiper-slide.item_ph {
+  height: auto;
+  width: calc(50% - 10px) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Quotation marks for testimonials */
-.people-description:before,
-.people-description:after {
-  font-family: "FontAwesome";
-  color: #f6903d;
-  font-size: 20px;
-}
-
-.people-description:before {
-  content: "\201C";
-  margin-right: 5px;
+/* Pagination styling */
+.people_say .swiper-pagination {
   position: relative;
-  top: 5px;
+  bottom: 0;
+  margin-top: 15px;
 }
 
-.people-description:after {
-  content: "\201D";
-  margin-left: 5px;
-  position: relative;
-  top: 5px;
+.people_say .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  opacity: 1;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  width: 30px;
-  height: 30px;
-  background-color: #eee;
-  border-radius: 50%;
-  color: #999;
-  top: 50%;
+.people_say .swiper-pagination-bullet-active {
+  background: #f6903d;
 }
 
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-@media (max-width: 992px) {
-  .img_thumb {
-    width: 200px;
-    height: 150px;
+@media (max-width: 991px) {
+  .people_say_div {
+    margin-top: 30px;
   }
 
-  .item_small .img_thumb {
-    width: 150px;
-    height: 100px;
+  .swiper-slide.item_ph {
+    width: 100% !important;
   }
 }
 
 @media (max-width: 768px) {
-  .blog-wrap {
-    flex-direction: column;
-  }
-
-  .img_thumb,
-  .item_small .img_thumb {
-    width: 100%;
-    height: 200px;
-  }
-
   .people-img {
     float: none;
     margin: 0 auto 15px;
@@ -1437,45 +1515,42 @@ body.menu-open {
   .people-right {
     text-align: center;
   }
+
+  .people-description {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .swiper-slide.item_ph {
+    padding-bottom: 20px;
+  }
 }
 
 @media (max-width: 576px) {
-  .img_thumb,
-  .item_small .img_thumb {
-    height: 180px;
+  .heading-nav-container {
+    top: -5px;
   }
 
-  .new-name {
-    font-size: 16px;
+  .heading-nav-container .swiper-button-prev,
+  .heading-nav-container .swiper-button-next {
+    width: 30px;
+    height: 30px;
   }
 
-  .new-description {
-    font-size: 13px;
+  .heading-nav-container .swiper-button-prev:after,
+  .heading-nav-container .swiper-button-next:after {
+    width: 10px;
+    height: 10px;
+  }
+
+  .people-description:before,
+  .people-description:after {
+    width: 15px;
+    height: 15px;
   }
 }
 
 /* Make sure the d-flex class is defined for the blog-wrap */
 .d-flex {
   display: flex;
-}
-
-/* Add styles to match the quote decorations in the image */
-.people-description:before {
-  content: open-quote;
-  font-size: 50px;
-  color: #f6903d;
-  line-height: 0.1em;
-  margin-right: 5px;
-  vertical-align: -0.3em;
-  font-family: serif;
-}
-
-.people-description:after {
-  content: close-quote;
-  font-size: 50px;
-  color: #f6903d;
-  line-height: 0.1em;
-  margin-left: 5px;
-  vertical-align: -0.3em;
-  font-family: serif;
 }

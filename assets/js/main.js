@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (menuToggle) {
     menuToggle.addEventListener("click", function (e) {
       e.preventDefault();
-      body.classList.toggle("menu-open");
-      mainNavigation.classList.toggle("show");
+      this.classList.toggle("active");
+      mainNavigation.classList.toggle("active");
     });
   }
 
@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(overlay);
 
   overlay.addEventListener("click", function () {
-    if (mainNavigation && mainNavigation.classList.contains("show")) {
-      mainNavigation.classList.remove("show");
+    if (mainNavigation && mainNavigation.classList.contains("active")) {
+      mainNavigation.classList.remove("active");
       body.classList.remove("menu-open");
     }
   });
@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", function () {
     if (window.innerWidth > 991) {
       // Reset mobile menu styles when window is resized to desktop
-      if (mainNavigation && mainNavigation.classList.contains("show")) {
-        mainNavigation.classList.remove("show");
+      if (mainNavigation && mainNavigation.classList.contains("active")) {
+        mainNavigation.classList.remove("active");
         body.classList.remove("menu-open");
       }
 
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
       !e.target.closest(".menu-toggle")
     ) {
       body.classList.remove("menu-open");
-      mainNavigation.classList.remove("show");
+      mainNavigation.classList.remove("active");
     }
   });
 
@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Parent opinions slider
   const peopleSaySlider = new Swiper(".people_say", {
     slidesPerView: 1,
+    slidesPerGroup: 1,
     spaceBetween: 20,
     grabCursor: true,
     loop: true,
@@ -153,15 +154,21 @@ document.addEventListener("DOMContentLoaded", function () {
       disableOnInteraction: false,
     },
     navigation: {
-      nextEl: ".bg-review .swiper-button-next",
-      prevEl: ".bg-review .swiper-button-prev",
+      nextEl: ".heading-nav-container .swiper-button-next",
+      prevEl: ".heading-nav-container .swiper-button-prev",
     },
-    breakpoints: {
-      768: {
-        slidesPerView: 1,
-      },
-      992: {
-        slidesPerView: 1,
+    on: {
+      init: function () {
+        // Đảm bảo hiển thị slide đầu tiên ngay khi tải trang
+        setTimeout(() => {
+          const firstSlide = document.querySelector(
+            ".people_say .swiper-slide"
+          );
+          if (firstSlide) {
+            firstSlide.style.opacity = "1";
+            firstSlide.style.visibility = "visible";
+          }
+        }, 100);
       },
     },
   });
