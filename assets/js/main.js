@@ -106,8 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
       clickable: true,
     },
     navigation: {
-      nextEl: "#people-say-pre",
-      prevEl: "#people-say-next",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
   });
 
