@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SunShine School</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-top">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 header-contact">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Tầng 6, 266 Đội Cấn, Ba Đình, Hà Nội</span>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:18006750" class="fone">1800 6750</a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="search-container">
+                <form
+                  action="/search"
+                  method="get"
+                  class="search-form"
+                  role="search">
+                  <input
+                    type="text"
+                    name="query"
+                    value=""
+                    autocomplete="off"
+                    placeholder="Tìm kiếm..."
+                    class="search-input" />
+                  <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-main">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-3 col-md-12 col-12">
+              <div class="logo-header">
+                <a href="/" class="logo" title="Logo">
+                  <img
+                    width="195"
+                    height="77"
+                    src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/logo.png?1676015309640"
+                    alt="SunShine School Theme" />
+                </a>
+              </div>
+              <div class="mobile-menu-toggle d-lg-none">
+                <a href="#" class="menu-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="clearfix">
+                <nav class="main-navigation">
+                  <ul class="main-menu">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                      <a class="nav-link" href="/collections/all"
+                        >Sản phẩm <i class="fas fa-chevron-down"></i
+                      ></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/gia-tri-cho-be">Giá trị cho bé</a></li>
+                        <li>
+                          <a href="/chuong-trinh-hoc-1">Chương trình học</a>
+                        </li>
+                        <li>
+                          <a href="/san-pham-noi-bat"
+                            >Chương trình học nổi bật</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/san-pham-khuyen-mai"
+                            >Chương trình học khuyến mãi</a
+                          >
+                        </li>
+                        <li><a href="/frontpage">Chương trình học mới</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                      <a class="nav-link" href="/chuong-trinh-giao-duc"
+                        >Chương trình giáo dục
+                        <i class="fas fa-chevron-down"></i
+                      ></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/gia-tri-cho-be-1">Giá trị cho bé</a></li>
+                        <li>
+                          <a href="/chuong-trinh-giao-duc">Chương trình học</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                      <a class="nav-link" href="/tuyen-sinh"
+                        >Tuyển sinh <i class="fas fa-chevron-down"></i
+                      ></a>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a href="/chuong-trinh-hoc">Chương trình học</a>
+                        </li>
+                        <li><a href="/hoc-phi">Học phí</a></li>
+                        <li><a href="/thuc-don">Thực đơn</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/tin-tuc">Tin tức</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                      <a class="nav-link" href="/gioi-thieu"
+                        >Giới thiệu <i class="fas fa-chevron-down"></i
+                      ></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/gioi-thieu">Về chúng tôi</a></li>
+                        <li><a href="/co-so-vat-chat">Cơ sở vật chất</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+
+                <div class="cart-container">
+                  <a href="/cart" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                  </a>
+                  <div class="cart-dropdown">
+                    <div class="empty-cart">
+                      <i class="fas fa-shopping-cart"></i>
+                      <p>Không có sản phẩm nào trong giỏ hàng của bạn</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main></main>
+    <footer></footer>
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
