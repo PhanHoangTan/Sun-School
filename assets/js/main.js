@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Parent Testimonials Slider
   var testimonialSlider = new Swiper(".people_say", {
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 30,
     loop: true,
     autoplay: {
       delay: 5000,
