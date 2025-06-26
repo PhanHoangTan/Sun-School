@@ -122,4 +122,67 @@ document.addEventListener("DOMContentLoaded", function () {
       mainNavigation.classList.remove("show");
     }
   });
+
+  // Initialize Swiper slider for the homepage main slider
+  const mainSlider = new Swiper(".home-slider", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  // Parent opinions slider
+  const peopleSaySlider = new Swiper(".people_say", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    grabCursor: true,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".bg-review .swiper-button-next",
+      prevEl: ".bg-review .swiper-button-prev",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 1,
+      },
+      992: {
+        slidesPerView: 1,
+      },
+    },
+  });
+
+  // Dropdown menus for mobile
+  const dropdownItems = document.querySelectorAll(".has-dropdown");
+
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", function (e) {
+      if (window.innerWidth < 992) {
+        const dropdown = this.querySelector(".dropdown-menu");
+        const link = this.querySelector(".nav-link");
+
+        if (e.target === link || e.target === link.querySelector("i")) {
+          e.preventDefault();
+          this.classList.toggle("open");
+          dropdown.style.display = this.classList.contains("open")
+            ? "block"
+            : "none";
+        }
+      }
+    });
+  });
 });

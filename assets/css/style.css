@@ -768,28 +768,29 @@ body.menu-open {
 
 .default_title {
   position: relative;
-  margin-bottom: 20px;
-  font-family: "bali", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  font-family: "Lobster", cursive;
 }
 
-.default_title a {
-  color: #f57f17;
-  font-size: 35px;
+.home-blogs .default_title a,
+.people_say_div .default_title {
+  color: #f6903d;
   text-decoration: none;
-  position: relative;
-  display: inline-block;
 }
 
-.default_title a:after {
+.home-blogs .default_title:after,
+.people_say_div .default_title:after {
   content: "";
   position: absolute;
-  bottom: -5px;
   left: 0;
-  width: 100%;
-  height: 6px;
-  background-image: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png");
-  background-repeat: repeat-x;
-  background-position: center bottom;
+  bottom: 0;
+  width: 150px;
+  height: 4px;
+  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/line_title.png?1676015309640)
+    no-repeat;
 }
 
 .section_page_home p {
@@ -1095,4 +1096,350 @@ body.menu-open {
   .std_ic_title {
     font-size: 16px;
   }
+}
+
+/* Update styles for the School News section to match the provided image */
+.home-blogs {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.default_title {
+  position: relative;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+}
+
+.home-blogs .default_title:after,
+.people_say_div .default_title:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 150px;
+  height: 4px;
+  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/line_title.png?1676015309640)
+    no-repeat;
+}
+
+.home-blogs .default_title a,
+.people_say_div .default_title {
+  color: #f6903d;
+  font-family: "Lobster", cursive;
+  text-decoration: none;
+}
+
+.blog-index {
+  margin-top: 20px;
+}
+
+.blog-wrap {
+  background: #fff;
+  border-radius: 0;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.img_thumb {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 170px;
+  overflow: hidden;
+}
+
+.img_thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.img_thumb:hover img {
+  transform: scale(1.05);
+}
+
+.blog-content-right {
+  flex: 1;
+  padding: 10px 20px;
+}
+
+.new-name {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.new-name a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.new-name a:hover {
+  color: #1a91d6;
+}
+
+.new-info {
+  display: flex;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.new-info span {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.new-info svg {
+  width: 13px;
+  height: 13px;
+  margin-right: 5px;
+  fill: #999;
+}
+
+.new-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.btn-mores {
+  display: inline-block;
+  padding: 6px 15px;
+  background-color: #f6903d;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-mores:hover {
+  background-color: #e67f2c;
+  color: #fff;
+  text-decoration: none;
+}
+
+.item_small .img_thumb {
+  width: 180px;
+  height: 120px;
+}
+
+.item_small .new-name {
+  font-size: 16px;
+}
+
+/* First blog item styling */
+.first_div {
+  border-bottom: 1px dotted #ddd;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.second_div {
+  padding-top: 10px;
+}
+
+/* Parent Opinions Section */
+.people_say_div {
+  margin-top: 0;
+}
+
+.people_say_div .default_title {
+  margin-bottom: 30px;
+}
+
+.bg-review {
+  position: relative;
+  background-color: #fff;
+  border-radius: 0;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+}
+
+.people-say-content {
+  position: relative;
+  background: #fff;
+  padding: 20px 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.people-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+  float: left;
+}
+
+.people-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.people-right {
+  overflow: hidden;
+}
+
+.people-name {
+  color: #f6903d;
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.people-info {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.time_pps {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.time_pps span {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.time_pps svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  fill: #999;
+}
+
+.people-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  font-style: italic;
+  position: relative;
+  clear: both;
+  padding-top: 15px;
+}
+
+/* Quotation marks for testimonials */
+.people-description:before,
+.people-description:after {
+  font-family: "FontAwesome";
+  color: #f6903d;
+  font-size: 20px;
+}
+
+.people-description:before {
+  content: "\201C";
+  margin-right: 5px;
+  position: relative;
+  top: 5px;
+}
+
+.people-description:after {
+  content: "\201D";
+  margin-left: 5px;
+  position: relative;
+  top: 5px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 30px;
+  height: 30px;
+  background-color: #eee;
+  border-radius: 50%;
+  color: #999;
+  top: 50%;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .img_thumb {
+    width: 200px;
+    height: 150px;
+  }
+
+  .item_small .img_thumb {
+    width: 150px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-wrap {
+    flex-direction: column;
+  }
+
+  .img_thumb,
+  .item_small .img_thumb {
+    width: 100%;
+    height: 200px;
+  }
+
+  .people-img {
+    float: none;
+    margin: 0 auto 15px;
+  }
+
+  .people-right {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .img_thumb,
+  .item_small .img_thumb {
+    height: 180px;
+  }
+
+  .new-name {
+    font-size: 16px;
+  }
+
+  .new-description {
+    font-size: 13px;
+  }
+}
+
+/* Make sure the d-flex class is defined for the blog-wrap */
+.d-flex {
+  display: flex;
+}
+
+/* Add styles to match the quote decorations in the image */
+.people-description:before {
+  content: open-quote;
+  font-size: 50px;
+  color: #f6903d;
+  line-height: 0.1em;
+  margin-right: 5px;
+  vertical-align: -0.3em;
+  font-family: serif;
+}
+
+.people-description:after {
+  content: close-quote;
+  font-size: 50px;
+  color: #f6903d;
+  line-height: 0.1em;
+  margin-left: 5px;
+  vertical-align: -0.3em;
+  font-family: serif;
 }
