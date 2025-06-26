@@ -184,8 +184,6 @@ body {
 /* Header Main */
 .header-main {
   position: relative;
-  padding: 15px 0;
-  /* margin-top: 30px; */
   font-family: "bali", sans-serif;
 }
 
@@ -247,7 +245,8 @@ body {
 }
 
 .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 10px 10px;
   color: #333;
   text-decoration: none;
@@ -458,10 +457,6 @@ body.menu-open {
 }
 
 @media (max-width: 991px) {
-  .header-main {
-    padding: 10px 0;
-  }
-
   .logo-header {
     display: flex;
     justify-content: space-between;
@@ -556,4 +551,12 @@ body.menu-open {
   .contact-separator {
     display: none;
   }
+}
+
+.home-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: -3px;
+  display: inline-block;
 }
