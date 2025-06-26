@@ -653,10 +653,11 @@ body.menu-open {
 .time_work_title {
   font-family: "bali", sans-serif;
   color: #f57f17;
-  font-size: 24px;
+  font-size: 35px;
   margin-bottom: 15px;
   padding: 10px;
-  text-align: center;
+  text-align: left;
+  line-height: 30px;
 }
 
 .time {
@@ -695,6 +696,7 @@ body.menu-open {
 .time_small {
   color: #f57f17;
   font-weight: 600;
+  font-size: 18px;
 }
 
 .fone-slider a {
