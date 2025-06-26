@@ -9,10 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (menuToggle) {
     menuToggle.addEventListener("click", function (e) {
       e.preventDefault();
-      if (mainNavigation) {
-        mainNavigation.classList.toggle("show");
-        body.classList.toggle("menu-open");
-      }
+      body.classList.toggle("menu-open");
+      mainNavigation.classList.toggle("show");
     });
   }
 
@@ -95,4 +93,33 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
   }
+
+  // Initialize Swiper Slider
+  var homeSlider = new Swiper(".home-slider", {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: "#people-say-pre",
+      prevEl: "#people-say-next",
+    },
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", function (e) {
+    if (
+      body.classList.contains("menu-open") &&
+      !e.target.closest(".main-navigation") &&
+      !e.target.closest(".menu-toggle")
+    ) {
+      body.classList.remove("menu-open");
+      mainNavigation.classList.remove("show");
+    }
+  });
 });

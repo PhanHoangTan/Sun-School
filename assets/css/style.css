@@ -560,3 +560,187 @@ body.menu-open {
   vertical-align: -3px;
   display: inline-block;
 }
+
+/* Slider Section Styles */
+.section_slider {
+  padding: 30px 0;
+}
+
+.home-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.home-slider .swiper-slide {
+  position: relative;
+}
+
+.home-slider .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.home-slider .swiper-button-prev,
+.home-slider .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-slider .swiper-button-prev {
+  left: 15px;
+}
+
+.home-slider .swiper-button-next {
+  right: 15px;
+}
+
+.home-slider .swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.home-slider .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.home-slider .swiper-pagination-bullet-active {
+  background-color: #f57f17;
+}
+
+/* Time Work Styles */
+.time_work {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.time_work_title {
+  font-family: "bali", sans-serif;
+  color: #f57f17;
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+.time {
+  padding: 10px;
+}
+
+.time-day {
+  margin-bottom: 10px;
+}
+
+.time_work_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time_work_image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.policy-item {
+  padding: 5px;
+}
+
+.policy-text {
+  padding: 5px 0;
+}
+
+.policy-text .text {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.time_small {
+  color: #f57f17;
+  font-weight: 600;
+}
+
+.fone-slider a {
+  color: #f57f17;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.home_banner_1 {
+  padding: 10px;
+}
+
+.home_banner_1 img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.no-padding-lr {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  .time_work {
+    margin-top: 20px;
+  }
+
+  .time_work_title {
+    font-size: 20px;
+  }
+
+  .home_banner_1 {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .time {
+    padding: 5px;
+  }
+
+  .time_work_title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .policy-text .text {
+    font-size: 14px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 14px;
+  }
+}
