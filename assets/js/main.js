@@ -186,4 +186,53 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // Enhanced dropdown functionality for hover events
+  const navDropdownItems = document.querySelectorAll(".nav-item.has-dropdown");
+
+  navDropdownItems.forEach(function (item) {
+    const dropdown = item.querySelector(".dropdown-menu");
+    const link = item.querySelector(".nav-link");
+    let timeoutId;
+
+    // Prevent default click behavior on dropdown links
+    if (link) {
+      link.addEventListener("click", function (e) {
+        // Only prevent default if dropdown is present and we're on desktop
+        if (dropdown && window.innerWidth > 992) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    }
+
+    // Show dropdown on hover (desktop only)
+    item.addEventListener("mouseenter", function () {
+      if (window.innerWidth > 992) {
+        clearTimeout(timeoutId);
+        if (dropdown) {
+          dropdown.style.display = "block";
+          dropdown.style.opacity = "1";
+          dropdown.style.visibility = "visible";
+          dropdown.style.transform = "translateY(0)";
+        }
+      }
+    });
+
+    // Hide dropdown on mouse leave with slight delay
+    item.addEventListener("mouseleave", function () {
+      if (window.innerWidth > 992) {
+        timeoutId = setTimeout(() => {
+          if (dropdown) {
+            dropdown.style.opacity = "0";
+            dropdown.style.visibility = "hidden";
+            dropdown.style.transform = "translateY(-10px)";
+            setTimeout(() => {
+              dropdown.style.display = "none";
+            }, 300);
+          }
+        }, 150);
+      }
+    });
+  });
 });

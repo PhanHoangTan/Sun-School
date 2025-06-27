@@ -185,10 +185,12 @@ body {
 .header-main {
   position: relative;
   font-family: "bali", sans-serif;
+  overflow: visible !important;
 }
 
 .header-main .row {
   position: relative;
+  overflow: visible !important;
 }
 
 .header-main::after {
@@ -220,7 +222,7 @@ body {
 .main-navigation {
   float: left;
   width: calc(100% - 50px);
-  overflow-x: auto;
+  overflow: visible !important;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -238,10 +240,72 @@ body {
   white-space: nowrap;
 }
 
+/* Navigation Items */
 .nav-item {
   position: relative;
   margin: 0 3px;
   white-space: nowrap;
+}
+
+.nav-item.has-dropdown {
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: #f57f17;
+  text-decoration: none;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  list-style: none;
+  margin: 0;
+  z-index: 99999 !important;
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+/* Show dropdown on hover */
+.nav-item.has-dropdown:hover .dropdown-menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  z-index: 99999 !important;
+}
+
+.nav-item {
+  position: relative;
+  margin: 0 3px;
+  white-space: nowrap;
+}
+
+.nav-item.has-dropdown {
+  position: relative;
 }
 
 .nav-link {
@@ -298,10 +362,18 @@ body {
 .nav-link i {
   font-size: 12px;
   margin-left: 5px;
+  transition: transform 0.3s ease;
 }
 
-.has-dropdown:hover .dropdown-menu {
+.nav-item.has-dropdown:hover .nav-link i {
+  transform: rotate(180deg);
+}
+
+.has-dropdown:hover .dropdown-menu,
+.nav-item.has-dropdown:hover .dropdown-menu {
   display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-menu {
@@ -310,27 +382,84 @@ body {
   left: 0;
   width: 220px;
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eee;
+  border-radius: 8px;
   padding: 10px 0;
   list-style: none;
   display: none;
+  opacity: 0;
+  visibility: hidden;
   z-index: 999;
   text-align: left;
   white-space: normal;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+/* Dropdown Menu Items */
+.dropdown-menu li {
+  list-style: none;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
 }
 
 .dropdown-menu li a {
   display: block;
-  padding: 8px 15px;
+  padding: 12px 20px;
   text-decoration: none;
   color: #333;
-  transition: all 0.3s;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
 }
 
 .dropdown-menu li a:hover {
   color: #f57f17;
   background-color: #f9f9f9;
-  padding-left: 20px;
+  border-left-color: #f57f17;
+  text-decoration: none;
+}
+
+/* Additional dropdown styling for better functionality */
+.main-navigation .nav-item.has-dropdown {
+  position: relative;
+}
+
+.main-navigation .nav-item.has-dropdown .nav-link {
+  position: relative;
+}
+
+.main-navigation .dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  list-style: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  text-align: left;
+  white-space: normal;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-10px);
+}
+
+.main-navigation .nav-item.has-dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Cart */
@@ -447,6 +576,35 @@ body.menu-open .menu-overlay {
 
 body.menu-open {
   overflow: hidden;
+}
+
+/* Fix dropdown overflow issues - Added to ensure dropdowns are visible */
+.header,
+.header-main,
+.header-main .row,
+.header-main .container,
+.main-navigation,
+.nav-item,
+.nav-item.has-dropdown {
+  overflow: visible !important;
+}
+
+.nav-item.has-dropdown {
+  z-index: 9999 !important;
+}
+
+/* Additional dropdown positioning fixes */
+.dropdown-menu {
+  position: fixed !important;
+  z-index: 99999 !important;
+}
+
+/* Reset to absolute positioning if fixed causes issues */
+.nav-item.has-dropdown .dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  z-index: 99999 !important;
 }
 
 /* Responsive Styles */
