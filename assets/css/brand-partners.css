@@ -1,0 +1,109 @@
+/* Brand section styles */
+.section_brand {
+  padding: 50px 0;
+  background-color: #fffae3;
+}
+
+.brand {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.brand-swiper {
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.brand .swiper-slide {
+  text-align: center;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand .swiper-slide a {
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.brand .swiper-slide img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+.brand .swiper-slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Custom navigation buttons */
+.brand .swiper-button-prev,
+.brand .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  margin-top: -12.5px;
+  z-index: 10;
+  cursor: pointer;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/pre-min.png?1653971798732");
+}
+
+.brand .swiper-button-prev {
+  left: 10px;
+}
+
+.brand .swiper-button-next {
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+.brand .swiper-button-next.swiper-button-disabled,
+.brand .swiper-button-prev.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+/* Hide default Swiper button arrows */
+.brand .swiper-button-prev:after,
+.brand .swiper-button-next:after {
+  display: none;
+}
+
+/* Fix for navigation buttons */
+.brand .swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+/* Hover effect for navigation buttons */
+.brand .swiper-button-prev:hover,
+.brand .swiper-button-next:hover {
+  opacity: 0.8;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .section_brand {
+    padding: 30px 0;
+  }
+
+  .brand-swiper {
+    padding: 0 40px;
+  }
+
+  .brand .swiper-button-prev {
+    left: 0;
+  }
+
+  .brand .swiper-button-next {
+    right: 0;
+  }
+}
