@@ -797,21 +797,25 @@ body.menu-open {
 }
 
 .home-blogs .default_title a,
-.people_say_div .default_title {
+.people_say_div .default_title,
+.home_dv .default_title {
   color: #f6903d;
   text-decoration: none;
+  position: relative;
 }
 
 .home-blogs .default_title:after,
-.people_say_div .default_title:after {
+.people_say_div .default_title:after,
+.home_dv .default_title:after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 150px;
+  width: 120px;
   height: 4px;
-  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/line_title.png?1676015309640)
-    no-repeat;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
+  background-repeat: repeat-x;
+  background-position: center bottom;
 }
 
 .section_page_home p {
@@ -1134,15 +1138,17 @@ body.menu-open {
 }
 
 .home-blogs .default_title:after,
-.people_say_div .default_title:after {
+.people_say_div .default_title:after,
+.home_dv .default_title:after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 150px;
+  width: 120px;
   height: 4px;
-  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/line_title.png?1676015309640)
-    no-repeat;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
+  background-repeat: repeat-x;
+  background-position: center bottom;
 }
 
 .home-blogs .default_title a,
@@ -1289,10 +1295,11 @@ body.menu-open {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 60px;
+  width: 120px;
   height: 4px;
-  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/line_title.png?1676015309640)
-    no-repeat;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
+  background-repeat: repeat-x;
+  background-position: center bottom;
 }
 
 /* Add a yellow underline below the title */
@@ -1301,7 +1308,7 @@ body.menu-open {
   display: block;
   width: 60px;
   height: 2px;
-  background-color: #f6903d;
+  /* background-color: #f6903d; */
   position: absolute;
   top: 40px;
   left: 0;
