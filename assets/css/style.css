@@ -1332,25 +1332,24 @@ body.menu-open {
   margin-top: 0;
   width: 35px;
   height: 35px;
-  background-color: #dddddd;
+  background-color: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/pre-min.png?1653971798732);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .heading-nav-container .swiper-button-prev:after,
 .heading-nav-container .swiper-button-next:after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-left: 2px solid #999;
-  border-bottom: 2px solid #999;
-  transform: rotate(45deg);
+  display: none;
 }
 
-.heading-nav-container .swiper-button-next:after {
-  transform: rotate(225deg);
+.heading-nav-container .swiper-button-next {
+  transform: scaleX(-1);
 }
 
 /* Hide the slider navigation buttons */
@@ -1520,8 +1519,7 @@ body.menu-open {
 
   .heading-nav-container .swiper-button-prev:after,
   .heading-nav-container .swiper-button-next:after {
-    width: 10px;
-    height: 10px;
+    display: none;
   }
 
   .people-description:before,
