@@ -1,0 +1,148 @@
+/* Services (Dịch vụ) section styles */
+
+.home_dv {
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.home_dv .default_title {
+  color: #f6903d;
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-family: "Lobster", cursive;
+  position: relative;
+}
+
+.home_dv .default_title:after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: #f6b13f;
+}
+
+.home_dv_bn_cv {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.home_dv_bn_cv img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+
+.home_dv_bn_cv:hover img {
+  transform: scale(1.05);
+}
+
+.home_dv_cnt {
+  background-color: #fff;
+  border: 1px dashed #f6903d;
+  border-radius: 30px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.home_dv_cnt:hover {
+  background-color: #fff9f5;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(246, 144, 61, 0.2);
+}
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.home_dv_cnt p {
+  margin: 0;
+  font-size: 16px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.home_dv_cnt b {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.home_dv_cnt a {
+  color: #f6903d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.home_dv_cnt a:hover {
+  color: #f6903d;
+}
+
+.price {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Service-specific colors */
+.dv_cnt_1 {
+  border-color: #f6903d;
+}
+
+.dv_cnt_2 {
+  border-color: #41b6e6;
+}
+
+.dv_cnt_3 {
+  border-color: #8bc53f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .home_dv_cnt {
+    margin-bottom: 10px;
+  }
+
+  .home_dv .default_title {
+    text-align: center;
+  }
+
+  .home_dv .default_title:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 576px) {
+  .home_dv_cnt {
+    padding: 12px 15px;
+  }
+
+  .home_dv_cnt p {
+    font-size: 14px;
+  }
+
+  .service-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+}

@@ -767,6 +767,11 @@ body.menu-open {
   background-color: #fff;
 }
 
+.section_page_home .default_title a {
+  color: #f6903d;
+  text-decoration: none;
+}
+
 .default_title {
   position: relative;
   font-size: 28px;
@@ -1180,7 +1185,7 @@ body.menu-open {
 }
 
 .new-name a:hover {
-  color: #1a91d6;
+  color: #f6903d;
 }
 
 .new-info {
