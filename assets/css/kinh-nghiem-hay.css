@@ -1,0 +1,160 @@
+/* Kinh nghiệm hay section styles */
+.home_knh {
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.home_knh .default_title {
+  text-align: center;
+  position: relative;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+.home_knh .default_title:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 120px;
+  height: 4px;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
+  background-repeat: repeat-x;
+  background-position: center bottom;
+}
+
+.home_knh .default_title a {
+  color: #f6903d;
+  font-family: "Lobster", cursive;
+  text-decoration: none;
+}
+
+.home_knh_items {
+  margin-bottom: 30px;
+}
+
+.home_knh .blog-wrap {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.home_knh .blog-wrap:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.home_knh .img_thumb {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.home_knh .img_thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.home_knh .img_thumb:hover img {
+  transform: scale(1.05);
+}
+
+.home_knh .blog-content-right {
+  flex: 1;
+  padding: 15px;
+}
+
+.home_knh .new-name {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.home_knh .new-name a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.home_knh .new-name a:hover {
+  color: #f6903d;
+}
+
+.home_knh .new-info {
+  display: flex;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.home_knh .new-info span {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.home_knh .new-info svg {
+  width: 13px;
+  height: 13px;
+  margin-right: 5px;
+  fill: #999;
+}
+
+.home_knh .new-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.home_knh .btn-mores {
+  display: inline-block;
+  padding: 6px 15px;
+  background-color: #f6903d;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.home_knh .btn-mores:hover {
+  background-color: #e67e2c;
+  color: #fff;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .home_knh .img_thumb {
+    width: 150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home_knh_items {
+    margin-bottom: 20px;
+  }
+
+  .home_knh .blog-wrap {
+    flex-direction: column;
+  }
+
+  .home_knh .img_thumb {
+    width: 100%;
+    height: 200px;
+  }
+
+  .home_knh .blog-content-right {
+    padding: 15px;
+  }
+}
