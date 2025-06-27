@@ -767,9 +767,24 @@ body.menu-open {
   background-color: #fff;
 }
 
+.section_page_home .default_title {
+  position: relative;
+}
+
 .section_page_home .default_title a {
   color: #f6903d;
-  text-decoration: none;
+}
+
+.section_page_home .default_title:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+  height: 4px;
+  background-image: url(https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png);
+  background-repeat: repeat-x;
+  background-position: center bottom;
 }
 
 .default_title {
