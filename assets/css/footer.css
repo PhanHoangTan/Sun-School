@@ -1,0 +1,226 @@
+/* Footer styles */
+.footer {
+  background-image: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/footer_bg.jpg?1653971798732");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000;
+  padding-top: 50px;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.widget {
+  padding-bottom: 40px;
+}
+
+.widget-title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.widget-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #ffa800;
+}
+
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.widget-menu.infomation .time_work .item {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.widget-menu.infomation .time_work .item svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  color: #ffa800;
+}
+
+.widget-menu.infomation .time_work .item a,
+.widget-menu.infomation .time_work .item span {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.widget-menu.infomation .time_work .item a:hover {
+  color: #ffa800;
+}
+
+.social_icon ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.social_icon ul li {
+  margin-right: 15px;
+}
+
+.social_icon ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffa800;
+  transition: all 0.3s ease;
+}
+
+.social_icon ul li a svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+.social_icon ul li a:hover {
+  background-color: #e09700;
+  transform: translateY(-3px);
+}
+
+.widget-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.widget-menu li {
+  margin-bottom: 12px;
+}
+
+.widget-menu li a {
+  color: #000;
+  text-decoration: none;
+  position: relative;
+  padding-left: 15px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.widget-menu li a.has_icon:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffa800;
+}
+
+.widget-menu li a:hover {
+  color: #ffa800;
+  padding-left: 20px;
+}
+
+/* Plane flying animation */
+.plane_fly,
+.plane_fly_lg {
+  height: 60px;
+  background: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/plane_fly.png")
+    no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Footer bottom */
+.footer-bottom {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px 0;
+  font-size: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.copyright {
+  color: #000;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.copyright a {
+  color: #ffa800;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+}
+
+.bottom_linklist {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.bottom_linklist li {
+  margin-left: 20px;
+}
+
+.bottom_linklist li a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.bottom_linklist li a:hover {
+  color: #ffa800;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .no-padding-l,
+  .no-padding-r,
+  .no-padding-lr {
+    padding: 0 15px;
+  }
+
+  .bottom_linklist {
+    justify-content: center;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+
+  .pull-left,
+  .pull-right {
+    float: none !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .bottom_linklist li {
+    margin: 0 10px;
+  }
+}
