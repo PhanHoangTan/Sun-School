@@ -1,18 +1,21 @@
 /* Brand section styles */
 .section_brand {
-  padding: 50px 0;
+  padding: 30px 0;
   background-color: #fffae3;
+  border-top: 1px dashed #f6903d;
 }
 
 .brand {
   position: relative;
   margin: 0 auto;
   max-width: 1100px;
+  
 }
 
 .brand-swiper {
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 60px;
+  height: 80px;
 }
 
 .brand .swiper-slide {
@@ -43,9 +46,9 @@
 .brand .swiper-button-next {
   position: absolute;
   top: 50%;
-  width: 25px;
-  height: 25px;
-  margin-top: -12.5px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
   z-index: 10;
   cursor: pointer;
   background-size: contain;
@@ -55,11 +58,11 @@
 }
 
 .brand .swiper-button-prev {
-  left: 10px;
+  left: 5px;
 }
 
 .brand .swiper-button-next {
-  right: 10px;
+  right: 5px;
   transform: rotate(180deg);
 }
 
@@ -92,11 +95,19 @@
 /* Responsive styles */
 @media (max-width: 767px) {
   .section_brand {
-    padding: 30px 0;
+    padding: 20px 0;
   }
 
   .brand-swiper {
-    padding: 0 40px;
+    padding: 0 50px;
+    height: 60px;
+  }
+
+  .brand .swiper-button-prev,
+  .brand .swiper-button-next {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
   }
 
   .brand .swiper-button-prev {
