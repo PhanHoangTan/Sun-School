@@ -1,4 +1,47 @@
 <header class="header">
+  <style>
+    /* Fix header positioning to prevent jerky behavior when changing pages */
+    .header {
+      position: relative;
+      width: 100%;
+      z-index: 1000;
+      transition: none;
+    }
+    .header-top {
+      height: full;
+      transition: none;
+    }
+    .header-main {
+      height: full;
+      transition: none;
+    }
+    /* Fix dropdown positioning */
+    .nav-item.has-dropdown {
+      position: relative;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      transition: all 0.3s ease;
+    }
+    /* Prevent content shift */
+    .main-navigation {
+      display: flex;
+      justify-content: flex-end;
+    }
+    /* Force hardware acceleration to smooth transitions */
+    .header,
+    .header-main,
+    .header-top,
+    .main-navigation,
+    .dropdown-menu {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: subpixel-antialiased;
+    }
+  </style>
   <div class="header-top">
     <div class="container">
       <div class="row align-items-center">

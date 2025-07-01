@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Load header component
   const headerContainer = document.getElementById("header-container");
   if (headerContainer) {
+    // Prevent FOUC (Flash of Unstyled Content) before header loads
+    headerContainer.style.opacity = "0";
+
     fetch("./forms/components/header.html")
       .then((response) => response.text())
       .then((data) => {
@@ -15,10 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
         // Set active class based on current page
         setTimeout(() => {
           setActiveMenuItem();
+
+          // Smoothly fade in the header once everything is initialized
+          headerContainer.style.transition = "opacity 0.3s ease";
+          headerContainer.style.opacity = "1";
         }, 100);
       })
       .catch((error) => {
         console.error("Error loading header component:", error);
+        // Show header even if there was an error
+        headerContainer.style.opacity = "1";
       });
   }
 
