@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Check if element is in viewport function
   function isElementInViewport(el) {
+    // Add null check to prevent error
+    if (!el) return false;
+
     const rect = el.getBoundingClientRect();
     return (
       rect.top >= 0 &&
@@ -26,6 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to handle animations when scrolling
   function handleScrollAnimations() {
     const facilitySection = document.querySelector(".home_csvc");
+
+    // Only proceed if facilitySection exists
+    if (!facilitySection) return;
+
     const facilityItems = document.querySelectorAll(".facility-item");
 
     if (isElementInViewport(facilitySection)) {
@@ -125,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add a subtle animation to the facility divider
       const divider = img
         .closest(".facility-inner")
-        .querySelector(".facility-divider");
+        ?.querySelector(".facility-divider");
       if (divider) {
         divider.style.animation = "pulse 2s infinite";
       }

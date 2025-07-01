@@ -3,9 +3,9 @@
 /* Font Face */
 @font-face {
   font-family: "bali";
-  src: url("//bizweb.dktcdn.net/100/063/369/themes/877483/assets/bali.woff2?1676015309640")
+  src: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/bali.woff2?1676015309640")
       format("woff2"),
-    url("//bizweb.dktcdn.net/100/063/369/themes/877483/assets/bali.woff?1676015309640")
+    url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/bali.woff?1676015309640")
       format("woff");
   font-weight: normal;
   font-style: normal;
@@ -88,11 +88,64 @@ body {
   max-width: 33.333333%;
 }
 
+/* Breadcrumb Styles */
+.bread-crumb {
+  padding: 15px 0;
+  margin-bottom: 20px;
+}
+
+.breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-content {
+  width: 100%;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.breadcrumb li a {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb li a:hover {
+  color: #f57f17;
+}
+
+.breadcrumb li i {
+  font-size: 10px;
+  margin: 0 8px;
+  color: #999;
+}
+
+.breadcrumb li span {
+  color: #f57f17;
+  font-weight: 500;
+}
+
 /* Header Styles */
 .header {
   position: relative;
   z-index: 999;
-  background-image: url("//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_og.jpg?1653971798732");
+  background-image: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_og.jpg?1653971798732");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: auto 84px;
