@@ -155,8 +155,11 @@ document.addEventListener("DOMContentLoaded", function () {
         ".main-menu .nav-item:first-child"
       );
       if (homeItem) homeItem.classList.add("active");
-    } else if (currentPath.includes("GioiThieu.html")) {
-      // About page
+    } else if (
+      currentPath.includes("GioiThieu.html") ||
+      currentPath.includes("CoSoVatChat.html")
+    ) {
+      // About page or Facilities page (both under Giới thiệu)
       const aboutItem = document.querySelector(
         ".main-menu .nav-item:nth-child(6)"
       );
