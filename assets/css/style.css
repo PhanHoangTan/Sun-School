@@ -91,7 +91,7 @@ body {
 /* Breadcrumb Styles */
 .bread-crumb {
   padding: 15px 0;
-  margin-bottom: 20px;
+  background: #fff9e2;
 }
 
 .breadcrumb-wrapper {
