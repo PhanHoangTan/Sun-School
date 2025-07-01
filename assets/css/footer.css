@@ -37,6 +37,7 @@
 .footer-logo {
   display: inline-block;
   margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .footer-logo img {
@@ -54,7 +55,7 @@
   width: 16px;
   height: 16px;
   margin-right: 10px;
-  color: #ffa800;
+  color: #fff;
 }
 
 .widget-menu.infomation .time_work .item a,
@@ -86,19 +87,24 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #ffa800;
+  /* background-color: #ffa800; */
   transition: all 0.3s ease;
 }
 
 .social_icon ul li a svg {
   width: 18px;
   height: 18px;
-  fill: #fff;
+  fill: #000;
+  transition: fill 0.3s ease;
 }
 
 .social_icon ul li a:hover {
-  background-color: #e09700;
+  /* background-color: #e09700; */
   transform: translateY(-3px);
+}
+
+.social_icon ul li a:hover svg {
+  fill: #fff;
 }
 
 .widget-menu {

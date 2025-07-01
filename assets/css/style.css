@@ -802,7 +802,7 @@ body.menu-open {
 
 /* Time Work Styles */
 .time_work {
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 10px;
   overflow: hidden;
   height: 100%;
