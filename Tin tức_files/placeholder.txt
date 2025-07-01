@@ -1,0 +1,8 @@
+This directory contains images for the news section.
+
+Required images:
+- 000.png (for "Cuộc thi thử thách tài năng nhí 2016")
+- 08-db2deccc-c4bc-4a53-b57d-73766584ceeb.jpg (for "Tới trường hăng say")
+- 1.png (for "Làm sao giúp trẻ phát triển ngôn ngữ")
+
+Please add your actual images with these exact filenames to display properly.
