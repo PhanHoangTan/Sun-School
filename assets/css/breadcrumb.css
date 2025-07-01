@@ -1,0 +1,58 @@
+/* Custom Breadcrumb Styles */
+.bread-crumb {
+  padding: 15px 0;
+  background: #fff9e2;
+}
+
+.breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-content {
+  width: 100%;
+}
+
+/* Override Bootstrap breadcrumb styles */
+.breadcrumb {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+
+.breadcrumb li {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 14px !important;
+  color: #333 !important;
+}
+
+.breadcrumb li a {
+  color: #333 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.breadcrumb li a:hover {
+  color: #f57f17 !important;
+}
+
+.breadcrumb li i {
+  font-size: 10px !important;
+  margin: 0 8px !important;
+  color: #999 !important;
+}
+
+.breadcrumb li span {
+  color: #f57f17 !important;
+  font-weight: 500 !important;
+}
+
+/* Completely disable Bootstrap's breadcrumb styles */
+.breadcrumb-item + .breadcrumb-item::before {
+  display: none !important;
+}
