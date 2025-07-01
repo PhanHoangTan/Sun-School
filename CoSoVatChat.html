@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cơ sở vật chất - SunShine School</title>
 
-    <!-- Custom CSS -->
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+    <!-- Custom CSS - loaded after Bootstrap to override its styles -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/header.css" />
     <link rel="stylesheet" href="./assets/css/facilities.css" />
@@ -15,10 +24,6 @@
     <link rel="stylesheet" href="./assets/css/footer.css" />
     <link rel="stylesheet" href="./assets/css/scroll-top.css" />
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
@@ -32,9 +37,45 @@
     <!-- Services CSS -->
     <link rel="stylesheet" href="./assets/css/services.css" />
 
-    <!-- Remove all inline style overrides since we're not using Bootstrap anymore -->
+    <!-- Override Bootstrap breadcrumb styles with our custom styles -->
     <style>
-      /* Custom styles can be added here if needed */
+      .breadcrumb {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        background-color: transparent !important;
+        border-radius: 0 !important;
+      }
+
+      .breadcrumb li {
+        display: inline-flex !important;
+        align-items: center !important;
+        font-size: 14px !important;
+        color: #333 !important;
+      }
+
+      .breadcrumb li a {
+        color: #333 !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+      }
+
+      .breadcrumb li a:hover {
+        color: #f57f17 !important;
+      }
+
+      .breadcrumb li i {
+        font-size: 10px !important;
+        margin: 0 8px !important;
+        color: #999 !important;
+      }
+
+      .breadcrumb li span {
+        color: #f57f17 !important;
+        font-weight: 500 !important;
+      }
     </style>
   </head>
   <body>
@@ -485,8 +526,8 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
     <!-- Custom JS -->
