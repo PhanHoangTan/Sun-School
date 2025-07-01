@@ -246,9 +246,9 @@
 
 .pagination {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -259,36 +259,75 @@
 }
 
 .page-link {
-  display: block;
-  padding: 8px 12px;
-  background: #fff;
-  color: #666;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  min-width: 40px;
-  text-align: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: #999 !important;
+  border: none !important;
+  border-radius: 50% !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+  width: 35px !important;
+  height: 35px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
 }
 
 .page-link:hover {
-  background: #ff9852;
-  color: #fff;
-  border-color: #ff9852;
-  text-decoration: none;
+  color: #f6903d !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border-color: transparent !important;
 }
 
+.pagination .page-item.active .page-link,
 .page-item.active .page-link {
-  background: #ff9852;
-  color: #fff;
-  border-color: #ff9852;
+  background: #ff9852 !important;
+  background-color: #ff9852 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-color: #ff9852 !important;
+  z-index: 3 !important;
+}
+
+.page-item.page-next .page-link {
+  background: transparent !important;
+  border-radius: 50% !important;
+  padding: 10px !important;
+  width: 50px !important;
+  height: 50px !important;
+  border: none !important;
+}
+
+.page-item.page-next .page-link img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transition: filter 0.3s ease !important;
+}
+
+.page-item.page-next .page-link:hover {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+.page-item.page-next .page-link:hover img {
+  filter: hue-rotate(10deg) saturate(1.2) !important;
 }
 
 .page-item.disabled .page-link {
-  background: #f8f9fa;
-  color: #ccc;
-  border-color: #e9ecef;
-  cursor: not-allowed;
+  color: #ccc !important;
+  cursor: not-allowed !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+.page-item.disabled .page-link:hover {
+  color: #ccc !important;
+  background: transparent !important;
+  border-color: transparent !important;
 }
 
 /* Responsive Styles */
