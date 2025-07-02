@@ -18,6 +18,7 @@
     /* Fix dropdown positioning */
     .nav-item.has-dropdown {
       position: relative;
+      z-index: 1001;
     }
     .dropdown-menu {
       position: absolute;
@@ -25,11 +26,14 @@
       left: 0;
       min-width: 200px;
       transition: all 0.3s ease;
+      z-index: 9999;
     }
     /* Prevent content shift */
     .main-navigation {
       display: flex;
       justify-content: flex-end;
+      position: relative;
+      z-index: 1000;
     }
     /* Force hardware acceleration to smooth transitions */
     .header,

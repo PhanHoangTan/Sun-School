@@ -225,4 +225,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   `;
   document.head.appendChild(style);
+
+  // Ensure dropdowns are always on top
+  const dropdowns = document.querySelectorAll(".dropdown-menu");
+
+  // Add event listeners for dropdown hover
+  const dropdownItems = document.querySelectorAll(".nav-item.has-dropdown");
+
+  dropdownItems.forEach((item) => {
+    // Force dropdown to be on top when hovered
+    item.addEventListener("mouseenter", function () {
+      const dropdown = this.querySelector(".dropdown-menu");
+      if (dropdown) {
+        // Ensure the dropdown is displayed on top
+        dropdown.style.zIndex = "9999";
+        dropdown.style.display = "block";
+        dropdown.style.opacity = "1";
+        dropdown.style.visibility = "visible";
+        dropdown.style.transform = "translateY(0)";
+      }
+    });
+
+    // Handle mouse leave
+    item.addEventListener("mouseleave", function () {
+      const dropdown = this.querySelector(".dropdown-menu");
+      if (dropdown) {
+        // Hide the dropdown with a slight delay for better UX
+        setTimeout(() => {
+          if (!item.matches(":hover")) {
+            dropdown.style.display = "none";
+            dropdown.style.opacity = "0";
+            dropdown.style.visibility = "hidden";
+            dropdown.style.transform = "translateY(-10px)";
+          }
+        }, 100);
+      }
+    });
+  });
+
+  // Fix any z-index issues with other elements that might be overlapping
+  function ensureProperZIndex() {
+    // Make sure header has high z-index
+    const header = document.querySelector(".header");
+    if (header) {
+      header.style.zIndex = "1000";
+    }
+
+    // Ensure dropdowns have highest z-index
+    dropdowns.forEach((dropdown) => {
+      dropdown.style.zIndex = "9999";
+    });
+  }
+
+  // Run on page load and on resize
+  ensureProperZIndex();
+  window.addEventListener("resize", ensureProperZIndex);
 });
