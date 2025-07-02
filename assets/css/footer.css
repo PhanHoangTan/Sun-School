@@ -28,10 +28,6 @@
   display: block !important;
 }
 
-.widget {
-  padding-bottom: 40px;
-}
-
 .widget-item {
   height: 100%;
   padding: 0 10px;
@@ -166,13 +162,16 @@
 /* Plane flying animation */
 .plane_fly,
 .plane_fly_lg {
-  height: 60px;
-  background: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/plane_fly.png")
+  height: 80px;
+  background: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/fly_long-min.png?1653971798732")
     no-repeat;
   background-position: center;
-  margin: 0 auto;
+  background-size: contain;
   position: relative;
   z-index: 2;
+  max-width: 100%;
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Footer bottom */
@@ -375,6 +374,11 @@
 
   .hidden-xs {
     display: inline !important;
+  }
+
+  .plane_fly {
+    height: 60px;
+    margin: 15px auto;
   }
 }
 

@@ -29,18 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Handle plane animation
+  // Remove plane animation - no longer needed
   const planeElements = document.querySelectorAll(".plane_fly, .plane_fly_lg");
-
   planeElements.forEach(function (plane) {
-    // Simple animation for the plane, can be expanded if needed
-    plane.style.transition = "all 0.5s ease";
-
-    window.addEventListener("scroll", function () {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 300) {
-        plane.style.transform = "translateX(" + scrollPosition / 50 + "px)";
-      }
-    });
+    plane.style.transform = "none";
+    plane.style.transition = "none";
   });
 });
