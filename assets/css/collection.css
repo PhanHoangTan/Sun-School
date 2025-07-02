@@ -1,0 +1,494 @@
+/* Collection Page Styles - Giá trị cho bé */
+
+/* Breadcrumb styling */
+.bread-crumb {
+  background-color: #f9f3e8;
+  padding: 15px 0;
+  margin-bottom: 0;
+}
+
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb li a {
+  color: #999;
+  text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+  color: #ff8c00;
+}
+
+.breadcrumb li i,
+.breadcrumb .mr_lr {
+  margin: 0 8px;
+  color: #999;
+  font-size: 12px;
+}
+
+.breadcrumb li:last-child span {
+  color: #ff8c00;
+  font-weight: 500;
+}
+
+/* Main section styling */
+.section.wrap_background {
+  background-color: #fff;
+  padding: 30px 0;
+}
+
+.bg_collection.section {
+  background: transparent;
+}
+
+/* Sidebar styling */
+.dqdt-sidebar {
+  padding-right: 30px;
+}
+
+.aside-content {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.title-head {
+  background: linear-gradient(135deg, #ff8c00, #ffa500);
+  color: #fff;
+  padding: 15px 20px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+}
+
+.title-head::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ff8c00;
+}
+
+.nav-category {
+  padding: 0;
+}
+
+.nav-category .nav {
+  flex-direction: column;
+  padding: 0;
+}
+
+.nav-category .nav-item {
+  border-bottom: 1px solid #f5f5f5;
+  position: relative;
+}
+
+.nav-category .nav-item:last-child {
+  border-bottom: none;
+}
+
+.nav-category .nav-link {
+  color: #666;
+  padding: 12px 20px;
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: none;
+  background: none;
+  border-radius: 0;
+}
+
+.nav-category .nav-link:hover,
+.nav-category .nav-link:focus {
+  background-color: #fff5e6;
+  color: #ff8c00;
+  transform: translateX(5px);
+}
+
+.nav-category .nav-item.relative .pr-5 {
+  position: relative;
+  padding-right: 40px !important;
+}
+
+.open_mnu {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 12px;
+  color: #999;
+  transition: transform 0.3s ease;
+}
+
+.open_mnu::before {
+  content: "\f078";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.open_mnu.cls_mn {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.menu_down {
+  background: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #f0f0f0;
+}
+
+.menu_down .nav-item {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.menu_down .nav-link {
+  padding: 10px 20px 10px 40px;
+  font-size: 13px;
+  color: #777;
+}
+
+.menu_down .nav-link:hover {
+  background-color: #fff;
+  color: #ff8c00;
+  transform: translateX(5px);
+}
+
+/* Main content area */
+.col-lg-9.order-lg-2 {
+  padding-left: 30px;
+}
+
+/* Title and controls row */
+.title_head {
+  margin-bottom: 20px;
+}
+
+.title-page {
+  color: #ff8c00;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.title-page::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff8c00, #ffa500);
+  border-radius: 2px;
+}
+
+/* Sort and view controls */
+.col-lg-6.align-items-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+#sort-by {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#sort-by label {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.selectBox {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  background: #fff;
+  min-width: 150px;
+}
+
+.selectBox:focus {
+  outline: none;
+  border-color: #ff8c00;
+  box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.1);
+}
+
+.view-mode {
+  display: flex;
+  gap: 5px;
+}
+
+.switch-view {
+  text-decoration: none;
+}
+
+.button-view-mode {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #666;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.button-view-mode:hover,
+.button-view-mode.active {
+  background: #ff8c00;
+  color: #fff;
+  border-color: #ff8c00;
+}
+
+.button-view-mode svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Product grid */
+.category-products {
+  margin-top: 30px;
+}
+
+.products-view-grid .row {
+  margin: 0 -15px;
+}
+
+.products-view-grid .col-lg-4 {
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+.item_product_main {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.item_product_main:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  border-color: #ff8c00;
+}
+
+.product-thumbnail {
+  position: relative;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.image_thumb {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.image_thumb img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image_thumb:hover img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  margin: 0 0 15px 0;
+  flex-grow: 1;
+}
+
+.product-name a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.product-name a:hover {
+  color: #ff8c00;
+}
+
+.price-box {
+  padding: 0 20px 20px;
+  margin-top: auto;
+}
+
+.contact {
+  background: linear-gradient(135deg, #ff8c00, #ffa500);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.contact:hover {
+  background: linear-gradient(135deg, #e67e00, #ff9500);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+  text-decoration: none;
+}
+
+/* Mobile filters button */
+.open-filters {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #ff8c00;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.open-filters svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 991px) {
+  .dqdt-sidebar {
+    padding-right: 15px;
+    margin-top: 30px;
+  }
+
+  .col-lg-9.order-lg-2 {
+    padding-left: 15px;
+  }
+
+  .open-filters {
+    display: flex;
+  }
+
+  .title-page {
+    font-size: 24px;
+  }
+
+  .col-lg-6.align-items-center {
+    justify-content: flex-start;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section.wrap_background {
+    padding: 20px 0;
+  }
+
+  .title-page {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .col-lg-6.align-items-center {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  #sort-by {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .selectBox {
+    min-width: 200px;
+  }
+
+  .products-view-grid .col-lg-4 {
+    margin-bottom: 20px;
+  }
+
+  .image_thumb img {
+    height: 200px;
+  }
+}
+
+/* Animation for smooth interactions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item_product_main {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Loading states */
+.lazyload {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazyload.loaded {
+  opacity: 1;
+}
