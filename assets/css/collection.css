@@ -60,23 +60,24 @@
 
 .aside-content {
   background: #fff;
-  border: 1px solid #f0f0f0;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .title-head {
-  background: linear-gradient(135deg, #ff8c00, #ffa500);
-  color: #fff;
   padding: 15px 20px;
   margin: 0;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
-  position: relative;
+  font-family: "bali", sans-serif;
+  font-size: 35px;
+  color: #ff8c00;
+  
 }
 
 .title-head::after {
+  background-image: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png?1653971798732);
   content: "";
   position: absolute;
   bottom: -10px;
@@ -86,7 +87,6 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #ff8c00;
 }
 
 .nav-category {
@@ -188,8 +188,9 @@
 
 .title-page {
   color: #ff8c00;
-  font-size: 28px;
+  font-size: 35px;
   font-weight: 700;
+  font-family: "bali", sans-serif;
   margin: 0;
   text-transform: uppercase;
   position: relative;
@@ -201,9 +202,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 60px;
+  width: 50%;
   height: 3px;
-  background: linear-gradient(90deg, #ff8c00, #ffa500);
+  background-image: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/page_title-min.png?1653971798732);
   border-radius: 2px;
 }
 
