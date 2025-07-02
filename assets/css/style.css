@@ -1631,6 +1631,46 @@ body.menu-open {
   padding: 20px 15px;
   border: 1px dashed #f57f17;
   margin-top: 10px;
+  height: 430px;
+  overflow: hidden;
+}
+
+.people_say {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.people_say::-webkit-scrollbar {
+  width: 5px;
+}
+
+.people_say::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.people_say::-webkit-scrollbar-thumb {
+  background: #f6903d;
+  border-radius: 5px;
+}
+
+@media (max-width: 1200px) {
+  .bg-review {
+    height: 450px;
+  }
+}
+
+@media (max-width: 991px) {
+  .bg-review {
+    height: 350px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bg-review {
+    height: 400px;
+  }
 }
 
 .people_say_div:after {

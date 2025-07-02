@@ -165,6 +165,11 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesPerView: 1,
       },
     },
+    autoHeight: false,
+    height: 370,
+    observer: true,
+    observeParents: true,
+    updateOnWindowResize: true,
   });
 
   // Dropdown menus for mobile
