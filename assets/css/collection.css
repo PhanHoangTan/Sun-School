@@ -73,7 +73,6 @@
   font-family: "bali", sans-serif;
   font-size: 35px;
   color: #ff8c00;
-  
 }
 
 .title-head::after {
@@ -126,31 +125,7 @@
   transform: translateX(5px);
 }
 
-.nav-category .nav-item.relative .pr-5 {
-  position: relative;
-  padding-right: 40px !important;
-}
-
-.open_mnu {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 12px;
-  color: #999;
-  transition: transform 0.3s ease;
-}
-
-.open_mnu::before {
-  content: "\f078";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-}
-
-.open_mnu.cls_mn {
-  transform: translateY(-50%) rotate(180deg);
-}
+/* Dropdown styles are handled in the HTML inline styles */
 
 .menu_down {
   background: #f9f9f9;
@@ -165,7 +140,7 @@
 }
 
 .menu_down .nav-link {
-  padding: 10px 20px 10px 40px;
+  padding: 10px 20px;
   font-size: 13px;
   color: #777;
 }

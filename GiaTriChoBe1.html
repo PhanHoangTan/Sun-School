@@ -49,19 +49,19 @@
       }
 
       .nav-category .nav-item.relative .nav-link {
-        display: flex;
+        display: block;
         align-items: center;
-        justify-content: space-between;
-        padding: 12px 15px;
+        padding: 12px 45px 12px 15px;
         color: #333;
         text-decoration: none;
         border-bottom: 1px solid #f0f0f0;
         transition: all 0.3s ease;
+        position: relative;
       }
 
       .nav-category .nav-item.relative .nav-link:hover {
         background-color: #f8f9fa;
-          color: #ff8c00;
+        color: #ff8c00;
 
         text-decoration: none;
       }
@@ -69,20 +69,36 @@
       /* Hover effect for items with dropdown */
       .nav-category .nav-item.relative:hover > .nav-link {
         background-color: #e3f2fd;
-          color: #ff8c00;
-
+        color: #ff8c00;
       }
 
       .nav-category .nav-item.relative:hover .open_mnu {
         color: #ff8c00;
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Ensure arrow is always visible */
+      .nav-category .nav-item.relative .open_mnu {
+        opacity: 1;
+        visibility: visible;
       }
 
       .nav-category .open_mnu {
-        margin-left: auto;
+        position: absolute;
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
         color: #666;
         cursor: pointer;
-        transition: transform 0.3s ease;
+        transition: all 0.3s ease;
         font-size: 14px;
+        z-index: 10;
+        pointer-events: auto;
+        width: 30px;
+        justify-content: center;
       }
 
       .nav-category .open_mnu:before {
@@ -131,25 +147,17 @@
       }
 
       .nav-category .menu_down .nav-link {
-        padding: 10px 20px 10px 30px;
+        padding: 10px 20px;
         color: #666;
         font-size: 14px;
         border-bottom: none;
         position: relative;
       }
 
-      .nav-category .menu_down .nav-link:before {
-        content: "•";
-        position: absolute;
-        left: 20px;
-        color: #ff8c00;
-        font-weight: bold;
-      }
-
       .nav-category .menu_down .nav-link:hover {
         background-color: #e9ecef;
         color: #ff8c00;
-        padding-left: 35px;
+        padding-left: 25px;
       }
 
       /* Title styling */
