@@ -873,21 +873,36 @@ body.menu-open {
 
 .time {
   padding: 10px;
+  width: 100%;
+  display: block;
 }
 
 .time-day {
   margin-bottom: 10px;
+  border-bottom: 1px dashed #f57f17;
+}
+
+.time .row {
+  display: flex;
+  align-items: center;
 }
 
 .time_work_image {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 60px;
+  flex: 0 0 60px;
 }
 
 .time_work_image img {
   max-width: 100%;
   height: auto;
+}
+
+.time_work_content {
+  flex: 1;
+  padding-left: 15px;
 }
 
 .policy-item {
@@ -927,17 +942,6 @@ body.menu-open {
   border-radius: 10px;
 }
 
-.no-padding-lr {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.img-responsive {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
 @media (max-width: 991px) {
   .time_work {
     margin-top: 20px;
@@ -949,6 +953,15 @@ body.menu-open {
 
   .home_banner_1 {
     margin-top: 15px;
+  }
+
+  .time .row {
+    flex-direction: row;
+  }
+
+  .time_work_image {
+    width: 50px;
+    flex: 0 0 50px;
   }
 }
 
@@ -969,6 +982,11 @@ body.menu-open {
   .time_small,
   .fone-slider a {
     font-size: 14px;
+  }
+
+  .time_work_image {
+    width: 40px;
+    flex: 0 0 40px;
   }
 }
 
@@ -1743,4 +1761,15 @@ body.menu-open {
 /* Make sure the d-flex class is defined for the blog-wrap */
 .d-flex {
   display: flex;
+}
+
+.no-padding-lr {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
