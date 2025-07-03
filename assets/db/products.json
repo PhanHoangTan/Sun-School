@@ -9,7 +9,8 @@
       "originalPrice": "2.000.000₫",
       "discount": "50%",
       "hasDiscount": true,
-      "category": "Tiếng Anh"
+      "category": "Tiếng Anh",
+      "description": "Tiếng Anh Mẫu Giáo là khóa học tiếng Anh được thiết kế riêng cho các bé mẫu giáo từ 4-6 tuổi với chương trình học vui nhộn..."
     },
     {
       "id": "product-actions-5614488",
@@ -20,7 +21,8 @@
       "originalPrice": null,
       "discount": null,
       "hasDiscount": false,
-      "category": "Tiếng Anh"
+      "category": "Tiếng Anh",
+      "description": "Với chúng tôi, việc học Tiếng Anh không chỉ dừng lại ở việc khám phá một ngôn ngữ mà còn là môi trường trau dồi kỹ năng sống và giúp bạn kết..."
     },
     {
       "id": "product-actions-5614486",
@@ -31,7 +33,8 @@
       "originalPrice": null,
       "discount": null,
       "hasDiscount": false,
-      "category": "Tiếng Anh"
+      "category": "Tiếng Anh",
+      "description": "Với chúng tôi, việc học Tiếng Anh không chỉ dừng lại ở việc khám phá một ngôn ngữ mà còn là môi trường trau dồi kỹ năng sống và giúp bạn kết..."
     },
     {
       "id": "product-actions-5614459",
@@ -42,7 +45,8 @@
       "originalPrice": "3.000.000₫",
       "discount": "17%",
       "hasDiscount": true,
-      "category": "Tiếng Anh"
+      "category": "Tiếng Anh",
+      "description": "Với phương châm đem đến cho người học nguồn tri thức Anh ngữ chất lượng cao, AMA đã không ngừng sáng tạo và cho ra đời phương pháp học trực quan si..."
     },
     {
       "id": "product-actions-5614435",
@@ -53,7 +57,8 @@
       "originalPrice": null,
       "discount": null,
       "hasDiscount": false,
-      "category": "Tiếng Anh"
+      "category": "Tiếng Anh",
+      "description": "Chương trình tiếng Anh doanh nghiệp được thiết kế riêng và phù hợp với yêu cầu của từng khách hàng."
     },
     {
       "id": "product-actions-1633302",
@@ -64,7 +69,8 @@
       "originalPrice": null,
       "discount": null,
       "hasDiscount": false,
-      "category": "Giáo dục"
+      "category": "Giáo dục",
+      "description": "Trường mầm non Sunshine School sử dụng chương trình giáo dục mầm non tiên tiến được xây dựng bởi các chuyên gia giáo dục Canada. Chương trình..."
     }
   ],
   "metadata": {

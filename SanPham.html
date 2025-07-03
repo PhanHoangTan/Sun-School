@@ -722,38 +722,21 @@
                             // Switch to list view
                             $productsContainer.addClass("products-view-list");
 
-                            // Modify product layout for list view
-                            $(".item_product_main").each(function () {
-                              $(this).addClass("list-item-layout");
-
-                              // Restructure content for list view
-                              var $thumbnail =
-                                $(this).find(".product-thumbnail");
-                              var $info = $(this).find(".product-info");
-                              var $priceBox = $(this).find(".price-box");
-
-                              // Create list layout wrapper if it doesn't exist
-                              if (
-                                !$(this).find(".list-content-wrapper").length
-                              ) {
-                                var $contentWrapper = $(
-                                  '<div class="list-content-wrapper"></div>'
-                                );
-                                $contentWrapper.append($info.clone());
-                                $contentWrapper.append($priceBox.clone());
-                                $(this).append($contentWrapper);
-                              }
-                            });
+                            // Update ProductManager view mode if it exists
+                            if (window.productManager) {
+                              window.productManager.setViewMode("list");
+                              window.productManager.renderProducts();
+                            }
                           } else {
                             console.log("Switching to grid view");
                             // Switch to grid view
                             $productsContainer.addClass("products-view-grid");
 
-                            // Remove list-specific elements and classes
-                            $(".item_product_main").removeClass(
-                              "list-item-layout"
-                            );
-                            $(".list-content-wrapper").remove();
+                            // Update ProductManager view mode if it exists
+                            if (window.productManager) {
+                              window.productManager.setViewMode("grid");
+                              window.productManager.renderProducts();
+                            }
                           }
 
                           console.log("Switched to " + viewType + " view");
