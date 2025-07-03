@@ -395,6 +395,12 @@
           font-size: 15px;
         }
       }
+
+      /* Category filter active state */
+      .nav-category .category-filter.active {
+        background-color: #ff8c00;
+        color: white !important;
+      }
     </style>
   </head>
   <body>
@@ -451,40 +457,45 @@
                               <li class="nav-item">
                                 <a
                                   title="Giá trị cho bé"
-                                  class="nav-link"
-                                  href="/gia-tri-cho-be"
+                                  class="nav-link category-filter"
+                                  href="#"
+                                  data-category="Giá trị cho bé"
                                   >Giá trị cho bé</a
                                 >
                               </li>
                               <li class="nav-item">
                                 <a
                                   title="Chương trình học"
-                                  class="nav-link"
-                                  href="/chuong-trinh-hoc-1"
+                                  class="nav-link category-filter"
+                                  href="#"
+                                  data-category="Chương trình học"
                                   >Chương trình học</a
                                 >
                               </li>
                               <li class="nav-item">
                                 <a
                                   title="Chương trình học nổi bật"
-                                  class="nav-link"
-                                  href="/san-pham-noi-bat"
+                                  class="nav-link category-filter"
+                                  href="#"
+                                  data-category="Chương trình học nổi bật"
                                   >Chương trình học nổi bật</a
                                 >
                               </li>
                               <li class="nav-item">
                                 <a
                                   title="Chương trình học khuyến mãi"
-                                  class="nav-link"
-                                  href="/san-pham-khuyen-mai"
+                                  class="nav-link category-filter"
+                                  href="#"
+                                  data-category="Chương trình học khuyến mãi"
                                   >Chương trình học khuyến mãi</a
                                 >
                               </li>
                               <li class="nav-item">
                                 <a
                                   title="Chương trình học mới"
-                                  class="nav-link"
-                                  href="/frontpage"
+                                  class="nav-link category-filter"
+                                  href="#"
+                                  data-category="Chương trình học mới"
                                   >Chương trình học mới</a
                                 >
                               </li>
@@ -757,6 +768,28 @@
                           console.log("Initialized with grid view");
                         }, 100);
                       });
+
+                      // Category filtering
+                      $(document).on("click", ".category-filter", function (e) {
+                        e.preventDefault();
+                        const category = $(this).data("category");
+                        console.log("Filtering by category:", category);
+
+                        if (window.productManager) {
+                          window.productManager.filterByCategory(category);
+                        }
+
+                        // Update active state
+                        $(".category-filter").removeClass("active");
+                        $(this).addClass("active");
+                      });
+
+                      // Initialize with all products
+                      setTimeout(function () {
+                        if (window.productManager) {
+                          window.productManager.filterByCategory("all");
+                        }
+                      }, 100);
                     </script>
                   </aside>
                   <div class="col-lg-9 col-md-12 order-lg-2 order-1">

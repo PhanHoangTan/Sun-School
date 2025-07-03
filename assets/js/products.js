@@ -193,11 +193,11 @@ class ProductManager {
 
   // Public methods for external use
   filterByCategory(category) {
-    if (category === "all") {
+    if (category === "Sản phẩm" || category === "all") {
       this.filteredProducts = [...this.products];
     } else {
       this.filteredProducts = this.products.filter(
-        (product) => product.category.toLowerCase() === category.toLowerCase()
+        (product) => product.category === category
       );
     }
     this.renderProducts();
@@ -219,6 +219,14 @@ class ProductManager {
   // Method to change view mode
   setViewMode(mode) {
     this.currentView = mode;
+  }
+
+  // Get all unique categories
+  getCategories() {
+    const categories = [
+      ...new Set(this.products.map((product) => product.category)),
+    ];
+    return ["Sản phẩm", ...categories];
   }
 }
 
