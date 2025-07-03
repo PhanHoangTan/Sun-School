@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
           setActiveMenuItem();
 
+          // Add click event listeners for immediate visual feedback
+          addMenuClickHandlers();
+
           // Smoothly fade in the header once everything is initialized
           headerContainer.style.transition = "opacity 0.3s ease";
           headerContainer.style.opacity = "1";
@@ -143,45 +146,123 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function setActiveMenuItem() {
     const currentPath = window.location.pathname;
+    const currentPage = currentPath.split("/").pop() || "index.html";
     const menuItems = document.querySelectorAll(".main-menu .nav-item");
+
+    // Debug: Log current page for testing
+    console.log("=== ACTIVE MENU DEBUG ===");
+    console.log("Current page:", currentPage);
+    console.log("Current path:", currentPath);
+    console.log("Found menu items:", menuItems.length);
 
     // Remove active class from all items
     menuItems.forEach((item) => item.classList.remove("active"));
 
-    // Set active class based on path
-    if (currentPath.endsWith("/") || currentPath.includes("index.html")) {
+    // Set active class based on current page
+    if (
+      currentPath.endsWith("/") ||
+      currentPath.includes("index.html") ||
+      currentPage === "index.html" ||
+      currentPage === ""
+    ) {
       // Home page
-      const homeItem = document.querySelector(
-        ".main-menu .nav-item:first-child"
-      );
+      console.log("Activating HOME");
+      const homeItem = document.querySelector(".main-menu .nav-item:first-child");
       if (homeItem) homeItem.classList.add("active");
+    } else if (currentPage.includes("SanPham.html")) {
+      // Products page
+      console.log("Activating PRODUCTS");
+      const productItem = document.querySelector(".main-menu .nav-item:nth-child(2)");
+      if (productItem) productItem.classList.add("active");
+    } else if (
+      currentPage.includes("ChuongTrinhGiaoDuc.html") ||
+      currentPage.includes("GiaTriChoBe.html")
+    ) {
+      // Education program or Values for children (both under Chương trình giáo dục)
+      console.log("Activating EDUCATION PROGRAM");
+      const educationItem = document.querySelector(".main-menu .nav-item:nth-child(3)");
+      if (educationItem) {
+        educationItem.classList.add("active");
+        console.log("Education item activated successfully");
+        
+        // Also highlight any sub-menu items if they match
+        const subLinks = educationItem.querySelectorAll('.dropdown-menu a');
+        subLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.includes(currentPage) || currentPage.includes(href.replace('./', '')))) {
+            link.style.backgroundColor = '#ff8c00';
+            link.style.color = 'white';
+          }
+        });
+      } else {
+        console.log("Education item NOT found");
+      }
+    } else if (
+      currentPage.includes("ChuongTrinhHoc.html") ||
+      currentPage.includes("HocPhi.html") ||
+      currentPage.includes("ThucDon.html")
+    ) {
+      // Admission, Tuition, or Menu (all under Tuyển sinh)
+      console.log("Activating ADMISSION");
+      const admissionItem = document.querySelector(".main-menu .nav-item:nth-child(4)");
+      if (admissionItem) {
+        admissionItem.classList.add("active");
+        
+        // Also highlight any sub-menu items if they match
+        const subLinks = admissionItem.querySelectorAll('.dropdown-menu a');
+        subLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.includes(currentPage) || currentPage.includes(href.replace('./', '')))) {
+            link.style.backgroundColor = '#ff8c00';
+            link.style.color = 'white';
+          }
+        });
+      }
+    } else if (currentPath.includes("TinTuc.html")) {
+      // News page
+      console.log("Activating NEWS");
+      const newsItem = document.querySelector(".main-menu .nav-item:nth-child(5)");
+      if (newsItem) newsItem.classList.add("active");
     } else if (
       currentPath.includes("GioiThieu.html") ||
       currentPath.includes("CoSoVatChat.html")
     ) {
       // About page or Facilities page (both under Giới thiệu)
-      const aboutItem = document.querySelector(
-        ".main-menu .nav-item:nth-child(6)"
-      );
-      if (aboutItem) aboutItem.classList.add("active");
-    } else if (currentPath.includes("TinTuc.html")) {
-      // News page
-      const newsItem = document.querySelector(
-        ".main-menu .nav-item:nth-child(5)"
-      );
-      if (newsItem) newsItem.classList.add("active");
+      console.log("Activating ABOUT");
+      const aboutItem = document.querySelector(".main-menu .nav-item:nth-child(6)");
+      if (aboutItem) {
+        aboutItem.classList.add("active");
+        
+        // Also highlight any sub-menu items if they match
+        const subLinks = aboutItem.querySelectorAll('.dropdown-menu a');
+        subLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.includes(currentPage) || currentPage.includes(href.replace('./', '')))) {
+            link.style.backgroundColor = '#ff8c00';
+            link.style.color = 'white';
+          }
+        });
+      }
     } else {
-      // Handle other pages based on path
+      // Fallback: Handle other pages based on href matching
       menuItems.forEach((item) => {
         const link = item.querySelector(".nav-link");
-        if (
-          link &&
-          link.getAttribute("href") &&
-          currentPath.includes(link.getAttribute("href"))
-        ) {
-          item.classList.add("active");
+        if (link && link.getAttribute("href")) {
+          const href = link.getAttribute("href").replace("./", "");
+          if (href === currentPage || currentPath.includes(href)) {
+            item.classList.add("active");
+          }
         }
       });
+    }
+
+    // Special handling for query parameters (like SanPham.html?category=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("category") && currentPage === "SanPham.html") {
+      const productItem = document.querySelector(
+        ".main-menu .nav-item:nth-child(2)"
+      );
+      if (productItem) productItem.classList.add("active");
     }
   }
 
@@ -280,4 +361,69 @@ document.addEventListener("DOMContentLoaded", function () {
   // Run on page load and on resize
   ensureProperZIndex();
   window.addEventListener("resize", ensureProperZIndex);
+
+  // Add click event listeners to menu items for immediate visual feedback
+  function addMenuClickHandlers() {
+    const menuLinks = document.querySelectorAll(".main-menu .nav-link");
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
+        // Remove active class from all menu items
+        const menuItems = document.querySelectorAll(".main-menu .nav-item");
+        menuItems.forEach((item) => item.classList.remove("active"));
+
+        // Add active class to clicked item
+        const parentItem = this.closest(".nav-item");
+        if (parentItem) {
+          parentItem.classList.add("active");
+          console.log(
+            "Menu clicked, setting active for:",
+            this.textContent.trim()
+          );
+        }
+      });
+    });
+  }
+
+  // Manual test function for debugging
+  window.testEducationActive = function () {
+    const educationItem = document.querySelector(".main-menu .nav-item:nth-child(3)");
+    if (educationItem) {
+      document
+        .querySelectorAll(".main-menu .nav-item")
+        .forEach((item) => item.classList.remove("active"));
+      educationItem.classList.add("active");
+      console.log("Manual test: Education item activated");
+    } else {
+      console.log("Manual test: Education item not found");
+    }
+  };
+
+  // Force refresh active state
+  window.refreshActiveMenu = function() {
+    console.log("=== FORCE REFRESH ACTIVE MENU ===");
+    setTimeout(() => {
+      setActiveMenuItem();
+    }, 100);
+  };
+
+  // Auto refresh when DOM changes
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        // Check if header content was added
+        const hasHeader = document.querySelector('.main-menu');
+        if (hasHeader && !hasHeader.dataset.activeSet) {
+          console.log("Header detected, setting active menu...");
+          hasHeader.dataset.activeSet = 'true';
+          setTimeout(setActiveMenuItem, 200);
+        }
+      }
+    });
+  });
+
+  // Start observing
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 });
