@@ -481,6 +481,15 @@
                               </li>
                               <li class="nav-item">
                                 <a
+                                  title="Giá trị cho bé"
+                                  class="nav-link category-filter"
+                                  href="#"
+                                  data-category="Giá trị cho bé"
+                                  >Giá trị cho bé</a
+                                >
+                              </li>
+                              <li class="nav-item">
+                                <a
                                   title="Chương trình học"
                                   class="nav-link category-filter"
                                   href="#"
@@ -580,7 +589,10 @@
                             </ul>
                           </li>
                           <li class="nav-item relative">
-                            <a title="Tin tức" class="nav-link" href="./TinTuc.html"
+                            <a
+                              title="Tin tức"
+                              class="nav-link"
+                              href="./TinTuc.html"
                               >Tin tức</a
                             >
                           </li>
@@ -849,28 +861,43 @@
                             console.log("Setting up filtering...");
 
                             // Function to update page title and breadcrumb
-                            function updatePageTitleAndBreadcrumb(categoryName) {
-                              console.log("Updating title and breadcrumb to:", categoryName);
-                              
+                            function updatePageTitleAndBreadcrumb(
+                              categoryName
+                            ) {
+                              console.log(
+                                "Updating title and breadcrumb to:",
+                                categoryName
+                              );
+
                               // Add updating class for smooth transition
                               $(".title-page").addClass("title-updating");
-                              $(".breadcrumb li:last-child span").addClass("title-updating");
-                              
+                              $(".breadcrumb li:last-child span").addClass(
+                                "title-updating"
+                              );
+
                               // Update after a short delay for smooth effect
-                              setTimeout(function() {
+                              setTimeout(function () {
                                 // Update page title (h1)
                                 $(".title-page").text(categoryName);
-                                
+
                                 // Update breadcrumb
-                                $(".breadcrumb li:last-child span").text(categoryName);
-                                
+                                $(".breadcrumb li:last-child span").text(
+                                  categoryName
+                                );
+
                                 // Remove updating class
-                                setTimeout(function() {
-                                  $(".title-page").removeClass("title-updating");
-                                  $(".breadcrumb li:last-child span").removeClass("title-updating");
+                                setTimeout(function () {
+                                  $(".title-page").removeClass(
+                                    "title-updating"
+                                  );
+                                  $(
+                                    ".breadcrumb li:last-child span"
+                                  ).removeClass("title-updating");
                                 }, 150);
-                                
-                                console.log("Title and breadcrumb updated successfully");
+
+                                console.log(
+                                  "Title and breadcrumb updated successfully"
+                                );
                               }, 150);
                             }
 
@@ -914,7 +941,9 @@
                                   }
 
                                   // Update page title and breadcrumb
-                                  updatePageTitleAndBreadcrumb(categoryDisplayName);
+                                  updatePageTitleAndBreadcrumb(
+                                    categoryDisplayName
+                                  );
 
                                   // Update active state
                                   $(".category-filter").removeClass("active");
@@ -937,7 +966,9 @@
                               // Set first category as active and update title
                               var $firstFilter = $(".category-filter").first();
                               $firstFilter.addClass("active");
-                              var firstCategoryName = $firstFilter.text().trim();
+                              var firstCategoryName = $firstFilter
+                                .text()
+                                .trim();
                               updatePageTitleAndBreadcrumb(firstCategoryName);
                             }
                           }
@@ -1440,6 +1471,49 @@
       console.log("jQuery loaded:", typeof $ !== "undefined");
       console.log("Document ready state:", document.readyState);
 
+      // Check URL parameters for category filtering
+      function getURLParameter(name) {
+        return (
+          decodeURIComponent(
+            (new RegExp("[?|&]" + name + "=" + "([^&;]+?)(&|#|;|$)").exec(
+              location.search
+            ) || [null, ""])[1].replace(/\+/g, "%20")
+          ) || null
+        );
+      }
+
+      // Handle URL parameters when page loads
+      function handleURLParameters() {
+        const categoryParam = getURLParameter("category");
+        console.log("URL category parameter:", categoryParam);
+
+        if (categoryParam && window.productManager) {
+          console.log("Filtering by URL parameter:", categoryParam);
+
+          // Apply filter
+          if (categoryParam === "Tất cả sản phẩm") {
+            window.productManager.filterByCategory("Sản phẩm");
+          } else {
+            window.productManager.filterByCategory(categoryParam);
+          }
+
+          // Update title and breadcrumb
+          $(".title-page").text(categoryParam);
+          $(".breadcrumb li:last-child span").text(categoryParam);
+
+          // Update active state in sidebar
+          $(".category-filter").removeClass("active");
+          $(`.category-filter[data-category="${categoryParam}"]`).addClass(
+            "active"
+          );
+          if (categoryParam === "Tất cả sản phẩm") {
+            $(`.category-filter[data-category="all"]`).addClass("active");
+          }
+
+          console.log("URL parameter filter applied successfully");
+        }
+      }
+
       // Check when ProductManager becomes available
       function checkProductManager() {
         console.log("Checking ProductManager...");
@@ -1457,6 +1531,9 @@
               ? window.productManager.filteredProducts.length
               : "No filtered products"
           );
+
+          // Apply URL parameter filtering when ProductManager is ready
+          handleURLParameters();
         }
         setTimeout(checkProductManager, 3000); // Check every 3 seconds
       }
@@ -1470,7 +1547,7 @@
         if (window.productManager) {
           window.productManager.filterByCategory(category);
           console.log("Manual filter applied!");
-          
+
           // Update title manually for test
           var displayName = category === "all" ? "Tất cả sản phẩm" : category;
           $(".title-page").text(displayName);
