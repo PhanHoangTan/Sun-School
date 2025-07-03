@@ -402,6 +402,21 @@
         background-color: #ff8c00;
         color: white !important;
       }
+
+      /* Title transition effect */
+      .title-page {
+        transition: all 0.3s ease;
+      }
+
+      .breadcrumb li:last-child span {
+        transition: all 0.3s ease;
+      }
+
+      /* Add smooth fade effect for title changes */
+      .title-updating {
+        opacity: 0.7;
+        transform: scale(0.98);
+      }
     </style>
   </head>
   <body>
@@ -833,6 +848,32 @@
                           function setupFiltering() {
                             console.log("Setting up filtering...");
 
+                            // Function to update page title and breadcrumb
+                            function updatePageTitleAndBreadcrumb(categoryName) {
+                              console.log("Updating title and breadcrumb to:", categoryName);
+                              
+                              // Add updating class for smooth transition
+                              $(".title-page").addClass("title-updating");
+                              $(".breadcrumb li:last-child span").addClass("title-updating");
+                              
+                              // Update after a short delay for smooth effect
+                              setTimeout(function() {
+                                // Update page title (h1)
+                                $(".title-page").text(categoryName);
+                                
+                                // Update breadcrumb
+                                $(".breadcrumb li:last-child span").text(categoryName);
+                                
+                                // Remove updating class
+                                setTimeout(function() {
+                                  $(".title-page").removeClass("title-updating");
+                                  $(".breadcrumb li:last-child span").removeClass("title-updating");
+                                }, 150);
+                                
+                                console.log("Title and breadcrumb updated successfully");
+                              }, 150);
+                            }
+
                             // Category filtering
                             $(".category-filter")
                               .off("click")
@@ -841,9 +882,14 @@
                                 e.stopPropagation();
 
                                 var category = $(this).data("category");
+                                var categoryDisplayName = $(this).text().trim();
                                 console.log(
                                   "Clicked category filter:",
                                   category
+                                );
+                                console.log(
+                                  "Category display name:",
+                                  categoryDisplayName
                                 );
 
                                 if (window.productManager) {
@@ -867,6 +913,9 @@
                                     );
                                   }
 
+                                  // Update page title and breadcrumb
+                                  updatePageTitleAndBreadcrumb(categoryDisplayName);
+
                                   // Update active state
                                   $(".category-filter").removeClass("active");
                                   $(this).addClass("active");
@@ -885,8 +934,11 @@
                               window.productManager.filterByCategory(
                                 "Sản phẩm"
                               );
-                              // Set first category as active
-                              $(".category-filter").first().addClass("active");
+                              // Set first category as active and update title
+                              var $firstFilter = $(".category-filter").first();
+                              $firstFilter.addClass("active");
+                              var firstCategoryName = $firstFilter.text().trim();
+                              updatePageTitleAndBreadcrumb(firstCategoryName);
                             }
                           }
 
@@ -1418,9 +1470,24 @@
         if (window.productManager) {
           window.productManager.filterByCategory(category);
           console.log("Manual filter applied!");
+          
+          // Update title manually for test
+          var displayName = category === "all" ? "Tất cả sản phẩm" : category;
+          $(".title-page").text(displayName);
+          $(".breadcrumb li:last-child span").text(displayName);
+          console.log("Title updated to:", displayName);
         } else {
           console.error("ProductManager not available for manual test!");
         }
+      };
+
+      // Test title update manually
+      window.testUpdateTitle = function (title) {
+        console.log("=== MANUAL TITLE TEST ===");
+        console.log("Updating title to:", title);
+        $(".title-page").text(title);
+        $(".breadcrumb li:last-child span").text(title);
+        console.log("Title updated!");
       };
     </script>
   </body>
