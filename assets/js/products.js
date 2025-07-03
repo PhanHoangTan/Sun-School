@@ -15,6 +15,10 @@ class ProductManager {
       await this.loadProducts();
       this.setupEventListeners();
       this.renderProducts();
+
+      // Notify that ProductManager is ready
+      console.log("ProductManager initialized successfully");
+      window.dispatchEvent(new CustomEvent("productManagerReady"));
     } catch (error) {
       console.error("Error initializing ProductManager:", error);
     }
@@ -113,14 +117,24 @@ class ProductManager {
   }
 
   renderProducts() {
-    const container = document.querySelector(".products-view .row");
-    if (!container) return;
+    console.log(
+      "renderProducts called, products to render:",
+      this.filteredProducts.length
+    );
+    const container = document.querySelector("#products-container");
+    if (!container) {
+      console.error(
+        "Products container not found! Looking for #products-container"
+      );
+      return;
+    }
 
     container.innerHTML = "";
 
     if (this.filteredProducts.length === 0) {
       container.innerHTML =
         '<div class="col-12"><p class="text-center">Không có sản phẩm nào.</p></div>';
+      console.log("No products to display");
       return;
     }
 
@@ -128,6 +142,8 @@ class ProductManager {
       const productHtml = this.createProductHTML(product);
       container.appendChild(productHtml);
     });
+
+    console.log("Products rendered successfully");
   }
 
   createProductHTML(product) {
@@ -193,12 +209,53 @@ class ProductManager {
 
   // Public methods for external use
   filterByCategory(category) {
+    console.log("filterByCategory called with:", category);
+    console.log("Available products:", this.products.length);
+
     if (category === "Sản phẩm" || category === "all") {
       this.filteredProducts = [...this.products];
+      console.log("Showing all products:", this.filteredProducts.length);
     } else {
       this.filteredProducts = this.products.filter(
         (product) => product.category === category
       );
+      console.log(
+        "Filtered products for category '" + category + "':",
+        this.filteredProducts.length
+      );
+
+      // Debug: log matching products
+      this.filteredProducts.forEach((product) => {
+        console.log(
+          "- " + product.name + " (category: " + product.category + ")"
+        );
+      });
+    }
+    this.renderProducts();
+  }
+
+  filterBySubcategory(subcategory) {
+    console.log("filterBySubcategory called with:", subcategory);
+    console.log("Available products:", this.products.length);
+
+    if (subcategory === "Sản phẩm" || subcategory === "all") {
+      this.filteredProducts = [...this.products];
+      console.log("Showing all products:", this.filteredProducts.length);
+    } else {
+      this.filteredProducts = this.products.filter(
+        (product) => product.subcategory === subcategory
+      );
+      console.log(
+        "Filtered products for subcategory '" + subcategory + "':",
+        this.filteredProducts.length
+      );
+
+      // Debug: log matching products
+      this.filteredProducts.forEach((product) => {
+        console.log(
+          "- " + product.name + " (subcategory: " + product.subcategory + ")"
+        );
+      });
     }
     this.renderProducts();
   }
@@ -227,6 +284,14 @@ class ProductManager {
       ...new Set(this.products.map((product) => product.category)),
     ];
     return ["Sản phẩm", ...categories];
+  }
+
+  // Get all unique subcategories
+  getSubcategories() {
+    const subcategories = [
+      ...new Set(this.products.map((product) => product.subcategory)),
+    ];
+    return ["Sản phẩm", ...subcategories];
   }
 }
 

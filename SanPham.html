@@ -397,7 +397,8 @@
       }
 
       /* Category filter active state */
-      .nav-category .category-filter.active {
+      .nav-category .category-filter.active,
+      .nav-category .subcategory-filter.active {
         background-color: #ff8c00;
         color: white !important;
       }
@@ -456,11 +457,11 @@
                             <ul class="menu_down">
                               <li class="nav-item">
                                 <a
-                                  title="Giá trị cho bé"
+                                  title="Tất cả sản phẩm"
                                   class="nav-link category-filter"
                                   href="#"
-                                  data-category="Giá trị cho bé"
-                                  >Giá trị cho bé</a
+                                  data-category="all"
+                                  >Tất cả sản phẩm</a
                                 >
                               </li>
                               <li class="nav-item">
@@ -769,27 +770,69 @@
                         }, 100);
                       });
 
-                      // Category filtering
-                      $(document).on("click", ".category-filter", function (e) {
-                        e.preventDefault();
-                        const category = $(this).data("category");
-                        console.log("Filtering by category:", category);
+                      // Category filtering - Simple approach
+                      $(document).ready(function () {
+                        console.log(
+                          "Document ready - setting up category filtering"
+                        );
 
-                        if (window.productManager) {
-                          window.productManager.filterByCategory(category);
+                        // Wait for ProductManager
+                        function waitForProductManager() {
+                          if (
+                            window.productManager &&
+                            window.productManager.products &&
+                            window.productManager.products.length > 0
+                          ) {
+                            console.log(
+                              "ProductManager ready with",
+                              window.productManager.products.length,
+                              "products"
+                            );
+                            setupFiltering();
+                          } else {
+                            console.log("Waiting for ProductManager...");
+                            setTimeout(waitForProductManager, 200);
+                          }
                         }
 
-                        // Update active state
-                        $(".category-filter").removeClass("active");
-                        $(this).addClass("active");
-                      });
+                        function setupFiltering() {
+                          // Category filtering
+                          $(".category-filter")
+                            .off("click")
+                            .on("click", function (e) {
+                              e.preventDefault();
+                              e.stopPropagation();
 
-                      // Initialize with all products
-                      setTimeout(function () {
-                        if (window.productManager) {
+                              var category = $(this).data("category");
+                              console.log("Clicked category filter:", category);
+
+                              if (window.productManager) {
+                                console.log(
+                                  "Calling filterByCategory with:",
+                                  category
+                                );
+                                window.productManager.filterByCategory(
+                                  category
+                                );
+
+                                // Update active state
+                                $(".category-filter").removeClass("active");
+                                $(this).addClass("active");
+
+                                console.log("Filter applied successfully");
+                              } else {
+                                console.error("ProductManager not available!");
+                              }
+                            });
+
+                          // Initialize with all products
+                          console.log("Initializing with all products");
                           window.productManager.filterByCategory("all");
                         }
-                      }, 100);
+
+                        // Start waiting
+                        waitForProductManager();
+                      });
                     </script>
                   </aside>
                   <div class="col-lg-9 col-md-12 order-lg-2 order-1">
