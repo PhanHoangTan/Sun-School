@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "id": "product-actions-5614495",
+      "name": "TIẾNG ANH MẪU GIÁO",
+      "url": "/tieng-anh-mau-giao",
+      "image": "//bizweb.dktcdn.net/thumb/large/100/063/369/products/tieng-anh-mam-non-img-1.png?v=1487144108137",
+      "price": "1.000.000₫",
+      "originalPrice": "2.000.000₫",
+      "discount": "50%",
+      "hasDiscount": true,
+      "category": "Tiếng Anh"
+    },
+    {
+      "id": "product-actions-5614488",
+      "name": "TIẾNG ANH THIẾU NHI",
+      "url": "/tieng-anh-thieu-nhi",
+      "image": "//bizweb.dktcdn.net/thumb/large/100/063/369/products/tieng-anh-thieu-nhi-banner-1.png?v=1487144032730",
+      "price": "1.500.000₫",
+      "originalPrice": null,
+      "discount": null,
+      "hasDiscount": false,
+      "category": "Tiếng Anh"
+    },
+    {
+      "id": "product-actions-5614486",
+      "name": "TIẾNG ANH THIẾU NIÊN",
+      "url": "/tieng-anh-thieu-nien",
+      "image": "//bizweb.dktcdn.net/thumb/large/100/063/369/products/tieng-anh-thieu-nien-banner-1.png?v=1487143995397",
+      "price": "Liên hệ",
+      "originalPrice": null,
+      "discount": null,
+      "hasDiscount": false,
+      "category": "Tiếng Anh"
+    },
+    {
+      "id": "product-actions-5614459",
+      "name": "TIẾNG ANH NGƯỜI LỚN",
+      "url": "/tieng-anh-nguoi-lon",
+      "image": "//bizweb.dktcdn.net/thumb/large/100/063/369/products/program-adults-intro.png?v=1487143939433",
+      "price": "2.500.000₫",
+      "originalPrice": "3.000.000₫",
+      "discount": "17%",
+      "hasDiscount": true,
+      "category": "Tiếng Anh"
+    },
+    {
+      "id": "product-actions-5614435",
+      "name": "TIẾNG ANH DOANH NGHIỆP",
+      "url": "/tieng-anh-doanh-nghiep",
+      "image": "//bizweb.dktcdn.net/thumb/large/100/063/369/products/tieng-anh-doanh-nghiep-banner-1.png?v=1487143881337",
+      "price": "Liên hệ",
+      "originalPrice": null,
+      "discount": null,
+      "hasDiscount": false,
+      "category": "Tiếng Anh"
+    },
+    {
+      "id": "product-actions-1633302",
+      "name": "Phương pháp giáo dục",
+      "url": "/phuong-phap-giao-duc",
+      "image": "//bizweb.dktcdn.net/thumb/large/100/063/369/products/phuong-phap-giao-duc-02.jpg?v=1457506778607",
+      "price": "Liên hệ",
+      "originalPrice": null,
+      "discount": null,
+      "hasDiscount": false,
+      "category": "Giáo dục"
+    }
+  ],
+  "metadata": {
+    "totalProducts": 6,
+    "categories": ["Tiếng Anh", "Giáo dục"],
+    "createdAt": "2025-07-03",
+    "source": "SunSchool Website"
+  }
+}
