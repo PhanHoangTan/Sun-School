@@ -11,13 +11,20 @@ class ProductManager {
   }
 
   async init() {
+    console.log("=== PRODUCT MANAGER INIT ===");
     try {
+      console.log("Loading products...");
       await this.loadProducts();
+      console.log("Products loaded:", this.products.length);
+
+      console.log("Setting up event listeners...");
       this.setupEventListeners();
+
+      console.log("Initial render...");
       this.renderProducts();
 
       // Notify that ProductManager is ready
-      console.log("ProductManager initialized successfully");
+      console.log("=== PRODUCT MANAGER READY ===");
       window.dispatchEvent(new CustomEvent("productManagerReady"));
     } catch (error) {
       console.error("Error initializing ProductManager:", error);
@@ -26,13 +33,17 @@ class ProductManager {
 
   async loadProducts() {
     try {
+      console.log("Fetching products from ./assets/db/products.json");
       const response = await fetch("./assets/db/products.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log("Raw data loaded:", data);
       this.products = data.products;
       this.filteredProducts = [...this.products];
+      console.log("Products array:", this.products);
+      console.log("Filtered products array:", this.filteredProducts);
     } catch (error) {
       console.error("Error loading products:", error);
       // Fallback data if JSON file fails to load
@@ -117,6 +128,7 @@ class ProductManager {
   }
 
   renderProducts() {
+    console.log("=== RENDER PRODUCTS DEBUG ===");
     console.log(
       "renderProducts called, products to render:",
       this.filteredProducts.length
@@ -126,24 +138,30 @@ class ProductManager {
       console.error(
         "Products container not found! Looking for #products-container"
       );
+      // Try to find any container as fallback
+      const allContainers = document.querySelectorAll("[id*='product']");
+      console.log("Found containers with 'product' in ID:", allContainers);
       return;
     }
 
+    console.log("Found products container:", container);
     container.innerHTML = "";
 
     if (this.filteredProducts.length === 0) {
       container.innerHTML =
         '<div class="col-12"><p class="text-center">Không có sản phẩm nào.</p></div>';
-      console.log("No products to display");
+      console.log("No products to display - showing empty message");
       return;
     }
 
-    this.filteredProducts.forEach((product) => {
+    console.log("Rendering", this.filteredProducts.length, "products...");
+    this.filteredProducts.forEach((product, index) => {
+      console.log(`Creating HTML for product ${index + 1}:`, product.name);
       const productHtml = this.createProductHTML(product);
       container.appendChild(productHtml);
     });
 
-    console.log("Products rendered successfully");
+    console.log("=== PRODUCTS RENDERED SUCCESSFULLY ===");
   }
 
   createProductHTML(product) {
@@ -209,8 +227,18 @@ class ProductManager {
 
   // Public methods for external use
   filterByCategory(category) {
+    console.log("=== FILTER BY CATEGORY DEBUG ===");
     console.log("filterByCategory called with:", category);
     console.log("Available products:", this.products.length);
+    console.log("Current filteredProducts:", this.filteredProducts.length);
+
+    // Debug: show all product categories
+    console.log("All product categories:");
+    this.products.forEach((product, index) => {
+      console.log(
+        `${index + 1}. "${product.name}" - Category: "${product.category}"`
+      );
+    });
 
     if (category === "Sản phẩm" || category === "all") {
       this.filteredProducts = [...this.products];
@@ -225,12 +253,23 @@ class ProductManager {
       );
 
       // Debug: log matching products
-      this.filteredProducts.forEach((product) => {
-        console.log(
-          "- " + product.name + " (category: " + product.category + ")"
-        );
-      });
+      if (this.filteredProducts.length > 0) {
+        console.log("Matching products:");
+        this.filteredProducts.forEach((product, index) => {
+          console.log(
+            `${index + 1}. "${product.name}" (category: "${product.category}")`
+          );
+        });
+      } else {
+        console.log("No products found for category:", category);
+        console.log("Available categories in data:");
+        const uniqueCategories = [
+          ...new Set(this.products.map((p) => p.category)),
+        ];
+        uniqueCategories.forEach((cat) => console.log(`- "${cat}"`));
+      }
     }
+    console.log("=== CALLING RENDER PRODUCTS ===");
     this.renderProducts();
   }
 
@@ -297,7 +336,25 @@ class ProductManager {
 
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("=== DOM CONTENT LOADED ===");
+  console.log("Creating ProductManager instance...");
   window.productManager = new ProductManager();
+  console.log("ProductManager instance created:", window.productManager);
+});
+
+// Additional debug - listen for the ready event
+document.addEventListener("DOMContentLoaded", function () {
+  window.addEventListener("productManagerReady", function () {
+    console.log("=== PRODUCT MANAGER READY EVENT FIRED ===");
+    console.log(
+      "ProductManager products:",
+      window.productManager.products.length
+    );
+    console.log(
+      "ProductManager filteredProducts:",
+      window.productManager.filteredProducts.length
+    );
+  });
 });
 
 // CSS for list view layout

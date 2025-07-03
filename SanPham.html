@@ -600,239 +600,303 @@
                       </nav>
                     </div>
                     <script>
-                      $(document).ready(function () {
-                        console.log("Dropdown script loaded");
-
-                        // Force hide all dropdowns initially
-                        $(".menu_down").removeClass("show").hide();
-
-                        // Multiple event handlers for maximum compatibility
-                        $(".nav-item.relative")
-                          .on("mouseenter", function () {
-                            console.log("Mouse entered nav item");
-                            var $this = $(this);
-                            var $icon = $this.find(".open_mnu");
-                            var $dropdown = $this.find(".menu_down");
-
-                            if ($dropdown.length > 0) {
-                              console.log("Showing dropdown");
-
-                              // Hide all other dropdowns
-                              $(".nav-item.relative")
-                                .not($this)
-                                .find(".menu_down")
-                                .removeClass("show")
-                                .hide();
-                              $(".nav-item.relative")
-                                .not($this)
-                                .find(".open_mnu")
-                                .removeClass("cls_mn");
-
-                              // Show current dropdown
-                              $icon.addClass("cls_mn");
-                              $dropdown.addClass("show").show();
-                            }
-                          })
-                          .on("mouseleave", function () {
-                            console.log("Mouse left nav item");
-                            var $this = $(this);
-                            var $icon = $this.find(".open_mnu");
-                            var $dropdown = $this.find(".menu_down");
-
-                            // Delay before hiding
-                            setTimeout(function () {
-                              if (!$this.is(":hover")) {
-                                console.log("Hiding dropdown");
-                                $icon.removeClass("cls_mn");
-                                $dropdown.removeClass("show").hide();
-                              }
-                            }, 200);
-                          });
-
-                        // Additional hover handlers for the dropdown itself
-                        $(".menu_down").on("mouseenter", function () {
-                          console.log("Mouse entered dropdown");
-                          var $this = $(this);
-                          var $parent = $this.closest(".nav-item.relative");
-                          var $icon = $parent.find(".open_mnu");
-
-                          $icon.addClass("cls_mn");
-                          $this.addClass("show").show();
-                        });
-
-                        // Click handler as fallback
-                        $(".open_mnu").on("click", function (e) {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          console.log("Icon clicked");
-
-                          var $this = $(this);
-                          var $dropdown = $this.siblings(".menu_down");
-                          var $parent = $this.closest(".nav-item.relative");
-
-                          // Hide all other dropdowns
-                          $(".nav-item.relative")
-                            .not($parent)
-                            .find(".menu_down")
-                            .removeClass("show")
-                            .hide();
-                          $(".nav-item.relative")
-                            .not($parent)
-                            .find(".open_mnu")
-                            .removeClass("cls_mn");
-
-                          // Toggle current dropdown
-                          $this.toggleClass("cls_mn");
-                          if ($dropdown.hasClass("show")) {
-                            $dropdown.removeClass("show").hide();
-                          } else {
-                            $dropdown.addClass("show").show();
-                          }
-                        });
-
-                        // Debug: Log all nav items with dropdowns
-                        $(".nav-item.relative").each(function (index) {
-                          var hasDropdown =
-                            $(this).find(".menu_down").length > 0;
+                      // Wait for jQuery to be loaded before running any jQuery code
+                      function waitForJQuery() {
+                        if (typeof $ !== "undefined") {
                           console.log(
-                            "Nav item " +
-                              index +
-                              " has dropdown: " +
-                              hasDropdown
+                            "jQuery is ready, initializing scripts..."
                           );
-                        });
-                      });
-
-                      // View Mode Toggle Functionality
-                      $(document).ready(function () {
-                        console.log("View mode script loaded");
-
-                        // Handle view mode switches
-                        $(".switch-view").on("click", function (e) {
-                          e.preventDefault();
-                          console.log("Switch view clicked");
-
-                          var viewType = $(this).data("view");
-                          console.log("View type:", viewType);
-
-                          var $productsContainer = $(".products-view");
-                          var $allButtons = $(".button-view-mode");
-
-                          // Remove active class from all buttons
-                          $allButtons.removeClass("active");
-
-                          // Add active class to clicked button
-                          $(this).find(".button-view-mode").addClass("active");
-
-                          // Remove existing view classes
-                          $productsContainer.removeClass(
-                            "products-view-grid products-view-list"
-                          );
-
-                          if (viewType === "list") {
-                            console.log("Switching to list view");
-                            // Switch to list view
-                            $productsContainer.addClass("products-view-list");
-
-                            // Update ProductManager view mode if it exists
-                            if (window.productManager) {
-                              window.productManager.setViewMode("list");
-                              window.productManager.renderProducts();
-                            }
-                          } else {
-                            console.log("Switching to grid view");
-                            // Switch to grid view
-                            $productsContainer.addClass("products-view-grid");
-
-                            // Update ProductManager view mode if it exists
-                            if (window.productManager) {
-                              window.productManager.setViewMode("grid");
-                              window.productManager.renderProducts();
-                            }
-                          }
-
-                          console.log("Switched to " + viewType + " view");
-                        });
-
-                        // Also handle direct button clicks
-                        $(".button-view-mode").on("click", function (e) {
-                          e.preventDefault();
-                          console.log("Button view mode clicked directly");
-
-                          // Trigger the parent switch-view click
-                          $(this).closest(".switch-view").trigger("click");
-                        });
-
-                        // Initialize with grid view by default
-                        setTimeout(function () {
-                          $('.switch-view[data-view="grid"]').trigger("click");
-                          console.log("Initialized with grid view");
-                        }, 100);
-                      });
-
-                      // Category filtering - Simple approach
-                      $(document).ready(function () {
-                        console.log(
-                          "Document ready - setting up category filtering"
-                        );
-
-                        // Wait for ProductManager
-                        function waitForProductManager() {
-                          if (
-                            window.productManager &&
-                            window.productManager.products &&
-                            window.productManager.products.length > 0
-                          ) {
-                            console.log(
-                              "ProductManager ready with",
-                              window.productManager.products.length,
-                              "products"
-                            );
-                            setupFiltering();
-                          } else {
-                            console.log("Waiting for ProductManager...");
-                            setTimeout(waitForProductManager, 200);
-                          }
+                          initializeDropdowns();
+                          initializeViewModes();
+                          initializeCategoryFiltering();
+                        } else {
+                          console.log("Waiting for jQuery...");
+                          setTimeout(waitForJQuery, 100);
                         }
+                      }
 
-                        function setupFiltering() {
-                          // Category filtering
-                          $(".category-filter")
-                            .off("click")
-                            .on("click", function (e) {
-                              e.preventDefault();
-                              e.stopPropagation();
+                      function initializeDropdowns() {
+                        $(document).ready(function () {
+                          console.log("Dropdown script loaded");
 
-                              var category = $(this).data("category");
-                              console.log("Clicked category filter:", category);
+                          // Force hide all dropdowns initially
+                          $(".menu_down").removeClass("show").hide();
 
-                              if (window.productManager) {
-                                console.log(
-                                  "Calling filterByCategory with:",
-                                  category
-                                );
-                                window.productManager.filterByCategory(
-                                  category
-                                );
+                          // Multiple event handlers for maximum compatibility
+                          $(".nav-item.relative")
+                            .on("mouseenter", function () {
+                              console.log("Mouse entered nav item");
+                              var $this = $(this);
+                              var $icon = $this.find(".open_mnu");
+                              var $dropdown = $this.find(".menu_down");
 
-                                // Update active state
-                                $(".category-filter").removeClass("active");
-                                $(this).addClass("active");
+                              if ($dropdown.length > 0) {
+                                console.log("Showing dropdown");
 
-                                console.log("Filter applied successfully");
-                              } else {
-                                console.error("ProductManager not available!");
+                                // Hide all other dropdowns
+                                $(".nav-item.relative")
+                                  .not($this)
+                                  .find(".menu_down")
+                                  .removeClass("show")
+                                  .hide();
+                                $(".nav-item.relative")
+                                  .not($this)
+                                  .find(".open_mnu")
+                                  .removeClass("cls_mn");
+
+                                // Show current dropdown
+                                $icon.addClass("cls_mn");
+                                $dropdown.addClass("show").show();
                               }
+                            })
+                            .on("mouseleave", function () {
+                              console.log("Mouse left nav item");
+                              var $this = $(this);
+                              var $icon = $this.find(".open_mnu");
+                              var $dropdown = $this.find(".menu_down");
+
+                              // Delay before hiding
+                              setTimeout(function () {
+                                if (!$this.is(":hover")) {
+                                  console.log("Hiding dropdown");
+                                  $icon.removeClass("cls_mn");
+                                  $dropdown.removeClass("show").hide();
+                                }
+                              }, 200);
                             });
 
-                          // Initialize with all products
-                          console.log("Initializing with all products");
-                          window.productManager.filterByCategory("all");
-                        }
+                          // Additional hover handlers for the dropdown itself
+                          $(".menu_down").on("mouseenter", function () {
+                            console.log("Mouse entered dropdown");
+                            var $this = $(this);
+                            var $parent = $this.closest(".nav-item.relative");
+                            var $icon = $parent.find(".open_mnu");
 
-                        // Start waiting
-                        waitForProductManager();
-                      });
+                            $icon.addClass("cls_mn");
+                            $this.addClass("show").show();
+                          });
+
+                          // Click handler as fallback
+                          $(".open_mnu").on("click", function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            console.log("Icon clicked");
+
+                            var $this = $(this);
+                            var $dropdown = $this.siblings(".menu_down");
+                            var $parent = $this.closest(".nav-item.relative");
+
+                            // Hide all other dropdowns
+                            $(".nav-item.relative")
+                              .not($parent)
+                              .find(".menu_down")
+                              .removeClass("show")
+                              .hide();
+                            $(".nav-item.relative")
+                              .not($parent)
+                              .find(".open_mnu")
+                              .removeClass("cls_mn");
+
+                            // Toggle current dropdown
+                            $this.toggleClass("cls_mn");
+                            if ($dropdown.hasClass("show")) {
+                              $dropdown.removeClass("show").hide();
+                            } else {
+                              $dropdown.addClass("show").show();
+                            }
+                          });
+
+                          // Debug: Log all nav items with dropdowns
+                          $(".nav-item.relative").each(function (index) {
+                            var hasDropdown =
+                              $(this).find(".menu_down").length > 0;
+                            console.log(
+                              "Nav item " +
+                                index +
+                                " has dropdown: " +
+                                hasDropdown
+                            );
+                          });
+                        });
+                      }
+
+                      function initializeViewModes() {
+                        $(document).ready(function () {
+                          console.log("View mode script loaded");
+
+                          // Handle view mode switches
+                          $(".switch-view").on("click", function (e) {
+                            e.preventDefault();
+                            console.log("Switch view clicked");
+
+                            var viewType = $(this).data("view");
+                            console.log("View type:", viewType);
+
+                            var $productsContainer = $(".products-view");
+                            var $allButtons = $(".button-view-mode");
+
+                            // Remove active class from all buttons
+                            $allButtons.removeClass("active");
+
+                            // Add active class to clicked button
+                            $(this)
+                              .find(".button-view-mode")
+                              .addClass("active");
+
+                            // Remove existing view classes
+                            $productsContainer.removeClass(
+                              "products-view-grid products-view-list"
+                            );
+
+                            if (viewType === "list") {
+                              console.log("Switching to list view");
+                              // Switch to list view
+                              $productsContainer.addClass("products-view-list");
+
+                              // Update ProductManager view mode if it exists
+                              if (window.productManager) {
+                                window.productManager.setViewMode("list");
+                                window.productManager.renderProducts();
+                              }
+                            } else {
+                              console.log("Switching to grid view");
+                              // Switch to grid view
+                              $productsContainer.addClass("products-view-grid");
+
+                              // Update ProductManager view mode if it exists
+                              if (window.productManager) {
+                                window.productManager.setViewMode("grid");
+                                window.productManager.renderProducts();
+                              }
+                            }
+
+                            console.log("Switched to " + viewType + " view");
+                          });
+
+                          // Also handle direct button clicks
+                          $(".button-view-mode").on("click", function (e) {
+                            e.preventDefault();
+                            console.log("Button view mode clicked directly");
+
+                            // Trigger the parent switch-view click
+                            $(this).closest(".switch-view").trigger("click");
+                          });
+
+                          // Initialize with grid view by default
+                          setTimeout(function () {
+                            $('.switch-view[data-view="grid"]').trigger(
+                              "click"
+                            );
+                            console.log("Initialized with grid view");
+                          }, 100);
+                        });
+                      }
+
+                      function initializeCategoryFiltering() {
+                        $(document).ready(function () {
+                          console.log(
+                            "Document ready - setting up category filtering"
+                          );
+
+                          // Wait for ProductManager
+                          function waitForProductManager() {
+                            console.log("=== WAITING FOR PRODUCT MANAGER ===");
+                            if (
+                              window.productManager &&
+                              window.productManager.products &&
+                              window.productManager.products.length > 0
+                            ) {
+                              console.log(
+                                "ProductManager ready with",
+                                window.productManager.products.length,
+                                "products"
+                              );
+                              console.log(
+                                "Products:",
+                                window.productManager.products
+                              );
+                              setupFiltering();
+                            } else {
+                              console.log(
+                                "Waiting for ProductManager... Current state:",
+                                {
+                                  productManager: !!window.productManager,
+                                  products: window.productManager
+                                    ? window.productManager.products.length
+                                    : "N/A",
+                                }
+                              );
+                              setTimeout(waitForProductManager, 200);
+                            }
+                          }
+
+                          function setupFiltering() {
+                            console.log("Setting up filtering...");
+
+                            // Category filtering
+                            $(".category-filter")
+                              .off("click")
+                              .on("click", function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                var category = $(this).data("category");
+                                console.log(
+                                  "Clicked category filter:",
+                                  category
+                                );
+
+                                if (window.productManager) {
+                                  console.log(
+                                    "Available products before filter:",
+                                    window.productManager.products.length
+                                  );
+                                  console.log(
+                                    "Calling filterByCategory with:",
+                                    category
+                                  );
+
+                                  // Call the filter function
+                                  if (category === "all") {
+                                    window.productManager.filterByCategory(
+                                      "Sản phẩm"
+                                    );
+                                  } else {
+                                    window.productManager.filterByCategory(
+                                      category
+                                    );
+                                  }
+
+                                  // Update active state
+                                  $(".category-filter").removeClass("active");
+                                  $(this).addClass("active");
+
+                                  console.log("Filter applied successfully");
+                                } else {
+                                  console.error(
+                                    "ProductManager not available!"
+                                  );
+                                }
+                              });
+
+                            // Initialize with all products
+                            console.log("Initializing with all products");
+                            if (window.productManager) {
+                              window.productManager.filterByCategory(
+                                "Sản phẩm"
+                              );
+                              // Set first category as active
+                              $(".category-filter").first().addClass("active");
+                            }
+                          }
+
+                          // Start waiting
+                          waitForProductManager();
+                        });
+                      }
+
+                      // Start the initialization
+                      waitForJQuery();
                     </script>
                   </aside>
                   <div class="col-lg-9 col-md-12 order-lg-2 order-1">
@@ -855,9 +919,6 @@
                             <option value="created-desc">Hàng mới nhất</option>
                             <option value="created-asc">Hàng cũ nhất</option>
                           </select>
-                          <script
-                            src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/sortby.js?1676015309640"
-                            type="text/javascript"></script>
                         </div>
                         <div class="view-mode hidden-xs">
                           <a class="switch-view" data-view="list">
@@ -1320,5 +1381,47 @@
     <script src="./assets/js/brand-partners.js"></script>
     <script src="./assets/js/view-switcher.js"></script>
     <script src="./assets/js/products.js"></script>
+
+    <!-- Debug Script -->
+    <script>
+      console.log("=== PAGE LOAD DEBUG ===");
+      console.log("jQuery loaded:", typeof $ !== "undefined");
+      console.log("Document ready state:", document.readyState);
+
+      // Check when ProductManager becomes available
+      function checkProductManager() {
+        console.log("Checking ProductManager...");
+        console.log("window.productManager exists:", !!window.productManager);
+        if (window.productManager) {
+          console.log(
+            "ProductManager products:",
+            window.productManager.products
+              ? window.productManager.products.length
+              : "No products"
+          );
+          console.log(
+            "ProductManager filteredProducts:",
+            window.productManager.filteredProducts
+              ? window.productManager.filteredProducts.length
+              : "No filtered products"
+          );
+        }
+        setTimeout(checkProductManager, 3000); // Check every 3 seconds
+      }
+
+      setTimeout(checkProductManager, 1000); // Start checking after 1 second
+
+      // Test category filter click manually
+      window.testCategoryFilter = function (category) {
+        console.log("=== MANUAL TEST ===");
+        console.log("Testing category:", category);
+        if (window.productManager) {
+          window.productManager.filterByCategory(category);
+          console.log("Manual filter applied!");
+        } else {
+          console.error("ProductManager not available for manual test!");
+        }
+      };
+    </script>
   </body>
 </html>
