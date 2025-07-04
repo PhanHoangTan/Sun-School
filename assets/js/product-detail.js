@@ -202,11 +202,6 @@ class ProductDetailManager {
         <div class="product-detail-header">
           <h1 class="product-title">${product.name}</h1>
           <span class="product-category">${product.category}</span>
-          ${
-            product.hasDiscount
-              ? `<div class="discount-badge">-${product.discount}</div>`
-              : ""
-          }
         </div>
         
         <div class="product-detail-content">
