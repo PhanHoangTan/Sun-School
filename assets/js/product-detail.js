@@ -248,7 +248,10 @@ class ProductDetailManager {
               <div class="consultation-info">
                 <p class="consultation-text">Đặt hàng qua điện thoại ( 8h - 21h )</p>
                 <div class="consultation-contact">
-                  <a href="tel:046674232332" class="consultation-phone">046674 2332</a>
+                  <a href="tel:046674232332" class="consultation-phone">
+                    <i class="fas fa-phone"></i>
+                    046674 2332
+                  </a>
                   <span class="consultation-hours"></span>
                 </div>
               </div>

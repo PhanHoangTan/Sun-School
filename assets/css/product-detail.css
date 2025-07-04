@@ -452,7 +452,7 @@
 
 /* Consultation Info Styles */
 .consultation-info {
-    margin-top: 25px;
+  margin-top: 25px;
   text-align: left;
 }
 
@@ -472,16 +472,22 @@
 .consultation-phone {
   font-size: 20px;
   font-weight: 700;
-  color: #f6903d;
+  color: #ff6b35;
   text-decoration: none;
   transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .consultation-phone:hover {
-  color: #ffc107;
+  color: #ff8c69;
   text-decoration: none;
 }
 
+.consultation-phone i {
+  font-size: 16px;
+}
 
 /* Responsive Design */
 @media (max-width: 1200px) {
