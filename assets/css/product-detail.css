@@ -149,6 +149,7 @@
 .btn-register {
   background: linear-gradient(135deg, #ff6b35, #ff8c69);
   color: white;
+    border-radius: 30px;
 }
 
 .btn-register:hover {
