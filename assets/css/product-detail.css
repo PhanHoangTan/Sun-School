@@ -98,18 +98,27 @@
   text-align: justify;
 }
 
+.product-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: nowrap;
+}
+
 .current-price {
   font-size: 32px;
-  color: #ff6b35;
+  color: #f6903d;
   margin: 0;
+  white-space: nowrap;
 }
 
 .original-price {
   font-size: 20px;
   color: #999;
   text-decoration: line-through;
-  margin-left: 15px;
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .contact-price {
@@ -488,6 +497,10 @@
     font-size: 18px;
   }
 
+  .product-pricing {
+    gap: 12px;
+  }
+
   .contact-price {
     font-size: 20px;
   }
@@ -524,6 +537,14 @@
 
   .current-price {
     font-size: 24px;
+  }
+
+  .original-price {
+    font-size: 16px;
+  }
+
+  .product-pricing {
+    gap: 10px;
   }
 
   .contact-info {
