@@ -98,17 +98,8 @@
   text-align: justify;
 }
 
-.product-pricing {
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  border-left: 4px solid #ff6b35;
-}
-
 .current-price {
   font-size: 32px;
-  font-weight: 800;
   color: #ff6b35;
   margin: 0;
 }

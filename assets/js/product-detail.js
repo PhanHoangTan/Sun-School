@@ -163,7 +163,7 @@ class ProductDetailManager {
     } else {
       pricingHTML = `
         <div class="product-pricing">
-          <div class="current-price">${product.price}</div>
+          <div class="current-price">${product.price}/Khóa</div>
           ${
             product.originalPrice
               ? `<span class="original-price">${product.originalPrice}</span>`
@@ -201,7 +201,6 @@ class ProductDetailManager {
       <div class="product-detail-container">
         <div class="product-detail-header">
           <h1 class="product-title">${product.name}</h1>
-          <span class="product-category">${product.category}</span>
         </div>
         
         <div class="product-detail-content">
