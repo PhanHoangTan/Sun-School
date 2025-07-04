@@ -180,14 +180,38 @@ class ProductDetailManager {
     let infoSectionsHTML = "";
     if (product.info && Object.keys(product.info).length > 0) {
       const infoItems = Object.entries(product.info)
-        .map(
-          ([title, content]) => `
-        <div class="info-item">
-          <h4 class="info-title">${title}</h4>
-          <div class="info-content">${content}</div>
-        </div>
-      `
-        )
+        .map(([title, content]) => {
+          // Check if this content is an image URL
+          if (
+            typeof content === "string" &&
+            (title.toLowerCase().includes("image") ||
+              content.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?|$)/i) ||
+              content.includes("bizweb.dktcdn.net") ||
+              content.includes(".jpg") ||
+              content.includes(".png"))
+          ) {
+            // Handle image content
+            const imageUrl = content.startsWith("//")
+              ? "https:" + content
+              : content;
+            return `
+              <div class="info-item info-item-image">
+                <h4 class="info-title">Hình ảnh minh họa</h4>
+                <div class="info-content">
+                  <img src="${imageUrl}" alt="Hình ảnh minh họa - ${product.name}" class="info-image" loading="lazy">
+                </div>
+              </div>
+            `;
+          } else {
+            // Handle regular text content
+            return `
+              <div class="info-item">
+                <h4 class="info-title">${title}</h4>
+                <div class="info-content">${content}</div>
+              </div>
+            `;
+          }
+        })
         .join("");
 
       infoSectionsHTML = `

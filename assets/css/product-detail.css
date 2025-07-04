@@ -290,6 +290,33 @@
   white-space: pre-line;
 }
 
+/* Info Image Styles */
+.info-item-image {
+  text-align: center;
+}
+
+.info-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
+}
+
+.info-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive for info images */
+@media (max-width: 768px) {
+  .info-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 .contact-section {
   background: linear-gradient(135deg, #f8f9fa, #e9ecef);
   padding: 30px;
