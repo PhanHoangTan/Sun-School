@@ -24,6 +24,20 @@
     <link rel="stylesheet" href="./assets/css/footer.css" />
     <link rel="stylesheet" href="./assets/css/scroll-top.css" />
     <link rel="stylesheet" href="./assets/css/breadcrumb.css" />
+    <!-- Product Detail CSS - loaded AFTER header.css -->
+    <link rel="stylesheet" href="./assets/css/product-detail.css" />
+    
+    <!-- Force header to override ANY conflicting styles from product-detail -->
+    <style>
+      /* Completely isolate header from product detail styles */
+      #header-container {
+        all: initial !important;
+        display: block !important;
+        position: relative !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+      }
+    </style>
 
     <!-- Google Fonts -->
     <link
@@ -37,13 +51,8 @@
     <link rel="stylesheet" href="./assets/css/testimonials.css" />
     <!-- Services CSS -->
     <link rel="stylesheet" href="./assets/css/services.css" />
-    <!-- Product Detail CSS -->
-    <link rel="stylesheet" href="./assets/css/product-detail.css" />
 
-    <!-- Override Bootstrap breadcrumb styles with our custom styles -->
-    <style>
-      /* Additional breadcrumb overrides if needed */
-    </style>
+
   </head>
   <body>
     <!-- Header Component -->
@@ -89,17 +98,17 @@
                 </div>
                 <div class="widget-content">
                   <div class="contact-info-sidebar">
-                    <div class="contact-item">
+                    <div class="contact-item-sidebar">
                       <i class="fas fa-phone"></i>
                       <a href="tel:046674232332">046674 2332</a>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item-sidebar">
                       <i class="fas fa-envelope"></i>
                       <a href="mailto:support@sunschool.edu.vn"
                         >support@sunschool.edu.vn</a
                       >
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item-sidebar">
                       <i class="fas fa-map-marker-alt"></i>
                       <span>Tầng 6, 266 Đội Cấn, Ba Đình, Hà Nội</span>
                     </div>
