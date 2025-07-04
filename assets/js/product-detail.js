@@ -38,9 +38,27 @@ class ProductDetailManager {
     document.addEventListener("click", (e) => {
       const productLink = e.target.closest("[data-product-id]");
       if (productLink) {
-        e.preventDefault();
         const productId = productLink.getAttribute("data-product-id");
-        this.showProductDetail(productId);
+        const action = productLink.getAttribute("data-action");
+
+        // Handle different actions
+        if (action === "register") {
+          e.preventDefault();
+          this.registerCourse(productId);
+        } else if (action === "guide") {
+          // Store product info for the guide page
+          const product = this.findProductById(productId);
+          if (product) {
+            sessionStorage.setItem("currentProductName", product.name);
+            sessionStorage.setItem("currentProductId", product.id);
+          }
+          // Don't prevent default - allow natural link navigation to HuongDan.html
+          return true;
+        } else {
+          // Default product detail view
+          e.preventDefault();
+          this.showProductDetail(productId);
+        }
       }
     });
 
@@ -254,16 +272,16 @@ class ProductDetailManager {
               ${pricingHTML}
               
               <div class="action-buttons">
-                <a href="#" class="btn-register" onclick="productDetailManager.registerCourse('${
+                <a href="#" class="btn-register" data-action="register" data-product-id="${
                   product.id
-                }')">
+                }">
                   <i class="fas fa-user-plus"></i>
                   Đăng ký ngay
                 </a>
                 
-                <a href="#" class="registration-guide-link" onclick="productDetailManager.showRegistrationGuide('${
+                <a href="HuongDan.html" class="registration-guide-link" data-action="guide" data-product-id="${
                   product.id
-                }')">
+                }">
                   <i class="fas fa-arrow-right"></i>
                   Hướng dẫn đăng ký
                 </a>
@@ -323,76 +341,6 @@ class ProductDetailManager {
 
       // You can add more sophisticated registration logic here
       // For example, open a registration form modal, redirect to registration page, etc.
-    }
-  }
-
-  showRegistrationGuide(productId) {
-    // Handle registration guide display
-    const product = this.findProductById(productId);
-    if (product) {
-      const guideContent = `
-        <div style="text-align: left; line-height: 1.6;">
-          <h4 style="color: #ff6b35; margin-bottom: 15px;">Hướng dẫn đăng ký khóa học: ${product.name}</h4>
-          
-          <div style="margin-bottom: 15px;">
-            <strong>Bước 1:</strong> Liên hệ tư vấn qua hotline: <strong style="color: #ff6b35;">046674 2332</strong>
-          </div>
-          
-          <div style="margin-bottom: 15px;">
-            <strong>Bước 2:</strong> Cung cấp thông tin học viên (Họ tên, tuổi, trình độ hiện tại)
-          </div>
-          
-          <div style="margin-bottom: 15px;">
-            <strong>Bước 3:</strong> Chọn lịch học phù hợp và đóng học phí
-          </div>
-          
-          <div style="margin-bottom: 15px;">
-            <strong>Bước 4:</strong> Nhận xác nhận đăng ký và thông tin lớp học
-          </div>
-          
-          <div style="margin-bottom: 20px;">
-            <strong>Giờ tư vấn:</strong> Thứ 2 - Thứ 6: 8:00 - 21:00 | Thứ 7 - CN: 8:00 - 18:00
-          </div>
-          
-          <div style="text-align: center;">
-            <a href="tel:046674232332" style="
-              display: inline-block;
-              background: linear-gradient(135deg, #ff6b35, #ff8c69);
-              color: white;
-              padding: 12px 25px;
-              border-radius: 25px;
-              text-decoration: none;
-              font-weight: 600;
-              margin-right: 10px;
-            ">
-              <i class="fas fa-phone"></i> Gọi ngay
-            </a>
-            <a href="mailto:support@sunschool.edu.vn" style="
-              display: inline-block;
-              background: #fff;
-              color: #ff6b35;
-              border: 2px solid #ff6b35;
-              padding: 10px 25px;
-              border-radius: 25px;
-              text-decoration: none;
-              font-weight: 600;
-            ">
-              <i class="fas fa-envelope"></i> Email
-            </a>
-          </div>
-        </div>
-      `;
-
-      alert(
-        "Hướng dẫn đăng ký khóa học\n\n" +
-          "Bước 1: Liên hệ tư vấn qua hotline: 046674 2332\n" +
-          "Bước 2: Cung cấp thông tin học viên\n" +
-          "Bước 3: Chọn lịch học và đóng học phí\n" +
-          "Bước 4: Nhận xác nhận đăng ký\n\n" +
-          "Giờ tư vấn: T2-T6: 8:00-21:00 | T7-CN: 8:00-18:00"
-      );
-
-      // You can replace alert with a proper modal later
     }
   }
 
