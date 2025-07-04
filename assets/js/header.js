@@ -167,12 +167,16 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // Home page
       console.log("Activating HOME");
-      const homeItem = document.querySelector(".main-menu .nav-item:first-child");
+      const homeItem = document.querySelector(
+        ".main-menu .nav-item:first-child"
+      );
       if (homeItem) homeItem.classList.add("active");
     } else if (currentPage.includes("SanPham.html")) {
       // Products page
       console.log("Activating PRODUCTS");
-      const productItem = document.querySelector(".main-menu .nav-item:nth-child(2)");
+      const productItem = document.querySelector(
+        ".main-menu .nav-item:nth-child(2)"
+      );
       if (productItem) productItem.classList.add("active");
     } else if (
       currentPage.includes("ChuongTrinhGiaoDuc.html") ||
@@ -180,18 +184,24 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // Education program or Values for children (both under Chương trình giáo dục)
       console.log("Activating EDUCATION PROGRAM");
-      const educationItem = document.querySelector(".main-menu .nav-item:nth-child(3)");
+      const educationItem = document.querySelector(
+        ".main-menu .nav-item:nth-child(3)"
+      );
       if (educationItem) {
         educationItem.classList.add("active");
         console.log("Education item activated successfully");
-        
+
         // Also highlight any sub-menu items if they match
-        const subLinks = educationItem.querySelectorAll('.dropdown-menu a');
-        subLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href && (href.includes(currentPage) || currentPage.includes(href.replace('./', '')))) {
-            link.style.backgroundColor = '#ff8c00';
-            link.style.color = 'white';
+        const subLinks = educationItem.querySelectorAll(".dropdown-menu a");
+        subLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          if (
+            href &&
+            (href.includes(currentPage) ||
+              currentPage.includes(href.replace("./", "")))
+          ) {
+            link.style.backgroundColor = "#ff8c00";
+            link.style.color = "white";
           }
         });
       } else {
@@ -204,24 +214,32 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // Admission, Tuition, or Menu (all under Tuyển sinh)
       console.log("Activating ADMISSION");
-      const admissionItem = document.querySelector(".main-menu .nav-item:nth-child(4)");
+      const admissionItem = document.querySelector(
+        ".main-menu .nav-item:nth-child(4)"
+      );
       if (admissionItem) {
         admissionItem.classList.add("active");
-        
+
         // Also highlight any sub-menu items if they match
-        const subLinks = admissionItem.querySelectorAll('.dropdown-menu a');
-        subLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href && (href.includes(currentPage) || currentPage.includes(href.replace('./', '')))) {
-            link.style.backgroundColor = '#ff8c00';
-            link.style.color = 'white';
+        const subLinks = admissionItem.querySelectorAll(".dropdown-menu a");
+        subLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          if (
+            href &&
+            (href.includes(currentPage) ||
+              currentPage.includes(href.replace("./", "")))
+          ) {
+            link.style.backgroundColor = "#ff8c00";
+            link.style.color = "white";
           }
         });
       }
     } else if (currentPath.includes("TinTuc.html")) {
       // News page
       console.log("Activating NEWS");
-      const newsItem = document.querySelector(".main-menu .nav-item:nth-child(5)");
+      const newsItem = document.querySelector(
+        ".main-menu .nav-item:nth-child(5)"
+      );
       if (newsItem) newsItem.classList.add("active");
     } else if (
       currentPath.includes("GioiThieu.html") ||
@@ -229,17 +247,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // About page or Facilities page (both under Giới thiệu)
       console.log("Activating ABOUT");
-      const aboutItem = document.querySelector(".main-menu .nav-item:nth-child(6)");
+      const aboutItem = document.querySelector(
+        ".main-menu .nav-item:nth-child(6)"
+      );
       if (aboutItem) {
         aboutItem.classList.add("active");
-        
+
         // Also highlight any sub-menu items if they match
-        const subLinks = aboutItem.querySelectorAll('.dropdown-menu a');
-        subLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href && (href.includes(currentPage) || currentPage.includes(href.replace('./', '')))) {
-            link.style.backgroundColor = '#ff8c00';
-            link.style.color = 'white';
+        const subLinks = aboutItem.querySelectorAll(".dropdown-menu a");
+        subLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          if (
+            href &&
+            (href.includes(currentPage) ||
+              currentPage.includes(href.replace("./", "")))
+          ) {
+            link.style.backgroundColor = "#ff8c00";
+            link.style.color = "white";
           }
         });
       }
@@ -386,7 +410,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Manual test function for debugging
   window.testEducationActive = function () {
-    const educationItem = document.querySelector(".main-menu .nav-item:nth-child(3)");
+    const educationItem = document.querySelector(
+      ".main-menu .nav-item:nth-child(3)"
+    );
     if (educationItem) {
       document
         .querySelectorAll(".main-menu .nav-item")
@@ -399,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // Force refresh active state
-  window.refreshActiveMenu = function() {
+  window.refreshActiveMenu = function () {
     console.log("=== FORCE REFRESH ACTIVE MENU ===");
     setTimeout(() => {
       setActiveMenuItem();
@@ -407,14 +433,14 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // Auto refresh when DOM changes
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
         // Check if header content was added
-        const hasHeader = document.querySelector('.main-menu');
+        const hasHeader = document.querySelector(".main-menu");
         if (hasHeader && !hasHeader.dataset.activeSet) {
           console.log("Header detected, setting active menu...");
-          hasHeader.dataset.activeSet = 'true';
+          hasHeader.dataset.activeSet = "true";
           setTimeout(setActiveMenuItem, 200);
         }
       }
@@ -424,6 +450,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Start observing
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 });
