@@ -244,26 +244,18 @@ class ProductDetailManager {
                   Hướng dẫn đăng ký
                 </a>
               </div>
+              
+              <div class="consultation-info">
+                <p class="consultation-text">Đặt hàng qua điện thoại ( 8h - 21h )</p>
+                <div class="consultation-contact">
+                  <a href="tel:046674232332" class="consultation-phone">046674 2332</a>
+                  <span class="consultation-hours"></span>
+                </div>
+              </div>
             </div>
           </div>
           
           ${infoSectionsHTML}
-          
-          <div class="contact-section">
-            <h3 class="contact-title">Liên hệ để được tư vấn chi tiết</h3>
-            <div class="contact-info">
-              <a href="tel:046674232332" class="phone-number">046674 2332</a>
-              <span class="contact-hours">Đặt hàng qua điện thoại (8h - 21h)</span>
-            </div>
-            <div class="action-buttons">
-              <a href="#" class="btn-register" onclick="productDetailManager.registerCourse('${
-                product.id
-              }')">
-                <i class="fas fa-graduation-cap"></i>
-                Đăng ký khóa học
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     `;

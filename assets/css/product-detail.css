@@ -450,6 +450,39 @@
   transform: rotate(180deg); /* Mũi tên chỉ về bên trái */
 }
 
+/* Consultation Info Styles */
+.consultation-info {
+    margin-top: 25px;
+  text-align: left;
+}
+
+.consultation-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 15px 0;
+}
+
+.consultation-contact {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.consultation-phone {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff6b35;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.consultation-phone:hover {
+  color: #ff8c69;
+  text-decoration: none;
+}
+
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .product-main-info {
@@ -510,6 +543,15 @@
     width: 100%;
   }
 
+  .consultation-contact {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .consultation-phone {
+    font-size: 18px;
+  }
+
   .sidebar-widget {
     margin-top: 30px;
   }
@@ -550,6 +592,15 @@
 
   .contact-hours {
     padding: 15px;
+  }
+
+  .consultation-info {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .consultation-text {
+    font-size: 15px;
   }
 }
 
@@ -598,6 +649,14 @@
 
   .phone-number {
     font-size: 20px;
+  }
+
+  .consultation-phone {
+    font-size: 16px;
+  }
+
+  .consultation-hours {
+    font-size: 13px;
   }
 }
 
