@@ -189,9 +189,12 @@ class ProductManager {
                         product.id
                       }" enctype="multipart/form-data">
                     <div class="product-thumbnail">
-                        <a class="image_thumb scale_hover" href="${
-                          product.url
-                        }" title="${product.name}">
+                        <a class="image_thumb scale_hover" href="ChiTietSanPham.html?product=${
+                          product.id
+                        }" 
+                           title="${product.name}" data-product-id="${
+      product.id
+    }">
                             <img class="lazyload loaded" 
                                  src="${product.image}" 
                                  data-src="${product.image}" 
@@ -203,8 +206,10 @@ class ProductManager {
                     <div class="product-content">
                         <div class="product-info">
                             <h3 class="product-name">
-                                <a href="${product.url}" title="${
-      product.name
+                                <a href="ChiTietSanPham.html?product=${
+                                  product.id
+                                }" title="${product.name}" data-product-id="${
+      product.id
     }">${product.name}</a>
                             </h3>
                             ${
