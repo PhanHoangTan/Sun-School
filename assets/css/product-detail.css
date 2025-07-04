@@ -472,13 +472,13 @@
 .consultation-phone {
   font-size: 20px;
   font-weight: 700;
-  color: #ff6b35;
+  color: #f6903d;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .consultation-phone:hover {
-  color: #ff8c69;
+  color: #ffc107;
   text-decoration: none;
 }
 
