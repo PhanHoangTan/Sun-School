@@ -144,6 +144,9 @@ class ProductDetailManager {
           detailContainer.classList.add("show");
         }, 100);
       }
+
+      // Add thumbnail click functionality
+      this.setupThumbnailClick();
     }, 500);
   }
 
@@ -214,6 +217,11 @@ class ProductDetailManager {
                   ? `<div class="discount-badge">-${product.discount}</div>`
                   : ""
               }
+              <div class="product-thumbnail-container">
+                <img src="${imageUrl}" alt="${
+      product.name
+    } - Ảnh phụ" class="product-thumbnail-image active">
+              </div>
             </div>
             
             <div class="product-info-content">
@@ -366,6 +374,27 @@ class ProductDetailManager {
       );
 
       // You can replace alert with a proper modal later
+    }
+  }
+
+  setupThumbnailClick() {
+    const mainImage = document.querySelector(".product-main-image");
+    const thumbnailImage = document.querySelector(".product-thumbnail-image");
+
+    if (mainImage && thumbnailImage) {
+      thumbnailImage.addEventListener("click", () => {
+        // Add click animation to show interaction
+        thumbnailImage.style.transform = "scale(0.95)";
+        setTimeout(() => {
+          thumbnailImage.style.transform = "";
+        }, 150);
+
+        // Add a subtle flash effect to main image to show it's selected
+        mainImage.style.transform = "scale(1.02)";
+        setTimeout(() => {
+          mainImage.style.transform = "";
+        }, 200);
+      });
     }
   }
 
