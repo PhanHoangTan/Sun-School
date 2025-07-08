@@ -395,7 +395,6 @@ const listViewCSS = `
     flex-direction: row;
     align-items: stretch;
     background: #fff;
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
