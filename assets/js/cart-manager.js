@@ -306,10 +306,34 @@ class CartManager {
             margin-left: 15px;
           }
           
-          .cart-item-quantity span {
+          .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
+            color: #333;
             font-size: 16px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+          
+          .quantity-btn:hover {
+            background-color: #f6903d;
+            color: white;
+            border-color: #f6903d;
+          }
+          
+          .quantity-value {
             margin: 0 10px;
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
           }
           
           .remove-item-btn {
@@ -460,6 +484,43 @@ class CartManager {
 
     const modalBody = modal.querySelector(".cart-modal-body");
 
+    // Calculate the total price based on quantity
+    let totalPrice = product.price;
+
+    // Only calculate if price is not "Liên hệ"
+    if (product.price && !product.price.includes("Liên hệ")) {
+      // Extract numeric price value
+      const priceString = product.price;
+      let numericPrice = 0;
+
+      // Extract numeric value from price string
+      const matches = priceString.match(/[\d,.]+/g);
+      if (matches && matches.length > 0) {
+        // Remove dots (thousands separators in VN) and convert to number
+        numericPrice = parseFloat(
+          matches[0].replace(/\./g, "").replace(/,/g, "")
+        );
+      }
+
+      // Calculate total based on quantity
+      const total = numericPrice * product.quantity;
+
+      // Format total price with the same format as the original price
+      if (priceString.includes("₫")) {
+        totalPrice = `${total.toLocaleString("vi-VN").replace(/,/g, ".")}₫`;
+      } else if (priceString.includes("đ")) {
+        totalPrice = `${total.toLocaleString("vi-VN").replace(/,/g, ".")}đ`;
+      } else if (priceString.includes("VND")) {
+        totalPrice = `${total.toLocaleString("vi-VN").replace(/,/g, ".")} VND`;
+      } else {
+        totalPrice = `${total.toLocaleString("vi-VN").replace(/,/g, ".")}`;
+      }
+
+      console.log(
+        `Calculated total price: ${numericPrice} x ${product.quantity} = ${total} => ${totalPrice}`
+      );
+    }
+
     // Update modal content
     modalBody.innerHTML = `
       <div class="cart-modal-header">
@@ -482,7 +543,13 @@ class CartManager {
             <div class="cart-item-price">${product.price}</div>
           </div>
           <div class="cart-item-quantity">
-            <span>SỐ LƯỢNG: ${product.quantity || 1}</span>
+            <button class="quantity-btn decrease-btn" data-product-id="${
+              product.id
+            }">-</button>
+            <span class="quantity-value">${product.quantity || 1}</span>
+            <button class="quantity-btn increase-btn" data-product-id="${
+              product.id
+            }">+</button>
           </div>
           <button class="remove-item-btn" data-product-id="${product.id}">
             <i class="fas fa-times"></i>
@@ -493,7 +560,7 @@ class CartManager {
       <div class="cart-summary">
         <div class="cart-total">
           <span>Thành tiền:</span>
-          <span class="cart-total-price">${product.price}</span>
+          <span class="cart-total-price">${totalPrice}</span>
         </div>
         <div class="cart-buttons">
           <button class="btn-continue-shopping">
@@ -526,6 +593,158 @@ class CartManager {
         this.hideModal();
       });
     }
+
+    // Add event listeners for quantity buttons
+    const decreaseBtn = modalBody.querySelector(".decrease-btn");
+    const increaseBtn = modalBody.querySelector(".increase-btn");
+
+    if (decreaseBtn) {
+      decreaseBtn.addEventListener("click", () => {
+        const productId = decreaseBtn.getAttribute("data-product-id");
+        this.decreaseQuantity(productId);
+      });
+    }
+
+    if (increaseBtn) {
+      increaseBtn.addEventListener("click", () => {
+        const productId = increaseBtn.getAttribute("data-product-id");
+        this.increaseQuantity(productId);
+      });
+    }
+  }
+
+  // New method to increase product quantity
+  increaseQuantity(productId) {
+    const productIndex = this.cart.findIndex((item) => item.id === productId);
+    if (productIndex !== -1) {
+      this.cart[productIndex].quantity += 1;
+      this.saveCartToStorage();
+      this.updateCartCount();
+      this.updateModalQuantity(productId, this.cart[productIndex].quantity);
+      this.updateTotalPrice();
+    }
+  }
+
+  // New method to decrease product quantity
+  decreaseQuantity(productId) {
+    const productIndex = this.cart.findIndex((item) => item.id === productId);
+    if (productIndex !== -1) {
+      if (this.cart[productIndex].quantity > 1) {
+        this.cart[productIndex].quantity -= 1;
+        this.saveCartToStorage();
+        this.updateCartCount();
+        this.updateModalQuantity(productId, this.cart[productIndex].quantity);
+        this.updateTotalPrice();
+      } else {
+        // If quantity becomes 0, remove the product
+        this.removeFromCart(productId);
+      }
+    }
+  }
+
+  // New method to update quantity display in modal
+  updateModalQuantity(productId, quantity) {
+    const quantityElement = document.querySelector(
+      `.cart-item-quantity .quantity-value`
+    );
+    if (quantityElement) {
+      quantityElement.textContent = quantity;
+    }
+  }
+
+  // Method to update total price in modal
+  updateTotalPrice() {
+    const totalPriceElement = document.querySelector(".cart-total-price");
+    if (totalPriceElement && this.cart.length > 0) {
+      // Get the current product being displayed in the modal
+      const currentProductId = document
+        .querySelector(".cart-item .remove-item-btn")
+        ?.getAttribute("data-product-id");
+
+      if (currentProductId) {
+        const currentProduct = this.cart.find(
+          (item) => item.id === currentProductId
+        );
+        if (currentProduct) {
+          // Only calculate if price is not "Liên hệ"
+          if (
+            currentProduct.price &&
+            !currentProduct.price.includes("Liên hệ")
+          ) {
+            // Extract numeric price value
+            const priceString = currentProduct.price;
+            let numericPrice = 0;
+
+            // Extract numeric value from price string
+            const matches = priceString.match(/[\d,.]+/g);
+            if (matches && matches.length > 0) {
+              // Remove dots (thousands separators in VN) and convert to number
+              numericPrice = parseFloat(
+                matches[0].replace(/\./g, "").replace(/,/g, "")
+              );
+            }
+
+            // Calculate total based on quantity
+            const total = numericPrice * currentProduct.quantity;
+
+            // Format total price with the same format as the original price
+            let formattedTotal = "";
+
+            // Check if price has currency symbol or text
+            if (priceString.includes("₫")) {
+              formattedTotal = `${total
+                .toLocaleString("vi-VN")
+                .replace(/,/g, ".")}₫`;
+            } else if (priceString.includes("đ")) {
+              formattedTotal = `${total
+                .toLocaleString("vi-VN")
+                .replace(/,/g, ".")}đ`;
+            } else if (priceString.includes("VND")) {
+              formattedTotal = `${total
+                .toLocaleString("vi-VN")
+                .replace(/,/g, ".")} VND`;
+            } else {
+              formattedTotal = `${total
+                .toLocaleString("vi-VN")
+                .replace(/,/g, ".")}`;
+            }
+
+            console.log(
+              `Updating total price: ${numericPrice} x ${currentProduct.quantity} = ${total} => ${formattedTotal}`
+            );
+            totalPriceElement.textContent = formattedTotal;
+          } else {
+            // If price is "Liên hệ", just display it
+            totalPriceElement.textContent = currentProduct.price;
+          }
+        }
+      }
+    }
+  }
+
+  // Helper method to extract numeric price from formatted price string
+  extractNumericPrice(priceString) {
+    // Remove all non-numeric characters except decimal point
+    const numericString = priceString.replace(/[^\d.]/g, "");
+    return parseFloat(numericString) || 0;
+  }
+
+  // Helper method to format price with the same format as the original
+  formatPrice(value, originalFormat) {
+    // Check if original price has currency symbol at the beginning
+    if (/^[^\d]+/.test(originalFormat)) {
+      const currencySymbol = originalFormat.match(/^[^\d]+/)[0];
+      return `${currencySymbol}${value.toLocaleString()}`;
+    }
+
+    // Check if original price has currency symbol at the end
+    if (/[^\d]+$/.test(originalFormat)) {
+      const currencySymbol = originalFormat.match(/[^\d]+$/)[0];
+      return `${value.toLocaleString()}${currencySymbol}`;
+    }
+
+    // Default format
+    return `${value.toLocaleString()}đ`;
   }
 
   hideModal() {
@@ -547,28 +766,49 @@ class CartManager {
     if (existingProductIndex >= 0) {
       // Increment quantity if product already in cart
       this.cart[existingProductIndex].quantity += 1;
+      console.log(
+        `Increased quantity of ${product.name} to ${this.cart[existingProductIndex].quantity}`
+      );
+
+      // Use the updated product with correct quantity
+      const updatedProduct = { ...this.cart[existingProductIndex] };
+
+      // Save cart to storage
+      this.saveCartToStorage();
+
+      // Update cart count in header
+      this.updateCartCount();
+
+      // Show modal with updated product
+      this.showModal(updatedProduct);
     } else {
       // Add new product to cart
-      this.cart.push({
+      const newProduct = {
         id: product.id,
         name: product.name,
         price: product.price,
         image: product.image,
         quantity: 1,
-      });
+      };
+
+      this.cart.push(newProduct);
+      console.log(`Added new product ${product.name} to cart`);
+
+      // Save cart to storage
+      this.saveCartToStorage();
+
+      // Update cart count in header
+      this.updateCartCount();
+
+      // Show modal with added product
+      this.showModal(newProduct);
     }
-
-    // Save cart to storage
-    this.saveCartToStorage();
-
-    // Update cart count in header
-    this.updateCartCount();
-
-    // Show modal with added product
-    this.showModal(product);
   }
 
   removeFromCart(productId) {
+    // Find the product before removing it
+    const productToRemove = this.cart.find((item) => item.id === productId);
+
     // Remove product from cart
     this.cart = this.cart.filter((item) => item.id !== productId);
 
@@ -581,10 +821,12 @@ class CartManager {
     // Hide modal if cart is empty
     if (this.cart.length === 0) {
       this.hideModal();
+      // Optionally show a message
+      alert("Giỏ hàng của bạn đã trống");
     } else {
-      // Update modal content
-      const product = this.cart[this.cart.length - 1];
-      this.showModal(product);
+      // Update modal content with the last product in cart
+      const lastProduct = this.cart[this.cart.length - 1];
+      this.showModal(lastProduct);
     }
   }
 
