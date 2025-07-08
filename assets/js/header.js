@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // Smoothly fade in the header once everything is initialized
           headerContainer.style.transition = "opacity 0.3s ease";
           headerContainer.style.opacity = "1";
+
+          // Dispatch an event to notify that the header has been loaded
+          window.dispatchEvent(new CustomEvent("headerLoaded"));
         }, 100);
       })
       .catch((error) => {

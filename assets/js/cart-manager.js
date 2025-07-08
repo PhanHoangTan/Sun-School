@@ -11,22 +11,79 @@ class CartManager {
     this.setupEventListeners();
     this.updateCartCount();
     this.createCartModal();
+
+    // Ensure cart is initialized even after page reload
+    this.ensureCartInitialized();
+  }
+
+  ensureCartInitialized() {
+    // This method ensures the cart is properly initialized after page reload
+    console.log("Ensuring cart is initialized...");
+
+    // Check if cart count exists in DOM
+    if (!document.querySelector(".cart-count")) {
+      console.log(
+        "Cart count element not found on initial load, will check again"
+      );
+      // Try again after a delay to allow header to load
+      setTimeout(() => {
+        this.loadCartFromStorage();
+        this.updateCartCount();
+      }, 1000);
+    }
   }
 
   loadCartFromStorage() {
-    const savedCart = localStorage.getItem("sunschool_cart");
-    if (savedCart) {
-      try {
-        this.cart = JSON.parse(savedCart);
-      } catch (e) {
-        console.error("Error parsing cart from storage:", e);
+    try {
+      // Check if localStorage is available
+      if (this.isLocalStorageAvailable()) {
+        const savedCart = localStorage.getItem("sunschool_cart");
+        if (savedCart) {
+          try {
+            this.cart = JSON.parse(savedCart);
+            console.log("Cart loaded from storage:", this.cart.length, "items");
+          } catch (e) {
+            console.error("Error parsing cart from storage:", e);
+            this.cart = [];
+          }
+        } else {
+          console.log("No saved cart found in storage");
+          this.cart = [];
+        }
+      } else {
+        console.warn(
+          "localStorage is not available, cart persistence will not work"
+        );
         this.cart = [];
       }
+    } catch (e) {
+      console.error("Error accessing localStorage:", e);
+      this.cart = [];
+    }
+  }
+
+  isLocalStorageAvailable() {
+    try {
+      const testKey = "__test_storage__";
+      localStorage.setItem(testKey, testKey);
+      localStorage.removeItem(testKey);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
   saveCartToStorage() {
-    localStorage.setItem("sunschool_cart", JSON.stringify(this.cart));
+    try {
+      if (this.isLocalStorageAvailable()) {
+        localStorage.setItem("sunschool_cart", JSON.stringify(this.cart));
+        console.log("Cart saved to storage:", this.cart.length, "items");
+      } else {
+        console.warn("localStorage is not available, cart not saved");
+      }
+    } catch (e) {
+      console.error("Error saving cart to storage:", e);
+    }
   }
 
   setupEventListeners() {
@@ -83,6 +140,21 @@ class CartManager {
         }
       }
     });
+
+    // Listen for header loaded event
+    window.addEventListener("headerLoaded", () => {
+      console.log("Header loaded, updating cart count");
+      this.updateCartCount();
+    });
+
+    // Also update cart count when DOM is fully loaded
+    if (document.readyState === "complete") {
+      this.updateCartCount();
+    } else {
+      window.addEventListener("load", () => {
+        this.updateCartCount();
+      });
+    }
   }
 
   createCartModal() {
@@ -476,6 +548,12 @@ class CartManager {
         0
       );
       cartCountElement.textContent = totalQuantity;
+      console.log("Cart count updated:", totalQuantity);
+    } else {
+      console.log("Cart count element not found, will retry in 500ms");
+      // If cart count element is not found yet (header might still be loading),
+      // try again after a short delay
+      setTimeout(() => this.updateCartCount(), 500);
     }
   }
 
