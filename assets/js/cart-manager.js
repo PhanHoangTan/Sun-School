@@ -92,7 +92,11 @@ class CartManager {
       const modal = document.getElementById("cart-modal");
       const closeBtn = document.querySelector(".cart-modal-close");
 
-      if (e.target === modal || e.target === closeBtn) {
+      if (
+        e.target === modal ||
+        e.target === closeBtn ||
+        e.target.closest(".cart-modal-close")
+      ) {
         this.hideModal();
       }
     });
@@ -116,9 +120,13 @@ class CartManager {
 
     // Remove item from cart
     document.addEventListener("click", (e) => {
-      if (e.target.matches(".remove-item-btn")) {
+      if (
+        e.target.matches(".remove-item-btn") ||
+        e.target.closest(".remove-item-btn")
+      ) {
         e.preventDefault();
-        const productId = e.target.getAttribute("data-product-id");
+        const removeBtn = e.target.closest(".remove-item-btn") || e.target;
+        const productId = removeBtn.getAttribute("data-product-id");
         if (productId) {
           this.removeFromCart(productId);
         }
@@ -217,16 +225,25 @@ class CartManager {
           }
           
           .cart-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
             transition: color 0.2s;
+            z-index: 10;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
           }
           
           .cart-modal-close:hover {
             color: #f6903d;
+            background-color: #f8f8f8;
           }
           
           .cart-modal-header {
@@ -234,6 +251,7 @@ class CartManager {
             padding-bottom: 15px;
             margin-bottom: 15px;
             position: relative;
+            padding-right: 30px;
           }
           
           .cart-modal-title {
@@ -302,10 +320,18 @@ class CartManager {
             font-size: 18px;
             margin-left: 15px;
             transition: all 0.2s;
+            padding: 5px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           
           .remove-item-btn:hover {
             color: #c82333;
+            background-color: #f8f8f8;
             transform: scale(1.1);
           }
           
@@ -415,6 +441,16 @@ class CartManager {
         `;
         document.head.appendChild(styleElement);
       }
+
+      // Add direct event listener to close button
+      setTimeout(() => {
+        const closeBtn = document.querySelector(".cart-modal-close");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => {
+            this.hideModal();
+          });
+        }
+      }, 100);
     }
   }
 
@@ -477,6 +513,19 @@ class CartManager {
 
     // Prevent body scrolling when modal is open
     document.body.style.overflow = "hidden";
+
+    // Ensure close button works
+    const closeBtn = modal.querySelector(".cart-modal-close");
+    if (closeBtn) {
+      // Remove existing event listeners to prevent duplicates
+      const newCloseBtn = closeBtn.cloneNode(true);
+      closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+
+      // Add event listener to the new button
+      newCloseBtn.addEventListener("click", () => {
+        this.hideModal();
+      });
+    }
   }
 
   hideModal() {
