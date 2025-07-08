@@ -78,6 +78,9 @@ class CartManager {
       if (this.isLocalStorageAvailable()) {
         localStorage.setItem("sunschool_cart", JSON.stringify(this.cart));
         console.log("Cart saved to storage:", this.cart.length, "items");
+
+        // Dispatch event that cart has been updated
+        window.dispatchEvent(new CustomEvent("cartUpdated"));
       } else {
         console.warn("localStorage is not available, cart not saved");
       }
@@ -860,7 +863,12 @@ class CartManager {
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
   console.log("=== CART MANAGER INITIALIZATION ===");
-  CartManager.init();
+  const cartManager = CartManager.init();
+
+  // Dispatch cart updated event after a short delay to ensure header is loaded
+  setTimeout(() => {
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
+  }, 500);
 });
 
 // Export for module usage if needed

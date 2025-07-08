@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // Add click event listeners for immediate visual feedback
           addMenuClickHandlers();
 
+          // Initialize cart dropdown functionality
+          initCartDropdown();
+
           // Smoothly fade in the header once everything is initialized
           headerContainer.style.transition = "opacity 0.3s ease";
           headerContainer.style.opacity = "1";
@@ -35,6 +38,261 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show header even if there was an error
         headerContainer.style.opacity = "1";
       });
+  }
+
+  // Initialize cart dropdown functionality
+  function initCartDropdown() {
+    // Update cart dropdown initially
+    updateCartDropdown();
+
+    // Listen for cart updates
+    window.addEventListener("cartUpdated", function () {
+      updateCartDropdown();
+    });
+  }
+
+  // Update cart dropdown content based on cart data
+  function updateCartDropdown() {
+    const cartDropdown = document.querySelector(".cart-dropdown");
+    if (!cartDropdown) return;
+
+    // Get cart data from localStorage
+    let cart = [];
+    try {
+      const savedCart = localStorage.getItem("sunschool_cart");
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+      }
+    } catch (e) {
+      console.error("Error loading cart:", e);
+    }
+
+    // If cart is empty
+    if (!cart || cart.length === 0) {
+      cartDropdown.innerHTML = `
+        <div class="empty-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <p>Không có sản phẩm nào trong giỏ hàng của bạn</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Calculate total price and items
+    let totalPrice = 0;
+    let totalItems = 0;
+
+    cart.forEach((item) => {
+      // Only calculate total if price is not "Liên hệ"
+      if (item.price && !item.price.includes("Liên hệ")) {
+        const priceString = item.price;
+        let numericPrice = 0;
+
+        // Extract numeric value from price string
+        const matches = priceString.match(/[\d,.]+/g);
+        if (matches && matches.length > 0) {
+          // Remove dots (thousands separators in VN) and convert to number
+          numericPrice = parseFloat(
+            matches[0].replace(/\./g, "").replace(/,/g, "")
+          );
+        }
+
+        totalPrice += numericPrice * item.quantity;
+      }
+
+      totalItems += item.quantity;
+    });
+
+    // Create HTML for cart items
+    let cartItemsHTML = "";
+
+    // Show at most 3 items in dropdown
+    const displayItems = cart.slice(0, 3);
+
+    displayItems.forEach((item) => {
+      cartItemsHTML += `
+        <div class="cart-item">
+          <div class="cart-item-image">
+            <img src="${
+              item.image.startsWith("//") ? "https:" + item.image : item.image
+            }" alt="${item.name}">
+          </div>
+          <div class="cart-item-info">
+            <h4 class="cart-item-title">${item.name}</h4>
+            <div class="cart-item-price">${item.price}</div>
+            <div class="cart-item-quantity">Số lượng: ${item.quantity}</div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Show "more items" message if there are more than 3 items
+    if (cart.length > 3) {
+      cartItemsHTML += `
+        <div class="cart-more-items">
+          <span>+ ${cart.length - 3} sản phẩm khác</span>
+        </div>
+      `;
+    }
+
+    // Format total price
+    let formattedTotal = "";
+    if (cart[0].price.includes("₫")) {
+      formattedTotal = `${totalPrice
+        .toLocaleString("vi-VN")
+        .replace(/,/g, ".")}₫`;
+    } else if (cart[0].price.includes("đ")) {
+      formattedTotal = `${totalPrice
+        .toLocaleString("vi-VN")
+        .replace(/,/g, ".")}đ`;
+    } else {
+      formattedTotal = `${totalPrice
+        .toLocaleString("vi-VN")
+        .replace(/,/g, ".")}`;
+    }
+
+    // Update cart dropdown content
+    cartDropdown.innerHTML = `
+      <div class="cart-items">
+        ${cartItemsHTML}
+      </div>
+      <div class="cart-dropdown-total">
+        <span class="cart-dropdown-total-label">Thành tiền:</span>
+        <span class="cart-dropdown-total-price">${formattedTotal}</span>
+      </div>
+      <div class="cart-dropdown-buttons">
+        <a href="#" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
+        <a href="#" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
+      </div>
+    `;
+
+    // Add styles for cart dropdown if not already added
+    if (!document.getElementById("cart-dropdown-styles")) {
+      const style = document.createElement("style");
+      style.id = "cart-dropdown-styles";
+      style.innerHTML = `
+        /* Cart dropdown styles */
+        .cart-items {
+          max-height: 300px;
+          overflow-y: auto;
+        }
+        
+        .cart-item {
+          display: flex;
+          align-items: center;
+          padding: 10px 0;
+          border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+          border-bottom: none;
+        }
+        
+        .cart-item-image {
+          width: 60px;
+          height: 45px;
+          margin-right: 10px;
+          border-radius: 4px;
+          overflow: hidden;
+        }
+        
+        .cart-item-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+        .cart-item-info {
+          flex: 1;
+        }
+        
+        .cart-item-title {
+          font-size: 14px;
+          font-weight: bold;
+          margin: 0 0 5px;
+          color: #333;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        
+        .cart-item-price {
+          font-size: 13px;
+          color: #f6903d;
+          font-weight: bold;
+        }
+        
+        .cart-item-quantity {
+          font-size: 12px;
+          color: #666;
+        }
+        
+        .cart-more-items {
+          padding: 8px 0;
+          text-align: center;
+          font-size: 13px;
+          color: #666;
+          background: #f9f9f9;
+          border-radius: 4px;
+          margin-top: 5px;
+        }
+        
+        .cart-dropdown-total {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          border-top: 1px solid #eee;
+          margin-top: 10px;
+          font-weight: bold;
+        }
+        
+        .cart-dropdown-total-label {
+          color: #333;
+        }
+        
+        .cart-dropdown-total-price {
+          color: #f6903d;
+        }
+        
+        .cart-dropdown-buttons {
+          display: flex;
+          gap: 10px;
+          margin-top: 10px;
+        }
+        
+        .cart-dropdown-button {
+          flex: 1;
+          padding: 8px 0;
+          text-align: center;
+          border-radius: 20px;
+          font-size: 13px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+        
+        .cart-view-button {
+          background: #fff;
+          color: #f6903d;
+          border: 1px solid #f6903d;
+        }
+        
+        .cart-view-button:hover {
+          background: #fff8f3;
+        }
+        
+        .cart-checkout-button {
+          background: #f6903d;
+          color: white;
+          border: 1px solid #f6903d;
+        }
+        
+        .cart-checkout-button:hover {
+          background: #e67e00;
+        }
+      `;
+      document.head.appendChild(style);
+    }
   }
 
   function initMobileMenu() {
