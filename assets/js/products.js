@@ -155,11 +155,26 @@ class ProductManager {
     }
 
     console.log("Rendering", this.filteredProducts.length, "products...");
-    this.filteredProducts.forEach((product, index) => {
-      console.log(`Creating HTML for product ${index + 1}:`, product.name);
-      const productHtml = this.createProductHTML(product);
-      container.appendChild(productHtml);
-    });
+
+    // Add a wrapper row for proper spacing in list view
+    if (this.currentView === "list") {
+      const listWrapper = document.createElement("div");
+      listWrapper.className = "product-list-wrapper";
+      container.appendChild(listWrapper);
+
+      this.filteredProducts.forEach((product, index) => {
+        console.log(`Creating HTML for product ${index + 1}:`, product.name);
+        const productHtml = this.createProductHTML(product);
+        listWrapper.appendChild(productHtml);
+      });
+    } else {
+      // Standard grid view rendering
+      this.filteredProducts.forEach((product, index) => {
+        console.log(`Creating HTML for product ${index + 1}:`, product.name);
+        const productHtml = this.createProductHTML(product);
+        container.appendChild(productHtml);
+      });
+    }
 
     console.log("=== PRODUCTS RENDERED SUCCESSFULLY ===");
   }

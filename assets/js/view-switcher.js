@@ -162,12 +162,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Create image column
             const imageCol = document.createElement("div");
-            imageCol.className = "col-lg-4 col-md-4 col-12 image";
+            imageCol.className = "col-lg-4 col-md-4 col-sm-4 col-4 image";
             imageCol.appendChild(productThumbnail.cloneNode(true));
 
             // Create info column
             const infoCol = document.createElement("div");
-            infoCol.className = "col-lg-8 col-md-8 col-12 info";
+            infoCol.className = "col-lg-8 col-md-8 col-sm-8 col-8 info";
 
             // Create product info wrapper
             const infoWrapper = document.createElement("div");
@@ -179,16 +179,21 @@ document.addEventListener("DOMContentLoaded", function () {
               infoWrapper.appendChild(productName.cloneNode(true));
             }
 
-            // Add description div
+            // Add description div with truncated text
             const descDiv = document.createElement("div");
             descDiv.className = "desproduct";
 
             // Add description from product data if available
             if (productData && productData.description) {
-              descDiv.innerHTML = productData.description;
+              // Truncate description to around 100 characters
+              const truncatedDesc =
+                productData.description.length > 100
+                  ? productData.description.substring(0, 100) + "..."
+                  : productData.description;
+              descDiv.innerHTML = truncatedDesc;
             } else {
               descDiv.innerHTML =
-                "Trường mầm non Sunshine School sử dụng chương trình giáo dục mầm non tiên tiến được xây dựng bởi các chuyên gia giáo dục Canada. Chương trình ...";
+                "Chương trình học được thiết kế phù hợp với lứa tuổi và khả năng tiếp thu của học viên...";
             }
             infoWrapper.appendChild(descDiv);
 

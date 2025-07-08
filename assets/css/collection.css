@@ -770,55 +770,166 @@
 }
 
 /* List View Specific Styles */
-.products-view-list .item_product_main.list-item-layout .price-box {
-  padding: 10px 0;
-  margin-bottom: 15px;
-  font-size: 22px;
-  font-weight: 700;
-  color: #ff8c00;
+.products-view-list .product-list-wrapper {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 -8px;
 }
 
-.products-view-list
-  .item_product_main.list-item-layout
-  .price-box
-  .compare-price {
-  font-size: 16px;
-  color: #999;
-  text-decoration: line-through;
-  font-weight: 400;
+.products-view-list .col-12 {
+  padding: 0 8px;
+  margin-bottom: 0;
 }
 
-.products-view-list
-  .item_product_main.list-item-layout
-  .product-info
-  .price-box {
-  display: block;
+.products-view-list .item_product_main.list-item-layout {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
   padding: 0;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.products-view-list .item_product_main.list-item-layout:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.products-view-list .item_product_main.list-item-layout .row {
+  margin: 0;
+  min-height: 160px;
+}
+
+.products-view-list .item_product_main.list-item-layout .col-lg-4.image {
+  flex: 0 0 250px;
+  max-width: 250px;
+  padding: 0;
+}
+
+.products-view-list .item_product_main.list-item-layout .col-lg-8.info {
+  padding: 15px;
+}
+
+.products-view-list .item_product_main.list-item-layout .product-thumbnail {
+  height: 100%;
+  width: 100%;
+  padding-top: 0;
+}
+
+.products-view-list .item_product_main.list-item-layout .image_thumb {
+  height: 100%;
+}
+
+.products-view-list .item_product_main.list-item-layout .image_thumb img {
+  height: 160px;
+  object-fit: cover;
+}
+
+.products-view-list .item_product_main.list-item-layout .product-name {
+  margin-bottom: 8px;
+}
+
+.products-view-list .item_product_main.list-item-layout .product-name a {
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .products-view-list
   .item_product_main.list-item-layout
   .product-info
   .desproduct {
-  margin-bottom: 15px;
-  color: #666;
-  line-height: 1.6;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-height: 60px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.products-view-list .item_product_main.list-item-layout .price-box {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff8c00;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.products-view-list
+  .item_product_main.list-item-layout
+  .price-box
+  .compare-price {
   font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 400;
 }
 
 .products-view-list .item_product_main.list-item-layout .price-box2 {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .products-view-list .item_product_main.list-item-layout .price-box2 .contact {
-  width: auto;
-  display: inline-block;
-  padding: 10px 25px;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 8px 20px;
+  font-size: 13px;
+  border-radius: 20px;
+}
+
+/* Responsive adjustments for list view */
+@media (max-width: 991px) {
+  .products-view-list .item_product_main.list-item-layout .col-lg-4.image {
+    flex: 0 0 200px;
+    max-width: 200px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .image_thumb img {
+    height: 140px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .row {
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 767px) {
+  .products-view-list .item_product_main.list-item-layout .row {
+    flex-direction: row;
+    min-height: 120px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .col-lg-4.image {
+    flex: 0 0 120px;
+    max-width: 120px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .col-lg-8.info {
+    padding: 10px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .image_thumb img {
+    height: 120px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .product-name a {
+    font-size: 16px;
+  }
+
+  .products-view-list
+    .item_product_main.list-item-layout
+    .product-info
+    .desproduct {
+    -webkit-line-clamp: 2;
+    max-height: 40px;
+  }
+
+  .products-view-list .item_product_main.list-item-layout .price-box {
+    font-size: 16px;
+  }
 }
