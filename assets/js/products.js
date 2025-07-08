@@ -232,6 +232,13 @@ class ProductManager {
                 <div class="price-box">
                   ${priceHtml}
                 </div>
+                <div class="product-action mt-3">
+                  <button class="btn-add-to-cart" data-product-id="${
+                    product.id
+                  }" data-action="add-to-cart">
+                    <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -258,10 +265,35 @@ class ProductManager {
             <div class="price-box">
               ${priceHtml}
             </div>
+            <div class="product-action mt-2">
+              <button class="btn-add-to-cart" data-product-id="${product.id}" data-action="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+              </button>
+            </div>
           </div>
         </div>
       `;
     }
+
+    // Add event listener for the "Add to Cart" button
+    setTimeout(() => {
+      const addToCartBtn = colDiv.querySelector(".btn-add-to-cart");
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const productId = addToCartBtn.getAttribute("data-product-id");
+          if (productId && window.cartManager) {
+            const selectedProduct = this.products.find(
+              (p) => p.id === productId
+            );
+            if (selectedProduct) {
+              window.cartManager.addToCart(selectedProduct);
+            }
+          }
+        });
+      }
+    }, 0);
 
     return colDiv;
   }

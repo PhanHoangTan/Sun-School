@@ -355,12 +355,10 @@ class ProductDetailManager {
     // Handle course registration
     const product = this.findProductById(productId);
     if (product) {
-      alert(
-        `Đăng ký khóa học: ${product.name}\n\nVui lòng gọi số 046674 2332 để hoàn tất đăng ký.`
-      );
-
-      // You can add more sophisticated registration logic here
-      // For example, open a registration form modal, redirect to registration page, etc.
+      // Call the cart manager to add the product to cart and show modal
+      if (window.cartManager) {
+        window.cartManager.addToCart(product);
+      }
     }
   }
 
