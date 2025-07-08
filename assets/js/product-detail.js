@@ -85,6 +85,19 @@ class ProductDetailManager {
     return this.products.find((product) => product.id === productId);
   }
 
+  findRelatedProductsByCategory(currentProduct, limit = 4) {
+    if (!currentProduct || !currentProduct.category) return [];
+
+    // Find products with the same category, excluding the current product
+    return this.products
+      .filter(
+        (product) =>
+          product.category === currentProduct.category &&
+          product.id !== currentProduct.id
+      )
+      .slice(0, limit); // Limit the number of related products
+  }
+
   showProductDetail(productId, updateURL = true) {
     console.log("=== SHOWING PRODUCT DETAIL ===");
     console.log("Product ID:", productId);
@@ -110,6 +123,9 @@ class ProductDetailManager {
 
     // Render product detail
     this.renderProductDetail(product);
+
+    // Render sidebar related products
+    this.renderSidebarRelatedProducts(product);
 
     // Scroll to top smoothly
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -165,6 +181,66 @@ class ProductDetailManager {
 
       // Add thumbnail click functionality
       this.setupThumbnailClick();
+    }, 500);
+  }
+
+  renderSidebarRelatedProducts(product) {
+    const container = document.getElementById("related-sidebar-products");
+    if (!container) {
+      console.error("Sidebar related products container not found");
+      return;
+    }
+
+    // Show loading first
+    container.innerHTML = `
+      <div class="loading-sidebar">
+        <i class="fas fa-spinner"></i>
+        <div>Đang tải...</div>
+      </div>
+    `;
+
+    // Get related products
+    const relatedProducts = this.findRelatedProductsByCategory(product);
+
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      if (relatedProducts.length > 0) {
+        const relatedProductsHTML = relatedProducts
+          .map((relatedProduct) => {
+            const relatedImageUrl = relatedProduct.image.startsWith("//")
+              ? "https:" + relatedProduct.image
+              : relatedProduct.image;
+
+            let priceDisplay = relatedProduct.price;
+            if (relatedProduct.hasDiscount && relatedProduct.originalPrice) {
+              priceDisplay = `<span class="current-price">${relatedProduct.price}</span>
+                            <span class="original-price">${relatedProduct.originalPrice}</span>`;
+            }
+
+            return `
+            <div class="sidebar-related-product">
+              <div class="sidebar-related-image">
+                <a href="#" data-product-id="${relatedProduct.id}">
+                  <img src="${relatedImageUrl}" alt="${relatedProduct.name}" loading="lazy">
+                </a>
+              </div>
+              <div class="sidebar-related-info">
+                <h4 class="sidebar-related-title">
+                  <a href="#" data-product-id="${relatedProduct.id}">${relatedProduct.name}</a>
+                </h4>
+                <div class="sidebar-related-price">
+                  ${priceDisplay}
+                </div>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+
+        container.innerHTML = relatedProductsHTML;
+      } else {
+        container.innerHTML = `<p class="no-related-products">Không có sản phẩm liên quan</p>`;
+      }
     }, 500);
   }
 
