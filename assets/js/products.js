@@ -558,8 +558,7 @@ const listViewCSS = `
 }
 
 .products-view-grid .price-box {
-    padding: 0 15px 15px;
-    text-align: center;
+    text-align: left;
     font-size: 18px;
     font-weight: bold;
     color: #ff8c00;
