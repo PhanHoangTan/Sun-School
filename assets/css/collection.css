@@ -256,109 +256,182 @@
 
 /* Product grid */
 .category-products {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .products-view-grid .row {
-  margin: 0 -15px;
+  margin: 0 -5px;
 }
 
 .products-view-grid .col-lg-4 {
-  padding: 0 15px;
-  margin-bottom: 30px;
+  padding: 0 5px;
+  margin-bottom: 10px;
 }
 
 .products-view-grid .item_product_main {
   background: #fff;
-  border: 1px solid #f0f0f0;
-  border-radius: 8px;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
   display: flex !important;
   flex-direction: column;
+  box-shadow: none;
 }
 
 .products-view-grid .item_product_main:hover {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
-  border-color: #ff8c00;
+  box-shadow: none;
+  transform: none;
 }
 
-.product-thumbnail {
+.products-view-grid .product-thumbnail {
   position: relative;
   overflow: hidden;
-  padding-top: 20px;
+  padding-top: 0;
+  width: 100%;
+  margin: 0;
 }
 
-.image_thumb {
+.products-view-grid .image_thumb {
   display: block;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  margin: 0;
 }
 
-.image_thumb img {
+.products-view-grid .image_thumb img {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  margin: 0;
 }
 
-.image_thumb:hover img {
-  transform: scale(1.05);
+.products-view-grid .image_thumb:hover img {
+  transform: none;
 }
 
-.product-info {
-  padding: 20px;
+.products-view-grid .product-info {
+  padding: 8px 0;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
-.product-name {
-  margin: 0 0 15px 0;
+.products-view-grid .product-name {
+  margin: 0 0 5px 0;
   flex-grow: 1;
 }
 
-.product-name a {
+.products-view-grid .product-name a {
   color: #333;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.4;
-  display: block;
-  transition: color 0.3s ease;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: auto;
+  text-align: left;
 }
 
-.product-name a:hover {
+.products-view-grid .product-name a:hover {
   color: #ff8c00;
 }
 
-.price-box {
-  padding: 0 20px 20px;
+.products-view-grid .price-box {
+  padding: 0;
   margin-top: auto;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff8c00;
 }
 
-.contact {
-  background: linear-gradient(135deg, #ff8c00, #ffa500);
+.products-view-grid .price-box .compare-price {
+  font-size: 13px;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.products-view-grid .contact {
+  background: #ff8c00;
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 6px 12px;
+  border-radius: 4px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   display: inline-block;
   transition: all 0.3s ease;
   text-align: center;
-  width: 100%;
+  width: auto;
 }
 
-.contact:hover {
-  background: linear-gradient(135deg, #e67e00, #ff9500);
+.products-view-grid .contact:hover {
+  background: #e67e00;
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
   text-decoration: none;
+}
+
+/* Sale tag styling */
+.products-view-grid .sale_tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: auto;
+  z-index: 2;
+}
+
+.products-view-grid .sale_tag .smart {
+  background: #f6903d;
+  color: white;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: none;
+  border-radius: 3px;
+}
+
+/* Mobile responsive for grid view */
+@media (max-width: 991px) {
+  .products-view-grid .image_thumb img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .products-view-grid .col-6 {
+    padding: 0 3px;
+    margin-bottom: 6px;
+  }
+
+  .products-view-grid .row {
+    margin: 0 -3px;
+  }
+
+  .products-view-grid .image_thumb img {
+    height: 140px;
+  }
+
+  .products-view-grid .product-info {
+    padding: 5px 0;
+  }
+
+  .products-view-grid .product-name a {
+    font-size: 13px;
+  }
+
+  .products-view-grid .contact {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
 }
 
 /* Mobile filters button */

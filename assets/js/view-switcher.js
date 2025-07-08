@@ -1,267 +1,91 @@
 // View Switcher JavaScript - Handles Grid/List view switching functionality
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Wait a bit for the page to fully load
-  setTimeout(function () {
-    // Get view switcher elements
-    const gridViewBtn = document.querySelector(
-      '.switch-view[data-view="grid"]'
-    );
-    const listViewBtn = document.querySelector(
-      '.switch-view[data-view="list"]'
-    );
-    const productsContainer = document.querySelector(".products-view");
-    const productItems = document.querySelectorAll(".item_product_main");
+$(document).ready(function () {
+  // View mode switching
+  $(".switch-view").on("click", function (e) {
+    e.preventDefault();
+    var view = $(this).data("view");
 
-    console.log("Grid button:", gridViewBtn);
-    console.log("List button:", listViewBtn);
-    console.log("Products container:", productsContainer);
-    console.log("Product items:", productItems.length);
+    // Update active button
+    $(".button-view-mode").removeClass("active");
+    $(this).find(".button-view-mode").addClass("active");
 
-    // Check if elements exist
-    if (!gridViewBtn || !listViewBtn || !productsContainer) {
-      console.warn("View switcher elements not found");
-      return;
-    }
+    // Switch view
+    if (view === "grid") {
+      $(".product-list-wrapper")
+        .removeClass("products-view-list")
+        .addClass("products-view-grid");
+      $(".product-list-wrapper .row").removeClass("flex-column");
+      $(".item_product_main").removeClass("list-item-layout");
 
-    // Function to switch to grid view
-    function switchToGridView() {
-      console.log("Switching to grid view");
+      // Set grid column classes
+      $(".product-list-wrapper .item")
+        .removeClass("col-12")
+        .addClass("col-lg-4 col-md-4 col-sm-6 col-6");
 
-      // Update button states
-      gridViewBtn.querySelector(".button-view-mode").classList.add("active");
-      listViewBtn.querySelector(".button-view-mode").classList.remove("active");
+      // Reset product structure
+      $(".item_product_main").each(function () {
+        var $this = $(this);
 
-      // Update container classes
-      productsContainer.classList.remove("products-view-list");
-      productsContainer.classList.add("products-view-grid");
+        // Remove list-specific structure if it exists
+        if ($this.find(".row").length) {
+          var $thumbnail = $this.find(".product-thumbnail").first();
+          var $info = $this.find(".product-info").first();
 
-      // Reset product items to grid layout
-      productItems.forEach((item) => {
-        item.classList.remove("list-item-layout");
+          // Move elements back to their original positions
+          $this.append($thumbnail);
+          $this.append($info);
 
-        // Check if item has been converted to list layout
-        const rowWrapper = item.querySelector(".row");
-        if (rowWrapper) {
-          // Get original elements from the row structure
-          const imageCol = rowWrapper.querySelector(".col-lg-4.image");
-          const infoCol = rowWrapper.querySelector(".col-lg-8.info");
-
-          if (imageCol && infoCol) {
-            const productThumbnail =
-              imageCol.querySelector(".product-thumbnail");
-            const productInfoWrapper = infoCol.querySelector(".product-info");
-            const contactBtn = infoCol.querySelector(".contact");
-
-            // Clear item and restore original structure
-            item.innerHTML = "";
-
-            // Create form wrapper (original structure)
-            const form = document.createElement("form");
-            form.action = "/cart/add";
-            form.method = "post";
-            form.className = "variants product-action";
-            form.setAttribute("data-cart-form", "");
-            form.setAttribute("data-id", "product-actions-1633302");
-            form.setAttribute("enctype", "multipart/form-data");
-
-            // Add thumbnail
-            if (productThumbnail) {
-              form.appendChild(productThumbnail.cloneNode(true));
-            }
-
-            // Create product info div
-            const productInfoDiv = document.createElement("div");
-            productInfoDiv.className = "product-info";
-
-            // Add product name
-            const productName =
-              productInfoWrapper?.querySelector(".product-name");
-            if (productName) {
-              productInfoDiv.appendChild(productName.cloneNode(true));
-            }
-
-            form.appendChild(productInfoDiv);
-
-            // Create price box
-            const priceBoxDiv = document.createElement("div");
-            priceBoxDiv.className = "price-box";
-            if (contactBtn) {
-              priceBoxDiv.appendChild(contactBtn.cloneNode(true));
-            }
-
-            form.appendChild(priceBoxDiv);
-            item.appendChild(form);
-          }
+          // Remove the row structure
+          $this.find(".row").remove();
+          $this.find(".col-lg-4.image").contents().unwrap();
+          $this.find(".col-lg-8.info").contents().unwrap();
         }
       });
 
-      // Store preference in localStorage
-      localStorage.setItem("viewMode", "grid");
-      console.log("Grid view applied");
-    }
+      // Save the view preference
+      localStorage.setItem("product_view", "grid");
+    } else {
+      $(".product-list-wrapper")
+        .removeClass("products-view-grid")
+        .addClass("products-view-list");
+      $(".product-list-wrapper .row").addClass("flex-column");
+      $(".item_product_main").addClass("list-item-layout");
 
-    // Function to switch to list view
-    function switchToListView() {
-      console.log("Switching to list view");
+      // Set list column class
+      $(".product-list-wrapper .item")
+        .removeClass("col-lg-4 col-md-4 col-sm-6 col-6")
+        .addClass("col-12");
 
-      // Update button states
-      listViewBtn.querySelector(".button-view-mode").classList.add("active");
-      gridViewBtn.querySelector(".button-view-mode").classList.remove("active");
+      // Create list structure for each product
+      $(".item_product_main").each(function () {
+        var $this = $(this);
 
-      // Update container classes
-      productsContainer.classList.remove("products-view-grid");
-      productsContainer.classList.add("products-view-list");
+        // Only restructure if not already in list format
+        if (!$this.find(".row").length) {
+          var $thumbnail = $this.find(".product-thumbnail").first().detach();
+          var $info = $this.find(".product-info").first().detach();
 
-      // Convert product items to list layout
-      productItems.forEach((item) => {
-        item.classList.add("list-item-layout");
+          // Create row structure
+          var $row = $('<div class="row"></div>');
+          var $imageCol = $('<div class="col-lg-4 image"></div>').append(
+            $thumbnail
+          );
+          var $infoCol = $('<div class="col-lg-8 info"></div>').append($info);
 
-        // Check if list wrapper already exists
-        if (!item.querySelector(".row")) {
-          const productThumbnail = item.querySelector(".product-thumbnail");
-          const productInfo = item.querySelector(".product-info");
-          const priceBox = item.querySelector(".price-box");
-
-          if (productThumbnail && productInfo && priceBox) {
-            // Store original content
-            const originalContent = item.innerHTML;
-
-            // Get product ID from the thumbnail link
-            const productLink = productThumbnail.querySelector("a");
-            const productId = productLink
-              ? productLink.getAttribute("data-product-id")
-              : null;
-
-            // Get product data from the global products array if available
-            let productData = null;
-            if (window.productManager && productId) {
-              productData = window.productManager.products.find(
-                (p) => p.id === productId
-              );
-            }
-
-            // Get price information
-            let priceHtml = "";
-            if (productData) {
-              if (productData.price === "Liên hệ") {
-                priceHtml = `<a class="contact">Liên hệ</a>`;
-              } else if (productData.hasDiscount) {
-                priceHtml = `${productData.price}&nbsp;<span class="compare-price">${productData.originalPrice}</span>`;
-              } else {
-                priceHtml = productData.price;
-              }
-            } else {
-              // Fallback to existing price box content
-              priceHtml = priceBox.innerHTML;
-            }
-
-            // Create row wrapper
-            const rowWrapper = document.createElement("div");
-            rowWrapper.className = "row";
-
-            // Create image column
-            const imageCol = document.createElement("div");
-            imageCol.className = "col-lg-4 col-md-4 col-sm-4 col-4 image";
-            imageCol.appendChild(productThumbnail.cloneNode(true));
-
-            // Create info column
-            const infoCol = document.createElement("div");
-            infoCol.className = "col-lg-8 col-md-8 col-sm-8 col-8 info";
-
-            // Create product info wrapper
-            const infoWrapper = document.createElement("div");
-            infoWrapper.className = "product-info";
-
-            // Clone product name
-            const productName = productInfo.querySelector(".product-name");
-            if (productName) {
-              infoWrapper.appendChild(productName.cloneNode(true));
-            }
-
-            // Add description div with full content
-            const descDiv = document.createElement("div");
-            descDiv.className = "desproduct";
-
-            // Add description from product data if available
-            if (productData && productData.description) {
-              // Use full description
-              descDiv.innerHTML = productData.description;
-            } else {
-              descDiv.innerHTML =
-                "Chương trình học được thiết kế phù hợp với lứa tuổi và khả năng tiếp thu của học viên...";
-            }
-            infoWrapper.appendChild(descDiv);
-
-            // Add price-box with price information
-            const priceBoxElement = document.createElement("div");
-            priceBoxElement.className = "price-box";
-            priceBoxElement.innerHTML = priceHtml;
-            infoWrapper.appendChild(priceBoxElement);
-
-            // We don't need a separate price-box2 for "Liên hệ" button anymore
-            // as it's already included in the price box
-
-            infoCol.appendChild(infoWrapper);
-
-            // Add columns to row
-            rowWrapper.appendChild(imageCol);
-            rowWrapper.appendChild(infoCol);
-
-            // Clear item content and add row
-            item.innerHTML = "";
-            item.appendChild(rowWrapper);
-
-            // Store original content for restoration
-            item.setAttribute("data-original-content", originalContent);
-          }
+          $row.append($imageCol).append($infoCol);
+          $this.append($row);
         }
       });
 
-      // Store preference in localStorage
-      localStorage.setItem("viewMode", "list");
-      console.log("List view applied");
+      // Save the view preference
+      localStorage.setItem("product_view", "list");
     }
+  });
 
-    // Function to load saved view mode
-    function loadSavedViewMode() {
-      const savedViewMode = localStorage.getItem("viewMode");
-
-      if (savedViewMode === "list") {
-        switchToListView();
-      } else {
-        // Default to grid view
-        switchToGridView();
-      }
-    }
-
-    // Event listeners for view switcher buttons
-    gridViewBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      switchToGridView();
-    });
-
-    listViewBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      switchToListView();
-    });
-
-    // Initialize view mode on page load - default to grid
-    // Don't load saved mode initially to see the default state
-    switchToGridView();
-
-    // Optional: Add keyboard navigation
-    document.addEventListener("keydown", function (e) {
-      // Press 'G' for grid view
-      if (e.key === "g" || e.key === "G") {
-        switchToGridView();
-      }
-      // Press 'L' for list view
-      else if (e.key === "l" || e.key === "L") {
-        switchToListView();
-      }
-    });
-  }, 500); // Wait 500ms for page to load
+  // Load saved view preference
+  var savedView = localStorage.getItem("product_view") || "grid";
+  $('.switch-view[data-view="' + savedView + '"]').trigger("click");
 });
 
 // Export functions for external use if needed

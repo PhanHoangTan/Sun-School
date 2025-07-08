@@ -182,7 +182,9 @@ class ProductManager {
   createProductHTML(product) {
     const colDiv = document.createElement("div");
     colDiv.className =
-      this.currentView === "list" ? "col-12" : "col-lg-4 col-md-4";
+      this.currentView === "list"
+        ? "col-12"
+        : "col-lg-4 col-md-4 col-sm-6 col-6";
 
     const discountBadge = product.hasDiscount
       ? `<div class="sale_tag"><span class="smart">${product.discount}</span></div>`
@@ -191,65 +193,73 @@ class ProductManager {
     // Adjust price HTML based on view mode
     let priceHtml = "";
     if (product.price === "Liên hệ") {
-      priceHtml =
-        this.currentView === "list"
-          ? `<a class="contact">Liên hệ</a>`
-          : `<a class="contact">Liên hệ</a>`;
+      priceHtml = `<a class="contact">Liên hệ</a>`;
     } else if (product.hasDiscount) {
       priceHtml = `${product.price}&nbsp;<span class="compare-price">${product.originalPrice}</span>`;
     } else {
       priceHtml = product.price;
     }
 
-    colDiv.innerHTML = `
-            <div class="item_product_main ${
-              this.currentView === "list" ? "list-item-layout" : ""
-            }">
-                <form action="/cart/add" method="post" class="variants product-action" 
-                      data-cart-form="" data-id="${
-                        product.id
-                      }" enctype="multipart/form-data">
-                    <div class="product-thumbnail">
-                        <a class="image_thumb scale_hover" href="ChiTietSanPham.html?product=${
-                          product.id
-                        }" 
-                           title="${product.name}" data-product-id="${
-      product.id
-    }">
-                            <img class="lazyload loaded" 
-                                 src="${product.image}" 
-                                 data-src="${product.image}" 
-                                 alt="${product.name}" 
-                                 data-was-processed="true">
-                        </a>
-                        ${discountBadge}
-                    </div>
-                    <div class="product-content">
-                        <div class="product-info">
-                            <h3 class="product-name">
-                                <a href="ChiTietSanPham.html?product=${
-                                  product.id
-                                }" title="${product.name}" data-product-id="${
-      product.id
-    }">${product.name}</a>
-                            </h3>
-                            ${
-                              this.currentView === "list" && product.description
-                                ? `<div class="product-description">${product.description}</div>`
-                                : ""
-                            }
-                        </div>
-                        <div class="price-box" data-price="${
-                          product.price
-                        }" data-original-price="${
-      product.originalPrice || ""
-    }" data-discount="${product.discount || ""}">
-                            ${priceHtml}
-                        </div>
-                    </div>
-                </form>
+    if (this.currentView === "list") {
+      // List view layout
+      colDiv.innerHTML = `
+        <div class="item_product_main list-item-layout">
+          <div class="row">
+            <div class="col-lg-4 image">
+              <div class="product-thumbnail">
+                <a class="image_thumb" href="ChiTietSanPham.html?product=${
+                  product.id
+                }" 
+                   title="${product.name}" data-product-id="${product.id}">
+                  <img class="lazyload loaded" 
+                       src="${product.image}" 
+                       alt="${product.name}" 
+                       data-was-processed="true">
+                </a>
+                ${discountBadge}
+              </div>
             </div>
-        `;
+            <div class="col-lg-8 info">
+              <div class="product-info">
+                <h3 class="product-name">
+                  <a href="ChiTietSanPham.html?product=${product.id}" title="${
+        product.name
+      }">${product.name}</a>
+                </h3>
+                <div class="desproduct">${product.description || ""}</div>
+                <div class="price-box">
+                  ${priceHtml}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // Grid view layout - updated for image 2 style
+      colDiv.innerHTML = `
+        <div class="item_product_main">
+          <div class="product-thumbnail">
+            ${discountBadge}
+            <a class="image_thumb" href="ChiTietSanPham.html?product=${product.id}" 
+               title="${product.name}" data-product-id="${product.id}">
+              <img class="lazyload loaded" 
+                   src="${product.image}" 
+                   alt="${product.name}" 
+                   data-was-processed="true">
+            </a>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <a href="ChiTietSanPham.html?product=${product.id}" title="${product.name}">${product.name}</a>
+            </h3>
+            <div class="price-box">
+              ${priceHtml}
+            </div>
+          </div>
+        </div>
+      `;
+    }
 
     return colDiv;
   }

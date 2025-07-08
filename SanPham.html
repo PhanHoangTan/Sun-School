@@ -266,64 +266,86 @@
       }
 
       /* Grid view styles */
+      .products-view-grid .item_product_main {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+
+      .products-view-grid .product-thumbnail {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+      }
+
+      .products-view-grid .product-thumbnail img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
       .products-view-grid .product-info {
-        padding: 15px;
-        text-align: center;
+        padding: 8px 0;
+        text-align: left;
       }
 
       .products-view-grid .product-name {
-        margin: 0 0 10px 0;
-        font-size: 16px;
+        margin: 0 0 5px 0;
+        font-size: 14px;
         font-weight: 600;
       }
 
-      .product-name {
-        margin: 0 0 10px 0;
-        font-size: 16px;
-        font-weight: 600;
+      .products-view-grid .product-name a {
+        height: auto;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-align: left;
       }
 
-      .product-name a {
-        color: #333;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .product-name a:hover {
-        color: #ff8c00;
-        text-decoration: none;
-      }
-
-      .price-box {
-        padding: 0 15px 15px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
+      .products-view-grid .price-box {
+        padding: 0;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 700;
         color: #ff8c00;
       }
 
-      .price-box .compare-price {
+      .products-view-grid .price-box .compare-price {
+        font-size: 13px;
         color: #999;
         text-decoration: line-through;
-        font-size: 14px;
-        margin-left: 5px;
+        font-weight: 400;
       }
 
-      .price-box .contact {
-        background: linear-gradient(135deg, #ff8c00, #ffa500);
-        color: white;
-        padding: 8px 20px;
-        border-radius: 20px;
-        text-decoration: none;
-        font-size: 14px;
-        transition: all 0.3s ease;
+      .products-view-grid .price-box .contact {
+        width: auto;
+        padding: 6px 12px;
+        font-size: 13px;
+        border-radius: 4px;
+        background: #ff8c00;
       }
 
-      .price-box .contact:hover {
-        background: linear-gradient(135deg, #ffa500, #ffb347);
-        color: white;
-        text-decoration: none;
-        transform: translateY(-2px);
+      @media (max-width: 767px) {
+        .products-view-grid .product-thumbnail img {
+          height: 140px;
+        }
+
+        .products-view-grid .product-info {
+          padding: 5px 0;
+        }
+
+        .products-view-grid .product-name a {
+          font-size: 13px;
+        }
+
+        .products-view-grid .price-box .contact {
+          padding: 4px 10px;
+          font-size: 12px;
+        }
       }
 
       /* View mode buttons */
