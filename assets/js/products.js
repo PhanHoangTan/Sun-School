@@ -218,7 +218,11 @@ class ProductManager {
                                 : ""
                             }
                         </div>
-                        <div class="price-box">
+                        <div class="price-box" data-price="${
+                          product.price
+                        }" data-original-price="${
+      product.originalPrice || ""
+    }" data-discount="${product.discount || ""}">
                             ${priceHtml}
                         </div>
                     </div>

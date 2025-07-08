@@ -127,6 +127,35 @@ document.addEventListener("DOMContentLoaded", function () {
             // Store original content
             const originalContent = item.innerHTML;
 
+            // Get product ID from the thumbnail link
+            const productLink = productThumbnail.querySelector("a");
+            const productId = productLink
+              ? productLink.getAttribute("data-product-id")
+              : null;
+
+            // Get product data from the global products array if available
+            let productData = null;
+            if (window.productManager && productId) {
+              productData = window.productManager.products.find(
+                (p) => p.id === productId
+              );
+            }
+
+            // Get price information
+            let priceHtml = "";
+            if (productData) {
+              if (productData.price === "Liên hệ") {
+                priceHtml = `<a class="contact">Liên hệ</a>`;
+              } else if (productData.hasDiscount) {
+                priceHtml = `${productData.price}&nbsp;<span class="compare-price">${productData.originalPrice}</span>`;
+              } else {
+                priceHtml = productData.price;
+              }
+            } else {
+              // Fallback to existing price box content
+              priceHtml = priceBox.innerHTML;
+            }
+
             // Create row wrapper
             const rowWrapper = document.createElement("div");
             rowWrapper.className = "row";
@@ -153,23 +182,32 @@ document.addEventListener("DOMContentLoaded", function () {
             // Add description div
             const descDiv = document.createElement("div");
             descDiv.className = "desproduct";
-            descDiv.innerHTML =
-              "Trường mầm non Sunshine School sử dụng chương trình giáo dục mầm non tiên tiến được xây dựng bởi các chuyên gia giáo dục Canada. Chương trình ...";
+
+            // Add description from product data if available
+            if (productData && productData.description) {
+              descDiv.innerHTML = productData.description;
+            } else {
+              descDiv.innerHTML =
+                "Trường mầm non Sunshine School sử dụng chương trình giáo dục mầm non tiên tiến được xây dựng bởi các chuyên gia giáo dục Canada. Chương trình ...";
+            }
             infoWrapper.appendChild(descDiv);
 
-            // Add empty price-box for spacing
-            const priceBoxEmpty = document.createElement("div");
-            priceBoxEmpty.className = "price-box";
-            infoWrapper.appendChild(priceBoxEmpty);
+            // Add price-box with price information
+            const priceBoxElement = document.createElement("div");
+            priceBoxElement.className = "price-box";
+            priceBoxElement.innerHTML = priceHtml;
+            infoWrapper.appendChild(priceBoxElement);
 
-            // Add price-box2 with contact button
-            const priceBox2 = document.createElement("div");
-            priceBox2.className = "price-box2";
-            const contactBtn = priceBox.querySelector(".contact");
-            if (contactBtn) {
-              priceBox2.appendChild(contactBtn.cloneNode(true));
+            // Add price-box2 with contact button if it's "Liên hệ"
+            if (productData && productData.price === "Liên hệ") {
+              const priceBox2 = document.createElement("div");
+              priceBox2.className = "price-box2";
+              const contactBtn = document.createElement("a");
+              contactBtn.className = "contact";
+              contactBtn.textContent = "Liên hệ";
+              priceBox2.appendChild(contactBtn);
+              infoWrapper.appendChild(priceBox2);
             }
-            infoWrapper.appendChild(priceBox2);
 
             infoCol.appendChild(infoWrapper);
 
