@@ -245,9 +245,36 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
 
-      .product-info {
+      /* List view specific styles */
+      .products-view-list .item_product_main {
+        border: none;
+        box-shadow: none;
+        margin-bottom: 10px;
+      }
+
+      .products-view-list .product-info {
+        text-align: left;
+      }
+
+      .products-view-list .price-box {
+        text-align: left;
+      }
+
+      .products-view-list .price-box .contact {
+        width: auto;
+        display: inline-block;
+      }
+
+      /* Grid view styles */
+      .products-view-grid .product-info {
         padding: 15px;
         text-align: center;
+      }
+
+      .products-view-grid .product-name {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+        font-weight: 600;
       }
 
       .product-name {
@@ -639,7 +666,6 @@
 
                       function initializeDropdowns() {
                         $(document).ready(function () {
-
                           // Force hide all dropdowns initially
                           $(".menu_down").removeClass("show").hide();
 
@@ -651,7 +677,6 @@
                               var $dropdown = $this.find(".menu_down");
 
                               if ($dropdown.length > 0) {
-
                                 // Hide all other dropdowns
                                 $(".nav-item.relative")
                                   .not($this)
@@ -725,14 +750,12 @@
                           $(".nav-item.relative").each(function (index) {
                             var hasDropdown =
                               $(this).find(".menu_down").length > 0;
-                         
                           });
                         });
                       }
 
                       function initializeViewModes() {
                         $(document).ready(function () {
-
                           // Handle view mode switches
                           $(".switch-view").on("click", function (e) {
                             e.preventDefault();
@@ -764,7 +787,7 @@
                                 window.productManager.setViewMode("list");
                                 window.productManager.renderProducts();
                               }
-                            } else {    
+                            } else {
                               // Switch to grid view
                               $productsContainer.addClass("products-view-grid");
 
@@ -774,8 +797,6 @@
                                 window.productManager.renderProducts();
                               }
                             }
-
-                        
                           });
 
                           // Also handle direct button clicks
@@ -797,7 +818,6 @@
 
                       function initializeCategoryFiltering() {
                         $(document).ready(function () {
-
                           // Wait for ProductManager
                           function waitForProductManager() {
                             if (
@@ -812,12 +832,10 @@
                           }
 
                           function setupFiltering() {
-
                             // Function to update page title and breadcrumb
                             function updatePageTitleAndBreadcrumb(
                               categoryName
                             ) {
-
                               // Add updating class for smooth transition
                               $(".title-page").addClass("title-updating");
                               $(".breadcrumb li:last-child span").addClass(
@@ -843,7 +861,6 @@
                                     ".breadcrumb li:last-child span"
                                   ).removeClass("title-updating");
                                 }, 150);
-
                               }, 150);
                             }
 
@@ -857,10 +874,7 @@
                                 var category = $(this).data("category");
                                 var categoryDisplayName = $(this).text().trim();
 
-
                                 if (window.productManager) {
-
-
                                   // Call the filter function
                                   if (category === "all") {
                                     window.productManager.filterByCategory(
@@ -880,10 +894,7 @@
                                   // Update active state
                                   $(".category-filter").removeClass("active");
                                   $(this).addClass("active");
-
-
                                 } else {
-                                
                                 }
                               });
 
@@ -1397,8 +1408,6 @@
 
     <!-- Debug Script -->
     <script>
-     
-
       // Check URL parameters for category filtering
       function getURLParameter(name) {
         return (
@@ -1413,11 +1422,8 @@
       // Handle URL parameters when page loads
       function handleURLParameters() {
         const categoryParam = getURLParameter("category");
-       
 
         if (categoryParam && window.productManager) {
-         
-
           // Apply filter
           if (categoryParam === "Tất cả sản phẩm") {
             window.productManager.filterByCategory("Sản phẩm");
@@ -1437,17 +1443,12 @@
           if (categoryParam === "Tất cả sản phẩm") {
             $(`.category-filter[data-category="all"]`).addClass("active");
           }
-
-        
         }
       }
 
       // Check when ProductManager becomes available
       function checkProductManager() {
-  
         if (window.productManager) {
-        
-
           // Apply URL parameter filtering when ProductManager is ready
           handleURLParameters();
         }
@@ -1458,26 +1459,21 @@
 
       // Test category filter click manually
       window.testCategoryFilter = function (category) {
-       
         if (window.productManager) {
           window.productManager.filterByCategory(category);
-         
 
           // Update title manually for test
           var displayName = category === "all" ? "Tất cả sản phẩm" : category;
           $(".title-page").text(displayName);
           $(".breadcrumb li:last-child span").text(displayName);
         } else {
-         
         }
       };
 
       // Test title update manually
       window.testUpdateTitle = function (title) {
-       
         $(".title-page").text(title);
         $(".breadcrumb li:last-child span").text(title);
-       
       };
     </script>
   </body>

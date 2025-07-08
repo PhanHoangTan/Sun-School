@@ -188,12 +188,18 @@ class ProductManager {
       ? `<div class="sale_tag"><span class="smart">${product.discount}</span></div>`
       : "";
 
-    const priceHtml =
-      product.price === "Liên hệ"
-        ? `<a class="contact">Liên hệ</a>`
-        : product.hasDiscount
-        ? `${product.price}&nbsp;<span class="compare-price">${product.originalPrice}</span>`
-        : product.price;
+    // Adjust price HTML based on view mode
+    let priceHtml = "";
+    if (product.price === "Liên hệ") {
+      priceHtml =
+        this.currentView === "list"
+          ? `<a class="contact">Liên hệ</a>`
+          : `<a class="contact">Liên hệ</a>`;
+    } else if (product.hasDiscount) {
+      priceHtml = `${product.price}&nbsp;<span class="compare-price">${product.originalPrice}</span>`;
+    } else {
+      priceHtml = product.price;
+    }
 
     colDiv.innerHTML = `
             <div class="item_product_main ${
@@ -241,7 +247,6 @@ class ProductManager {
                             ${priceHtml}
                         </div>
                     </div>
-                </form>
                 </form>
             </div>
         `;
@@ -439,15 +444,12 @@ const listViewCSS = `
 
 .products-view-list .product-content {
     flex: 1;
-    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.products-view-list .product-info {
-    margin-bottom: 15px;
-}
+
 
 .products-view-list .product-name {
     font-size: 22px;

@@ -179,18 +179,14 @@ document.addEventListener("DOMContentLoaded", function () {
               infoWrapper.appendChild(productName.cloneNode(true));
             }
 
-            // Add description div with truncated text
+            // Add description div with full content
             const descDiv = document.createElement("div");
             descDiv.className = "desproduct";
 
             // Add description from product data if available
             if (productData && productData.description) {
-              // Truncate description to around 100 characters
-              const truncatedDesc =
-                productData.description.length > 100
-                  ? productData.description.substring(0, 100) + "..."
-                  : productData.description;
-              descDiv.innerHTML = truncatedDesc;
+              // Use full description
+              descDiv.innerHTML = productData.description;
             } else {
               descDiv.innerHTML =
                 "Chương trình học được thiết kế phù hợp với lứa tuổi và khả năng tiếp thu của học viên...";
@@ -203,16 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
             priceBoxElement.innerHTML = priceHtml;
             infoWrapper.appendChild(priceBoxElement);
 
-            // Add price-box2 with contact button if it's "Liên hệ"
-            if (productData && productData.price === "Liên hệ") {
-              const priceBox2 = document.createElement("div");
-              priceBox2.className = "price-box2";
-              const contactBtn = document.createElement("a");
-              contactBtn.className = "contact";
-              contactBtn.textContent = "Liên hệ";
-              priceBox2.appendChild(contactBtn);
-              infoWrapper.appendChild(priceBox2);
-            }
+            // We don't need a separate price-box2 for "Liên hệ" button anymore
+            // as it's already included in the price box
 
             infoCol.appendChild(infoWrapper);
 
