@@ -5,22 +5,14 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   margin-bottom: 30px;
+  padding: 20px;
 }
 
 .product-detail-header {
-  padding: 25px 30px;
+  padding: 0 0 15px 0;
   position: relative;
-}
-
-.product-detail-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.3;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
 }
 
 .product-title {
@@ -29,7 +21,8 @@
   margin: 0;
   position: relative;
   z-index: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #333;
+  text-align: left;
 }
 
 .product-category {
@@ -44,7 +37,7 @@
 }
 
 .product-detail-content {
-  padding: 30px;
+  padding: 0;
 }
 
 .product-main-info {
@@ -55,16 +48,16 @@
 }
 
 .product-image-container {
-  flex: 0 0 300px;
+  flex: 0 0 45%;
   position: relative;
 }
 
 .product-main-image {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: none;
   transition: transform 0.3s ease;
 }
 
@@ -103,20 +96,20 @@
 
 .discount-badge {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background: linear-gradient(135deg, #ff4757, #ff3838);
+  top: 25px;
+  right: 10px;
+  background: #f6903d;
   color: white;
   padding: 8px 16px;
   border-radius: 25px;
   font-size: 14px;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
   z-index: 2;
 }
 
 .product-info-content {
   flex: 1;
+  padding-left: 20px;
 }
 
 .product-description {
@@ -136,14 +129,14 @@
 }
 
 .current-price {
-  font-size: 32px;
+  font-size: 28px;
   color: #f6903d;
   margin: 0;
   white-space: nowrap;
 }
 
 .original-price {
-  font-size: 20px;
+  font-size: 18px;
   color: #999;
   text-decoration: line-through;
   font-weight: 400;
@@ -168,11 +161,11 @@
   align-items: center;
 }
 
-.btn-register,
-.btn-contact {
-  padding: 15px 25px;
-  border: none;
-  border-radius: 8px;
+.btn-register {
+  padding: 12px 25px;
+  background: #f6903d;
+  color: white;
+  border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -182,18 +175,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-}
-
-.btn-register {
-  background: #f6903d;
-  color: white;
-  border-radius: 30px;
+  border: none;
 }
 
 .btn-register:hover {
-  background: linear-gradient(135deg, #ff8c69, #ffab94);
+  background: #e67e00;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 6px 20px rgba(246, 144, 61, 0.4);
   color: white;
   text-decoration: none;
 }
@@ -211,6 +199,53 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
   text-decoration: none;
+}
+
+.registration-guide-link {
+  color: #666;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.registration-guide-link:hover {
+  color: #f6903d;
+  text-decoration: none;
+}
+
+.consultation-info {
+  margin-top: 25px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.consultation-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.consultation-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consultation-phone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #f6903d;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.consultation-phone i {
+  font-size: 16px;
 }
 
 .product-details-section {
@@ -443,69 +478,6 @@
 
 .contact-hours strong {
   color: #333;
-}
-
-/* Registration Guide Link */
-.registration-guide-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #777777;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-left: 20px;
-}
-
-.registration-guide-link:hover {
-  color: #f6903d;
-  text-decoration: none;
-  transform: translateX(5px);
-}
-
-.registration-guide-link i {
-  font-size: 14px;
-  transform: rotate(180deg); /* Mũi tên chỉ về bên trái */
-}
-
-/* Consultation Info Styles */
-.consultation-info {
-  margin-top: 25px;
-  text-align: left;
-}
-
-.consultation-text {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 15px 0;
-}
-
-.consultation-contact {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.consultation-phone {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ff6b35;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.consultation-phone:hover {
-  color: #ff8c69;
-  text-decoration: none;
-}
-
-.consultation-phone i {
-  font-size: 16px;
 }
 
 /* Responsive Design */
@@ -950,4 +922,18 @@
   font-size: 12px;
   font-weight: normal;
   margin-left: 5px;
+}
+
+/* No related products message */
+.no-related-products {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  border: 1px dashed #ddd;
+  border-radius: 4px;
 }

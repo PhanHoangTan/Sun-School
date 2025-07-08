@@ -40,6 +40,9 @@ $(document).ready(function () {
           $this.find(".row").remove();
           $this.find(".col-lg-4.image").contents().unwrap();
           $this.find(".col-lg-8.info").contents().unwrap();
+
+          // Remove single-line styling
+          $this.find(".desproduct").removeAttr("style");
         }
       });
 
@@ -75,6 +78,22 @@ $(document).ready(function () {
 
           $row.append($imageCol).append($infoCol);
           $this.append($row);
+
+          // Add single-line styling to description
+          if ($this.find(".desproduct").length) {
+            $this
+              .find(".desproduct")
+              .attr(
+                "style",
+                "white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+              );
+          } else {
+            $this
+              .find(".product-info")
+              .append(
+                '<div class="desproduct" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chương trình học được thiết kế phù hợp với lứa tuổi và khả năng tiếp thu của học viên.</div>'
+              );
+          }
         }
       });
 

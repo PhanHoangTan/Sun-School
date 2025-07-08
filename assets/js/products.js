@@ -201,7 +201,7 @@ class ProductManager {
     }
 
     if (this.currentView === "list") {
-      // List view layout
+      // List view layout - with single line content
       colDiv.innerHTML = `
         <div class="item_product_main list-item-layout">
           <div class="row">
@@ -226,7 +226,9 @@ class ProductManager {
         product.name
       }">${product.name}</a>
                 </h3>
-                <div class="desproduct">${product.description || ""}</div>
+                <div class="desproduct" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${
+                  product.description || ""
+                }</div>
                 <div class="price-box">
                   ${priceHtml}
                 </div>

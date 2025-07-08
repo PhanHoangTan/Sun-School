@@ -239,7 +239,7 @@ class ProductDetailManager {
 
         container.innerHTML = relatedProductsHTML;
       } else {
-        container.innerHTML = `<p class="no-related-products">Không có sản phẩm liên quan</p>`;
+        container.innerHTML = `<p class="no-related-products" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Không có sản phẩm liên quan</p>`;
       }
     }, 500);
   }
@@ -270,54 +270,6 @@ class ProductDetailManager {
       `;
     }
 
-    // Create info sections HTML
-    let infoSectionsHTML = "";
-    if (product.info && Object.keys(product.info).length > 0) {
-      const infoItems = Object.entries(product.info)
-        .map(([title, content]) => {
-          // Check if this content is an image URL
-          if (
-            typeof content === "string" &&
-            (title.toLowerCase().includes("image") ||
-              content.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?|$)/i) ||
-              content.includes("bizweb.dktcdn.net") ||
-              content.includes(".jpg") ||
-              content.includes(".png"))
-          ) {
-            // Handle image content
-            const imageUrl = content.startsWith("//")
-              ? "https:" + content
-              : content;
-            return `
-              <div class="info-item info-item-image">
-                <h4 class="info-title">Hình ảnh minh họa</h4>
-                <div class="info-content">
-                  <img src="${imageUrl}" alt="Hình ảnh minh họa - ${product.name}" class="info-image" loading="lazy">
-                </div>
-              </div>
-            `;
-          } else {
-            // Handle regular text content
-            return `
-              <div class="info-item">
-                <h4 class="info-title">${title}</h4>
-                <div class="info-content">${content}</div>
-              </div>
-            `;
-          }
-        })
-        .join("");
-
-      infoSectionsHTML = `
-        <div class="product-details-section">
-          <h3 class="section-title">Thông tin chi tiết</h3>
-          <div class="info-grid">
-            ${infoItems}
-          </div>
-        </div>
-      `;
-    }
-
     return `
       <div class="product-detail-container">
         <div class="product-detail-header">
@@ -335,11 +287,6 @@ class ProductDetailManager {
                   ? `<div class="discount-badge">-${product.discount}</div>`
                   : ""
               }
-              <div class="product-thumbnail-container">
-                <img src="${imageUrl}" alt="${
-      product.name
-    } - Ảnh phụ" class="product-thumbnail-image active">
-              </div>
             </div>
             
             <div class="product-info-content">
@@ -370,13 +317,10 @@ class ProductDetailManager {
                     <i class="fas fa-phone"></i>
                     046674 2332
                   </a>
-                  <span class="consultation-hours"></span>
                 </div>
               </div>
             </div>
           </div>
-          
-          ${infoSectionsHTML}
         </div>
       </div>
     `;
