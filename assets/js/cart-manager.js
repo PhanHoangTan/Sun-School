@@ -231,7 +231,7 @@ class CartManager {
         </div>
         <div class="cart-actions">
           <a href="./GioHang.html" class="btn-view-cart">Xem giỏ hàng</a>
-          <a href="./GioHang.html" class="btn-checkout">Thanh toán</a>
+          <a href="./ThanhToan.html" class="btn-checkout">Thanh toán</a>
         </div>
       </div>
     `;
@@ -492,7 +492,8 @@ class CartManager {
     if (checkoutButton) {
       checkoutButton.addEventListener("click", (e) => {
         e.preventDefault();
-        alert("Tính năng thanh toán đang được phát triển!");
+        // Redirect to checkout page instead of showing alert
+        window.location.href = "./ThanhToan.html";
       });
     }
   }
