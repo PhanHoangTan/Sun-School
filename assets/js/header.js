@@ -76,6 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
       updateCartDropdown();
       updateCartCountFromStorage(); // Update count on cart changes
     });
+
+    // Make sure cart icon click works
+    const cartIcon = document.querySelector("#cart-icon");
+    if (cartIcon) {
+      cartIcon.addEventListener("click", function (e) {
+        // Allow normal navigation to GioHang.html
+        // e.preventDefault();
+        // window.location.href = "./GioHang.html";
+      });
+    }
   }
 
   // Update cart dropdown content based on cart data
@@ -164,18 +174,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Format total price
     let formattedTotal = "";
-    if (cart[0].price.includes("₫")) {
-      formattedTotal = `${totalPrice
-        .toLocaleString("vi-VN")
-        .replace(/,/g, ".")}₫`;
-    } else if (cart[0].price.includes("đ")) {
-      formattedTotal = `${totalPrice
-        .toLocaleString("vi-VN")
-        .replace(/,/g, ".")}đ`;
+    if (cart.length > 0) {
+      if (cart[0].price.includes("₫")) {
+        formattedTotal = `${totalPrice
+          .toLocaleString("vi-VN")
+          .replace(/,/g, ".")}₫`;
+      } else if (cart[0].price.includes("đ")) {
+        formattedTotal = `${totalPrice
+          .toLocaleString("vi-VN")
+          .replace(/,/g, ".")}đ`;
+      } else {
+        formattedTotal = `${totalPrice
+          .toLocaleString("vi-VN")
+          .replace(/,/g, ".")}`;
+      }
     } else {
-      formattedTotal = `${totalPrice
-        .toLocaleString("vi-VN")
-        .replace(/,/g, ".")}`;
+      formattedTotal = "0đ";
     }
 
     // Update cart dropdown content
@@ -188,10 +202,21 @@ document.addEventListener("DOMContentLoaded", function () {
         <span class="cart-dropdown-total-price">${formattedTotal}</span>
       </div>
       <div class="cart-dropdown-buttons">
-        <a href="#" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
-        <a href="#" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
+        <a href="./GioHang.html" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
+        <a href="./GioHang.html" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
       </div>
     `;
+
+    // Add event listeners for cart dropdown buttons
+    const cartButtons = cartDropdown.querySelectorAll(
+      ".cart-dropdown-buttons a"
+    );
+    cartButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        // Navigate to cart page
+        window.location.href = "./GioHang.html";
+      });
+    });
 
     // Add styles for cart dropdown if not already added
     if (!document.getElementById("cart-dropdown-styles")) {

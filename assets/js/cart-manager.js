@@ -231,7 +231,7 @@ class CartManager {
         </div>
         <div class="cart-actions">
           <a href="./GioHang.html" class="btn-view-cart">Xem giỏ hàng</a>
-          <a href="#" class="btn-checkout">Thanh toán</a>
+          <a href="./GioHang.html" class="btn-checkout">Thanh toán</a>
         </div>
       </div>
     `;
@@ -243,6 +243,18 @@ class CartManager {
         const productId = btn.getAttribute("data-product-id");
         if (productId) {
           this.removeFromCart(productId);
+        }
+      });
+    });
+
+    // Add event listeners for cart buttons
+    const cartButtons = document.querySelectorAll(".cart-actions a");
+    cartButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (btn.classList.contains("btn-checkout")) {
+          // Prevent default only if we want to show a message
+          // e.preventDefault();
+          // alert("Tính năng thanh toán đang được phát triển!");
         }
       });
     });
