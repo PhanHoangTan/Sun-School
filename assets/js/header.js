@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // Initialize cart dropdown functionality
           initCartDropdown();
 
+          // Update cart count from localStorage
+          updateCartCountFromStorage();
+
           // Smoothly fade in the header once everything is initialized
           headerContainer.style.transition = "opacity 0.3s ease";
           headerContainer.style.opacity = "1";
@@ -40,6 +43,29 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  // Function to update cart count from localStorage
+  function updateCartCountFromStorage() {
+    const cartCountElement = document.querySelector(".cart-count");
+    if (cartCountElement) {
+      try {
+        const savedCart = localStorage.getItem("sunschool_cart");
+        if (savedCart) {
+          const cart = JSON.parse(savedCart);
+          const count = cart.reduce(
+            (total, item) => total + (item.quantity || 1),
+            0
+          );
+          cartCountElement.textContent = count;
+        } else {
+          cartCountElement.textContent = "0";
+        }
+      } catch (e) {
+        console.error("Error loading cart count:", e);
+        cartCountElement.textContent = "0";
+      }
+    }
+  }
+
   // Initialize cart dropdown functionality
   function initCartDropdown() {
     // Update cart dropdown initially
@@ -48,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Listen for cart updates
     window.addEventListener("cartUpdated", function () {
       updateCartDropdown();
+      updateCartCountFromStorage(); // Update count on cart changes
     });
   }
 
@@ -410,6 +437,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentPage = currentPath.split("/").pop() || "index.html";
     const menuItems = document.querySelectorAll(".main-menu .nav-item");
 
+    // Set active state for cart icon if on cart page
+    const cartLink = document.querySelector(".cart-link");
+    const cartIcon = document.querySelector(".cart-link i");
+    if (
+      cartIcon &&
+      cartLink &&
+      (currentPage.includes("GioHang.html") || currentPage.includes("cart"))
+    ) {
+      cartIcon.classList.add("active");
+      cartLink.classList.add("active");
+    } else if (cartIcon && cartLink) {
+      cartIcon.classList.remove("active");
+      cartLink.classList.remove("active");
+    }
+
     // Debug: Log current page for testing
     console.log("=== ACTIVE MENU DEBUG ===");
     console.log("Current page:", currentPage);
@@ -550,6 +592,28 @@ document.addEventListener("DOMContentLoaded", function () {
       if (productItem) productItem.classList.add("active");
     }
   }
+
+  // Function to check and highlight cart icon if on cart page
+  function updateCartIconActive() {
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split("/").pop() || "index.html";
+    const cartLink = document.querySelector(".cart-link");
+    const cartIcon = document.querySelector(".cart-link i");
+
+    if (
+      cartIcon &&
+      cartLink &&
+      (currentPage.includes("GioHang.html") || currentPage.includes("cart"))
+    ) {
+      cartIcon.classList.add("active");
+      cartLink.classList.add("active");
+    }
+  }
+
+  // Run after DOM is fully loaded and after a short delay to ensure styles are applied
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(updateCartIconActive, 500);
+  });
 
   // Handle window resize for header responsiveness
   window.addEventListener("resize", function () {

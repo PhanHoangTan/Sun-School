@@ -150,7 +150,7 @@
             </nav>
 
             <div class="cart-container">
-              <a href="#" class="cart-link" id="cart-icon">
+              <a href="./GioHang.html" class="cart-link" id="cart-icon">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count">0</span>
               </a>
@@ -175,7 +175,7 @@
     display: inline-block;
     margin-left: 20px;
   }
-  
+
   .cart-link {
     position: relative;
     color: #333;
@@ -184,11 +184,16 @@
     padding: 5px;
     transition: all 0.3s ease;
   }
-  
+
   .cart-link:hover {
     color: #f6903d;
   }
-  
+
+  .cart-link.active i,
+  .cart-link i.active {
+    color: #f6903d !important;
+  }
+
   .cart-count {
     position: absolute;
     top: -8px;
@@ -204,41 +209,41 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .cart-dropdown {
     position: absolute;
     top: 100%;
     right: 0;
     width: 300px;
     background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 15px;
     z-index: 1000;
     display: none;
   }
-  
+
   .cart-container:hover .cart-dropdown {
     display: block;
   }
-  
+
   .empty-cart {
     text-align: center;
     padding: 20px 0;
   }
-  
+
   .empty-cart i {
     font-size: 36px;
     color: #ddd;
     margin-bottom: 10px;
   }
-  
+
   .empty-cart p {
     color: #666;
     margin: 0;
     font-size: 14px;
   }
-  
+
   @media (max-width: 991px) {
     .cart-container {
       position: absolute;

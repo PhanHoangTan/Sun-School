@@ -1,6 +1,9 @@
 // Main JavaScript for the SunShine School theme
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Update cart count from localStorage
+  updateCartCountFromStorage();
+
   // Mobile menu toggle
   const menuToggle = document.querySelector(".menu-toggle");
   const mainNavigation = document.querySelector(".main-navigation");
@@ -239,5 +242,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 150);
       }
     });
+  });
+
+  // Function to update cart count from localStorage
+  function updateCartCountFromStorage() {
+    const cartCountElement = document.querySelector(".cart-count");
+    if (cartCountElement) {
+      try {
+        const savedCart = localStorage.getItem("sunschool_cart");
+        if (savedCart) {
+          const cart = JSON.parse(savedCart);
+          const count = cart.reduce(
+            (total, item) => total + (item.quantity || 1),
+            0
+          );
+          cartCountElement.textContent = count;
+        } else {
+          cartCountElement.textContent = "0";
+        }
+      } catch (e) {
+        console.error("Error loading cart count:", e);
+        cartCountElement.textContent = "0";
+      }
+    }
+  }
+
+  // Listen for cart updates from other scripts
+  window.addEventListener("cartUpdated", function () {
+    updateCartCountFromStorage();
   });
 });
