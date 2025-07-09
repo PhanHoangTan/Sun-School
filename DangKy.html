@@ -71,7 +71,10 @@
             <div class="col-lg-12">
               <div class="page-register">
                 <div id="register">
-                  <span>Tạo tài khoản mới để trải nghiệm những dịch vụ tốt nhất.</span>
+                  <span
+                    >Tạo tài khoản mới để trải nghiệm những dịch vụ tốt
+                    nhất.</span
+                  >
                   <form
                     method="post"
                     action="/account/register"
@@ -116,7 +119,7 @@
                           </fieldset>
                         </div>
                       </div>
-                      
+
                       <fieldset class="form-group">
                         <label class="color_main">Email: *</label>
                         <input
@@ -128,7 +131,7 @@
                           placeholder="Email"
                           required="" />
                       </fieldset>
-                      
+
                       <fieldset class="form-group">
                         <label class="color_main">Mật khẩu: *</label>
                         <input
@@ -140,7 +143,7 @@
                           placeholder="Mật khẩu"
                           required="" />
                       </fieldset>
-                      
+
                       <fieldset class="form-group">
                         <label class="color_main">Xác nhận mật khẩu: *</label>
                         <input
@@ -152,7 +155,7 @@
                           placeholder="Xác nhận mật khẩu"
                           required="" />
                       </fieldset>
-                      
+
                       <fieldset class="form-group">
                         <label class="color_main">Số điện thoại:</label>
                         <input
@@ -179,55 +182,16 @@
                           <p class="a-center">Hoặc đăng ký bằng</p>
                           <script>
                             function loginFacebook() {
-                              var a = {
-                                  client_id: "947410958642584",
-                                  redirect_uri:
-                                    "https://store.mysapo.net/account/facebook_account_callback",
-                                  state: JSON.stringify({
-                                    redirect_url: window.location.href,
-                                  }),
-                                  scope: "email",
-                                  response_type: "code",
-                                },
-                                b =
-                                  "https://www.facebook.com/v3.2/dialog/oauth" +
-                                  encodeURIParams(a, !0);
-                              window.location.href = b;
+                              // Demo function - không redirect thực tế
+                              alert(
+                                "Đăng ký bằng Facebook sẽ được triển khai trong phiên bản thực tế. Hiện tại vui lòng sử dụng form đăng ký thông thường."
+                              );
                             }
                             function loginGoogle() {
-                              var a = {
-                                  client_id:
-                                    "997675985899-pu3vhvc2rngfcuqgh5ddgt7mpibgrasr.apps.googleusercontent.com",
-                                  redirect_uri:
-                                    "https://store.mysapo.net/account/google_account_callback",
-                                  scope:
-                                    "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
-                                  access_type: "online",
-                                  state: JSON.stringify({
-                                    redirect_url: window.location.href,
-                                  }),
-                                  response_type: "code",
-                                },
-                                b =
-                                  "https://accounts.google.com/o/oauth2/v2/auth" +
-                                  encodeURIParams(a, !0);
-                              window.location.href = b;
-                            }
-                            function encodeURIParams(a, b) {
-                              var c = [];
-                              for (var d in a)
-                                if (a.hasOwnProperty(d)) {
-                                  var e = a[d];
-                                  null != e &&
-                                    c.push(
-                                      encodeURIComponent(d) +
-                                        "=" +
-                                        encodeURIComponent(e)
-                                    );
-                                }
-                              return 0 == c.length
-                                ? ""
-                                : (b ? "?" : "") + c.join("&");
+                              // Demo function - không redirect thực tế
+                              alert(
+                                "Đăng ký bằng Google sẽ được triển khai trong phiên bản thực tế. Hiện tại vui lòng sử dụng form đăng ký thông thường."
+                              );
                             }
                           </script>
                           <a
@@ -250,6 +214,9 @@
                               alt="google-login-button"
                               src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg" />
                           </a>
+                          <div class="social-demo-note">
+                            * Đăng ký mạng xã hội hiện đang ở chế độ demo
+                          </div>
                         </div>
                       </div>
                       <br /><br />
@@ -262,7 +229,8 @@
                     - Các trường có dấu (*) là bắt buộc<br />
                     - Mật khẩu phải có ít nhất 6 ký tự<br />
                     - Email phải là định dạng hợp lệ<br />
-                    - Số điện thoại (không bắt buộc) sẽ được sử dụng để hỗ trợ tốt hơn
+                    - Số điện thoại (không bắt buộc) sẽ được sử dụng để hỗ trợ
+                    tốt hơn
                   </div>
                 </div>
               </div>
@@ -272,78 +240,117 @@
 
         <script type="text/javascript">
           // Form validation for registration
-          document.getElementById('customer_register').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('customer_first_name').value.trim();
-            const lastName = document.getElementById('customer_last_name').value.trim();
-            const email = document.getElementById('customer_email').value.trim();
-            const password = document.getElementById('customer_password').value;
-            const confirmPassword = document.getElementById('customer_confirm_password').value;
-            const phone = document.getElementById('customer_phone').value.trim();
-            
-            const errorMessage = document.getElementById('register-error-message');
-            
-            // Clear previous error messages
-            errorMessage.innerHTML = '';
-            errorMessage.style.display = 'none';
-            
-            // Validate required fields
-            if (!firstName || !lastName || !email || !password || !confirmPassword) {
-              showError('Vui lòng điền đầy đủ thông tin bắt buộc.');
-              return;
-            }
-            
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-              showError('Định dạng email không hợp lệ.');
-              return;
-            }
-            
-            // Validate password length
-            if (password.length < 6) {
-              showError('Mật khẩu phải có ít nhất 6 ký tự.');
-              return;
-            }
-            
-            // Validate password confirmation
-            if (password !== confirmPassword) {
-              showError('Mật khẩu xác nhận không khớp.');
-              return;
-            }
-            
-            // Validate phone number if provided
-            if (phone && !/^[0-9\+\-\s\(\)]{10,15}$/.test(phone)) {
-              showError('Số điện thoại không hợp lệ (10-15 số).');
-              return;
-            }
-            
-            // Demo registration - show success message
-            showSuccess('Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập...');
-            
-            // Redirect to login page after 2 seconds
-            setTimeout(function() {
-              window.location.href = './DangNhap.html';
-            }, 2000);
-          });
-          
+          document
+            .getElementById("customer_register")
+            .addEventListener("submit", function (e) {
+              e.preventDefault();
+
+              const firstName = document
+                .getElementById("customer_first_name")
+                .value.trim();
+              const lastName = document
+                .getElementById("customer_last_name")
+                .value.trim();
+              const email = document
+                .getElementById("customer_email")
+                .value.trim();
+              const password =
+                document.getElementById("customer_password").value;
+              const confirmPassword = document.getElementById(
+                "customer_confirm_password"
+              ).value;
+              const phone = document
+                .getElementById("customer_phone")
+                .value.trim();
+
+              const errorMessage = document.getElementById(
+                "register-error-message"
+              );
+
+              // Clear previous error messages
+              errorMessage.innerHTML = "";
+              errorMessage.style.display = "none";
+
+              // Validate required fields
+              if (
+                !firstName ||
+                !lastName ||
+                !email ||
+                !password ||
+                !confirmPassword
+              ) {
+                showError("Vui lòng điền đầy đủ thông tin bắt buộc.");
+                return;
+              }
+
+              // Validate email format
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(email)) {
+                showError("Định dạng email không hợp lệ.");
+                return;
+              }
+
+              // Validate password length
+              if (password.length < 6) {
+                showError("Mật khẩu phải có ít nhất 6 ký tự.");
+                return;
+              }
+
+              // Validate password confirmation
+              if (password !== confirmPassword) {
+                showError("Mật khẩu xác nhận không khớp.");
+                return;
+              }
+
+              // Validate phone number if provided
+              if (phone && !/^[0-9\+\-\s\(\)]{10,15}$/.test(phone)) {
+                showError("Số điện thoại không hợp lệ (10-15 số).");
+                return;
+              }
+
+              // Demo registration - show success message
+              showSuccess(
+                "Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập..."
+              );
+
+              // Redirect to login page after 2 seconds
+              setTimeout(function () {
+                window.location.href = "./DangNhap.html";
+              }, 2000);
+            });
+
           function showError(message) {
-            const errorMessage = document.getElementById('register-error-message');
-            errorMessage.innerHTML = '<div class="error-message"><i class="fa fa-exclamation-circle"></i> ' + message + '</div>';
-            errorMessage.style.display = 'block';
-            
+            const errorMessage = document.getElementById(
+              "register-error-message"
+            );
+            errorMessage.innerHTML =
+              '<div class="error-message"><i class="fa fa-exclamation-circle"></i> ' +
+              message +
+              "</div>";
+            errorMessage.style.display = "block";
+
             // Scroll to error message
-            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            errorMessage.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
           }
-          
+
           function showSuccess(message) {
-            const errorMessage = document.getElementById('register-error-message');
-            errorMessage.innerHTML = '<div class="success-message"><i class="fa fa-check-circle"></i> ' + message + '</div>';
-            errorMessage.style.display = 'block';
-            
+            const errorMessage = document.getElementById(
+              "register-error-message"
+            );
+            errorMessage.innerHTML =
+              '<div class="success-message"><i class="fa fa-check-circle"></i> ' +
+              message +
+              "</div>";
+            errorMessage.style.display = "block";
+
             // Scroll to success message
-            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            errorMessage.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
           }
         </script>
       </section>

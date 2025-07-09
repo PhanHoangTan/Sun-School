@@ -342,6 +342,37 @@
   font-size: 16px;
 }
 
+/* Social login demo styles */
+.social-login--facebook img:hover::after,
+.social-login--google img:hover::after {
+  content: "Demo: Chức năng đang phát triển";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.social-login--facebook,
+.social-login--google {
+  position: relative;
+}
+
+/* Demo warning for social login */
+.social-demo-note {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .default_title span {
@@ -370,7 +401,6 @@
     margin: 0 10px;
   }
 
-  .page-register .btn-style,
   .page_register .btn-login {
     display: block;
     width: 100%;
