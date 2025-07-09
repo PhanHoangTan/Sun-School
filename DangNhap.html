@@ -193,6 +193,29 @@
         margin-top: 20px;
       }
 
+      /* Error message styling */
+      .error-message {
+        color: #dc3545 !important;
+        background-color: #f8d7da !important;
+        border: 1px solid #f5c6cb !important;
+        border-radius: 4px !important;
+        padding: 10px 15px !important;
+        margin-bottom: 15px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+      }
+
+      .success-message {
+        color: #155724 !important;
+        background-color: #d4edda !important;
+        border: 1px solid #c3e6cb !important;
+        border-radius: 4px !important;
+        padding: 10px 15px !important;
+        margin-bottom: 15px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+      }
+
       /* Responsive adjustments */
       @media (max-width: 768px) {
         .default_title span {
@@ -266,7 +289,7 @@
                       name="ReturnUrl"
                       type="hidden"
                       value="/checkout/c2e136cde34b4e39beb7ae05467493aa" />
-                    <div class="form-signup" style="color: red">
+                    <div class="form-signup" style="color: red" id="login-error-message">
                       <!-- Error messages will be displayed here -->
                     </div>
                     <div class="form-signup clearfix">
@@ -393,6 +416,14 @@
                   <div class="row">
                     <div id="social_login_widget"></div>
                   </div>
+                  
+                  <!-- Demo credentials note -->
+                  <div class="demo-note" style="margin-top: 20px; padding: 15px; background-color: #f0f8ff; border: 1px solid #bee5eb; border-radius: 6px; font-size: 13px; color: #0c5460;">
+                    <strong>Thông tin đăng nhập demo:</strong><br>
+                    Email: <code>admin@sunschool.com</code> - Mật khẩu: <code>123456</code><br>
+                    Email: <code>user@example.com</code> - Mật khẩu: <code>password</code><br>
+                    Email: <code>test@test.com</code> - Mật khẩu: <code>test123</code>
+                  </div>
                 </div>
               </div>
             </div>
@@ -413,9 +444,8 @@
                     type="hidden"
                     value="recover_customer_password" />
                   <input name="utf8" type="hidden" value="true" />
-                  <div class="form-signup" style="color: red">
+                  <div class="form-signup" style="color: red; display: none;" id="recover-error-message">
                     <!-- Error messages will be displayed here -->
-                    <br />
                   </div>
                   <div class="form-signup clearfix">
                     <fieldset class="form-group">
@@ -439,6 +469,14 @@
                     <br /><br />
                   </div>
                 </form>
+                
+                <!-- Demo note for password recovery -->
+                <div class="demo-note" style="margin-top: 15px; padding: 15px; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; font-size: 13px; color: #856404;">
+                  <strong>Email hợp lệ cho demo:</strong><br>
+                  <code>admin@sunschool.com</code><br>
+                  <code>user@example.com</code><br>
+                  <code>test@test.com</code>
+                </div>
               </div>
             </div>
           </div>
@@ -859,13 +897,46 @@
             e.preventDefault();
             const email = document.getElementById("customer_email").value;
             const password = document.getElementById("customer_password").value;
+            const errorDiv = document.getElementById("login-error-message");
+
+            // Clear previous error messages
+            errorDiv.innerHTML = "";
 
             if (!email || !password) {
-              alert("Vui lòng nhập đầy đủ email và mật khẩu!");
+              errorDiv.innerHTML = "Vui lòng nhập đầy đủ email và mật khẩu!";
+              errorDiv.className = "form-signup error-message";
               return;
             }
 
-            // Simulate login process
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              errorDiv.innerHTML = "Vui lòng nhập địa chỉ email hợp lệ!";
+              errorDiv.className = "form-signup error-message";
+              return;
+            }
+
+            // Simulate login validation (in real app, this would be an API call)
+            // For demo purposes, we'll accept specific credentials or show error
+            const validCredentials = [
+              { email: "admin@sunschool.com", password: "123456" },
+              { email: "user@example.com", password: "password" },
+              { email: "test@test.com", password: "test123" }
+            ];
+
+            const isValidLogin = validCredentials.some(
+              cred => cred.email === email && cred.password === password
+            );
+
+            if (!isValidLogin) {
+              errorDiv.innerHTML = "Thông tin đăng nhập không chính xác.";
+              errorDiv.className = "form-signup error-message";
+              return;
+            }
+
+            // If login is successful
+            errorDiv.innerHTML = "";
+            errorDiv.className = "form-signup";
             alert("Đăng nhập thành công! Chuyển hướng về trang thanh toán...");
             window.location.href = "./ThanhToan.html";
           });
@@ -875,12 +946,48 @@
           recoverForm.addEventListener("submit", function (e) {
             e.preventDefault();
             const email = document.getElementById("recover-email").value;
+            const errorDiv = document.getElementById("recover-error-message");
+
+            // Clear previous error messages
+            errorDiv.innerHTML = "";
+            errorDiv.style.display = "none";
 
             if (!email) {
-              alert("Vui lòng nhập địa chỉ email!");
+              errorDiv.innerHTML = "Vui lòng nhập địa chỉ email!";
+              errorDiv.className = "form-signup error-message";
+              errorDiv.style.display = "block";
               return;
             }
 
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              errorDiv.innerHTML = "Vui lòng nhập địa chỉ email hợp lệ!";
+              errorDiv.className = "form-signup error-message";
+              errorDiv.style.display = "block";
+              return;
+            }
+
+            // Simulate checking if email exists in database
+            // For demo purposes, we'll use the same valid emails as login
+            const validEmails = [
+              "admin@sunschool.com",
+              "user@example.com", 
+              "test@test.com"
+            ];
+
+            const emailExists = validEmails.includes(email);
+
+            if (!emailExists) {
+              errorDiv.innerHTML = "Không tìm thấy tài khoản tương ứng với email này.";
+              errorDiv.className = "form-signup error-message";
+              errorDiv.style.display = "block";
+              return;
+            }
+
+            // If email is found
+            errorDiv.innerHTML = "";
+            errorDiv.style.display = "none";
             alert("Liên kết đặt lại mật khẩu đã được gửi đến email của bạn!");
           });
         }
