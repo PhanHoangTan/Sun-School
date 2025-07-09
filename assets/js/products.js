@@ -289,6 +289,8 @@ class ProductManager {
             );
             if (selectedProduct) {
               window.cartManager.addToCart(selectedProduct);
+              // Show cart modal after adding product
+              window.cartManager.showCartModal();
             }
           }
         });

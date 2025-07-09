@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="./assets/css/scroll-top.css" />
     <link rel="stylesheet" href="./assets/css/breadcrumb.css" />
     <link rel="stylesheet" href="./assets/css/collection.css" />
+    <link rel="stylesheet" href="./assets/css/cart-modal.css" />
 
     <!-- Google Fonts -->
     <link
@@ -1413,6 +1414,196 @@
       ></a>
     </div>
 
+    <!-- Cart Modal -->
+    <div
+      class="modal fade"
+      id="cartModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="cartModalLabel"
+      aria-hidden="true"
+      style="z-index: 1050">
+      <div
+        class="modal-dialog modal-lg"
+        role="document"
+        style="max-width: 800px; margin: 30px auto">
+        <div
+          class="modal-content"
+          style="
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+          ">
+          <div
+            class="modal-header"
+            style="
+              background: #fff;
+              border-bottom: 1px solid #e9ecef;
+              padding: 15px 20px;
+            ">
+            <div
+              class="cart-success-message"
+              style="display: flex; align-items: center">
+              <div
+                class="cart-success-icon"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  background: #28a745;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-right: 15px;
+                ">
+                <i
+                  class="fas fa-check"
+                  style="color: white; font-size: 18px"></i>
+              </div>
+              <p
+                class="cart-success-text"
+                style="
+                  margin: 0;
+                  font-size: 16px;
+                  font-weight: 500;
+                  color: #333;
+                ">
+                Bạn đã thêm sản phẩm vào giỏ hàng
+              </p>
+            </div>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              style="
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                color: #999;
+                cursor: pointer;
+              ">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body" style="padding: 20px">
+            <!-- Cart Summary Header -->
+            <div
+              class="cart-summary-header"
+              style="
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: #333;
+              ">
+              Giỏ hàng của bạn (<span id="modal-cart-count">0</span> sản phẩm)
+            </div>
+
+            <!-- Cart Table -->
+            <div id="cart-items-table" style="margin-bottom: 20px">
+              <!-- Cart items will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <div class="cart-footer" style="padding: 0 20px 20px">
+            <!-- Shipping Notice -->
+            <div
+              class="shipping-notice"
+              style="
+                background: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                font-size: 14px;
+                color: #666;
+              ">
+              <i
+                class="fas fa-truck"
+                style="color: #28a745; margin-right: 8px"></i>
+              <span
+                >Lắp đặt và vận chuyển miễn phí nội thành Hà Nội và TP Hồ Chí
+                Minh</span
+              >
+            </div>
+
+            <!-- Cart Totals -->
+            <div
+              class="cart-totals"
+              style="
+                border-top: 1px solid #e9ecef;
+                padding-top: 15px;
+                margin-bottom: 20px;
+              ">
+              <div
+                class="cart-total-row final-total"
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  font-size: 18px;
+                  font-weight: 700;
+                ">
+                <span>Thành tiền:</span>
+                <span
+                  class="cart-total-price"
+                  id="cart-total-price"
+                  style="color: #ff6b35"
+                  >0₫</span
+                >
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="cart-actions" style="display: flex; gap: 15px">
+              <button
+                type="button"
+                class="cart-btn cart-btn-continue"
+                data-dismiss="modal"
+                style="
+                  flex: 1;
+                  padding: 12px 24px;
+                  background: #6c757d;
+                  color: white;
+                  border: none;
+                  border-radius: 6px;
+                  font-size: 16px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                ">
+                <i class="fas fa-arrow-left"></i>
+                Tiếp tục mua hàng
+              </button>
+              <a
+                href="./ThanhToan.html"
+                class="cart-btn cart-btn-checkout"
+                style="
+                  flex: 1;
+                  padding: 12px 24px;
+                  background: #ff6b35;
+                  color: white;
+                  text-decoration: none;
+                  border-radius: 6px;
+                  font-size: 16px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                ">
+                <i class="fas fa-credit-card"></i>
+                Tiến hành đặt hàng
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

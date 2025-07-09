@@ -37,6 +37,8 @@ class CartManager {
 
   // Add item to cart
   addToCart(product) {
+    console.log("Adding to cart:", product);
+
     // Check if product already exists in cart
     const existingProduct = this.cart.find((item) => item.id === product.id);
 
@@ -54,6 +56,8 @@ class CartManager {
     this.saveCartToStorage();
     this.updateCartCount();
     this.updateCartDropdown();
+
+    console.log("Cart after adding:", this.cart);
 
     // Show cart modal if it exists (for product detail page)
     this.showCartModal(product);
@@ -167,64 +171,101 @@ class CartManager {
   }
 
   // Show cart modal after adding product (for product detail page)
-  showCartModal(addedProduct) {
+  showCartModal(addedProduct = null) {
     const modal = document.getElementById("cartModal");
-    if (!modal) return; // Modal doesn't exist on this page
+    if (!modal) {
+      console.log("Modal not found!");
+      return; // Modal doesn't exist on this page
+    }
 
-    // Update modal content
+    console.log("Showing cart modal...");
+
+    // Update modal content first
     this.updateCartModalContent(addedProduct);
 
-    // Show modal using Bootstrap
+    // Use Bootstrap modal if available
     if (window.jQuery && window.jQuery.fn.modal) {
+      console.log("Using Bootstrap modal");
       window.jQuery("#cartModal").modal("show");
     } else {
+      console.log("Using fallback modal display");
       // Fallback if jQuery/Bootstrap modal not available
       modal.style.display = "block";
-      modal.classList.add("show");
+      modal.classList.add("show", "fade");
+      modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
 
-      // Create backdrop
-      const backdrop = document.createElement("div");
-      backdrop.className = "modal-backdrop fade show";
-      document.body.appendChild(backdrop);
+      // Add proper modal styling
+      modal.style.paddingRight = "17px";
 
-      // Close modal when clicking backdrop or close button
+      // Create backdrop if it doesn't exist
+      let backdrop = document.querySelector(".modal-backdrop");
+      if (!backdrop) {
+        backdrop = document.createElement("div");
+        backdrop.className = "modal-backdrop fade show";
+        backdrop.style.zIndex = "1040";
+        document.body.appendChild(backdrop);
+      }
+
+      // Setup close modal functionality
       const closeModal = () => {
+        console.log("Closing modal...");
         modal.style.display = "none";
-        modal.classList.remove("show");
+        modal.classList.remove("show", "fade");
+        modal.setAttribute("aria-hidden", "true");
+        modal.style.paddingRight = "";
         document.body.classList.remove("modal-open");
-        if (backdrop.parentNode) {
+        if (backdrop && backdrop.parentNode) {
           backdrop.parentNode.removeChild(backdrop);
         }
       };
 
-      backdrop.addEventListener("click", closeModal);
-      modal.querySelector(".close").addEventListener("click", closeModal);
+      // Remove existing event listeners to prevent duplicates
+      const existingBackdrop = document.querySelector(".modal-backdrop");
+      if (existingBackdrop) {
+        existingBackdrop.replaceWith(existingBackdrop.cloneNode(true));
+      }
+
+      // Add event listeners
+      backdrop = document.querySelector(".modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", closeModal);
+      }
+
+      const closeButtons = modal.querySelectorAll(
+        "[data-dismiss='modal'], .close"
+      );
+      closeButtons.forEach((btn) => {
+        btn.addEventListener("click", closeModal);
+      });
+
+      // ESC key to close
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
     }
   }
 
   // Update cart modal content
-  updateCartModalContent(addedProduct) {
-    // Update product name
-    const productNameEl = document.getElementById("modal-product-name");
-    if (productNameEl && addedProduct) {
-      productNameEl.textContent = addedProduct.name;
-    }
+  updateCartModalContent(addedProduct = null) {
+    console.log("Updating cart modal content...");
 
-    // Update cart count
+    // Update cart count in header
     const cartCountEl = document.getElementById("modal-cart-count");
     if (cartCountEl) {
       cartCountEl.textContent = this.cart.length;
     }
 
-    // Update cart items
-    const cartItemsEl = document.getElementById("modal-cart-items");
-    if (cartItemsEl) {
-      cartItemsEl.innerHTML = this.generateModalCartItems();
+    // Update cart items table
+    const cartItemsTableEl = document.getElementById("cart-items-table");
+    if (cartItemsTableEl) {
+      cartItemsTableEl.innerHTML = this.generateCartTable();
     }
 
     // Update cart total
-    const cartTotalEl = document.getElementById("modal-cart-total");
+    const cartTotalEl = document.getElementById("cart-total-price");
     if (cartTotalEl) {
       const total = this.calculateTotal();
       cartTotalEl.textContent = this.formatPrice(total);
@@ -234,8 +275,42 @@ class CartManager {
     if (this.cart.length === 0) {
       if (window.jQuery && window.jQuery.fn.modal) {
         window.jQuery("#cartModal").modal("hide");
+      } else {
+        const modal = document.getElementById("cartModal");
+        if (modal) {
+          modal.style.display = "none";
+          modal.classList.remove("show");
+          document.body.classList.remove("modal-open");
+          const backdrop = document.querySelector(".modal-backdrop");
+          if (backdrop && backdrop.parentNode) {
+            backdrop.parentNode.removeChild(backdrop);
+          }
+        }
       }
     }
+  }
+
+  // Generate complete cart table for modal
+  generateCartTable() {
+    if (this.cart.length === 0) {
+      return '<div class="empty-cart-message" style="text-align: center; padding: 40px; color: #666; font-size: 16px;">Giỏ hàng của bạn đang trống</div>';
+    }
+
+    return `
+      <table class="cart-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+          <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+            <th style="padding: 12px; text-align: left; font-weight: 600; color: #333; border-bottom: 1px solid #dee2e6;">Sản phẩm</th>
+            <th style="padding: 12px; text-align: center; font-weight: 600; color: #333; border-bottom: 1px solid #dee2e6;">Đơn giá</th>
+            <th style="padding: 12px; text-align: center; font-weight: 600; color: #333; border-bottom: 1px solid #dee2e6;">Số lượng</th>
+            <th style="padding: 12px; text-align: center; font-weight: 600; color: #333; border-bottom: 1px solid #dee2e6;">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${this.generateModalCartItems()}
+        </tbody>
+      </table>
+    `;
   }
 
   // Generate cart items HTML for modal
@@ -256,33 +331,38 @@ class CartManager {
         }
 
         return `
-        <tr class="cart-item-row" data-product-id="${item.id}">
-          <td>
-            <div class="cart-product-info">
+        <tr class="cart-item-row" data-product-id="${
+          item.id
+        }" style="border-bottom: 1px solid #dee2e6;">
+          <td style="padding: 15px; vertical-align: middle;">
+            <div class="cart-product-info" style="display: flex; align-items: center;">
               <img src="${imageUrl}" alt="${
           item.name
-        }" class="cart-product-image">
+        }" class="cart-product-image" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
               <div class="cart-product-details">
-                <div class="cart-product-name">${item.name}</div>
+                <div class="cart-product-name" style="font-weight: 600; color: #333; margin-bottom: 8px;">${
+                  item.name
+                }</div>
                 <div class="cart-product-remove" onclick="cartManager.removeFromCartModal('${
                   item.id
-                }');">
+                }');" style="cursor: pointer; color: #dc3545; font-size: 12px; display: flex; align-items: center; gap: 4px;">
                   <i class="fas fa-times"></i>
                   <span>Bỏ sản phẩm</span>
                 </div>
               </div>
             </div>
           </td>
-          <td class="cart-price-cell" data-label="Đơn giá">${this.formatPrice(
+          <td class="cart-price-cell" data-label="Đơn giá" style="padding: 15px; text-align: center; vertical-align: middle; font-weight: 600; color: #ff6b35;">${this.formatPrice(
             itemPrice
           )}</td>
-          <td class="cart-quantity-cell" data-label="Số lượng">
-            <div class="quantity-controls">
+          <td class="cart-quantity-cell" data-label="Số lượng" style="padding: 15px; text-align: center; vertical-align: middle;">
+            <div class="quantity-controls" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
               <button class="quantity-btn decrease-btn ${
                 item.quantity <= 1 ? "disabled" : ""
               }" 
                       onclick="cartManager.decreaseQuantityModal('${item.id}')"
-                      ${item.quantity <= 1 ? "disabled" : ""}>
+                      ${item.quantity <= 1 ? "disabled" : ""}
+                      style="width: 30px; height: 30px; border: 1px solid #dee2e6; background: white; cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
                 -
               </button>
               <input type="number" 
@@ -293,14 +373,16 @@ class CartManager {
                      onchange="cartManager.updateQuantityModal('${
                        item.id
                      }', this.value)"
-                     onblur="if(this.value < 1) this.value = 1; if(this.value > 99) this.value = 99;">
+                     onblur="if(this.value < 1) this.value = 1; if(this.value > 99) this.value = 99;"
+                     style="width: 50px; text-align: center; border: 1px solid #dee2e6; border-radius: 4px; padding: 4px 8px;">
               <button class="quantity-btn increase-btn" 
-                      onclick="cartManager.increaseQuantityModal('${item.id}')">
+                      onclick="cartManager.increaseQuantityModal('${item.id}')"
+                      style="width: 30px; height: 30px; border: 1px solid #dee2e6; background: white; cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
                 +
               </button>
             </div>
           </td>
-          <td class="cart-total-cell" data-label="Thành tiền">${this.formatPrice(
+          <td class="cart-total-cell" data-label="Thành tiền" style="padding: 15px; text-align: center; vertical-align: middle; font-weight: 700; color: #ff6b35; font-size: 16px;">${this.formatPrice(
             itemTotal
           )}</td>
         </tr>
@@ -381,7 +463,7 @@ class CartManager {
   removeFromCartModal(productId) {
     this.removeFromCart(productId);
     this.updateCartModalContent();
-    
+
     // If cart is empty, close modal
     if (this.cart.length === 0) {
       if (window.jQuery && window.jQuery.fn.modal) {
