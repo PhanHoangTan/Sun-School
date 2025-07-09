@@ -209,7 +209,7 @@
 }
 
 .cart-total-cell {
-  color: #28a745;
+  color: #f6903d;
 }
 
 /* Cart Footer */
@@ -258,7 +258,7 @@
 }
 
 .cart-total-row.final-total {
-  border-top: 2px solid #28a745;
+  border-top: 2px solid #f6903d;
   padding-top: 12px;
   margin-top: 8px;
   font-size: 16px;
@@ -271,7 +271,7 @@
 }
 
 .cart-total-row.final-total .cart-total-price {
-  color: #28a745;
+  color: #f6903d;
   font-size: 18px;
 }
 
