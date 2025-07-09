@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa đơn - SunShine School</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/checkout.css" />
+    
+    <!-- Include vietnam-address.js for address formatting -->
+    <script src="./assets/js/vietnam-address.js"></script>
+    
+    <style>
+        .thankyou-page {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .main__header {
+            background: #fff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .shop__name {
+            margin: 0;
+            font-size: 24px;
+            color: #28a745;
+        }
+        
+        .shop__name a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .main__content {
+            padding: 40px;
+        }
+        
+        .section--icon-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section__icon {
+            margin-bottom: 20px;
+        }
+        
+        .section__icon svg {
+            animation: checkmark 0.6s ease-in-out 0.9s both;
+        }
+        
+        .section__icon svg circle {
+            animation: circle 0.6s ease-in-out both;
+        }
+        
+        .section__icon svg path {
+            animation: check 0.3s ease-in-out 0.9s both;
+        }
+        
+        @keyframes circle {
+            0% {
+                stroke-dashoffset: 480px;
+            }
+            100% {
+                stroke-dashoffset: 240px;
+            }
+        }
+        
+        @keyframes check {
+            0% {
+                stroke-dashoffset: 50px;
+            }
+            100% {
+                stroke-dashoffset: 0px;
+            }
+        }
+        
+        @keyframes checkmark {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .section__title {
+            font-size: 28px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        
+        .section__text {
+            font-size: 16px;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .order-summary {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .order-summary__header {
+            background: #e9ecef;
+            padding: 15px 20px;
+            border-bottom: 1px solid #dee2e6;
+            font-weight: 600;
+            font-size: 18px;
+            color: #495057;
+        }
+        
+        .order-summary__sections {
+            padding: 20px;
+        }
+        
+        .product-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .product {
+            border-bottom: 1px solid #dee2e6;
+            padding: 15px 0;
+        }
+        
+        .product:last-child {
+            border-bottom: none;
+        }
+        
+        .product__image {
+            width: 60px;
+            vertical-align: top;
+        }
+        
+        .product-thumbnail {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .product-thumbnail__wrapper {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .product-thumbnail__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-thumbnail__quantity {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product__description {
+            padding-left: 15px;
+            vertical-align: top;
+        }
+        
+        .product__description__name {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .product__price {
+            text-align: right;
+            vertical-align: top;
+            font-weight: 600;
+            color: #28a745;
+        }
+        
+        .total-line-table {
+            width: 100%;
+        }
+        
+        .total-line {
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .total-line__name {
+            padding: 10px 0;
+            text-align: left;
+            font-weight: normal;
+        }
+        
+        .total-line__price {
+            padding: 10px 0;
+            text-align: right;
+            font-weight: 600;
+        }
+        
+        .payment-due {
+            border-bottom: none;
+            border-top: 2px solid #28a745;
+            font-size: 18px;
+        }
+        
+        .payment-due__price {
+            color: #28a745;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .section__content--bordered {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section__content--bordered h2 {
+            font-size: 18px;
+            color: #495057;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section__content--bordered p {
+            margin-bottom: 5px;
+            color: #6c757d;
+        }
+        
+        .btn--large {
+            padding: 12px 30px;
+            font-size: 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .btn--large:hover {
+            background: #218838;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .text-icon-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 12px 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: white;
+        }
+        
+        .text-icon-group:hover {
+            background: #f8f9fa;
+            color: #495057;
+        }
+        
+        .col--md-two {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 4%;
+        }
+        
+        .col--md-two:last-child {
+            margin-right: 0;
+        }
+        
+        .row {
+            margin-bottom: 30px;
+        }
+        
+        @media print {
+            .unprintable {
+                display: none !important;
+            }
+            
+            .content {
+                box-shadow: none;
+            }
+            
+            .thankyou-page {
+                background: white;
+                padding: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main__content {
+                padding: 20px;
+            }
+            
+            .col--md-two {
+                width: 100%;
+                display: block;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thankyou-page">
+        <div class="content">
+            <form>
+                <div class="wrap wrap--mobile-fluid">
+                    <main class="main main--nosidebar">
+                        <header class="main__header">
+                            <div class="logo logo--left">
+                                <h1 class="shop__name">
+                                    <a href="./index.html">SunShine School Theme</a>
+                                </h1>
+                            </div>
+                        </header>
+                        <div class="main__content">
+                            <article class="row">
+                                <div class="col col--primary">
+                                    <section class="section section--icon-heading">
+                                        <div class="section__icon unprintable">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="72px" height="72px">
+                                                <g fill="none" stroke="#28a745" stroke-width="2">
+                                                    <circle cx="36" cy="36" r="35" style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
+                                                    <path d="M17.417,37.778l9.93,9.909l25.444-25.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;"></path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="thankyou-message-container">
+                                            <h2 class="section__title">Cảm ơn bạn đã đặt hàng</h2>
+                                            <p class="section__text">
+                                                Một email xác nhận đã được gửi tới <span id="customer-email">email@example.com</span>. <br>
+                                                Xin vui lòng kiểm tra email của bạn
+                                            </p>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col col--secondary">
+                                    <aside class="order-summary order-summary--bordered order-summary--is-collapsed" id="order-summary">
+                                        <div class="order-summary__header">
+                                            <div class="order-summary__title">
+                                                Đơn hàng #<span id="order-number">1003</span>
+                                                <span class="unprintable">(<span id="item-count">1</span>)</span>
+                                            </div>
+                                        </div>
+                                        <div class="order-summary__sections">
+                                            <div class="order-summary__section order-summary__section--product-list order-summary__section--is-scrollable order-summary--collapse-element">
+                                                <table class="product-table">
+                                                    <tbody id="invoice-items">
+                                                        <!-- Items will be populated by JavaScript -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="order-summary__section">
+                                                <table class="total-line-table">
+                                                    <tbody class="total-line-table__tbody">
+                                                        <tr class="total-line total-line--subtotal">
+                                                            <th class="total-line__name">Tạm tính</th>
+                                                            <td class="total-line__price" id="invoice-subtotal">0₫</td>
+                                                        </tr>
+                                                        <tr class="total-line total-line--shipping-fee">
+                                                            <th class="total-line__name">Phí vận chuyển</th>
+                                                            <td class="total-line__price">
+                                                                <span id="invoice-shipping">40.000₫</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="order-summary__section">
+                                                <table class="total-line-table">
+                                                    <tbody class="total-line-table__tbody">
+                                                        <tr class="total-line payment-due">
+                                                            <th class="total-line__name">
+                                                                <span class="payment-due__label-total">Tổng cộng</span>
+                                                            </th>
+                                                            <td class="total-line__price">
+                                                                <span class="payment-due__price" id="invoice-total">0₫</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                </div>
+                                <div class="col col--primary">
+                                    <section class="section">
+                                        <div class="section__content section__content--bordered">
+                                            <div class="row">
+                                                <div class="col col--md-two">
+                                                    <h2>Thông tin mua hàng</h2>
+                                                    <p id="billing-name">Tên khách hàng</p>
+                                                    <p id="billing-email">email@example.com</p>
+                                                    <p id="billing-phone">+84123456789</p>
+                                                </div>
+                                                <div class="col col--md-two">
+                                                    <h2>Địa chỉ nhận hàng</h2>
+                                                    <p id="shipping-name">Tên khách hàng</p>
+                                                    <p id="shipping-address">Địa chỉ</p>
+                                                    <p id="shipping-location">Quận/Huyện, Tỉnh/Thành phố</p>
+                                                    <p id="shipping-phone">+84123456789</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col col--md-two">
+                                                    <h2>Phương thức thanh toán</h2>
+                                                    <p id="payment-method">Thanh toán khi giao hàng (COD)</p>
+                                                </div>
+                                                <div class="col col--md-two">
+                                                    <h2>Phương thức vận chuyển</h2>
+                                                    <p id="shipping-method">Giao hàng tận nơi</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="section unprintable">
+                                        <div class="field__input-btn-wrapper field__input-btn-wrapper--floating">
+                                            <a href="./index.html" class="btn btn--large">Tiếp tục mua hàng</a>
+                                            <span class="text-icon-group text-icon-group--large icon-print" onclick="window.print()">
+                                                <i class="fa fa-print"></i>
+                                                <span>In</span>
+                                            </span>
+                                        </div>
+                                    </section>
+                                </div>
+                            </article>
+                        </div>
+                    </main>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get order data from URL parameters or localStorage
+            const orderData = getOrderData();
+            
+            if (orderData) {
+                populateInvoice(orderData);
+            } else {
+                // Redirect to home if no order data
+                window.location.href = './index.html';
+            }
+        });
+
+        function getOrderData() {
+            // Try to get from localStorage first (for demo purposes)
+            const orderDataStr = localStorage.getItem('lastOrder');
+            if (orderDataStr) {
+                try {
+                    return JSON.parse(orderDataStr);
+                } catch (e) {
+                    console.error('Error parsing order data:', e);
+                }
+            }
+            
+            // If no localStorage data, try URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderParam = urlParams.get('order');
+            if (orderParam) {
+                try {
+                    return JSON.parse(decodeURIComponent(orderParam));
+                } catch (e) {
+                    console.error('Error parsing URL order data:', e);
+                }
+            }
+            
+            return null;
+        }
+
+        function populateInvoice(orderData) {
+            // Generate random order number
+            const orderNumber = Math.floor(Math.random() * 9000) + 1000;
+            
+            // Update order information
+            document.getElementById('order-number').textContent = orderNumber;
+            document.getElementById('customer-email').textContent = orderData.customerInfo.email;
+            document.getElementById('item-count').textContent = orderData.items.length;
+            
+            // Update customer information
+            document.getElementById('billing-name').textContent = orderData.customerInfo.name;
+            document.getElementById('billing-email').textContent = orderData.customerInfo.email;
+            document.getElementById('billing-phone').textContent = orderData.customerInfo.phone || 'Không có';
+            
+            // Update shipping information
+            document.getElementById('shipping-name').textContent = orderData.customerInfo.name;
+            document.getElementById('shipping-address').textContent = orderData.customerInfo.address || 'Không có';
+            
+            // Format location string using vietnam-address.js if available
+            let location = '';
+            if (window.vietnamAddressManager && orderData.customerInfo.fullAddress) {
+                location = orderData.customerInfo.fullAddress;
+            } else {
+                // Fallback to basic formatting
+                if (orderData.customerInfo.ward) {
+                    location += orderData.customerInfo.ward;
+                }
+                if (orderData.customerInfo.district) {
+                    if (location) location += ', ';
+                    location += orderData.customerInfo.district;
+                }
+                if (orderData.customerInfo.province) {
+                    if (location) location += ', ';
+                    location += orderData.customerInfo.province;
+                }
+            }
+            document.getElementById('shipping-location').textContent = location || 'Không có';
+            document.getElementById('shipping-phone').textContent = orderData.customerInfo.phone || 'Không có';
+            
+            // Update payment and shipping methods
+            let paymentMethodText = 'Thanh toán khi giao hàng (COD)';
+            if (orderData.paymentMethod) {
+                paymentMethodText = 'Thanh toán khi giao hàng (COD)'; // Default for now
+            }
+            document.getElementById('payment-method').textContent = paymentMethodText;
+            
+            let shippingMethodText = 'Giao hàng tiêu chuẩn';
+            if (orderData.shippingMethod === 'standard') {
+                shippingMethodText = 'Giao hàng tiêu chuẩn';
+            }
+            document.getElementById('shipping-method').textContent = shippingMethodText;
+            
+            // Populate items
+            populateItems(orderData.items);
+            
+            // Update totals
+            document.getElementById('invoice-subtotal').textContent = formatPrice(orderData.subtotal);
+            document.getElementById('invoice-shipping').textContent = formatPrice(orderData.shippingFee);
+            document.getElementById('invoice-total').textContent = formatPrice(orderData.total);
+        }
+
+        function populateItems(items) {
+            const itemsContainer = document.getElementById('invoice-items');
+            let itemsHtml = '';
+            
+            items.forEach(item => {
+                let itemPrice = 0;
+                if (item.price && !item.price.includes('Liên hệ')) {
+                    const priceString = item.price;
+                    const matches = priceString.match(/[\d,.]+/g);
+                    if (matches && matches.length > 0) {
+                        itemPrice = parseFloat(matches[0].replace(/\./g, '').replace(/,/g, ''));
+                    }
+                }
+
+                const imageUrl = item.image.startsWith('//') ? 'https:' + item.image : item.image;
+                
+                itemsHtml += `
+                    <tr class="product">
+                        <td class="product__image">
+                            <div class="product-thumbnail">
+                                <div class="product-thumbnail__wrapper">
+                                    <img src="${imageUrl}" alt="${item.name}" class="product-thumbnail__image">
+                                </div>
+                                <span class="product-thumbnail__quantity unprintable">${item.quantity}</span>
+                            </div>
+                        </td>
+                        <th class="product__description">
+                            <span class="product__description__name">${item.name}</span>
+                        </th>
+                        <td class="product__quantity printable-only">
+                            x ${item.quantity}
+                        </td>
+                        <td class="product__price">
+                            ${formatPrice(itemPrice * item.quantity)}
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            itemsContainer.innerHTML = itemsHtml;
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+        }
+    </script>
+</body>
+</html>

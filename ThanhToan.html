@@ -1417,25 +1417,14 @@
         submitBtn.disabled = true;
 
         setTimeout(() => {
+          // Save order data to localStorage for invoice page
+          localStorage.setItem('lastOrder', JSON.stringify(orderData));
+          
           // Clear cart after successful order
           localStorage.removeItem("sunschool_cart");
 
-          alert(
-            `Đặt hàng thành công!\\n\\nThông tin đơn hàng:\\nKhách hàng: ${
-              orderData.customerInfo.name
-            }\\nEmail: ${
-              orderData.customerInfo.email
-            }\\nTạm tính: ${formatPrice(
-              orderData.subtotal
-            )}\\nPhí vận chuyển: ${formatPrice(
-              orderData.shippingFee
-            )}\\nTổng tiền: ${formatPrice(
-              orderData.total
-            )}\\n\\nCảm ơn bạn đã mua hàng!`
-          );
-
-          // Redirect to home page
-          window.location.href = "./index.html";
+          // Redirect to invoice page
+          window.location.href = "./HoaDon.html";
         }, 2000);
       }
     </script>
