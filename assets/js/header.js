@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
       <div class="cart-dropdown-buttons">
         <a href="./GioHang.html" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
-        <a href="./GioHang.html" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
+        <a href="./ThanhToan.html" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
       </div>
     `;
 
