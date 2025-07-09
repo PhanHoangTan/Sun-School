@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="./assets/css/scroll-top.css" />
     <link rel="stylesheet" href="./assets/css/breadcrumb.css" />
     <link rel="stylesheet" href="./assets/css/checkout.css" />
-  
+
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
@@ -248,9 +248,7 @@
                             <div class="field field--show-floating-label">
                               <div
                                 class="field__input-wrapper field__input-wrapper--select2">
-                                <label
-                                  for="billingWard"
-                                  class="field__label">
+                                <label for="billingWard" class="field__label">
                                   Phường/Xã (tùy chọn)
                                 </label>
                                 <select
@@ -320,8 +318,42 @@
 
                           <div
                             class="alert alert--info"
-                            data-bind-show="!isLoadingShippingMethod && isAddressSelecting">
+                            id="shipping-info-alert"
+                            style="display: block">
                             Vui lòng nhập thông tin giao hàng
+                          </div>
+
+                          <div id="shipping-methods" style="display: none">
+                            <div class="content-box">
+                              <div class="content-box__row">
+                                <div class="radio-wrapper">
+                                  <div class="radio__input">
+                                    <input
+                                      name="shippingMethod"
+                                      id="shippingMethod-standard"
+                                      type="radio"
+                                      class="input-radio"
+                                      value="standard"
+                                      checked />
+                                  </div>
+                                  <label
+                                    for="shippingMethod-standard"
+                                    class="radio__label">
+                                    <span class="radio__label__primary">
+                                      Giao hàng tiêu chuẩn
+                                    </span>
+                                    <span class="radio__label__accessory">
+                                      <span class="radio__label__price"
+                                        >40.000₫</span
+                                      >
+                                    </span>
+                                  </label>
+                                </div>
+                                <div class="content-box__row__desc">
+                                  <p>Giao hàng trong 2-3 ngày làm việc</p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </section>
@@ -533,13 +565,8 @@
 
                             <tr class="total-line total-line--shipping-fee">
                               <th class="total-line__name">Phí vận chuyển</th>
-                              <td class="total-line__price">
-                                <span
-                                  class="origin-price"
-                                  data-bind="getTextShippingPriceOriginal()"></span>
-                                <span data-bind="getTextShippingPriceFinal()"
-                                  >-</span
-                                >
+                              <td class="total-line__price" id="shipping-fee">
+                                <span id="shipping-price">-</span>
                               </td>
                             </tr>
                           </tbody>
@@ -966,6 +993,21 @@
           }
         });
 
+        // Monitor address fields for shipping calculation
+        const addressFields = [
+          "billingProvince",
+          "billingDistrict",
+          "billingAddress",
+        ];
+
+        addressFields.forEach((fieldId) => {
+          const field = document.getElementById(fieldId);
+          if (field) {
+            field.addEventListener("change", checkAddressCompletion);
+            field.addEventListener("input", checkAddressCompletion);
+          }
+        });
+
         // Province selection handler (removed - now handled by vietnam-address.js)
 
         // Discount code functionality
@@ -1105,10 +1147,26 @@
           subtotalElement.textContent = formatPrice(subtotal);
         }
 
-        // Update total (for now, same as subtotal since shipping is free)
+        // Get shipping fee
+        let shippingFee = 0;
+        const shippingPriceElement = document.getElementById("shipping-price");
+        if (shippingPriceElement && shippingPriceElement.textContent !== "-") {
+          const shippingText = shippingPriceElement.textContent;
+          const matches = shippingText.match(/[\d,.]+/g);
+          if (matches && matches.length > 0) {
+            shippingFee = parseFloat(
+              matches[0].replace(/\./g, "").replace(/,/g, "")
+            );
+          }
+        }
+
+        // Calculate total with shipping
+        const total = subtotal + shippingFee;
+
+        // Update total
         const totalElement = document.getElementById("total-price");
         if (totalElement) {
-          totalElement.textContent = formatPrice(subtotal);
+          totalElement.textContent = formatPrice(total);
         }
       }
 
@@ -1142,6 +1200,68 @@
             field.classList.add("field--show-floating-label");
           } else {
             field.classList.remove("field--show-floating-label");
+          }
+        }
+      }
+
+      function checkAddressCompletion() {
+        const province = document.getElementById("billingProvince").value;
+        const district = document.getElementById("billingDistrict").value;
+        const address = document.getElementById("billingAddress").value;
+
+        // Check if essential address fields are filled
+        if (province && district && address.trim()) {
+          loadShippingMethods();
+        } else {
+          // Hide shipping methods if address is incomplete
+          document.getElementById("shipping-info-alert").style.display =
+            "block";
+          document.getElementById("shipping-methods").style.display = "none";
+          updateShippingFee(0);
+        }
+      }
+
+      function loadShippingMethods() {
+        // Show loading spinner
+        const shippingAlert = document.getElementById("shipping-info-alert");
+        const shippingMethods = document.getElementById("shipping-methods");
+        const loadingSpinner = document.querySelector(".alert--loader");
+
+        shippingAlert.style.display = "none";
+        shippingMethods.style.display = "none";
+
+        if (loadingSpinner) {
+          loadingSpinner.classList.remove("hide");
+        }
+
+        // Simulate loading time
+        setTimeout(() => {
+          if (loadingSpinner) {
+            loadingSpinner.classList.add("hide");
+          }
+
+          shippingMethods.style.display = "block";
+          updateShippingFee(40000); // 40,000 VND shipping fee
+
+          // Recalculate totals with shipping
+          const cartData = localStorage.getItem("sunschool_cart");
+          let cart = [];
+          try {
+            cart = cartData ? JSON.parse(cartData) : [];
+          } catch (e) {
+            cart = [];
+          }
+          calculateTotals(cart);
+        }, 1500); // 1.5 second loading time
+      }
+
+      function updateShippingFee(fee) {
+        const shippingPriceElement = document.getElementById("shipping-price");
+        if (shippingPriceElement) {
+          if (fee > 0) {
+            shippingPriceElement.textContent = formatPrice(fee);
+          } else {
+            shippingPriceElement.textContent = "-";
           }
         }
       }
@@ -1223,6 +1343,20 @@
 
         // Collect form data
         const formData = new FormData(e.target);
+
+        // Calculate shipping fee
+        let shippingFee = 0;
+        const shippingPriceElement = document.getElementById("shipping-price");
+        if (shippingPriceElement && shippingPriceElement.textContent !== "-") {
+          const shippingText = shippingPriceElement.textContent;
+          const matches = shippingText.match(/[\d,.]+/g);
+          if (matches && matches.length > 0) {
+            shippingFee = parseFloat(
+              matches[0].replace(/\./g, "").replace(/,/g, "")
+            );
+          }
+        }
+
         const orderData = {
           customerInfo: {
             email: formData.get("email"),
@@ -1238,12 +1372,14 @@
               formData.get("billingDistrict"),
               formData.get("billingWard"),
               formData.get("billingAddress")
-            )
+            ),
           },
           items: cart,
           paymentMethod: formData.get("paymentMethod"),
+          shippingMethod: formData.get("shippingMethod"),
+          shippingFee: shippingFee,
           note: formData.get("note"),
-          total: cart.reduce((total, item) => {
+          subtotal: cart.reduce((total, item) => {
             let itemPrice = 0;
             if (item.price && !item.price.includes("Liên hệ")) {
               const priceString = item.price;
@@ -1256,6 +1392,20 @@
             }
             return total + itemPrice * item.quantity;
           }, 0),
+          total:
+            cart.reduce((total, item) => {
+              let itemPrice = 0;
+              if (item.price && !item.price.includes("Liên hệ")) {
+                const priceString = item.price;
+                const matches = priceString.match(/[\d,.]+/g);
+                if (matches && matches.length > 0) {
+                  itemPrice = parseFloat(
+                    matches[0].replace(/\./g, "").replace(/,/g, "")
+                  );
+                }
+              }
+              return total + itemPrice * item.quantity;
+            }, 0) + shippingFee,
         };
 
         // Simulate order submission
@@ -1275,7 +1425,11 @@
               orderData.customerInfo.name
             }\\nEmail: ${
               orderData.customerInfo.email
-            }\\nTổng tiền: ${formatPrice(
+            }\\nTạm tính: ${formatPrice(
+              orderData.subtotal
+            )}\\nPhí vận chuyển: ${formatPrice(
+              orderData.shippingFee
+            )}\\nTổng tiền: ${formatPrice(
               orderData.total
             )}\\n\\nCảm ơn bạn đã mua hàng!`
           );
