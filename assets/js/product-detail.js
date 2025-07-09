@@ -355,9 +355,19 @@ class ProductDetailManager {
     // Handle course registration
     const product = this.findProductById(productId);
     if (product) {
+      // Get quantity from input if exists, default to 1
+      const quantityInput = document.querySelector('input[name="quantity"], .quantity-input');
+      const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+      
+      // Add quantity to product object
+      const productWithQuantity = {
+        ...product,
+        quantity: quantity
+      };
+      
       // Call the cart manager to add the product to cart and show modal
       if (window.cartManager) {
-        window.cartManager.addToCart(product);
+        window.cartManager.addToCart(productWithQuantity);
       }
     }
   }

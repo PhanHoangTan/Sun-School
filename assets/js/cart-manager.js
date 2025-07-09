@@ -54,6 +54,9 @@ class CartManager {
     this.saveCartToStorage();
     this.updateCartCount();
     this.updateCartDropdown();
+    
+    // Show cart modal if it exists (for product detail page)
+    this.showCartModal(product);
 
     return this.cart;
   }
@@ -161,6 +164,123 @@ class CartManager {
     })
       .format(price)
       .replace("₫", "đ");
+  }
+
+  // Show cart modal after adding product (for product detail page)
+  showCartModal(addedProduct) {
+    const modal = document.getElementById('cartModal');
+    if (!modal) return; // Modal doesn't exist on this page
+    
+    // Update modal content
+    this.updateCartModalContent(addedProduct);
+    
+    // Show modal using Bootstrap
+    if (window.jQuery && window.jQuery.fn.modal) {
+      window.jQuery('#cartModal').modal('show');
+    } else {
+      // Fallback if jQuery/Bootstrap modal not available
+      modal.style.display = 'block';
+      modal.classList.add('show');
+      document.body.classList.add('modal-open');
+      
+      // Create backdrop
+      const backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop fade show';
+      document.body.appendChild(backdrop);
+      
+      // Close modal when clicking backdrop or close button
+      const closeModal = () => {
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        if (backdrop.parentNode) {
+          backdrop.parentNode.removeChild(backdrop);
+        }
+      };
+      
+      backdrop.addEventListener('click', closeModal);
+      modal.querySelector('.close').addEventListener('click', closeModal);
+    }
+  }
+
+  // Update cart modal content
+  updateCartModalContent(addedProduct) {
+    // Update product name
+    const productNameEl = document.getElementById('modal-product-name');
+    if (productNameEl && addedProduct) {
+      productNameEl.textContent = addedProduct.name;
+    }
+    
+    // Update cart count
+    const cartCountEl = document.getElementById('modal-cart-count');
+    if (cartCountEl) {
+      cartCountEl.textContent = this.cart.length;
+    }
+    
+    // Update cart items
+    const cartItemsEl = document.getElementById('modal-cart-items');
+    if (cartItemsEl) {
+      cartItemsEl.innerHTML = this.generateModalCartItems();
+    }
+    
+    // Update cart total
+    const cartTotalEl = document.getElementById('modal-cart-total');
+    if (cartTotalEl) {
+      const total = this.calculateTotal();
+      cartTotalEl.textContent = this.formatPrice(total);
+    }
+  }
+
+  // Generate cart items HTML for modal
+  generateModalCartItems() {
+    if (this.cart.length === 0) {
+      return '<div class="text-center text-muted">Giỏ hàng trống</div>';
+    }
+    
+    return this.cart.map(item => {
+      const itemPrice = this.getItemPrice(item);
+      const itemTotal = itemPrice * item.quantity;
+      
+      // Ensure image URL is valid
+      let imageUrl = item.image || '';
+      if (imageUrl.startsWith('//')) {
+        imageUrl = 'https:' + imageUrl;
+      }
+      
+      return `
+        <div class="cart-item">
+          <img src="${imageUrl}" alt="${item.name}" class="cart-item-image">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-details">x ${item.quantity}</div>
+          </div>
+          <div class="cart-item-price">${this.formatPrice(itemTotal)}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Get price of a single item
+  getItemPrice(item) {
+    if (!item.price || item.price.includes("Liên hệ")) {
+      return 0;
+    }
+    
+    const priceString = item.price;
+    const matches = priceString.match(/[\d,.]+/g);
+    if (matches && matches.length > 0) {
+      return parseFloat(matches[0].replace(/\./g, "").replace(/,/g, ""));
+    }
+    
+    return 0;
+  }
+
+  // Calculate total cart value
+  calculateTotal() {
+    return this.cart.reduce((total, item) => {
+      const itemPrice = this.getItemPrice(item);
+      return total + (itemPrice * item.quantity);
+    }, 0);
   }
 
   // Update cart dropdown in header

@@ -37,6 +37,120 @@
         z-index: 1000 !important;
         width: 100% !important;
       }
+      
+      /* Cart Modal Styles */
+      #cartModal .modal-content {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+      
+      #cartModal .modal-header {
+        border-bottom: none;
+        padding: 15px 20px 0;
+      }
+      
+      #cartModal .close {
+        padding: 0;
+        margin: 0;
+        font-size: 28px;
+        font-weight: 300;
+        color: #999;
+        opacity: 0.7;
+      }
+      
+      #cartModal .close:hover {
+        opacity: 1;
+        color: #333;
+      }
+      
+      #cartModal .success-icon {
+        color: #28a745;
+      }
+      
+      #cartModal .cart-summary {
+        background-color: #f8f9fa !important;
+        border: 1px solid #e9ecef;
+      }
+      
+      #cartModal .cart-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      #cartModal .cart-item:last-child {
+        border-bottom: none;
+      }
+      
+      #cartModal .cart-item-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        object-fit: cover;
+        margin-right: 15px;
+      }
+      
+      #cartModal .cart-item-info {
+        flex: 1;
+      }
+      
+      #cartModal .cart-item-name {
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+      
+      #cartModal .cart-item-details {
+        font-size: 12px;
+        color: #666;
+      }
+      
+      #cartModal .cart-item-price {
+        font-weight: 600;
+        color: #007bff;
+        font-size: 14px;
+      }
+      
+      #cartModal .free-shipping-notice {
+        background-color: #17a2b8 !important;
+        font-size: 13px;
+      }
+      
+      #cartModal .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+        color: #212529;
+        font-weight: 600;
+      }
+      
+      #cartModal .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+      }
+      
+      #cartModal .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+        font-weight: 600;
+      }
+      
+      #cartModal .btn-outline-primary:hover {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      
+      @media (max-width: 768px) {
+        #cartModal .modal-dialog {
+          margin: 10px;
+        }
+        
+        #cartModal .modal-body {
+          padding: 20px 15px;
+        }
+      }
     </style>
 
     <!-- Google Fonts -->
@@ -424,6 +538,72 @@
         </div>
       </div>
     </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-0 pb-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Success Message -->
+            <div class="text-center mb-4">
+              <div class="success-icon mb-3">
+                <i class="fas fa-check-circle text-success" style="font-size: 48px;"></i>
+              </div>
+              <h5 class="modal-title font-weight-bold">Bạn đã thêm <span class="text-warning" id="modal-product-name">TIẾNG ANH THIẾU NHI</span> vào giỏ hàng</h5>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary bg-light p-3 rounded">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="font-weight-bold">Giỏ hàng của bạn (<span id="modal-cart-count">2</span> sản phẩm)</span>
+              </div>
+              
+              <!-- Cart Items -->
+              <div id="modal-cart-items">
+                <!-- Cart items will be populated by JavaScript -->
+              </div>
+              
+              <!-- Free Shipping Notice -->
+              <div class="free-shipping-notice mt-3 p-2 bg-info text-white rounded">
+                <small>
+                  <i class="fas fa-truck mr-2"></i>
+                  Lắp đặt và vận chuyển miễn phí nội thành Hà Nội và TP Hồ Chí Minh
+                </small>
+              </div>
+              
+              <!-- Total -->
+              <div class="cart-total mt-3 pt-3 border-top">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="h6 mb-0">Thành tiền:</span>
+                  <span class="h5 mb-0 text-success font-weight-bold" id="modal-cart-total">3.000.000₫</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="row mt-4">
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal">
+                  <i class="fas fa-arrow-left mr-2"></i>
+                  Tiếp tục mua hàng
+                </button>
+              </div>
+              <div class="col-6">
+                <a href="./ThanhToan.html" class="btn btn-warning btn-block">
+                  <i class="fas fa-credit-card mr-2"></i>
+                  Tiến hành đặt hàng
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Scroll to top button -->
     <div id="back-to-top" class="back-to-top">
