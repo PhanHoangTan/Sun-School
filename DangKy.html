@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đăng nhập - SunShine School</title>
+    <title>Đăng ký tài khoản - SunShine School</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -56,7 +56,7 @@
                   <i class="fa-solid fa-chevron-right"></i>
                 </li>
                 <li>
-                  <span>Đăng nhập tài khoản</span>
+                  <span>Đăng ký tài khoản</span>
                 </li>
               </ul>
             </div>
@@ -64,38 +64,61 @@
         </div>
       </section>
 
-      <!-- About Content Section -->
+      <!-- Register Content Section -->
       <section class="page">
         <div class="container">
-          <h1 class="default_title"><span>Đăng nhập tài khoản</span></h1>
           <div class="row">
-            <div class="col-lg-6">
-              <div class="page-login margin-bottom-30">
-                <div id="login">
-                  <span> Nếu bạn đã có tài khoản, đăng nhập tại đây. </span>
+            <div class="col-lg-12">
+              <div class="page-register">
+                <div id="register">
+                  <span>Tạo tài khoản mới để trải nghiệm những dịch vụ tốt nhất.</span>
                   <form
                     method="post"
-                    action="/account/login"
-                    id="customer_login"
+                    action="/account/register"
+                    id="customer_register"
                     accept-charset="UTF-8">
                     <input
                       name="FormType"
                       type="hidden"
-                      value="customer_login" />
+                      value="customer_register" />
                     <input name="utf8" type="hidden" value="true" />
-                    <input
-                      name="ReturnUrl"
-                      type="hidden"
-                      value="/checkout/c2e136cde34b4e39beb7ae05467493aa" />
                     <div
                       class="form-signup error-display"
-                      id="login-error-message">
+                      id="register-error-message">
                       <!-- Error messages will be displayed here -->
                     </div>
                     <div class="form-signup clearfix">
-                      <br />
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                          <fieldset class="form-group">
+                            <label class="color_main">Họ: *</label>
+                            <input
+                              type="text"
+                              class="form-control form-control-lg"
+                              value=""
+                              name="first_name"
+                              id="customer_first_name"
+                              placeholder="Họ"
+                              required="" />
+                          </fieldset>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                          <fieldset class="form-group">
+                            <label class="color_main">Tên: *</label>
+                            <input
+                              type="text"
+                              class="form-control form-control-lg"
+                              value=""
+                              name="last_name"
+                              id="customer_last_name"
+                              placeholder="Tên"
+                              required="" />
+                          </fieldset>
+                        </div>
+                      </div>
+                      
                       <fieldset class="form-group">
-                        <label class="color_main">Email: </label>
+                        <label class="color_main">Email: *</label>
                         <input
                           type="email"
                           class="form-control form-control-lg"
@@ -105,8 +128,9 @@
                           placeholder="Email"
                           required="" />
                       </fieldset>
+                      
                       <fieldset class="form-group">
-                        <label class="color_main">Mật khẩu: </label>
+                        <label class="color_main">Mật khẩu: *</label>
                         <input
                           type="password"
                           class="form-control form-control-lg"
@@ -116,20 +140,43 @@
                           placeholder="Mật khẩu"
                           required="" />
                       </fieldset>
+                      
+                      <fieldset class="form-group">
+                        <label class="color_main">Xác nhận mật khẩu: *</label>
+                        <input
+                          type="password"
+                          class="form-control form-control-lg"
+                          value=""
+                          name="confirm_password"
+                          id="customer_confirm_password"
+                          placeholder="Xác nhận mật khẩu"
+                          required="" />
+                      </fieldset>
+                      
+                      <fieldset class="form-group">
+                        <label class="color_main">Số điện thoại:</label>
+                        <input
+                          type="tel"
+                          class="form-control form-control-lg"
+                          value=""
+                          name="phone"
+                          id="customer_phone"
+                          placeholder="Số điện thoại" />
+                      </fieldset>
 
                       <div class="pull-xs-left form-actions">
                         <input
                           class="btn btn-style"
                           type="submit"
-                          value="Đăng nhập" />
+                          value="Đăng ký" />
                         <a
-                          href="./DangKy.html"
-                          class="btn-link-style btn-register btn-register-inline"
-                          >Đăng ký</a
+                          href="./DangNhap.html"
+                          class="btn-link-style btn-login btn-login-inline"
+                          >Đăng nhập</a
                         >
 
                         <div class="block social-login--facebooks">
-                          <p class="a-center">Hoặc đăng nhập bằng</p>
+                          <p class="a-center">Hoặc đăng ký bằng</p>
                           <script>
                             function loginFacebook() {
                               var a = {
@@ -208,73 +255,15 @@
                       <br /><br />
                     </div>
                   </form>
-                  <div class="row">
-                    <div id="social_login_widget"></div>
-                  </div>
 
-                  <!-- Demo credentials note -->
-                  <div class="demo-note login-demo">
-                    <strong>Thông tin đăng nhập demo:</strong><br />
-                    Email: <code>admin@sunschool.com</code> - Mật khẩu:
-                    <code>123456</code><br />
-                    Email: <code>user@example.com</code> - Mật khẩu:
-                    <code>password</code><br />
-                    Email: <code>test@test.com</code> - Mật khẩu:
-                    <code>test123</code>
+                  <!-- Demo note for registration -->
+                  <div class="demo-note register-demo">
+                    <strong>Lưu ý:</strong><br />
+                    - Các trường có dấu (*) là bắt buộc<br />
+                    - Mật khẩu phải có ít nhất 6 ký tự<br />
+                    - Email phải là định dạng hợp lệ<br />
+                    - Số điện thoại (không bắt buộc) sẽ được sử dụng để hỗ trợ tốt hơn
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div id="recover-password" class="form-signup">
-                <span>
-                  Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua
-                  email.
-                </span>
-                <br />
-                <form
-                  method="post"
-                  action="/account/recover"
-                  id="recover_customer_password"
-                  accept-charset="UTF-8">
-                  <input
-                    name="FormType"
-                    type="hidden"
-                    value="recover_customer_password" />
-                  <input name="utf8" type="hidden" value="true" />
-                  <div
-                    class="form-signup error-display"
-                    id="recover-error-message">
-                    <!-- Error messages will be displayed here -->
-                  </div>
-                  <div class="form-signup clearfix">
-                    <fieldset class="form-group">
-                      <label class="color_main">Email: </label>
-                      <input
-                        type="email"
-                        class="form-control form-control-lg"
-                        value=""
-                        name="Email"
-                        id="recover-email"
-                        placeholder="Email"
-                        required="" />
-                    </fieldset>
-                  </div>
-                  <div class="action_bottom">
-                    <input
-                      class="btn btn-style recovery-button"
-                      type="submit"
-                      value="Lấy lại mật khẩu" />
-                    <br /><br />
-                  </div>
-                </form>
-
-                <!-- Demo note for password recovery -->
-                <div class="demo-note recovery-demo">
-                  <strong>Email hợp lệ cho demo:</strong><br />
-                  <code>admin@sunschool.com</code><br />
-                  <code>user@example.com</code><br />
-                  <code>test@test.com</code>
                 </div>
               </div>
             </div>
@@ -282,18 +271,82 @@
         </div>
 
         <script type="text/javascript">
-          function showRecoverPasswordForm() {
-            document.getElementById("recover-password").style.display = "block";
-            document.getElementById("login").style.display = "none";
+          // Form validation for registration
+          document.getElementById('customer_register').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('customer_first_name').value.trim();
+            const lastName = document.getElementById('customer_last_name').value.trim();
+            const email = document.getElementById('customer_email').value.trim();
+            const password = document.getElementById('customer_password').value;
+            const confirmPassword = document.getElementById('customer_confirm_password').value;
+            const phone = document.getElementById('customer_phone').value.trim();
+            
+            const errorMessage = document.getElementById('register-error-message');
+            
+            // Clear previous error messages
+            errorMessage.innerHTML = '';
+            errorMessage.style.display = 'none';
+            
+            // Validate required fields
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+              showError('Vui lòng điền đầy đủ thông tin bắt buộc.');
+              return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              showError('Định dạng email không hợp lệ.');
+              return;
+            }
+            
+            // Validate password length
+            if (password.length < 6) {
+              showError('Mật khẩu phải có ít nhất 6 ký tự.');
+              return;
+            }
+            
+            // Validate password confirmation
+            if (password !== confirmPassword) {
+              showError('Mật khẩu xác nhận không khớp.');
+              return;
+            }
+            
+            // Validate phone number if provided
+            if (phone && !/^[0-9\+\-\s\(\)]{10,15}$/.test(phone)) {
+              showError('Số điện thoại không hợp lệ (10-15 số).');
+              return;
+            }
+            
+            // Demo registration - show success message
+            showSuccess('Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập...');
+            
+            // Redirect to login page after 2 seconds
+            setTimeout(function() {
+              window.location.href = './DangNhap.html';
+            }, 2000);
+          });
+          
+          function showError(message) {
+            const errorMessage = document.getElementById('register-error-message');
+            errorMessage.innerHTML = '<div class="error-message"><i class="fa fa-exclamation-circle"></i> ' + message + '</div>';
+            errorMessage.style.display = 'block';
+            
+            // Scroll to error message
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
-
-          function hideRecoverPasswordForm() {
-            document.getElementById("recover-password").style.display = "none";
-            document.getElementById("login").style.display = "block";
+          
+          function showSuccess(message) {
+            const errorMessage = document.getElementById('register-error-message');
+            errorMessage.innerHTML = '<div class="success-message"><i class="fa fa-check-circle"></i> ' + message + '</div>';
+            errorMessage.style.display = 'block';
+            
+            // Scroll to success message
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         </script>
       </section>
-
       <!-- Brand Partners Section -->
       <section class="section_brand">
         <div class="container">
