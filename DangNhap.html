@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập - SunShine School</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+    <!-- Custom CSS - loaded after Bootstrap to override its styles -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/facilities.css" />
+    <link rel="stylesheet" href="./assets/css/blog.css" />
+    <link rel="stylesheet" href="./assets/css/kinh-nghiem-hay.css" />
+    <link rel="stylesheet" href="./assets/css/brand-partners.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link rel="stylesheet" href="./assets/css/scroll-top.css" />
+    <link rel="stylesheet" href="./assets/css/breadcrumb.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet" />
+    <!-- Swiper Slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+    <!-- Testimonial CSS -->
+    <link rel="stylesheet" href="./assets/css/testimonials.css" />
+    <!-- Services CSS -->
+    <link rel="stylesheet" href="./assets/css/services.css" />
+
+    <!-- Override Bootstrap breadcrumb styles with our custom styles -->
+    <style>
+      /* Login Page Styles */
+      .default_title {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 20px 0;
+      }
+
+      .default_title span {
+        color: #ff8c00;
+        font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+        position: relative;
+      }
+
+      .default_title span:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+      }
+
+      .page-login {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+      }
+
+      .form-signup {
+        margin-top: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .color_main {
+        color: #333;
+      }
+
+      .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 6px;
+        padding: 12px 15px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: #ff8c00;
+        box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+        outline: none;
+      }
+
+      .btn-style {
+        background: linear-gradient(135deg, #ff8c00, #ffa500);
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-style:hover {
+        background: linear-gradient(135deg, #e67e00, #ff9500);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+      }
+
+      .btn-register {
+        color: #ff9248 !important;
+        text-decoration: underline !important;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .btn-register:hover {
+        color: #e67e00 !important;
+        text-decoration: none !important;
+      }
+
+      .social-login--facebooks {
+        margin-top: 25px;
+        text-align: center;
+      }
+
+      .social-login--facebooks p {
+        margin-bottom: 15px;
+        color: #666;
+        font-size: 14px;
+      }
+
+      .social-login--facebook,
+      .social-login--google {
+        display: inline-block;
+        margin: 0 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .social-login--facebook:hover,
+      .social-login--google:hover {
+        transform: translateY(-2px);
+      }
+
+      .social-login--facebook img,
+      .social-login--google img {
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      #recover-password {
+        padding: 30px;
+        border-radius: 8px;
+      }
+
+      #recover-password span {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .pull-xs-left {
+        float: left;
+        width: 100%;
+      }
+
+      .action_bottom {
+        margin-top: 20px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .default_title span {
+          font-size: 24px;
+        }
+
+        .page-login,
+        #recover-password {
+          padding: 20px;
+        }
+
+        .btn-style {
+          width: 100%;
+          margin-bottom: 15px;
+        }
+
+        .btn-register {
+          margin-left: 0 !important;
+          display: block;
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Component -->
+    <!-- Content of the header is in forms/components/header.html -->
+    <div id="header-container"></div>
+
+    <main>
+      <!-- Breadcrumb Section -->
+      <section class="bread-crumb">
+        <div class="container">
+          <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-content">
+              <ul class="breadcrumb">
+                <li class="home">
+                  <a href="/">Trang chủ</a>
+                  <i class="fa-solid fa-chevron-right"></i>
+                </li>
+                <li>
+                  <span>Đăng nhập tài khoản</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Content Section -->
+      <section class="page">
+        <div class="container">
+          <h1 class="default_title"><span>Đăng nhập tài khoản</span></h1>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="page-login margin-bottom-30">
+                <div id="login">
+                  <span> Nếu bạn đã có tài khoản, đăng nhập tại đây. </span>
+                  <form
+                    method="post"
+                    action="/account/login"
+                    id="customer_login"
+                    accept-charset="UTF-8">
+                    <input
+                      name="FormType"
+                      type="hidden"
+                      value="customer_login" />
+                    <input name="utf8" type="hidden" value="true" />
+                    <input
+                      name="ReturnUrl"
+                      type="hidden"
+                      value="/checkout/c2e136cde34b4e39beb7ae05467493aa" />
+                    <div class="form-signup" style="color: red">
+                      <!-- Error messages will be displayed here -->
+                    </div>
+                    <div class="form-signup clearfix">
+                      <br />
+                      <fieldset class="form-group">
+                        <label class="color_main">Email: </label>
+                        <input
+                          type="email"
+                          class="form-control form-control-lg"
+                          value=""
+                          name="email"
+                          id="customer_email"
+                          placeholder="Email"
+                          required="" />
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <label class="color_main">Mật khẩu: </label>
+                        <input
+                          type="password"
+                          class="form-control form-control-lg"
+                          value=""
+                          name="password"
+                          id="customer_password"
+                          placeholder="Mật khẩu"
+                          required="" />
+                      </fieldset>
+
+                      <div class="pull-xs-left" style="margin-top: 25px">
+                        <input
+                          class="btn btn-style"
+                          type="submit"
+                          value="Đăng nhập" />
+                        <a
+                          href="./DangKy.html"
+                          class="btn-link-style btn-register"
+                          style="
+                            margin-left: 20px;
+                            color: #ff9248;
+                            text-decoration: underline;
+                          "
+                          >Đăng ký</a
+                        >
+
+                        <div class="block social-login--facebooks">
+                          <p class="a-center">Hoặc đăng nhập bằng</p>
+                          <script>
+                            function loginFacebook() {
+                              var a = {
+                                  client_id: "947410958642584",
+                                  redirect_uri:
+                                    "https://store.mysapo.net/account/facebook_account_callback",
+                                  state: JSON.stringify({
+                                    redirect_url: window.location.href,
+                                  }),
+                                  scope: "email",
+                                  response_type: "code",
+                                },
+                                b =
+                                  "https://www.facebook.com/v3.2/dialog/oauth" +
+                                  encodeURIParams(a, !0);
+                              window.location.href = b;
+                            }
+                            function loginGoogle() {
+                              var a = {
+                                  client_id:
+                                    "997675985899-pu3vhvc2rngfcuqgh5ddgt7mpibgrasr.apps.googleusercontent.com",
+                                  redirect_uri:
+                                    "https://store.mysapo.net/account/google_account_callback",
+                                  scope:
+                                    "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+                                  access_type: "online",
+                                  state: JSON.stringify({
+                                    redirect_url: window.location.href,
+                                  }),
+                                  response_type: "code",
+                                },
+                                b =
+                                  "https://accounts.google.com/o/oauth2/v2/auth" +
+                                  encodeURIParams(a, !0);
+                              window.location.href = b;
+                            }
+                            function encodeURIParams(a, b) {
+                              var c = [];
+                              for (var d in a)
+                                if (a.hasOwnProperty(d)) {
+                                  var e = a[d];
+                                  null != e &&
+                                    c.push(
+                                      encodeURIComponent(d) +
+                                        "=" +
+                                        encodeURIComponent(e)
+                                    );
+                                }
+                              return 0 == c.length
+                                ? ""
+                                : (b ? "?" : "") + c.join("&");
+                            }
+                          </script>
+                          <a
+                            href="javascript:void(0)"
+                            class="social-login--facebook"
+                            onclick="loginFacebook()">
+                            <img
+                              width="129px"
+                              height="37px"
+                              alt="facebook-login-button"
+                              src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg" />
+                          </a>
+                          <a
+                            href="javascript:void(0)"
+                            class="social-login--google"
+                            onclick="loginGoogle()">
+                            <img
+                              width="129px"
+                              height="37px"
+                              alt="google-login-button"
+                              src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg" />
+                          </a>
+                        </div>
+                      </div>
+                      <br /><br />
+                    </div>
+                  </form>
+                  <div class="row">
+                    <div id="social_login_widget"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div id="recover-password" class="form-signup">
+                <span>
+                  Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua
+                  email.
+                </span>
+                <br />
+                <form
+                  method="post"
+                  action="/account/recover"
+                  id="recover_customer_password"
+                  accept-charset="UTF-8">
+                  <input
+                    name="FormType"
+                    type="hidden"
+                    value="recover_customer_password" />
+                  <input name="utf8" type="hidden" value="true" />
+                  <div class="form-signup" style="color: red">
+                    <!-- Error messages will be displayed here -->
+                    <br />
+                  </div>
+                  <div class="form-signup clearfix">
+                    <fieldset class="form-group">
+                      <label class="color_main">Email: </label>
+                      <input
+                        type="email"
+                        class="form-control form-control-lg"
+                        value=""
+                        name="Email"
+                        id="recover-email"
+                        placeholder="Email"
+                        required="" />
+                    </fieldset>
+                  </div>
+                  <div class="action_bottom">
+                    <input
+                      class="btn btn-style"
+                      style="margin-top: 10px"
+                      type="submit"
+                      value="Lấy lại mật khẩu" />
+                    <br /><br />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          function showRecoverPasswordForm() {
+            document.getElementById("recover-password").style.display = "block";
+            document.getElementById("login").style.display = "none";
+          }
+
+          function hideRecoverPasswordForm() {
+            document.getElementById("recover-password").style.display = "none";
+            document.getElementById("login").style.display = "block";
+          }
+        </script>
+      </section>
+
+      <!-- Brand Partners Section -->
+      <section class="section_brand">
+        <div class="container">
+          <div class="brand">
+            <div
+              class="brand-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
+              style="cursor: grab">
+              <div
+                class="swiper-wrapper"
+                style="transform: translate3d(0px, 0px, 0px)">
+                <div
+                  class="swiper-slide swiper-slide-active"
+                  style="width: 130px; margin-right: 50px">
+                  <a href="#" title="Đối tác 1">
+                    <img
+                      width="150"
+                      height="90"
+                      src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_1.jpg?1676015309640"
+                      alt="Đối tác 1"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide swiper-slide-next"
+                  style="width: 130px; margin-right: 50px">
+                  <a href="#" title="Đối tác 2">
+                    <img
+                      width="150"
+                      height="90"
+                      src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_2.jpg?1676015309640"
+                      alt="Đối tác 2"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 130px; margin-right: 50px">
+                  <a href="#" title="Đối tác 3">
+                    <img
+                      width="150"
+                      height="90"
+                      src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_3.jpg?1676015309640"
+                      alt="Đối tác 3"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 130px; margin-right: 50px">
+                  <a href="#" title="Đối tác 4">
+                    <img
+                      width="150"
+                      height="90"
+                      src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_4.jpg?1676015309640"
+                      alt="Đối tác 4"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 130px; margin-right: 50px">
+                  <a href="#" title="Đối tác 5">
+                    <img
+                      width="150"
+                      height="90"
+                      src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_5.jpg?1676015309640"
+                      alt="Đối tác 5"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 130px; margin-right: 50px">
+                  <a href="#" title="Đối tác 6">
+                    <img
+                      width="150"
+                      height="90"
+                      src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_6.jpg?1676015309640"
+                      alt="Đối tác 6"
+                      class="img-responsive" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-prev swiper-button-disabled"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="widget">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 no-padding-l">
+              <div class="widget-item">
+                <a class="footer-logo" href="#"
+                  ><img
+                    width="195"
+                    height="77"
+                    alt="SunShine School Theme"
+                    src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/logo_white.png"
+                /></a>
+                <!-- End .widget-title -->
+                <div class="widget-menu infomation">
+                  <div class="time_work">
+                    <div class="item">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="phone-alt"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-phone-alt fa-w-16">
+                        <path
+                          fill="currentColor"
+                          d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"
+                          class=""></path>
+                      </svg>
+                      <a class="fone" href="tel:18006750">1800 6750</a>
+                    </div>
+                    <div class="item">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="map-marker-alt"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                        class="svg-inline--fa fa-map-marker-alt fa-w-12">
+                        <path
+                          fill="currentColor"
+                          d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                          class=""></path>
+                      </svg>
+                      <span class="dc">
+                        Tầng 6, 266 Đội Cấn, Ba Đình, Hà Nội
+                      </span>
+                    </div>
+                    <div class="item">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="envelope"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-envelope fa-w-16">
+                        <path
+                          fill="currentColor"
+                          d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+                          class=""></path>
+                      </svg>
+                      <a href="mailto:support@sapo.vn">support@sapo.vn</a>
+                    </div>
+                  </div>
+                  <div class="social_icon">
+                    <ul>
+                      <li>
+                        <a
+                          target="_blank"
+                          title="Facebook"
+                          href="https://www.facebook.com/"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                              d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          title="Linkedin"
+                          href="https://www.linkedin.com/"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          title="Twitter"
+                          href="https://twitter.com/"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                              d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- End .widget-menu -->
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 no-padding-l">
+              <div class="widget-item">
+                <h4 class="widget-title">Tin nhà trường</h4>
+                <!-- End .widget-title -->
+                <ul class="widget-menu">
+                  <li><a href="#" class="has_icon">Trang chủ</a></li>
+                  <li><a href="#" class="has_icon">Sản phẩm</a></li>
+                  <li>
+                    <a href="#" class="has_icon">Chương trình giáo dục</a>
+                  </li>
+                  <li><a href="#" class="has_icon">Tuyển sinh</a></li>
+                  <li><a href="#" class="has_icon">Tin tức</a></li>
+                  <li><a href="#" class="has_icon">Giới thiệu</a></li>
+                </ul>
+                <!-- End .widget-menu -->
+              </div>
+              <!-- End .widget-item -->
+            </div>
+
+            <div class="col-lg-3 col-md-6 no-padding-l">
+              <div class="widget-item">
+                <h4 class="widget-title">Kinh nghiệm hay</h4>
+                <!-- End .widget-title -->
+                <ul class="widget-menu">
+                  <li><a href="#" class="has_icon">Trang chủ</a></li>
+                  <li><a href="#" class="has_icon">Sản phẩm</a></li>
+                  <li>
+                    <a href="#" class="has_icon">Chương trình giáo dục</a>
+                  </li>
+                  <li><a href="#" class="has_icon">Tuyển sinh</a></li>
+                  <li><a href="#" class="has_icon">Tin tức</a></li>
+                  <li><a href="#" class="has_icon">Giới thiệu</a></li>
+                </ul>
+                <!-- End .widget-menu -->
+              </div>
+              <!-- End .widget-item -->
+            </div>
+            <div class="hidden-xs col-lg-3 col-md-6 no-padding-lr">
+              <div class="widget-item">
+                <h4 class="widget-title">Facebook</h4>
+                <!-- End .widget-title -->
+                <div
+                  class="fb-page fb_iframe_widget"
+                  data-href="https://www.facebook.com/sapo.vn/"
+                  data-small-header="false"
+                  data-adapt-container-width="true"
+                  data-hide-cover="false"
+                  data-show-facepile="true">
+                  <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsapo.vn%2F&tabs&width=255&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                    width="255"
+                    height="130"
+                    style="border: none; overflow: hidden"
+                    scrolling="no"
+                    frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+                <!-- End .widget-menu -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End .widget -->
+      <div class="hidden-xs hidden-sm">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="plane_fly_lg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 copyright-pr no-padding-r">
+              <div
+                class="copyright"
+                style="white-space: nowrap; display: inline-block">
+                © Bản quyền thuộc về <b>Awesome Team</b> | Cung cấp bởi
+                <a
+                  href="https://www.sapo.vn/"
+                  rel="nofollow"
+                  title="Sapo"
+                  target="_blank"
+                  >Sapo</a
+                >
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 no-padding-l">
+              <div class="pull-right">
+                <ul class="bottom_linklist">
+                  <li><a href="#" title="Trang chủ">Trang chủ</a></li>
+                  <li><a href="#" title="Sản phẩm">Sản phẩm</a></li>
+                  <li>
+                    <a href="#" title="Chương trình giáo dục"
+                      >Chương trình giáo dục</a
+                    >
+                  </li>
+                  <li><a href="#" title="Tuyển sinh">Tuyển sinh</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div id="back-to-top" class="back-to-top">
+      <a class="top" href="#" title="Scroll to top">
+        <i class="fa fa-angle-up"></i
+      ></a>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/header.js"></script>
+    <script src="./assets/js/footer.js"></script>
+    <script src="./assets/js/scroll-top.js"></script>
+    <script src="./assets/js/brand-partners.js"></script>
+
+    <!-- Swiper and Login Page Scripts -->
+    <script>
+      var swiperwish = new Swiper(".brand-swiper", {
+        slidesPerView: 5,
+        loop: false,
+        grabCursor: true,
+        spaceBetween: 10,
+        roundLengths: true,
+        slideToClickedSlide: false,
+        autoplay: false,
+        navigation: {
+          nextEl: ".brand .swiper-button-next",
+          prevEl: ".brand .swiper-button-prev",
+        },
+        breakpoints: {
+          300: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          425: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          991: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+          1200: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        },
+      });
+
+      // Facebook SDK
+      setTimeout(function () {
+        (function (d, s, id) {
+          var js,
+            fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s);
+          js.id = id;
+          js.src =
+            "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1653074181574415";
+          fjs.parentNode.insertBefore(js, fjs);
+        })(document, "script", "facebook-jssdk");
+      }, 100);
+
+      // Form handling
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("customer_login");
+        const recoverForm = document.getElementById(
+          "recover_customer_password"
+        );
+
+        if (loginForm) {
+          loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("customer_email").value;
+            const password = document.getElementById("customer_password").value;
+
+            if (!email || !password) {
+              alert("Vui lòng nhập đầy đủ email và mật khẩu!");
+              return;
+            }
+
+            // Simulate login process
+            alert("Đăng nhập thành công! Chuyển hướng về trang thanh toán...");
+            window.location.href = "./ThanhToan.html";
+          });
+        }
+
+        if (recoverForm) {
+          recoverForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("recover-email").value;
+
+            if (!email) {
+              alert("Vui lòng nhập địa chỉ email!");
+              return;
+            }
+
+            alert("Liên kết đặt lại mật khẩu đã được gửi đến email của bạn!");
+          });
+        }
+      });
+    </script>
+
+    <div id="fb-root" class="fb_reset">
+      <div style="position: absolute; top: -10000px; width: 0px; height: 0px">
+        <div></div>
+      </div>
+    </div>
+  </body>
+</html>
