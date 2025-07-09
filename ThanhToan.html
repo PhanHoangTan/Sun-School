@@ -217,69 +217,7 @@
                                   data-address-type="province"
                                   data-address-zone="billing">
                                   <option value="" hidden>---</option>
-                                  <option value="1">Hà Nội</option>
-                                  <option value="2">TP Hồ Chí Minh</option>
-                                  <option value="3">An Giang</option>
-                                  <option value="4">Bà Rịa-Vũng Tàu</option>
-                                  <option value="5">Bắc Giang</option>
-                                  <option value="6">Bắc Kạn</option>
-                                  <option value="7">Bạc Liêu</option>
-                                  <option value="8">Bắc Ninh</option>
-                                  <option value="9">Bến Tre</option>
-                                  <option value="10">Bình Dương</option>
-                                  <option value="11">Bình Định</option>
-                                  <option value="12">Bình Phước</option>
-                                  <option value="13">Bình Thuận</option>
-                                  <option value="14">Cà Mau</option>
-                                  <option value="15">Cao Bằng</option>
-                                  <option value="16">Cần Thơ</option>
-                                  <option value="17">Đà Nẵng</option>
-                                  <option value="18">Đắk Lắk</option>
-                                  <option value="19">Đắk Nông</option>
-                                  <option value="20">Điện Biên</option>
-                                  <option value="21">Đồng Nai</option>
-                                  <option value="22">Đồng Tháp</option>
-                                  <option value="23">Gia Lai</option>
-                                  <option value="24">Hà Giang</option>
-                                  <option value="25">Hà Nam</option>
-                                  <option value="26">Hà Tĩnh</option>
-                                  <option value="27">Hải Dương</option>
-                                  <option value="28">Hải Phòng</option>
-                                  <option value="29">Hậu Giang</option>
-                                  <option value="30">Hòa Bình</option>
-                                  <option value="31">Hưng Yên</option>
-                                  <option value="32">Khánh Hòa</option>
-                                  <option value="33">Kiên Giang</option>
-                                  <option value="34">Kon Tum</option>
-                                  <option value="35">Lai Châu</option>
-                                  <option value="36">Lâm Đồng</option>
-                                  <option value="37">Lạng Sơn</option>
-                                  <option value="38">Lào Cai</option>
-                                  <option value="39">Long An</option>
-                                  <option value="40">Nam Định</option>
-                                  <option value="41">Nghệ An</option>
-                                  <option value="42">Ninh Bình</option>
-                                  <option value="43">Ninh Thuận</option>
-                                  <option value="44">Phú Thọ</option>
-                                  <option value="45">Phú Yên</option>
-                                  <option value="46">Quảng Bình</option>
-                                  <option value="47">Quảng Nam</option>
-                                  <option value="48">Quảng Ngãi</option>
-                                  <option value="49">Quảng Ninh</option>
-                                  <option value="50">Quảng Trị</option>
-                                  <option value="51">Sóc Trăng</option>
-                                  <option value="52">Sơn La</option>
-                                  <option value="53">Tây Ninh</option>
-                                  <option value="54">Thái Bình</option>
-                                  <option value="55">Thái Nguyên</option>
-                                  <option value="56">Thanh Hóa</option>
-                                  <option value="57">Thừa Thiên Huế</option>
-                                  <option value="58">Tiền Giang</option>
-                                  <option value="59">Trà Vinh</option>
-                                  <option value="60">Tuyên Quang</option>
-                                  <option value="61">Vĩnh Long</option>
-                                  <option value="62">Vĩnh Phúc</option>
-                                  <option value="63">Yên Bái</option>
+                                  <!-- Options will be loaded dynamically from JSON -->
                                 </select>
                               </div>
                             </div>
@@ -301,7 +239,32 @@
                                   data-bind="billing.district"
                                   data-address-type="district"
                                   data-address-zone="billing"
-                                  disabled="disabled"></select>
+                                  disabled="disabled">
+                                  <!-- Options will be loaded dynamically based on province selection -->
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="field field--show-floating-label">
+                              <div
+                                class="field__input-wrapper field__input-wrapper--select2">
+                                <label
+                                  for="billingWard"
+                                  class="field__label">
+                                  Phường/Xã (tùy chọn)
+                                </label>
+                                <select
+                                  name="billingWard"
+                                  id="billingWard"
+                                  size="1"
+                                  class="field__input field__input--select"
+                                  value=""
+                                  data-bind="billing.ward"
+                                  data-address-type="ward"
+                                  data-address-zone="billing"
+                                  disabled="disabled">
+                                  <!-- Options will be loaded dynamically based on district selection -->
+                                </select>
                               </div>
                             </div>
                           </div>
@@ -977,6 +940,7 @@
     <script src="./assets/js/scroll-top.js"></script>
     <script src="./assets/js/brand-partners.js"></script>
     <script src="./assets/js/cart-manager.js"></script>
+    <script src="./assets/js/vietnam-address.js"></script>
     <script>
       // Checkout page functionality
       document.addEventListener("DOMContentLoaded", function () {
@@ -1002,11 +966,7 @@
           }
         });
 
-        // Province selection handler
-        const provinceSelect = document.getElementById("billingProvince");
-        if (provinceSelect) {
-          provinceSelect.addEventListener("change", handleProvinceChange);
-        }
+        // Province selection handler (removed - now handled by vietnam-address.js)
 
         // Discount code functionality
         const discountBtn = document.querySelector(".field__input-btn");
@@ -1186,24 +1146,7 @@
         }
       }
 
-      function handleProvinceChange(e) {
-        const districtSelect = document.getElementById("billingDistrict");
-        if (districtSelect) {
-          if (e.target.value) {
-            districtSelect.disabled = false;
-            // In a real application, you would populate districts based on selected province
-            districtSelect.innerHTML = `
-              <option value="">Chọn quận/huyện</option>
-              <option value="1">Quận 1</option>
-              <option value="2">Quận 2</option>
-              <option value="3">Quận 3</option>
-            `;
-          } else {
-            districtSelect.disabled = true;
-            districtSelect.innerHTML = "";
-          }
-        }
-      }
+      // Function removed - province/district/ward handling is now done by vietnam-address.js
 
       function applyDiscountCode() {
         const discountInput = document.getElementById("reductionCode");
@@ -1288,6 +1231,14 @@
             address: formData.get("billingAddress"),
             province: formData.get("billingProvince"),
             district: formData.get("billingDistrict"),
+            ward: formData.get("billingWard"),
+            // Get full address using vietnam-address.js
+            fullAddress: window.vietnamAddressManager.getFullAddress(
+              formData.get("billingProvince"),
+              formData.get("billingDistrict"),
+              formData.get("billingWard"),
+              formData.get("billingAddress")
+            )
           },
           items: cart,
           paymentMethod: formData.get("paymentMethod"),
