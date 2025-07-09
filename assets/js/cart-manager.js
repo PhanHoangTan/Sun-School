@@ -256,7 +256,7 @@ class CartManager {
         }
 
         return `
-        <tr class="cart-item-row">
+        <tr class="cart-item-row" data-product-id="${item.id}">
           <td>
             <div class="cart-product-info">
               <img src="${imageUrl}" alt="${
@@ -264,9 +264,9 @@ class CartManager {
         }" class="cart-product-image">
               <div class="cart-product-details">
                 <div class="cart-product-name">${item.name}</div>
-                <div class="cart-product-remove" onclick="cartManager.removeFromCart('${
+                <div class="cart-product-remove" onclick="cartManager.removeFromCartModal('${
                   item.id
-                }'); cartManager.updateCartModalContent();">
+                }');">
                   <i class="fas fa-times"></i>
                   <span>Bỏ sản phẩm</span>
                 </div>
@@ -276,9 +276,30 @@ class CartManager {
           <td class="cart-price-cell" data-label="Đơn giá">${this.formatPrice(
             itemPrice
           )}</td>
-          <td class="cart-quantity-cell" data-label="Số lượng">${
-            item.quantity
-          }</td>
+          <td class="cart-quantity-cell" data-label="Số lượng">
+            <div class="quantity-controls">
+              <button class="quantity-btn decrease-btn ${
+                item.quantity <= 1 ? "disabled" : ""
+              }" 
+                      onclick="cartManager.decreaseQuantityModal('${item.id}')"
+                      ${item.quantity <= 1 ? "disabled" : ""}>
+                -
+              </button>
+              <input type="number" 
+                     class="quantity-input" 
+                     value="${item.quantity}" 
+                     min="1" 
+                     max="99"
+                     onchange="cartManager.updateQuantityModal('${
+                       item.id
+                     }', this.value)"
+                     onblur="if(this.value < 1) this.value = 1; if(this.value > 99) this.value = 99;">
+              <button class="quantity-btn increase-btn" 
+                      onclick="cartManager.increaseQuantityModal('${item.id}')">
+                +
+              </button>
+            </div>
+          </td>
           <td class="cart-total-cell" data-label="Thành tiền">${this.formatPrice(
             itemTotal
           )}</td>
@@ -309,6 +330,64 @@ class CartManager {
       const itemPrice = this.getItemPrice(item);
       return total + itemPrice * item.quantity;
     }, 0);
+  }
+
+  // Modal-specific quantity management methods
+  increaseQuantityModal(productId) {
+    const product = this.cart.find((item) => item.id === productId);
+    if (product && product.quantity < 99) {
+      product.quantity += 1;
+      this.saveCartToStorage();
+      this.updateCartCount();
+      this.updateCartDropdown();
+      this.updateCartModalContent();
+    }
+  }
+
+  decreaseQuantityModal(productId) {
+    const product = this.cart.find((item) => item.id === productId);
+    if (product) {
+      if (product.quantity <= 1) {
+        // Remove product if quantity would be 0
+        this.removeFromCartModal(productId);
+      } else {
+        product.quantity -= 1;
+        this.saveCartToStorage();
+        this.updateCartCount();
+        this.updateCartDropdown();
+        this.updateCartModalContent();
+      }
+    }
+  }
+
+  updateQuantityModal(productId, newQuantity) {
+    const quantity = parseInt(newQuantity);
+    if (isNaN(quantity) || quantity < 1) {
+      // If invalid quantity, remove product or reset to 1
+      this.removeFromCartModal(productId);
+      return;
+    }
+
+    const product = this.cart.find((item) => item.id === productId);
+    if (product) {
+      product.quantity = Math.min(quantity, 99); // Max 99 items
+      this.saveCartToStorage();
+      this.updateCartCount();
+      this.updateCartDropdown();
+      this.updateCartModalContent();
+    }
+  }
+
+  removeFromCartModal(productId) {
+    this.removeFromCart(productId);
+    this.updateCartModalContent();
+    
+    // If cart is empty, close modal
+    if (this.cart.length === 0) {
+      if (window.jQuery && window.jQuery.fn.modal) {
+        window.jQuery("#cartModal").modal("hide");
+      }
+    }
   }
 
   // Update cart dropdown in header
