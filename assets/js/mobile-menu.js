@@ -11,36 +11,59 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.querySelector(".menu-toggle");
     if (!menuToggle) return;
 
-    // Mobile menu container
-    const headerNav = document.querySelector(".header-nav");
-    if (!headerNav) return;
+    // Use the existing desktop navigation for mobile view
+    const mainNavigation = document.querySelector(".main-navigation");
+    if (!mainNavigation) return;
+
+    // Make the desktop navigation also available on mobile
+    mainNavigation.classList.remove("d-none", "d-lg-flex");
+    mainNavigation.classList.add("main-navigation-mobile");
+
+    // Initially hide the navigation
+    mainNavigation.style.display = "none";
 
     // Toggle mobile menu visibility when clicking the hamburger icon
     menuToggle.addEventListener("click", function (e) {
       e.preventDefault();
-      headerNav.classList.toggle("current");
+
+      if (mainNavigation.style.display === "none") {
+        mainNavigation.style.display = "block";
+        mainNavigation.classList.add("current");
+      } else {
+        mainNavigation.style.display = "none";
+        mainNavigation.classList.remove("current");
+      }
     });
 
-    // Handle dropdown toggles
-    const dropdownItems = document.querySelectorAll(".menu-item.has-dropdown");
+    // Handle dropdown toggles for the main navigation
+    const dropdownItems = document.querySelectorAll(
+      ".main-navigation .nav-item.has-dropdown"
+    );
     dropdownItems.forEach(function (item) {
-      const link = item.querySelector("a");
-      const icon = item.querySelector("i");
+      const link = item.querySelector("a.nav-link");
+      const icon = link.querySelector("i");
+      const dropdown = item.querySelector(".dropdown-menu");
 
+      // When in mobile view, clicks should toggle the dropdown
       link.addEventListener("click", function (e) {
-        // Only prevent default if the click is on the icon or if submenu exists
-        if (e.target === icon || item.querySelector(".submenu")) {
+        if (window.innerWidth <= 991) {
+          // Only for mobile
           e.preventDefault();
-          item.classList.toggle("active");
 
-          // Change icon from plus to minus and vice versa
-          if (icon) {
-            if (icon.classList.contains("fa-plus")) {
-              icon.classList.remove("fa-plus");
-              icon.classList.add("fa-minus");
-            } else {
-              icon.classList.remove("fa-minus");
-              icon.classList.add("fa-plus");
+          // Toggle dropdown visibility
+          if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+            item.classList.remove("active");
+            if (icon) {
+              icon.classList.remove("fa-chevron-up");
+              icon.classList.add("fa-chevron-down");
+            }
+          } else {
+            dropdown.style.display = "block";
+            item.classList.add("active");
+            if (icon) {
+              icon.classList.remove("fa-chevron-down");
+              icon.classList.add("fa-chevron-up");
             }
           }
         }
@@ -50,28 +73,38 @@ document.addEventListener("DOMContentLoaded", function () {
     // Close mobile menu when clicking outside
     document.addEventListener("click", function (e) {
       if (
-        headerNav.classList.contains("current") &&
-        !headerNav.contains(e.target) &&
+        mainNavigation.classList.contains("current") &&
+        !mainNavigation.contains(e.target) &&
         !menuToggle.contains(e.target)
       ) {
-        headerNav.classList.remove("current");
+        mainNavigation.style.display = "none";
+        mainNavigation.classList.remove("current");
       }
     });
 
-    // Handle window resize
+    // Handle window resize - restore proper display mode
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 991 && headerNav.classList.contains("current")) {
-        headerNav.classList.remove("current");
+      if (window.innerWidth > 991) {
+        // Desktop view
+        mainNavigation.classList.remove("current");
+        mainNavigation.style.display = "flex";
 
-        // Reset all dropdowns
+        // Reset all dropdowns to default desktop behavior
         dropdownItems.forEach(function (item) {
           item.classList.remove("active");
+          const dropdown = item.querySelector(".dropdown-menu");
+          dropdown.style.display = "";
           const icon = item.querySelector("i");
           if (icon) {
-            icon.classList.remove("fa-minus");
-            icon.classList.add("fa-plus");
+            icon.classList.remove("fa-chevron-up");
+            icon.classList.add("fa-chevron-down");
           }
         });
+      } else {
+        // Mobile view
+        if (!mainNavigation.classList.contains("current")) {
+          mainNavigation.style.display = "none";
+        }
       }
     });
   }
