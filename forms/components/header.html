@@ -408,12 +408,15 @@
       border: 1px solid #f6903d;
       position: absolute;
       top: 115px !important;
-      width: 96%;
+      width: fit-content;
+      min-width: 200px;
+      max-width: 96%;
       left: 2%;
-      right: 2%;
+      right: auto;
       background-color: #fff;
       z-index: 99999;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      height: fit-content;
     }
 
     .main-navigation .main-menu {
@@ -444,7 +447,6 @@
     .main-navigation .dropdown-menu {
       position: static !important;
       width: 100% !important;
-      display: none !important;
       border: none !important;
       box-shadow: none !important;
       border-radius: 0 !important;
@@ -454,6 +456,12 @@
       visibility: visible !important;
       opacity: 1 !important;
       transform: none !important;
+      display: none;
+    }
+
+    /* Remove hover effects for mobile */
+    .main-navigation .nav-item:hover .dropdown-menu {
+      display: none;
     }
 
     .main-navigation .nav-item.active .dropdown-menu {
@@ -477,6 +485,34 @@
       font-size: 12px;
       color: #f6903d;
     }
+
+    /* Additional mobile navigation fixes */
+    .main-navigation {
+      width: auto;
+    }
+
+    .main-navigation.main-navigation-mobile {
+      display: none;
+    }
+
+    .main-navigation .home-icon {
+      width: 16px;
+      height: auto;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    /* Adjust container width for better fit */
+    .main-navigation.current .main-menu {
+      min-width: 220px;
+      width: fit-content;
+      display: block;
+    }
+
+    /* Fix menu width to match content */
+    .main-navigation.current {
+      width: fit-content !important;
+    }
   }
 </style>
 
@@ -485,6 +521,25 @@
   @media (max-width: 991px) {
     .mobile-menu-toggle .menu-toggle span {
       background-color: #f6903d;
+    }
+
+    /* Improve mobile dropdown display */
+    .main-navigation .nav-item.has-dropdown .dropdown-menu {
+      display: none;
+    }
+
+    .main-navigation .nav-item.has-dropdown.active .dropdown-menu {
+      display: block !important;
+    }
+
+    /* Ensure menu width matches content */
+    .main-navigation.current {
+      width: max-content !important;
+    }
+
+    /* Add left border to dropdowns to match design */
+    .main-navigation .dropdown-menu li a {
+      border-left: 3px solid #f6903d !important;
     }
   }
 </style>

@@ -32,6 +32,21 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         mainNavigation.style.display = "none";
         mainNavigation.classList.remove("current");
+
+        // Close all open dropdowns when closing the menu
+        const activeItems = mainNavigation.querySelectorAll(".nav-item.active");
+        activeItems.forEach(function (item) {
+          item.classList.remove("active");
+          const dropdown = item.querySelector(".dropdown-menu");
+          if (dropdown) {
+            dropdown.style.display = "none";
+          }
+          const icon = item.querySelector("i");
+          if (icon) {
+            icon.classList.remove("fa-chevron-up");
+            icon.classList.add("fa-chevron-down");
+          }
+        });
       }
     });
 
@@ -39,19 +54,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const dropdownItems = document.querySelectorAll(
       ".main-navigation .nav-item.has-dropdown"
     );
+
     dropdownItems.forEach(function (item) {
       const link = item.querySelector("a.nav-link");
       const icon = link.querySelector("i");
       const dropdown = item.querySelector(".dropdown-menu");
+
+      // Set display property explicitly for all dropdowns
+      if (dropdown) {
+        dropdown.style.display = "none";
+      }
 
       // When in mobile view, clicks should toggle the dropdown
       link.addEventListener("click", function (e) {
         if (window.innerWidth <= 991) {
           // Only for mobile
           e.preventDefault();
+          e.stopPropagation();
 
           // Toggle dropdown visibility
-          if (dropdown.style.display === "block") {
+          const isDisplayed = dropdown.style.display === "block";
+
+          if (isDisplayed) {
             dropdown.style.display = "none";
             item.classList.remove("active");
             if (icon) {
@@ -79,6 +103,20 @@ document.addEventListener("DOMContentLoaded", function () {
       ) {
         mainNavigation.style.display = "none";
         mainNavigation.classList.remove("current");
+
+        // Close all dropdowns when closing the menu by clicking outside
+        dropdownItems.forEach(function (item) {
+          item.classList.remove("active");
+          const dropdown = item.querySelector(".dropdown-menu");
+          if (dropdown) {
+            dropdown.style.display = "none";
+          }
+          const icon = item.querySelector("i");
+          if (icon) {
+            icon.classList.remove("fa-chevron-up");
+            icon.classList.add("fa-chevron-down");
+          }
+        });
       }
     });
 
@@ -87,13 +125,17 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.innerWidth > 991) {
         // Desktop view
         mainNavigation.classList.remove("current");
+        mainNavigation.classList.remove("main-navigation-mobile");
+        mainNavigation.classList.add("d-lg-flex");
         mainNavigation.style.display = "flex";
 
         // Reset all dropdowns to default desktop behavior
         dropdownItems.forEach(function (item) {
           item.classList.remove("active");
           const dropdown = item.querySelector(".dropdown-menu");
-          dropdown.style.display = "";
+          if (dropdown) {
+            dropdown.style.display = "";
+          }
           const icon = item.querySelector("i");
           if (icon) {
             icon.classList.remove("fa-chevron-up");
@@ -105,6 +147,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!mainNavigation.classList.contains("current")) {
           mainNavigation.style.display = "none";
         }
+
+        // Make sure dropdowns are hidden in mobile view
+        dropdownItems.forEach(function (item) {
+          if (!item.classList.contains("active")) {
+            const dropdown = item.querySelector(".dropdown-menu");
+            if (dropdown) {
+              dropdown.style.display = "none";
+            }
+          }
+        });
       }
     });
   }
