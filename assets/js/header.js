@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // Update cart count from localStorage
           updateCartCountFromStorage();
 
+          // Generate the mobile navigation
+          generateMobileNav();
+
           // Smoothly fade in the header once everything is initialized
           headerContainer.style.transition = "opacity 0.3s ease";
           headerContainer.style.opacity = "1";
@@ -41,6 +44,125 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show header even if there was an error
         headerContainer.style.opacity = "1";
       });
+  }
+
+  // Function to generate mobile navigation that matches the image
+  function generateMobileNav() {
+    const mobileNavContainer = document.querySelector(".mobile-nav-container");
+    if (!mobileNavContainer) return;
+
+    // Clear any existing content
+    mobileNavContainer.innerHTML = "";
+
+    // Define menu items to match the image
+    const menuItems = [
+      { label: "Trang chủ", url: "./index.html", hasSubmenu: false },
+      {
+        label: "Sản phẩm",
+        url: "./SanPham.html",
+        hasSubmenu: true,
+        submenu: [
+          { label: "Tất cả sản phẩm", url: "./SanPham.html" },
+          {
+            label: "Giá trị cho bé",
+            url: "./SanPham.html?category=Giá trị cho bé",
+          },
+          {
+            label: "Chương trình học",
+            url: "./SanPham.html?category=Chương trình học",
+          },
+        ],
+      },
+      {
+        label: "Chương trình giáo dục",
+        url: "./ChuongTrinhGiaoDuc.html",
+        hasSubmenu: true,
+        submenu: [
+          { label: "Giá trị cho bé", url: "./GiaTriChoBe.html" },
+          { label: "Chương trình học", url: "./ChuongTrinhGiaoDuc.html" },
+        ],
+      },
+      {
+        label: "Tuyển sinh",
+        url: "./ChuongTrinhHoc.html",
+        hasSubmenu: true,
+        submenu: [
+          { label: "Chương trình học", url: "./ChuongTrinhHoc.html" },
+          { label: "Học phí", url: "./HocPhi.html" },
+          { label: "Thực đơn", url: "./ThucDon.html" },
+        ],
+      },
+      { label: "Tin tức", url: "./TinTuc.html", hasSubmenu: false },
+      {
+        label: "Giới thiệu",
+        url: "./GioiThieu.html",
+        hasSubmenu: true,
+        submenu: [
+          { label: "Về chúng tôi", url: "./GioiThieu.html" },
+          { label: "Cơ sở vật chất", url: "./CoSoVatChat.html" },
+        ],
+      },
+    ];
+
+    // Create menu items
+    menuItems.forEach((item) => {
+      const navItem = document.createElement("div");
+      navItem.className = "mobile-nav-item";
+
+      const link = document.createElement("a");
+      link.href = item.url;
+      link.textContent = item.label;
+      navItem.appendChild(link);
+
+      if (item.hasSubmenu) {
+        // Create toggle button
+        const toggleBtn = document.createElement("button");
+        toggleBtn.className = "toggle-submenu";
+        toggleBtn.innerHTML = '<i class="fas fa-plus"></i>';
+        navItem.appendChild(toggleBtn);
+
+        // Create submenu container
+        const submenu = document.createElement("div");
+        submenu.className = "mobile-submenu";
+        submenu.style.display = "none";
+
+        // Add submenu items
+        item.submenu.forEach((subItem) => {
+          const subNavItem = document.createElement("div");
+          subNavItem.className = "mobile-nav-subitem";
+
+          const subLink = document.createElement("a");
+          subLink.href = subItem.url;
+          subLink.textContent = subItem.label;
+
+          subNavItem.appendChild(subLink);
+          submenu.appendChild(subNavItem);
+        });
+
+        navItem.appendChild(submenu);
+
+        // Toggle functionality
+        toggleBtn.addEventListener("click", function () {
+          const submenu = this.parentElement.querySelector(".mobile-submenu");
+          const icon = this.querySelector("i");
+
+          if (submenu.style.display === "none") {
+            submenu.style.display = "block";
+            icon.classList.remove("fa-plus");
+            icon.classList.add("fa-minus");
+          } else {
+            submenu.style.display = "none";
+            icon.classList.remove("fa-minus");
+            icon.classList.add("fa-plus");
+          }
+        });
+      }
+
+      mobileNavContainer.appendChild(navItem);
+    });
+
+    // Make sure the mobile menu is initially hidden
+    mobileNavContainer.style.display = "none";
   }
 
   // Function to update cart count from localStorage
@@ -358,8 +480,17 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         if (window.innerWidth <= 575) {
-          // For mobile, we'll use a different approach to match the image
-          toggleMobileNavContainer();
+          // For mobile, toggle the mobile nav container
+          const mobileNavContainer = document.querySelector(
+            ".mobile-nav-container"
+          );
+          if (mobileNavContainer) {
+            if (mobileNavContainer.style.display === "none") {
+              mobileNavContainer.style.display = "block";
+            } else {
+              mobileNavContainer.style.display = "none";
+            }
+          }
         } else {
           // For tablet and up, use slide-in menu
           mainNavigation.classList.toggle("active");
@@ -381,106 +512,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Create mobile navigation container for small devices (to match your image)
-    function toggleMobileNavContainer() {
-      let mobileNavContainer = document.querySelector(".mobile-nav-container");
-
-      // If it doesn't exist yet, create it
-      if (!mobileNavContainer) {
-        mobileNavContainer = document.createElement("div");
-        mobileNavContainer.className = "mobile-nav-container";
-
-        // Get menu items from main navigation
-        const navItems = document.querySelectorAll(".main-menu .nav-item");
-
-        navItems.forEach((item) => {
-          const navLink = item.querySelector(".nav-link");
-          const isDropdown = item.classList.contains("has-dropdown");
-          const dropdownItems = item.querySelectorAll(".dropdown-menu li");
-
-          const mobileNavItem = document.createElement("div");
-          mobileNavItem.className = "mobile-nav-item";
-
-          // Create main link
-          const link = document.createElement("a");
-          link.href = navLink.href;
-          link.textContent = navLink.textContent
-            .replace(/[\n\t]/g, "")
-            .trim()
-            .split(" ")[0]; // Get just the text without icons
-
-          mobileNavItem.appendChild(link);
-
-          // Add toggle button for dropdowns
-          if (isDropdown) {
-            const toggleButton = document.createElement("button");
-            toggleButton.className = "toggle-submenu";
-            toggleButton.innerHTML = '<i class="fas fa-plus"></i>';
-            mobileNavItem.appendChild(toggleButton);
-
-            // Create submenu container but keep it hidden initially
-            const submenuContainer = document.createElement("div");
-            submenuContainer.className = "mobile-submenu";
-            submenuContainer.style.display = "none";
-
-            // Add each dropdown item to submenu
-            dropdownItems.forEach((subItem) => {
-              const subLink = subItem.querySelector("a");
-              const subNavItem = document.createElement("div");
-              subNavItem.className = "mobile-nav-subitem";
-
-              const subItemLink = document.createElement("a");
-              subItemLink.href = subLink.href;
-              subItemLink.textContent = subLink.textContent;
-
-              subNavItem.appendChild(subItemLink);
-              submenuContainer.appendChild(subNavItem);
-            });
-
-            mobileNavItem.appendChild(submenuContainer);
-
-            // Toggle submenu visibility
-            toggleButton.addEventListener("click", function () {
-              const submenu =
-                this.parentElement.querySelector(".mobile-submenu");
-              const icon = this.querySelector("i");
-
-              if (submenu.style.display === "none") {
-                submenu.style.display = "block";
-                icon.classList.remove("fa-plus");
-                icon.classList.add("fa-minus");
-              } else {
-                submenu.style.display = "none";
-                icon.classList.remove("fa-minus");
-                icon.classList.add("fa-plus");
-              }
-            });
-          }
-
-          mobileNavContainer.appendChild(mobileNavItem);
-        });
-
-        // Insert after search container
-        const searchContainer = document.querySelector(".search-container");
-        if (searchContainer && searchContainer.parentNode) {
-          searchContainer.parentNode.insertBefore(
-            mobileNavContainer,
-            searchContainer.nextSibling
-          );
-        }
-      }
-
-      // Toggle visibility
-      if (
-        mobileNavContainer.style.display === "none" ||
-        !mobileNavContainer.style.display
-      ) {
-        mobileNavContainer.style.display = "block";
-      } else {
-        mobileNavContainer.style.display = "none";
-      }
-    }
-
     // Add overlay for mobile menu
     const overlay = document.createElement("div");
     overlay.className = "menu-overlay";
@@ -494,23 +525,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (body) {
           body.style.overflow = "";
         }
-      }
-    });
-
-    // Add dropdown toggles for mobile
-    const hasDropdowns = document.querySelectorAll(".has-dropdown");
-
-    hasDropdowns.forEach(function (item) {
-      const link = item.querySelector(".nav-link");
-      const dropdown = item.querySelector(".dropdown-menu");
-
-      if (link && dropdown) {
-        link.addEventListener("click", function (e) {
-          if (window.innerWidth <= 991) {
-            e.preventDefault();
-            item.classList.toggle("open");
-          }
-        });
       }
     });
 
@@ -841,8 +855,17 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         if (window.innerWidth <= 575) {
-          // For mobile, we'll use a different approach to match the image
-          toggleMobileNavContainer();
+          // For mobile, toggle the mobile nav container
+          const mobileNavContainer = document.querySelector(
+            ".mobile-nav-container"
+          );
+          if (mobileNavContainer) {
+            if (mobileNavContainer.style.display === "none") {
+              mobileNavContainer.style.display = "block";
+            } else {
+              mobileNavContainer.style.display = "none";
+            }
+          }
         } else {
           // For tablet and up, use slide-in menu
           mainNavigation.classList.toggle("active");
@@ -864,106 +887,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Create mobile navigation container for small devices (to match your image)
-    function toggleMobileNavContainer() {
-      let mobileNavContainer = document.querySelector(".mobile-nav-container");
-
-      // If it doesn't exist yet, create it
-      if (!mobileNavContainer) {
-        mobileNavContainer = document.createElement("div");
-        mobileNavContainer.className = "mobile-nav-container";
-
-        // Get menu items from main navigation
-        const navItems = document.querySelectorAll(".main-menu .nav-item");
-
-        navItems.forEach((item) => {
-          const navLink = item.querySelector(".nav-link");
-          const isDropdown = item.classList.contains("has-dropdown");
-          const dropdownItems = item.querySelectorAll(".dropdown-menu li");
-
-          const mobileNavItem = document.createElement("div");
-          mobileNavItem.className = "mobile-nav-item";
-
-          // Create main link
-          const link = document.createElement("a");
-          link.href = navLink.href;
-          link.textContent = navLink.textContent
-            .replace(/[\n\t]/g, "")
-            .trim()
-            .split(" ")[0]; // Get just the text without icons
-
-          mobileNavItem.appendChild(link);
-
-          // Add toggle button for dropdowns
-          if (isDropdown) {
-            const toggleButton = document.createElement("button");
-            toggleButton.className = "toggle-submenu";
-            toggleButton.innerHTML = '<i class="fas fa-plus"></i>';
-            mobileNavItem.appendChild(toggleButton);
-
-            // Create submenu container but keep it hidden initially
-            const submenuContainer = document.createElement("div");
-            submenuContainer.className = "mobile-submenu";
-            submenuContainer.style.display = "none";
-
-            // Add each dropdown item to submenu
-            dropdownItems.forEach((subItem) => {
-              const subLink = subItem.querySelector("a");
-              const subNavItem = document.createElement("div");
-              subNavItem.className = "mobile-nav-subitem";
-
-              const subItemLink = document.createElement("a");
-              subItemLink.href = subLink.href;
-              subItemLink.textContent = subLink.textContent;
-
-              subNavItem.appendChild(subItemLink);
-              submenuContainer.appendChild(subNavItem);
-            });
-
-            mobileNavItem.appendChild(submenuContainer);
-
-            // Toggle submenu visibility
-            toggleButton.addEventListener("click", function () {
-              const submenu =
-                this.parentElement.querySelector(".mobile-submenu");
-              const icon = this.querySelector("i");
-
-              if (submenu.style.display === "none") {
-                submenu.style.display = "block";
-                icon.classList.remove("fa-plus");
-                icon.classList.add("fa-minus");
-              } else {
-                submenu.style.display = "none";
-                icon.classList.remove("fa-minus");
-                icon.classList.add("fa-plus");
-              }
-            });
-          }
-
-          mobileNavContainer.appendChild(mobileNavItem);
-        });
-
-        // Insert after search container
-        const searchContainer = document.querySelector(".search-container");
-        if (searchContainer && searchContainer.parentNode) {
-          searchContainer.parentNode.insertBefore(
-            mobileNavContainer,
-            searchContainer.nextSibling
-          );
-        }
-      }
-
-      // Toggle visibility
-      if (
-        mobileNavContainer.style.display === "none" ||
-        !mobileNavContainer.style.display
-      ) {
-        mobileNavContainer.style.display = "block";
-      } else {
-        mobileNavContainer.style.display = "none";
-      }
-    }
-
     // Add overlay for mobile menu
     const overlay = document.createElement("div");
     overlay.className = "menu-overlay";
@@ -977,23 +900,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (body) {
           body.style.overflow = "";
         }
-      }
-    });
-
-    // Add dropdown toggles for mobile
-    const hasDropdowns = document.querySelectorAll(".has-dropdown");
-
-    hasDropdowns.forEach(function (item) {
-      const link = item.querySelector(".nav-link");
-      const dropdown = item.querySelector(".dropdown-menu");
-
-      if (link && dropdown) {
-        link.addEventListener("click", function (e) {
-          if (window.innerWidth <= 991) {
-            e.preventDefault();
-            item.classList.toggle("open");
-          }
-        });
       }
     });
 

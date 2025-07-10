@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="search-container">
+          <div class="search-container d-none d-md-flex">
             <form
               action="/search"
               method="get"
@@ -52,7 +52,7 @@
   <div class="header-main">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-3 col-md-12 col-12">
+        <div class="col-12 position-relative">
           <div class="mobile-menu-toggle d-lg-none">
             <a href="#" class="menu-toggle">
               <span></span>
@@ -60,6 +60,7 @@
               <span></span>
             </a>
           </div>
+
           <div class="logo-header">
             <a href="./index.html" class="logo" title="Logo">
               <img
@@ -69,103 +70,125 @@
                 alt="SunShine School Theme" />
             </a>
           </div>
-        </div>
 
-        <div class="col-lg-9 col-md-12 col-12">
-          <div class="clearfix">
-            <nav class="main-navigation">
-              <ul class="main-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="./index.html">
-                    <img
-                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/home_icon.jpg"
-                      alt="Home"
-                      class="home-icon" />
-                    Trang chủ
-                  </a>
-                </li>
-                <li class="nav-item has-dropdown">
-                  <a class="nav-link" href="./SanPham.html"
-                    >Sản phẩm <i class="fas fa-chevron-down"></i
-                  ></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="./SanPham.html">Tất cả sản phẩm</a></li>
-                    <li>
-                      <a href="./SanPham.html?category=Giá trị cho bé"
-                        >Giá trị cho bé</a
-                      >
-                    </li>
-                    <li>
-                      <a href="./SanPham.html?category=Chương trình học"
-                        >Chương trình học</a
-                      >
-                    </li>
-                    <li>
-                      <a href="./SanPham.html?category=Chương trình học nổi bật"
-                        >Chương trình học nổi bật</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="./SanPham.html?category=Chương trình học khuyến mãi"
-                        >Chương trình học khuyến mãi</a
-                      >
-                    </li>
-                    <li>
-                      <a href="./SanPham.html?category=Chương trình học mới"
-                        >Chương trình học mới</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item has-dropdown">
-                  <a class="nav-link" href="./ChuongTrinhGiaoDuc.html"
-                    >Chương trình giáo dục <i class="fas fa-chevron-down"></i
-                  ></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="./GiaTriChoBe.html">Giá trị cho bé</a></li>
-                    <li>
-                      <a href="./ChuongTrinhGiaoDuc.html">Chương trình học</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item has-dropdown">
-                  <a class="nav-link" href="./ChuongTrinhHoc.html"
-                    >Tuyển sinh <i class="fas fa-chevron-down"></i
-                  ></a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="./ChuongTrinhHoc.html">Chương trình học</a>
-                    </li>
-                    <li><a href="./HocPhi.html">Học phí</a></li>
-                    <li><a href="./ThucDon.html">Thực đơn</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./TinTuc.html">Tin tức</a>
-                </li>
-                <li class="nav-item has-dropdown">
-                  <a class="nav-link" href="./GioiThieu.html"
-                    >Giới thiệu <i class="fas fa-chevron-down"></i
-                  ></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="./GioiThieu.html">Về chúng tôi</a></li>
-                    <li><a href="./CoSoVatChat.html">Cơ sở vật chất</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
+          <div class="cart-container d-lg-none">
+            <a href="./GioHang.html" class="cart-link" id="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">2</span>
+            </a>
+          </div>
 
-            <div class="cart-container">
-              <a href="./GioHang.html" class="cart-link" id="cart-icon">
+          <!-- Mobile search form -->
+          <div class="search-container d-lg-none d-block">
+            <form
+              action="/search"
+              method="get"
+              class="search-form"
+              role="search">
+              <input
+                type="text"
+                name="query"
+                value=""
+                autocomplete="off"
+                placeholder="Tìm kiếm..."
+                class="search-input" />
+              <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <nav class="main-navigation d-none d-lg-flex">
+            <ul class="main-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html">
+                  <img
+                    src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/home_icon.jpg"
+                    alt="Home"
+                    class="home-icon" />
+                  Trang chủ
+                </a>
+              </li>
+              <li class="nav-item has-dropdown">
+                <a class="nav-link" href="./SanPham.html"
+                  >Sản phẩm <i class="fas fa-chevron-down"></i
+                ></a>
+                <ul class="dropdown-menu">
+                  <li><a href="./SanPham.html">Tất cả sản phẩm</a></li>
+                  <li>
+                    <a href="./SanPham.html?category=Giá trị cho bé"
+                      >Giá trị cho bé</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./SanPham.html?category=Chương trình học"
+                      >Chương trình học</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./SanPham.html?category=Chương trình học nổi bật"
+                      >Chương trình học nổi bật</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="./SanPham.html?category=Chương trình học khuyến mãi"
+                      >Chương trình học khuyến mãi</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./SanPham.html?category=Chương trình học mới"
+                      >Chương trình học mới</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item has-dropdown">
+                <a class="nav-link" href="./ChuongTrinhGiaoDuc.html"
+                  >Chương trình giáo dục <i class="fas fa-chevron-down"></i
+                ></a>
+                <ul class="dropdown-menu">
+                  <li><a href="./GiaTriChoBe.html">Giá trị cho bé</a></li>
+                  <li>
+                    <a href="./ChuongTrinhGiaoDuc.html">Chương trình học</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item has-dropdown">
+                <a class="nav-link" href="./ChuongTrinhHoc.html"
+                  >Tuyển sinh <i class="fas fa-chevron-down"></i
+                ></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="./ChuongTrinhHoc.html">Chương trình học</a>
+                  </li>
+                  <li><a href="./HocPhi.html">Học phí</a></li>
+                  <li><a href="./ThucDon.html">Thực đơn</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./TinTuc.html">Tin tức</a>
+              </li>
+              <li class="nav-item has-dropdown">
+                <a class="nav-link" href="./GioiThieu.html"
+                  >Giới thiệu <i class="fas fa-chevron-down"></i
+                ></a>
+                <ul class="dropdown-menu">
+                  <li><a href="./GioiThieu.html">Về chúng tôi</a></li>
+                  <li><a href="./CoSoVatChat.html">Cơ sở vật chất</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="cart-container d-none d-lg-flex">
+            <a href="./GioHang.html" class="cart-link" id="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </a>
+            <div class="cart-dropdown">
+              <div class="empty-cart">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-              </a>
-              <div class="cart-dropdown">
-                <div class="empty-cart">
-                  <i class="fas fa-shopping-cart"></i>
-                  <p>Không có sản phẩm nào trong giỏ hàng của bạn</p>
-                </div>
+                <p>Không có sản phẩm nào trong giỏ hàng của bạn</p>
               </div>
             </div>
           </div>
@@ -219,8 +242,8 @@
 
   /* Auth links styling */
   .header-auth-links {
-    text-align: center;
-    padding: 5px 0;
+    text-align: right;
+    padding: 5px 15px;
     font-size: 14px;
   }
 
@@ -284,8 +307,8 @@
     background: #fff;
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f2f2f2;
   }
 
   .mobile-nav-item {
@@ -302,7 +325,7 @@
     display: block;
     color: #333;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: normal;
   }
 
   .mobile-nav-item .toggle-submenu {
@@ -313,7 +336,7 @@
     background: none;
     border: none;
     font-size: 16px;
-    color: #999;
+    color: #f6903d;
   }
 
   .mobile-nav-subitem {
@@ -327,10 +350,40 @@
     font-weight: normal;
   }
 
+  .business-hours {
+    margin: 15px;
+    color: #f6903d;
+  }
+
+  .business-hours .title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .registration-button {
+    text-align: center;
+    margin: 15px;
+  }
+
+  .registration-button a {
+    display: inline-block;
+    background: #f6903d;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
   @media (max-width: 991px) {
+    .position-relative {
+      position: relative;
+    }
+
     .cart-container {
       position: absolute;
-      top: 15px;
+      top: 40px;
       right: 15px;
       margin: 0;
     }
