@@ -2,10 +2,10 @@
   <div class="header-top">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-4">
+        <div class="col-md-4 d-none d-md-block">
           <!-- Empty column -->
         </div>
-        <div class="col-md-4 header-contact">
+        <div class="col-md-4 header-contact d-none d-md-flex">
           <div class="contact-info">
             <div class="contact-item">
               <i class="fas fa-map-marker-alt"></i>
@@ -42,10 +42,24 @@
     </div>
   </div>
 
+  <!-- Display login/register links on mobile -->
+  <div class="header-auth-links d-md-none">
+    <a href="./DangNhap.html">Đăng nhập</a> /
+    <a href="./DangKy.html">Đăng ký</a>
+    <span class="cart-badge">2</span>
+  </div>
+
   <div class="header-main">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-3 col-md-12 col-12">
+          <div class="mobile-menu-toggle d-lg-none">
+            <a href="#" class="menu-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
           <div class="logo-header">
             <a href="./index.html" class="logo" title="Logo">
               <img
@@ -53,13 +67,6 @@
                 height="77"
                 src="//bizweb.dktcdn.net/100/063/369/themes/877483/assets/logo.png?1676015309640"
                 alt="SunShine School Theme" />
-            </a>
-          </div>
-          <div class="mobile-menu-toggle d-lg-none">
-            <a href="#" class="menu-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
             </a>
           </div>
         </div>
@@ -210,6 +217,33 @@
     justify-content: center;
   }
 
+  /* Auth links styling */
+  .header-auth-links {
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+  }
+
+  .header-auth-links a {
+    color: #f6903d;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .header-auth-links .cart-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6903d;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+
   .cart-dropdown {
     position: absolute;
     top: 100%;
@@ -244,11 +278,61 @@
     font-size: 14px;
   }
 
+  /* Mobile menu styles */
+  .mobile-nav-container {
+    margin: 15px 0;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  .mobile-nav-item {
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .mobile-nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav-item a {
+    padding: 15px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .mobile-nav-item .toggle-submenu {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+  }
+
+  .mobile-nav-subitem {
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-nav-subitem a {
+    padding: 12px 15px 12px 30px;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
   @media (max-width: 991px) {
     .cart-container {
       position: absolute;
       top: 15px;
-      right: 70px;
+      right: 15px;
+      margin: 0;
     }
   }
 </style>

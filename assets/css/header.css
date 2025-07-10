@@ -2,6 +2,10 @@
 .header {
   position: relative;
   z-index: 1000;
+  background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_og.jpg?1653971798732);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: auto 84px;
 }
 
 .header-top {
@@ -221,13 +225,372 @@
 }
 
 /* Responsive styles */
+@media (max-width: 1199px) {
+  .main-menu .nav-link {
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+
+  .logo img {
+    max-width: 180px;
+  }
+}
+
 @media (max-width: 991px) {
+  .header {
+    background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_tablet.jpg?1653971798732);
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+
   .mobile-menu-toggle {
     display: block;
-    text-align: right;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    z-index: 1002;
+  }
+
+  .mobile-menu-toggle .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .mobile-menu-toggle .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #f6903d;
+    border-radius: 3px;
+  }
+
+  .header-top {
+    padding: 5px 0;
+  }
+
+  .header-contact {
+    display: none;
+  }
+
+  .logo-header {
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    margin: 0 auto;
+  }
+
+  .search-container {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+    justify-content: center;
+  }
+
+  .search-form {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 8px 40px 8px 15px;
+    border-radius: 30px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    font-size: 14px;
+  }
+
+  .search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #f6903d;
+    font-size: 16px;
+    cursor: pointer;
   }
 
   .main-navigation {
     display: none;
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1010;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+  }
+
+  .main-navigation.active {
+    left: 0;
+  }
+
+  .main-menu {
+    flex-direction: column;
+    width: 100%;
+    padding: 60px 0 0 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .main-menu .nav-item {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .main-menu .nav-link {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  .main-menu .nav-item.has-dropdown > .nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main-menu .nav-item.has-dropdown > .nav-link .fa-chevron-down {
+    transition: transform 0.3s;
+  }
+
+  .main-menu .nav-item.has-dropdown.open > .nav-link .fa-chevron-down {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.3s ease !important;
+  }
+
+  .nav-item.has-dropdown.open .dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    max-height: 1000px !important;
+  }
+
+  .nav-item.has-dropdown:hover .dropdown-menu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .dropdown-menu li a {
+    padding: 12px 20px 12px 40px !important;
+  }
+
+  /* Menu overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1005;
+    display: none;
+  }
+
+  .menu-overlay.active {
+    display: block;
+  }
+
+  /* Cart position for mobile */
+  .cart-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    margin: 0;
+  }
+
+  .cart-dropdown {
+    width: 280px;
+    right: -15px;
+  }
+}
+
+/* iPad Mini specific styles */
+@media (max-width: 768px) {
+  .header {
+    background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_tablet.jpg?1653971798732);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+  }
+
+  .logo img {
+    max-width: 150px;
+  }
+
+  .search-container {
+    margin: 5px 0;
+  }
+}
+
+/* Mobile styles (iPhone SE and smaller devices) */
+@media (max-width: 575px) {
+  .header {
+    background-size: 100% auto;
+  }
+
+  .header-main {
+    padding: 10px 0;
+  }
+
+  .logo img {
+    max-width: 130px;
+    height: auto;
+  }
+
+  .mobile-menu-toggle {
+    left: 10px;
+    top: 10px;
+  }
+
+  .mobile-menu-toggle .menu-toggle {
+    width: 25px;
+    height: 18px;
+  }
+
+  .cart-container {
+    top: 10px;
+    right: 10px;
+  }
+
+  .search-container {
+    margin: 2px 0;
+  }
+
+  .search-form {
+    max-width: 220px;
+  }
+
+  .search-input {
+    padding: 6px 35px 6px 12px;
+    font-size: 13px;
+  }
+
+  .search-button {
+    font-size: 14px;
+  }
+
+  .cart-dropdown {
+    width: 250px;
+    right: -10px;
+    padding: 10px;
+    max-height: 350px;
+  }
+
+  /* Styling for logged-in/out links at top */
+  .header-auth-links {
+    text-align: center;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+
+  .header-auth-links a {
+    color: #f6903d;
+    margin: 0 5px;
+    text-decoration: none;
+  }
+}
+
+/* Portrait and landscape modes */
+@media (max-width: 991px) and (orientation: landscape) {
+  .header {
+    background-size: 100% auto;
+  }
+
+  .main-navigation {
+    padding-bottom: 50px; /* Add extra space for scrolling in landscape mode */
+  }
+}
+
+/* Additional styles to match the image provided */
+@media (max-width: 575px) {
+  .logo-header {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px; /* Match the image positioning */
+  }
+
+  .search-container {
+    margin-top: 15px;
+  }
+
+  /* Styles for the collapsed menu that matches your image */
+  .mobile-nav-container {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-nav-item {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+  }
+
+  .mobile-nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav-item a {
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+
+  .mobile-nav-item .toggle-submenu {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #999;
+    background: none;
+    border: none;
+    font-size: 16px;
+  }
+
+  /* Sunshine school colors */
+  .header {
+    background-color: #fffaf2;
+  }
+
+  .logo-header img {
+    max-height: 50px;
   }
 }
