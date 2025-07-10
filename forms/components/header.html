@@ -96,6 +96,67 @@
               </button>
             </form>
           </div>
+
+          <!-- Mobile Navigation -->
+          <div class="header-nav">
+            <ul class="mobile-menu-list">
+              <li class="menu-item">
+                <a href="./index.html">Trang chủ</a>
+              </li>
+              <li class="menu-item has-dropdown">
+                <a href="./SanPham.html"
+                  >Sản phẩm <i class="fas fa-plus"></i
+                ></a>
+                <ul class="submenu">
+                  <li><a href="./SanPham.html">Tất cả sản phẩm</a></li>
+                  <li>
+                    <a href="./SanPham.html?category=Giá trị cho bé"
+                      >Giá trị cho bé</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./SanPham.html?category=Chương trình học"
+                      >Chương trình học</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item has-dropdown">
+                <a href="./ChuongTrinhGiaoDuc.html"
+                  >Chương trình giáo dục <i class="fas fa-plus"></i
+                ></a>
+                <ul class="submenu">
+                  <li><a href="./GiaTriChoBe.html">Giá trị cho bé</a></li>
+                  <li>
+                    <a href="./ChuongTrinhGiaoDuc.html">Chương trình học</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item has-dropdown">
+                <a href="./ChuongTrinhHoc.html"
+                  >Tuyển sinh <i class="fas fa-plus"></i
+                ></a>
+                <ul class="submenu">
+                  <li><a href="./ChuongTrinhHoc.html">Chương trình học</a></li>
+                  <li><a href="./HocPhi.html">Học phí</a></li>
+                  <li><a href="./ThucDon.html">Thực đơn</a></li>
+                </ul>
+              </li>
+              <li class="menu-item">
+                <a href="./TinTuc.html">Tin tức</a>
+              </li>
+              <li class="menu-item has-dropdown">
+                <a href="./GioiThieu.html"
+                  >Giới thiệu <i class="fas fa-plus"></i
+                ></a>
+                <ul class="submenu">
+                  <li><a href="./GioiThieu.html">Về chúng tôi</a></li>
+                  <li><a href="./CoSoVatChat.html">Cơ sở vật chất</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
           <nav class="main-navigation d-none d-lg-flex">
             <ul class="main-menu">
               <li class="nav-item">
@@ -388,3 +449,104 @@
     }
   }
 </style>
+
+<!-- Additional CSS for mobile menu -->
+<style>
+  @media (max-width: 991px) {
+    .header-nav.current {
+      visibility: visible;
+      transform: translateX(0);
+      display: block;
+      border: 1px solid #f6903d;
+    }
+  }
+
+  @media (max-width: 991px) and (max-width: 424px) {
+    .header-nav {
+      width: 92%;
+    }
+  }
+
+  @media (max-width: 991px) and (max-width: 767px) {
+    .header-nav {
+      width: 93%;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .header-nav {
+      background-color: #fff;
+      position: absolute;
+      top: 115px !important;
+      z-index: 99999;
+      width: 96%;
+      transform: translateX(-100%);
+      visibility: hidden;
+      transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+        visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+      box-shadow: none;
+      touch-action: manipulation;
+      display: none;
+      left: 2%;
+      right: 2%;
+    }
+
+    .mobile-menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mobile-menu-list .menu-item {
+      border-bottom: 1px solid #eee;
+    }
+
+    .mobile-menu-list .menu-item a {
+      display: block;
+      padding: 12px 15px;
+      color: #333;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .mobile-menu-list .menu-item.has-dropdown > a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-menu-list .submenu {
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #f9f9f9;
+    }
+
+    .mobile-menu-list .submenu li {
+      border-top: 1px solid #eee;
+    }
+
+    .mobile-menu-list .submenu li a {
+      padding-left: 25px;
+      font-size: 14px;
+    }
+
+    .mobile-menu-list .menu-item.active > .submenu {
+      display: block;
+    }
+
+    .mobile-menu-toggle .menu-toggle span {
+      background-color: #f6903d;
+    }
+
+    .menu-item .fa-plus,
+    .menu-item .fa-minus {
+      font-size: 12px;
+      color: #f6903d;
+    }
+  }
+</style>
+
+<!-- Mobile Menu Script -->
+<script src="./assets/js/mobile-menu.js"></script>
