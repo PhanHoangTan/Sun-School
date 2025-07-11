@@ -525,7 +525,7 @@
 
     /* Improve mobile dropdown display */
     .main-navigation .nav-item.has-dropdown .dropdown-menu {
-      display: none;
+      display: none !important;
     }
 
     .main-navigation .nav-item.has-dropdown.active .dropdown-menu {
@@ -541,8 +541,130 @@
     .main-navigation .dropdown-menu li a {
       border-left: 3px solid #f6903d !important;
     }
+
+    /* Force submenu styling */
+    .main-navigation .dropdown-menu {
+      background-color: #f9f9f9 !important;
+      border: none !important;
+      box-shadow: none !important;
+      position: static !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
   }
 </style>
+
+<!-- EMERGENCY DIRECT INLINE SCRIPT - FINAL FIX -->
+<script>
+  // Execute immediately
+  (function () {
+    // Function to handle dropdowns
+    function setupMobileMenu() {
+      console.log("FIXED MOBILE MENU: Setting up mobile menu");
+
+      // Toggle hamburger menu
+      var menuToggle = document.querySelector(".menu-toggle");
+      if (menuToggle) {
+        menuToggle.onclick = function (e) {
+          e.preventDefault();
+          var nav = document.querySelector(".main-navigation");
+          if (nav) {
+            nav.classList.toggle("current");
+            nav.style.display = nav.classList.contains("current")
+              ? "block"
+              : "none";
+          }
+          return false;
+        };
+      }
+
+      // Only run for mobile and tablet devices
+      if (window.innerWidth <= 991) {
+        // Setup all dropdown items
+        var dropdowns = document.querySelectorAll(
+          ".nav-item.has-dropdown > .nav-link"
+        );
+        for (var i = 0; i < dropdowns.length; i++) {
+          var link = dropdowns[i];
+
+          // Remove any existing icon
+          var oldIcon = link.querySelector("i.fas");
+          if (oldIcon) {
+            oldIcon.remove();
+          }
+
+          // Add chevron-down icon
+          var icon = document.createElement("i");
+          icon.className = "fas fa-chevron-down";
+          link.appendChild(icon);
+
+          // Style for mobile
+          icon.style.position = "absolute";
+          icon.style.right = "15px";
+          icon.style.top = "50%";
+          icon.style.transform = "translateY(-50%)";
+          icon.style.fontSize = "12px";
+          icon.style.color = "#f6903d";
+
+          link.style.position = "relative";
+          link.style.paddingRight = "30px";
+
+          // Set onclick directly in the HTML attribute for maximum compatibility
+          link.setAttribute(
+            "onclick",
+            "if(window.innerWidth <= 991) { " +
+              "  event.preventDefault(); " +
+              "  event.stopPropagation(); " +
+              "  var parent = this.parentNode; " +
+              "  var submenu = parent.querySelector('.dropdown-menu'); " +
+              "  var icon = this.querySelector('i.fas'); " +
+              "  if(submenu) { " +
+              "    if(submenu.style.display === 'block') { " +
+              "      submenu.style.display = 'none'; " +
+              "      parent.classList.remove('active'); " +
+              "      if(icon) { icon.className = 'fas fa-chevron-down'; icon.style.transform = 'translateY(-50%)'; } " +
+              "    } else { " +
+              "      submenu.style.display = 'block'; " +
+              "      parent.classList.add('active'); " +
+              "      if(icon) { icon.className = 'fas fa-chevron-up'; icon.style.transform = 'translateY(-50%)'; } " +
+              "    } " +
+              "  } " +
+              "  return false; " +
+              "}"
+          );
+
+          // Initialize submenu state
+          var parent = link.parentNode;
+          var submenu = parent.querySelector(".dropdown-menu");
+          if (submenu) {
+            submenu.style.display = "none";
+          }
+        }
+      }
+    }
+
+    // Run on page load
+    setupMobileMenu();
+
+    // Run on DOM ready
+    document.addEventListener("DOMContentLoaded", setupMobileMenu);
+
+    // Run on window load
+    window.addEventListener("load", setupMobileMenu);
+
+    // Run on resize
+    window.addEventListener("resize", function () {
+      if (window.innerWidth <= 991) {
+        setupMobileMenu();
+      }
+    });
+
+    // Run after a delay to catch any late-loading elements
+    setTimeout(setupMobileMenu, 500);
+    setTimeout(setupMobileMenu, 1000);
+  })();
+</script>
 
 <!-- Mobile Menu Script -->
 <script src="./assets/js/mobile-menu.js"></script>

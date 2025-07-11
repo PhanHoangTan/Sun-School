@@ -1,163 +1,109 @@
-// Mobile Menu functionality
-document.addEventListener("DOMContentLoaded", function () {
-  // Wait for the header to be loaded
-  window.addEventListener("headerLoaded", initMobileNavigation);
+// Mobile Menu functionality - FIXED VERSION
+document.addEventListener("DOMContentLoaded", mobileMenuInit);
+window.addEventListener("load", mobileMenuInit);
 
-  // Initialize immediately if the header is already loaded
-  initMobileNavigation();
+function mobileMenuInit() {
+  console.log("Mobile menu fixed script loaded");
 
-  function initMobileNavigation() {
-    // Mobile menu toggle button
-    const menuToggle = document.querySelector(".menu-toggle");
-    if (!menuToggle) return;
+  // 1. HAMBURGER MENU TOGGLE
+  const menuToggle = document.querySelector(".menu-toggle");
+  if (menuToggle) {
+    // Remove any existing click listeners
+    const newMenuToggle = menuToggle.cloneNode(true);
+    menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
 
-    // Use the existing desktop navigation for mobile view
-    const mainNavigation = document.querySelector(".main-navigation");
-    if (!mainNavigation) return;
-
-    // Make the desktop navigation also available on mobile
-    mainNavigation.classList.remove("d-none", "d-lg-flex");
-    mainNavigation.classList.add("main-navigation-mobile");
-
-    // Initially hide the navigation
-    mainNavigation.style.display = "none";
-
-    // Toggle mobile menu visibility when clicking the hamburger icon
-    menuToggle.addEventListener("click", function (e) {
+    // Add new click handler
+    newMenuToggle.addEventListener("click", function (e) {
       e.preventDefault();
-
-      if (mainNavigation.style.display === "none") {
-        mainNavigation.style.display = "block";
-        mainNavigation.classList.add("current");
-      } else {
-        mainNavigation.style.display = "none";
-        mainNavigation.classList.remove("current");
-
-        // Close all open dropdowns when closing the menu
-        const activeItems = mainNavigation.querySelectorAll(".nav-item.active");
-        activeItems.forEach(function (item) {
-          item.classList.remove("active");
-          const dropdown = item.querySelector(".dropdown-menu");
-          if (dropdown) {
-            dropdown.style.display = "none";
-          }
-          const icon = item.querySelector("i");
-          if (icon) {
-            icon.classList.remove("fa-chevron-up");
-            icon.classList.add("fa-chevron-down");
-          }
-        });
+      const mainNav = document.querySelector(".main-navigation");
+      if (mainNav) {
+        mainNav.classList.toggle("current");
+        mainNav.style.display = mainNav.classList.contains("current")
+          ? "block"
+          : "none";
       }
     });
+  }
 
-    // Handle dropdown toggles for the main navigation
-    const dropdownItems = document.querySelectorAll(
-      ".main-navigation .nav-item.has-dropdown"
+  // Only apply these changes for mobile and tablet devices
+  if (window.innerWidth <= 991) {
+    // Find all dropdown links
+    const allDropdownLinks = document.querySelectorAll(
+      ".nav-item.has-dropdown > .nav-link"
     );
+    console.log("Found dropdown links:", allDropdownLinks.length);
 
-    dropdownItems.forEach(function (item) {
-      const link = item.querySelector("a.nav-link");
-      const icon = link.querySelector("i");
-      const dropdown = item.querySelector(".dropdown-menu");
+    // Replace all icons with chevron-down
+    allDropdownLinks.forEach(function (link) {
+      // Clone and replace to remove existing event handlers
+      const newLink = link.cloneNode(true);
+      link.parentNode.replaceChild(newLink, link);
 
-      // Set display property explicitly for all dropdowns
-      if (dropdown) {
-        dropdown.style.display = "none";
+      // Find existing icons and replace them
+      let icon = newLink.querySelector("i.fas");
+
+      // Remove any existing icon
+      if (icon) {
+        icon.remove();
       }
 
-      // When in mobile view, clicks should toggle the dropdown
-      link.addEventListener("click", function (e) {
-        if (window.innerWidth <= 991) {
-          // Only for mobile
-          e.preventDefault();
-          e.stopPropagation();
+      // Create new chevron-down icon
+      icon = document.createElement("i");
+      icon.className = "fas fa-chevron-down";
+      newLink.appendChild(icon);
 
-          // Toggle dropdown visibility
-          const isDisplayed = dropdown.style.display === "block";
+      // Style the icon
+      icon.style.position = "absolute";
+      icon.style.right = "15px";
+      icon.style.top = "50%";
+      icon.style.transform = "translateY(-50%)";
+      icon.style.fontSize = "12px";
+      icon.style.color = "#f6903d";
 
-          if (isDisplayed) {
-            dropdown.style.display = "none";
-            item.classList.remove("active");
-            if (icon) {
-              icon.classList.remove("fa-chevron-up");
-              icon.classList.add("fa-chevron-down");
-            }
+      // Style the link
+      newLink.style.position = "relative";
+      newLink.style.paddingRight = "30px";
+
+      // Initially hide the dropdown
+      const parentItem = newLink.parentNode;
+      const submenu = parentItem.querySelector(".dropdown-menu");
+      if (submenu) {
+        submenu.style.display = "none";
+      }
+
+      // Add click handler
+      newLink.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parent = this.parentNode;
+        const submenu = parent.querySelector(".dropdown-menu");
+        const icon = this.querySelector("i.fas");
+
+        // Toggle active state
+        if (submenu) {
+          if (submenu.style.display === "block") {
+            submenu.style.display = "none";
+            parent.classList.remove("active");
+            if (icon) icon.className = "fas fa-chevron-down";
+            icon.style.transform = "translateY(-50%)";
           } else {
-            dropdown.style.display = "block";
-            item.classList.add("active");
-            if (icon) {
-              icon.classList.remove("fa-chevron-down");
-              icon.classList.add("fa-chevron-up");
-            }
+            submenu.style.display = "block";
+            parent.classList.add("active");
+            if (icon) icon.className = "fas fa-chevron-up";
+            icon.style.transform = "translateY(-50%)";
           }
         }
-      });
+        return false;
+      };
     });
+  }
+}
 
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", function (e) {
-      if (
-        mainNavigation.classList.contains("current") &&
-        !mainNavigation.contains(e.target) &&
-        !menuToggle.contains(e.target)
-      ) {
-        mainNavigation.style.display = "none";
-        mainNavigation.classList.remove("current");
-
-        // Close all dropdowns when closing the menu by clicking outside
-        dropdownItems.forEach(function (item) {
-          item.classList.remove("active");
-          const dropdown = item.querySelector(".dropdown-menu");
-          if (dropdown) {
-            dropdown.style.display = "none";
-          }
-          const icon = item.querySelector("i");
-          if (icon) {
-            icon.classList.remove("fa-chevron-up");
-            icon.classList.add("fa-chevron-down");
-          }
-        });
-      }
-    });
-
-    // Handle window resize - restore proper display mode
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 991) {
-        // Desktop view
-        mainNavigation.classList.remove("current");
-        mainNavigation.classList.remove("main-navigation-mobile");
-        mainNavigation.classList.add("d-lg-flex");
-        mainNavigation.style.display = "flex";
-
-        // Reset all dropdowns to default desktop behavior
-        dropdownItems.forEach(function (item) {
-          item.classList.remove("active");
-          const dropdown = item.querySelector(".dropdown-menu");
-          if (dropdown) {
-            dropdown.style.display = "";
-          }
-          const icon = item.querySelector("i");
-          if (icon) {
-            icon.classList.remove("fa-chevron-up");
-            icon.classList.add("fa-chevron-down");
-          }
-        });
-      } else {
-        // Mobile view
-        if (!mainNavigation.classList.contains("current")) {
-          mainNavigation.style.display = "none";
-        }
-
-        // Make sure dropdowns are hidden in mobile view
-        dropdownItems.forEach(function (item) {
-          if (!item.classList.contains("active")) {
-            const dropdown = item.querySelector(".dropdown-menu");
-            if (dropdown) {
-              dropdown.style.display = "none";
-            }
-          }
-        });
-      }
-    });
+// Run on resize to handle orientation changes
+window.addEventListener("resize", function () {
+  if (window.innerWidth <= 991) {
+    // Ensure menu is properly initialized on resize
+    mobileMenuInit();
   }
 });
