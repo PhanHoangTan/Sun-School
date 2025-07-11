@@ -581,6 +581,9 @@
 
       // Only run for mobile and tablet devices
       if (window.innerWidth <= 991) {
+        // Reset all dropdowns first
+        resetAllDropdowns();
+
         // Setup all dropdown items
         var dropdowns = document.querySelectorAll(
           ".nav-item.has-dropdown > .nav-link"
@@ -619,6 +622,21 @@
               "  var parent = this.parentNode; " +
               "  var submenu = parent.querySelector('.dropdown-menu'); " +
               "  var icon = this.querySelector('i.fas'); " +
+              "  " +
+              "  // Close any other open dropdowns first " +
+              "  var allDropdowns = document.querySelectorAll('.nav-item.has-dropdown'); " +
+              "  for (var i = 0; i < allDropdowns.length; i++) { " +
+              "    var item = allDropdowns[i]; " +
+              "    if (item !== parent && item.classList.contains('active')) { " +
+              "      item.classList.remove('active'); " +
+              "      var itemSubmenu = item.querySelector('.dropdown-menu'); " +
+              "      if (itemSubmenu) itemSubmenu.style.display = 'none'; " +
+              "      var itemIcon = item.querySelector('.nav-link i.fas'); " +
+              "      if (itemIcon) { itemIcon.className = 'fas fa-chevron-down'; itemIcon.style.transform = 'translateY(-50%)'; } " +
+              "    } " +
+              "  } " +
+              "  " +
+              "  // Toggle current dropdown " +
               "  if(submenu) { " +
               "    if(submenu.style.display === 'block') { " +
               "      submenu.style.display = 'none'; " +
@@ -655,8 +673,56 @@
           ) {
             mainNav.classList.remove("current");
             mainNav.style.display = "none";
+
+            // Also close any open dropdowns
+            resetAllDropdowns();
           }
         });
+
+        // Apply device-specific styles
+        applyDeviceSpecificStyles();
+      }
+    }
+
+    // Function to reset all dropdowns
+    function resetAllDropdowns() {
+      var allDropdowns = document.querySelectorAll(".nav-item.has-dropdown");
+      for (var i = 0; i < allDropdowns.length; i++) {
+        var item = allDropdowns[i];
+        item.classList.remove("active");
+        var submenu = item.querySelector(".dropdown-menu");
+        if (submenu) {
+          submenu.style.display = "none";
+        }
+        var icon = item.querySelector(".nav-link i.fas");
+        if (icon) {
+          icon.className = "fas fa-chevron-down";
+          icon.style.transform = "translateY(-50%)";
+        }
+      }
+    }
+
+    // Apply specific positioning based on device
+    function applyDeviceSpecificStyles() {
+      var mainNav = document.querySelector(".main-navigation");
+
+      if (!mainNav) return;
+
+      if (window.innerWidth >= 768 && window.innerWidth <= 991) {
+        // iPad
+        mainNav.style.top = "100px";
+        mainNav.style.width = "320px";
+        mainNav.style.left = "20px";
+      } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
+        // Large mobile
+        mainNav.style.top = "90px";
+        mainNav.style.width = "90%";
+        mainNav.style.left = "5%";
+      } else if (window.innerWidth < 576) {
+        // Small mobile
+        mainNav.style.top = "110px";
+        mainNav.style.width = "90%";
+        mainNav.style.left = "5%";
       }
     }
 
@@ -673,6 +739,7 @@
     window.addEventListener("resize", function () {
       if (window.innerWidth <= 991) {
         setupMobileMenu();
+        applyDeviceSpecificStyles();
       }
     });
 

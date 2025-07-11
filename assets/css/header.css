@@ -1324,3 +1324,69 @@
     transform: translateY(-50%) rotate(180deg) !important;
   }
 }
+
+/* FIX ACTIVE STATE FOR DIFFERENT DEVICES */
+@media (max-width: 991px) {
+  /* Active state for dropdown items */
+  .main-navigation .nav-item.has-dropdown.active {
+    background-color: #fff8f0 !important;
+  }
+
+  /* Active state for links */
+  .main-navigation .nav-item.active > .nav-link,
+  .main-navigation .nav-item.has-dropdown.active > .nav-link {
+    color: #f6903d !important;
+    font-weight: 500 !important;
+  }
+
+  /* Active state for dropdown items */
+  .main-navigation .dropdown-menu li.active > a {
+    background-color: #fff0e0 !important;
+    color: #f6903d !important;
+    font-weight: 500 !important;
+  }
+
+  /* Proper styling for open dropdown */
+  .main-navigation .nav-item.has-dropdown.active {
+    border-bottom: none !important;
+  }
+
+  /* Fix submenu styling when active */
+  .main-navigation .nav-item.has-dropdown.active .dropdown-menu {
+    display: block !important;
+    background-color: #f9f9f9 !important;
+    border-top: 1px solid #f0f0f0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+  }
+
+  /* Fix for iPad specifically */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .main-navigation.current {
+      top: 100px !important;
+      width: 320px !important;
+      left: 20px !important;
+    }
+
+    .main-navigation .nav-item.has-dropdown.active .dropdown-menu {
+      padding-left: 0 !important;
+    }
+  }
+
+  /* Fix for mobile specifically */
+  @media (max-width: 767px) {
+    .main-navigation.current {
+      top: 90px !important;
+      width: 90% !important;
+      left: 5% !important;
+    }
+  }
+
+  /* Fix for small mobile specifically */
+  @media (max-width: 575px) {
+    .main-navigation.current {
+      top: 110px !important;
+      width: 90% !important;
+      left: 5% !important;
+    }
+  }
+}
