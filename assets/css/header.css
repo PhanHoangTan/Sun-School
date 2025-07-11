@@ -5,7 +5,8 @@
   background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_og.jpg?1653971798732);
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 100% auto; /* Make background bigger to fill the width */
+  background-size: contain; /* Thay đổi từ 100% auto sang contain để tránh khoảng trắng */
+  overflow-x: hidden; /* Thêm overflow-x: hidden để ngăn cuộn ngang */
 }
 
 .header-top {
@@ -239,7 +240,7 @@
     background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_tablet.jpg?1653971798732);
     background-repeat: no-repeat;
     background-position: top center;
-    background-size: 100% auto; /* Fill width for tablet view */
+    background-size: contain; /* Thay đổi từ 100% auto sang contain để tránh khoảng trắng */
   }
 
   .mobile-menu-toggle {
@@ -1757,9 +1758,90 @@
   }
 }
 
+/* Ensure all containers respect viewport width */
+.container,
+.container-fluid {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+/* Fix mobile layout specifically */
+@media (max-width: 767px) {
+  .container,
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .col,
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12,
+  .col-sm,
+  .col-sm-1,
+  .col-sm-2,
+  .col-sm-3,
+  .col-sm-4,
+  .col-sm-5,
+  .col-sm-6,
+  .col-sm-7,
+  .col-sm-8,
+  .col-sm-9,
+  .col-sm-10,
+  .col-sm-11,
+  .col-sm-12,
+  .col-md,
+  .col-md-1,
+  .col-md-2,
+  .col-md-3,
+  .col-md-4,
+  .col-md-5,
+  .col-md-6,
+  .col-md-7,
+  .col-md-8,
+  .col-md-9,
+  .col-md-10,
+  .col-md-11,
+  .col-md-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .header {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
 /* PREVENT NAVIGATION JUMPING DURING PAGE TRANSITIONS */
-body {
+body,
+html {
   overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+  position: relative;
 }
 
 /* Fix navigation height to prevent layout shifts */
@@ -2111,5 +2193,38 @@ body {
   .header-top .contact-item i {
     font-size: 12px !important;
     margin-right: 4px !important;
+  }
+}
+
+/* FINAL FIX TO PREVENT HORIZONTAL SCROLLING */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.header,
+.header-top,
+.header-main {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 991px) {
+  /* Ensure background doesn't cause scrolling */
+  .header {
+    background-size: contain;
+    width: 100%;
+    max-width: 100%;
   }
 }
