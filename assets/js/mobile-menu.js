@@ -239,6 +239,10 @@ function mobileMenuInit() {
             // Open current dropdown
             if (submenu) {
               submenu.style.display = "block";
+              submenu.style.position = "static";
+              submenu.style.width = "100%";
+              submenu.style.float = "none";
+              submenu.style.clear = "both";
               parent.classList.add("active");
               if (icon) icon.className = "fas fa-chevron-up";
               icon.style.transform = "translateY(-50%)";
@@ -297,6 +301,18 @@ function mobileMenuInit() {
               icon.style.transform = "translateY(-50%)";
             } else {
               submenu.style.display = "block";
+              // Đảm bảo hiển thị đúng cho dropdown menu
+              submenu.style.position = "static";
+              submenu.style.width = "100%";
+              submenu.style.float = "none";
+              submenu.style.clear = "both";
+              submenu.style.boxShadow = "none";
+              submenu.style.border = "none";
+              submenu.style.borderRadius = "0";
+              submenu.style.margin = "0";
+              submenu.style.padding = "0";
+              submenu.style.backgroundColor = "#f9f9f9";
+
               parent.classList.add("active");
               if (icon) icon.className = "fas fa-chevron-up";
               icon.style.transform = "translateY(-50%)";
@@ -379,26 +395,55 @@ function applyDeviceSpecificStyles() {
     mainNav.style.maxHeight = "none";
     mainNav.style.overflowY = "visible";
   } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
-    // iPad
+    // iPad - full width
     mainNav.style.top = "100px";
-    mainNav.style.width = "auto";
-    mainNav.style.minWidth = "250px";
-    mainNav.style.maxWidth = "90%";
-    mainNav.style.left = "15px";
+    mainNav.style.width = "100%";
+    mainNav.style.minWidth = "100%";
+    mainNav.style.maxWidth = "100%";
+    mainNav.style.left = "0";
+    mainNav.style.right = "0";
   } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
-    // Large mobile
+    // Large mobile - full width
     mainNav.style.top = "90px";
-    mainNav.style.width = "auto";
-    mainNav.style.minWidth = "250px";
-    mainNav.style.maxWidth = "90%";
-    mainNav.style.left = "15px";
+    mainNav.style.width = "100%";
+    mainNav.style.minWidth = "100%";
+    mainNav.style.maxWidth = "100%";
+    mainNav.style.left = "0";
+    mainNav.style.right = "0";
   } else if (window.innerWidth < 576) {
-    // Small mobile
+    // Small mobile - full width
     mainNav.style.top = "110px";
-    mainNav.style.width = "auto";
-    mainNav.style.minWidth = "250px";
-    mainNav.style.maxWidth = "90%";
-    mainNav.style.left = "15px";
+    mainNav.style.width = "100%";
+    mainNav.style.minWidth = "100%";
+    mainNav.style.maxWidth = "100%";
+    mainNav.style.left = "0";
+    mainNav.style.right = "0";
+  }
+
+  // Đảm bảo menu dropdown hiển thị đúng
+  if (window.innerWidth <= 991) {
+    // Đảm bảo tất cả các dropdown menu không sử dụng absolute positioning
+    const allDropdownMenus = document.querySelectorAll(".dropdown-menu");
+    allDropdownMenus.forEach(function (menu) {
+      menu.style.position = "static";
+      menu.style.width = "100%";
+      menu.style.float = "none";
+      menu.style.clear = "both";
+      menu.style.boxShadow = "none";
+      menu.style.border = "none";
+      menu.style.borderRadius = "0";
+      menu.style.margin = "0";
+      menu.style.padding = "0";
+      menu.style.backgroundColor = "#f9f9f9";
+    });
+
+    // Đảm bảo tất cả các nav-item là block đầy đủ
+    const allNavItems = document.querySelectorAll(".nav-item");
+    allNavItems.forEach(function (item) {
+      item.style.display = "block";
+      item.style.width = "100%";
+      item.style.position = "relative";
+    });
   }
 }
 
@@ -509,5 +554,121 @@ window.addEventListener("load", updateActiveState);
 window.addEventListener("resize", function () {
   if (isIPad()) {
     updateActiveState();
+  }
+});
+
+// Make sure dropdown menu doesn't overlay other menu items
+function fixMobileDropdowns() {
+  if (window.innerWidth <= 991) {
+    // Đảm bảo container chính luôn full width
+    const mainNavigation = document.querySelector(".main-navigation.current");
+    if (mainNavigation) {
+      mainNavigation.style.position = "absolute";
+      mainNavigation.style.width = "100%";
+      mainNavigation.style.minWidth = "100%";
+      mainNavigation.style.maxWidth = "100%";
+      mainNavigation.style.left = "0";
+      mainNavigation.style.right = "0";
+      mainNavigation.style.borderLeft = "none";
+      mainNavigation.style.borderRight = "none";
+      mainNavigation.style.borderRadius = "0";
+      mainNavigation.style.margin = "0";
+      mainNavigation.style.padding = "0";
+      mainNavigation.style.boxSizing = "border-box";
+
+      // Đặt top dựa vào kích thước màn hình
+      if (window.innerWidth >= 768) {
+        mainNavigation.style.top = "100px";
+      } else if (window.innerWidth >= 576) {
+        mainNavigation.style.top = "90px";
+      } else {
+        mainNavigation.style.top = "110px";
+      }
+    }
+
+    // Đảm bảo menu chính sử dụng flexbox với direction là column
+    const mainMenu = document.querySelector(".main-navigation .main-menu");
+    if (mainMenu) {
+      mainMenu.style.display = "flex";
+      mainMenu.style.flexDirection = "column";
+      mainMenu.style.width = "100%";
+      mainMenu.style.margin = "0";
+      mainMenu.style.padding = "0";
+      mainMenu.style.boxSizing = "border-box";
+    }
+
+    // Đảm bảo tất cả các nav-item là block và chiếm toàn bộ chiều rộng
+    const navItems = document.querySelectorAll(".main-navigation .nav-item");
+    navItems.forEach(function (item) {
+      item.style.display = "block";
+      item.style.width = "100%";
+      item.style.maxWidth = "100%";
+      item.style.position = "relative";
+      item.style.float = "none";
+      item.style.clear = "both";
+      item.style.margin = "0";
+      item.style.padding = "0";
+      item.style.boxSizing = "border-box";
+    });
+
+    // Đảm bảo tất cả các dropdown menu không sử dụng absolute positioning
+    const dropdownMenus = document.querySelectorAll(
+      ".main-navigation .dropdown-menu"
+    );
+    dropdownMenus.forEach(function (menu) {
+      menu.style.position = "static";
+      menu.style.width = "100%";
+      menu.style.maxWidth = "100%";
+      menu.style.float = "none";
+      menu.style.clear = "both";
+      menu.style.boxShadow = "none";
+      menu.style.border = "none";
+      menu.style.borderRadius = "0";
+      menu.style.margin = "0";
+      menu.style.padding = "0";
+      menu.style.boxSizing = "border-box";
+      menu.style.backgroundColor = "#f9f9f9";
+    });
+
+    // Đảm bảo các dropdown đang mở hiển thị đúng
+    const activeDropdowns = document.querySelectorAll(
+      ".nav-item.has-dropdown.active"
+    );
+    activeDropdowns.forEach(function (item) {
+      const submenu = item.querySelector(".dropdown-menu");
+      if (submenu) {
+        submenu.style.display = "block";
+        submenu.style.position = "static";
+        submenu.style.width = "100%";
+        submenu.style.maxWidth = "100%";
+        submenu.style.float = "none";
+        submenu.style.clear = "both";
+      }
+    });
+
+    // Đảm bảo tất cả các link trong menu có width 100%
+    const navLinks = document.querySelectorAll(
+      ".main-navigation .nav-link, .main-navigation .dropdown-menu a"
+    );
+    navLinks.forEach(function (link) {
+      link.style.display = "block";
+      link.style.width = "100%";
+      link.style.boxSizing = "border-box";
+    });
+  }
+}
+
+// Run fixMobileDropdowns on page load and resize
+window.addEventListener("load", fixMobileDropdowns);
+window.addEventListener("resize", fixMobileDropdowns);
+
+// Also run when menu is toggled
+document.addEventListener("click", function (e) {
+  if (
+    e.target.closest(".nav-item.has-dropdown") ||
+    e.target.closest(".menu-toggle")
+  ) {
+    // Slight delay to ensure the menu is fully toggled before fixing
+    setTimeout(fixMobileDropdowns, 10);
   }
 });

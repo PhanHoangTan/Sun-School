@@ -142,14 +142,7 @@ body {
 }
 
 /* Header Styles */
-.header {
-  position: relative;
-  z-index: 999;
-  background-image: url("https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_og.jpg?1653971798732");
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: auto 84px;
-}
+
 
 /* Header Top */
 .header-top {

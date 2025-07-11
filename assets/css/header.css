@@ -1191,6 +1191,23 @@
     transition: none !important;
     max-height: 1000px !important;
     overflow: visible !important;
+    float: none !important; /* Đảm bảo không float */
+    clear: both !important; /* Clear để không đè lên phần tử khác */
+  }
+
+  /* Quan trọng: Đảm bảo dropdown không dùng position: absolute */
+  .main-navigation .dropdown-menu {
+    position: static !important;
+    float: none !important;
+    width: 100% !important;
+    clear: both !important;
+  }
+
+  /* Đảm bảo dropdown đẩy các phần tử khác xuống dưới */
+  .main-navigation .nav-item.has-dropdown.active {
+    height: auto !important;
+    width: 100% !important;
+    display: block !important;
   }
 
   /* Nav link styling to make space for the chevron */
@@ -1219,6 +1236,8 @@
   .main-navigation .dropdown-menu li {
     border-bottom: none !important;
     border-top: 1px solid #f0f0f0 !important;
+    width: 100% !important;
+    display: block !important;
   }
 
   .main-navigation .dropdown-menu li a {
@@ -1239,50 +1258,44 @@
 /* FIX FOR MAIN NAVIGATION WIDTH ON MOBILE AND IPAD */
 @media (max-width: 991px) {
   /* Ensure main navigation container takes full width */
-  .main-navigation.current {
+  .main-navigation.current,
+  .main-navigation.d-none.d-lg-flex.current {
     display: block !important;
     position: absolute !important;
-    top: 100px !important;
-    left: 15px !important;
-    width: auto !important;
-    min-width: 250px !important;
-    max-width: 90% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     z-index: 99999 !important;
     background-color: white !important;
     border: 1px solid #f6903d !important;
-    border-radius: 4px !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    margin: 0 !important;
   }
 
-  /* Ensure dropdown menu container is properly sized */
-  .main-navigation.d-none.d-lg-flex.current {
-    width: auto !important;
-    min-width: 250px !important;
-    max-width: 90% !important;
-    left: 15px !important;
-    box-sizing: border-box !important;
+  /* Adjust top position for different devices */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .main-navigation.current,
+    .main-navigation.d-none.d-lg-flex.current {
+      top: 100px !important;
+    }
   }
 
-  /* Force full width on specific screen sizes */
-  @media (max-width: 767px) {
-    .main-navigation.d-none.d-lg-flex.current,
-    .main-navigation.current {
+  @media (min-width: 576px) and (max-width: 767px) {
+    .main-navigation.current,
+    .main-navigation.d-none.d-lg-flex.current {
       top: 90px !important;
-      width: auto !important;
-      min-width: 250px !important;
-      max-width: 90% !important;
-      left: 15px !important;
     }
   }
 
   @media (max-width: 575px) {
-    .main-navigation.d-none.d-lg-flex.current,
-    .main-navigation.current {
+    .main-navigation.current,
+    .main-navigation.d-none.d-lg-flex.current {
       top: 110px !important;
-      width: auto !important;
-      min-width: 250px !important;
-      max-width: 90% !important;
-      left: 15px !important;
     }
   }
 }
@@ -2226,5 +2239,132 @@ img {
     background-size: contain;
     width: 100%;
     max-width: 100%;
+  }
+}
+
+/* FINAL DROPDOWN POSITIONING - HIGHEST PRIORITY */
+@media (max-width: 991px) {
+  /* Ghi đè tất cả các cài đặt khác để đảm bảo dropdown đẩy các menu khác xuống */
+  .main-navigation,
+  .main-navigation.current,
+  .main-navigation.d-none.d-lg-flex.current {
+    overflow-y: visible !important;
+  }
+
+  .main-navigation .main-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .main-navigation .nav-item {
+    display: block !important;
+    width: 100% !important;
+    position: static !important;
+  }
+
+  .main-navigation .dropdown-menu,
+  .main-navigation .nav-item.has-dropdown .dropdown-menu,
+  .main-navigation .nav-item.has-dropdown.active .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #f9f9f9 !important;
+    z-index: 1 !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .main-navigation .nav-item.has-dropdown.active .dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    height: auto !important;
+    max-height: 1000px !important;
+  }
+
+  /* Đảm bảo dropdown đẩy các menu khác xuống dưới */
+  .main-navigation .nav-item.has-dropdown.active {
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Đảm bảo mỗi menu item là block riêng biệt */
+  .main-navigation .nav-item.has-dropdown,
+  .main-navigation .nav-item.has-dropdown.active,
+  .main-navigation .nav-item.has-dropdown.open {
+    display: block !important;
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    position: relative !important;
+  }
+}
+
+/* FINAL FIX FOR MENU WIDTH - FORCE 100% WIDTH */
+@media (max-width: 991px) {
+  .main-navigation.current,
+  .main-navigation.d-none.d-lg-flex.current {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .main-navigation.current .main-menu,
+  .main-navigation.d-none.d-lg-flex.current .main-menu {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-navigation.current .nav-item,
+  .main-navigation.d-none.d-lg-flex.current .nav-item {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-navigation.current .dropdown-menu,
+  .main-navigation.d-none.d-lg-flex.current .dropdown-menu {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .main-navigation.current .nav-link,
+  .main-navigation.d-none.d-lg-flex.current .nav-link,
+  .main-navigation.current .dropdown-menu a,
+  .main-navigation.d-none.d-lg-flex.current .dropdown-menu a {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
   }
 }
