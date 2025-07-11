@@ -555,6 +555,107 @@
   }
 </style>
 
+<!-- Add function to handle active state for iPad Pro -->
+<script>
+  // Function to update active state based on current page
+  function updateActiveStateForIPad() {
+    // Check if device is iPad
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isIPad =
+      /ipad/.test(userAgent) ||
+      (/macintosh/.test(userAgent) && "ontouchend" in document) ||
+      (window.innerWidth >= 768 &&
+        window.innerWidth <= 1366 &&
+        navigator.maxTouchPoints > 1);
+
+    if (isIPad) {
+      // Get current page path
+      var currentPath = window.location.pathname;
+      var currentPage = currentPath.split("/").pop() || "index.html";
+
+      // Find all nav items
+      var allNavItems = document.querySelectorAll(".nav-item");
+
+      // First clear all active states
+      for (var i = 0; i < allNavItems.length; i++) {
+        allNavItems[i].classList.remove("active");
+      }
+
+      // Set active state based on current page
+      for (var i = 0; i < allNavItems.length; i++) {
+        var item = allNavItems[i];
+        var link = item.querySelector(".nav-link");
+
+        if (link) {
+          var href =
+            link.getAttribute("href") ||
+            link.getAttribute("data-original-href");
+          if (href) {
+            var hrefPage = href.split("/").pop();
+            if (hrefPage === currentPage) {
+              item.classList.add("active");
+
+              // If it's in a dropdown, also activate parent
+              var parentDropdown = link.closest(".dropdown-menu");
+              if (parentDropdown) {
+                var parentItem = parentDropdown.closest(".nav-item");
+                if (parentItem) {
+                  parentItem.classList.add("active");
+                  parentDropdown.style.display = "block";
+                  var icon = parentItem.querySelector(".nav-link i.fas");
+                  if (icon) {
+                    icon.className = "fas fa-chevron-up";
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Check dropdown children
+        if (item.classList.contains("has-dropdown")) {
+          var submenuItems = item.querySelectorAll(".dropdown-menu a");
+          for (var j = 0; j < submenuItems.length; j++) {
+            var submenuLink = submenuItems[j];
+            var href = submenuLink.getAttribute("href");
+            if (href) {
+              var hrefPage = href.split("/").pop();
+              if (hrefPage === currentPage) {
+                item.classList.add("active");
+                submenuLink.parentElement.classList.add("active");
+
+                // Open the dropdown
+                var dropdown = item.querySelector(".dropdown-menu");
+                if (dropdown) {
+                  dropdown.style.display = "block";
+                }
+
+                // Change icon
+                var icon = item.querySelector(".nav-link i.fas");
+                if (icon) {
+                  icon.className = "fas fa-chevron-up";
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Special case for home page
+      if (currentPage === "index.html" || currentPage === "") {
+        var homeItem = document.querySelector(".nav-item:first-child");
+        if (homeItem) {
+          homeItem.classList.add("active");
+        }
+      }
+    }
+  }
+
+  // Run on page load
+  document.addEventListener("DOMContentLoaded", updateActiveStateForIPad);
+  window.addEventListener("load", updateActiveStateForIPad);
+</script>
+
 <!-- EMERGENCY DIRECT INLINE SCRIPT - FINAL FIX -->
 <script>
   // Execute immediately

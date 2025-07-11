@@ -272,6 +272,92 @@ function applyDeviceSpecificStyles() {
   }
 }
 
+// Fix for current active state on iPad Pro
+function updateActiveState() {
+  // Only run for iPad Pro
+  if (isIPad()) {
+    // Get current page path
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split("/").pop() || "index.html";
+
+    // Find all nav items
+    const allNavItems = document.querySelectorAll(".nav-item");
+
+    // Remove any existing active states
+    allNavItems.forEach((item) => {
+      item.classList.remove("active");
+    });
+
+    // First, check exact matches
+    allNavItems.forEach((item) => {
+      const link = item.querySelector(".nav-link");
+      if (link) {
+        const href =
+          link.getAttribute("href") || link.getAttribute("data-original-href");
+        if (href) {
+          const hrefPage = href.split("/").pop();
+          if (hrefPage === currentPage) {
+            item.classList.add("active");
+
+            // If this is a child item, also activate parent
+            const parentDropdown = item.closest(".dropdown-menu");
+            if (parentDropdown) {
+              const parentItem = parentDropdown.closest(".nav-item");
+              if (parentItem) {
+                parentItem.classList.add("active");
+                // Show the dropdown
+                parentDropdown.style.display = "block";
+                // Change the icon
+                const icon = parentItem.querySelector(".nav-link i.fas");
+                if (icon) {
+                  icon.className = "fas fa-chevron-up";
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Also check dropdown children
+    allNavItems.forEach((item) => {
+      if (item.classList.contains("has-dropdown")) {
+        const submenuItems = item.querySelectorAll(".dropdown-menu a");
+        submenuItems.forEach((submenuLink) => {
+          const href = submenuLink.getAttribute("href");
+          if (href) {
+            const hrefPage = href.split("/").pop();
+            if (hrefPage === currentPage) {
+              item.classList.add("active");
+              submenuLink.parentElement.classList.add("active");
+
+              // Show the dropdown
+              const dropdown = item.querySelector(".dropdown-menu");
+              if (dropdown) {
+                dropdown.style.display = "block";
+              }
+
+              // Change the icon
+              const icon = item.querySelector(".nav-link i.fas");
+              if (icon) {
+                icon.className = "fas fa-chevron-up";
+              }
+            }
+          }
+        });
+      }
+    });
+
+    // Special handling for home page
+    if (currentPage === "index.html" || currentPage === "") {
+      const homeItem = document.querySelector(".nav-item:first-child");
+      if (homeItem) {
+        homeItem.classList.add("active");
+      }
+    }
+  }
+}
+
 // Run on resize to handle orientation changes
 window.addEventListener("resize", function () {
   if (window.innerWidth <= 1366 || isIPad()) {
@@ -280,5 +366,18 @@ window.addEventListener("resize", function () {
 
     // Also apply device-specific styles
     applyDeviceSpecificStyles();
+
+    // Update active state for iPad Pro
+    if (isIPad()) {
+      updateActiveState();
+    }
+  }
+});
+
+// Also call on page load and resize
+window.addEventListener("load", updateActiveState);
+window.addEventListener("resize", function () {
+  if (isIPad()) {
+    updateActiveState();
   }
 });

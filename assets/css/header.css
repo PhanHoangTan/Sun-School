@@ -1391,6 +1391,57 @@
   }
 }
 
+/* ACTIVE STATE FIX FOR IPAD PRO */
+@media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
+  /* Active menu item styling */
+  .main-navigation .nav-item.active > .nav-link,
+  .main-navigation .nav-item.has-dropdown.active > .nav-link {
+    color: #f6903d !important;
+    font-weight: 500 !important;
+    background-color: #fff8f0 !important;
+  }
+
+  /* Active dropdown styling */
+  .main-navigation .nav-item.has-dropdown.active {
+    background-color: #fff8f0 !important;
+  }
+
+  /* Force open active dropdown */
+  .main-navigation .nav-item.has-dropdown.active > .dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Active submenu item styling */
+  .main-navigation .dropdown-menu li.active > a {
+    color: #f6903d !important;
+    background-color: #fff0e0 !important;
+    font-weight: 500 !important;
+  }
+
+  /* Rotate chevron for active state */
+  .main-navigation .nav-item.has-dropdown.active > .nav-link i.fa-chevron-down {
+    transform: translateY(-50%) rotate(180deg) !important;
+  }
+
+  /* Fix for icon */
+  .main-navigation .nav-item.has-dropdown > .nav-link i.fas {
+    transition: transform 0.3s ease !important;
+  }
+
+  /* Active submenu item styling */
+  .main-navigation .dropdown-menu li > a:hover,
+  .main-navigation .dropdown-menu li > a:active,
+  .main-navigation .dropdown-menu li > a:focus {
+    color: #f6903d !important;
+    background-color: #fff0e0 !important;
+    border-left-color: #f6903d !important;
+  }
+}
+
 /* FIX FOR IPAD PRO */
 @media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
   /* Đảm bảo menu dropdown không chuyển trang khi click vào lần đầu */
