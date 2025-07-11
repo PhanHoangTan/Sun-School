@@ -25,8 +25,9 @@ function mobileMenuInit() {
     });
   }
 
-  // Only apply these changes for mobile and tablet devices
-  if (window.innerWidth <= 991) {
+  // Apply to all devices with dropdown menu issues (including iPad Pro)
+  // Instead of just checking window.innerWidth <= 991
+  if (window.innerWidth <= 1366 || isIPad()) {
     // Close any open dropdowns first to avoid conflicts
     resetAllDropdowns();
 
@@ -38,9 +39,18 @@ function mobileMenuInit() {
 
     // Replace all icons with chevron-down
     allDropdownLinks.forEach(function (link) {
+      // Remove the original link's href to prevent immediate navigation on first click
+      const originalHref = link.getAttribute("href");
+      link.setAttribute("data-original-href", originalHref);
+
       // Clone and replace to remove existing event handlers
       const newLink = link.cloneNode(true);
       link.parentNode.replaceChild(newLink, link);
+
+      // For iPad Pro, we need to remove the href attribute to prevent navigation on first click
+      if (isIPad()) {
+        newLink.removeAttribute("href");
+      }
 
       // Find existing icons and replace them
       let icon = newLink.querySelector("i.fas");
@@ -74,6 +84,9 @@ function mobileMenuInit() {
         submenu.style.display = "none";
       }
 
+      // Store a click counter to handle iPad double-click behavior
+      let clickCount = 0;
+
       // Add click handler
       newLink.onclick = function (e) {
         e.preventDefault();
@@ -83,39 +96,93 @@ function mobileMenuInit() {
         const submenu = parent.querySelector(".dropdown-menu");
         const icon = this.querySelector("i.fas");
 
-        // Close any other open dropdown first
-        const allDropdowns = document.querySelectorAll(
-          ".nav-item.has-dropdown"
-        );
-        allDropdowns.forEach(function (item) {
-          if (item !== parent && item.classList.contains("active")) {
-            item.classList.remove("active");
-            const itemSubmenu = item.querySelector(".dropdown-menu");
-            if (itemSubmenu) {
-              itemSubmenu.style.display = "none";
-            }
-            const itemIcon = item.querySelector(".nav-link i.fas");
-            if (itemIcon) {
-              itemIcon.className = "fas fa-chevron-down";
-              itemIcon.style.transform = "translateY(-50%)";
-            }
-          }
-        });
+        // For iPad Pro, we need special handling
+        if (isIPad()) {
+          clickCount++;
 
-        // Toggle active state
-        if (submenu) {
-          if (submenu.style.display === "block") {
-            submenu.style.display = "none";
-            parent.classList.remove("active");
-            if (icon) icon.className = "fas fa-chevron-down";
-            icon.style.transform = "translateY(-50%)";
-          } else {
-            submenu.style.display = "block";
-            parent.classList.add("active");
-            if (icon) icon.className = "fas fa-chevron-up";
-            icon.style.transform = "translateY(-50%)";
+          // First click: open submenu
+          if (clickCount === 1) {
+            // Close any other open dropdown first
+            const allDropdowns = document.querySelectorAll(
+              ".nav-item.has-dropdown"
+            );
+            allDropdowns.forEach(function (item) {
+              if (item !== parent && item.classList.contains("active")) {
+                item.classList.remove("active");
+                const itemSubmenu = item.querySelector(".dropdown-menu");
+                if (itemSubmenu) {
+                  itemSubmenu.style.display = "none";
+                }
+                const itemIcon = item.querySelector(".nav-link i.fas");
+                if (itemIcon) {
+                  itemIcon.className = "fas fa-chevron-down";
+                  itemIcon.style.transform = "translateY(-50%)";
+                }
+              }
+            });
+
+            // Open current dropdown
+            if (submenu) {
+              submenu.style.display = "block";
+              parent.classList.add("active");
+              if (icon) icon.className = "fas fa-chevron-up";
+              icon.style.transform = "translateY(-50%)";
+            }
+
+            // Reset clickCount after 500ms if no second click
+            setTimeout(() => {
+              clickCount = 0;
+            }, 500);
+
+            return false;
+          }
+          // Second click: navigate to href
+          else if (clickCount === 2) {
+            clickCount = 0;
+            const originalHref = this.getAttribute("data-original-href");
+            if (originalHref) {
+              window.location.href = originalHref;
+            }
+            return true;
           }
         }
+        // Normal mobile handling
+        else {
+          // Close any other open dropdown first
+          const allDropdowns = document.querySelectorAll(
+            ".nav-item.has-dropdown"
+          );
+          allDropdowns.forEach(function (item) {
+            if (item !== parent && item.classList.contains("active")) {
+              item.classList.remove("active");
+              const itemSubmenu = item.querySelector(".dropdown-menu");
+              if (itemSubmenu) {
+                itemSubmenu.style.display = "none";
+              }
+              const itemIcon = item.querySelector(".nav-link i.fas");
+              if (itemIcon) {
+                itemIcon.className = "fas fa-chevron-down";
+                itemIcon.style.transform = "translateY(-50%)";
+              }
+            }
+          });
+
+          // Toggle active state
+          if (submenu) {
+            if (submenu.style.display === "block") {
+              submenu.style.display = "none";
+              parent.classList.remove("active");
+              if (icon) icon.className = "fas fa-chevron-down";
+              icon.style.transform = "translateY(-50%)";
+            } else {
+              submenu.style.display = "block";
+              parent.classList.add("active");
+              if (icon) icon.className = "fas fa-chevron-up";
+              icon.style.transform = "translateY(-50%)";
+            }
+          }
+        }
+
         return false;
       };
     });
@@ -145,6 +212,18 @@ function mobileMenuInit() {
   }
 }
 
+// Function to detect if the device is an iPad
+function isIPad() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  return (
+    /ipad/.test(userAgent) ||
+    (/macintosh/.test(userAgent) && "ontouchend" in document) ||
+    (window.innerWidth >= 768 &&
+      window.innerWidth <= 1366 &&
+      navigator.maxTouchPoints > 1)
+  );
+}
+
 // Function to reset all dropdowns to closed state
 function resetAllDropdowns() {
   const allDropdowns = document.querySelectorAll(".nav-item.has-dropdown");
@@ -168,7 +247,14 @@ function applyDeviceSpecificStyles() {
 
   if (!mainNav) return;
 
-  if (window.innerWidth >= 768 && window.innerWidth <= 991) {
+  if (isIPad()) {
+    // iPad Pro
+    mainNav.style.top = "100px";
+    mainNav.style.width = "400px";
+    mainNav.style.left = "20px";
+    mainNav.style.maxHeight = "80vh";
+    mainNav.style.overflowY = "auto";
+  } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
     // iPad
     mainNav.style.top = "100px";
     mainNav.style.width = "320px";
@@ -188,7 +274,7 @@ function applyDeviceSpecificStyles() {
 
 // Run on resize to handle orientation changes
 window.addEventListener("resize", function () {
-  if (window.innerWidth <= 991) {
+  if (window.innerWidth <= 1366 || isIPad()) {
     // Ensure menu is properly initialized on resize
     mobileMenuInit();
 
