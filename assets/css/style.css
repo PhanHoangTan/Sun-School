@@ -143,7 +143,6 @@ body {
 
 /* Header Styles */
 
-
 /* Header Top */
 .header-top {
   background-color: transparent;
@@ -931,51 +930,364 @@ body.menu-open {
   border-radius: 10px;
 }
 
-@media (max-width: 991px) {
-  .time_work {
-    margin-top: 20px;
+/* Responsive styles for section_slider */
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .section_slider {
+    padding: 25px 0;
+  }
+
+  .home-slider .swiper-button-prev,
+  .home-slider .swiper-button-next {
+    width: 35px;
+    height: 70px;
   }
 
   .time_work_title {
-    font-size: 20px;
+    font-size: 30px;
   }
 
-  .home_banner_1 {
-    margin-top: 15px;
+  .time_small,
+  .fone-slider a {
+    font-size: 16px;
+  }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .section_slider {
+    padding: 20px 0;
   }
 
-  .time .row {
-    flex-direction: row;
+  .home-slider {
+    margin-bottom: 15px;
+  }
+
+  .home-slider .swiper-button-prev,
+  .home-slider .swiper-button-next {
+    width: 30px;
+    height: 60px;
+  }
+
+  .time_work {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .col-md-7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+
+  .col-md-5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+
+  .time_work_title {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 16px;
   }
 
   .time_work_image {
     width: 50px;
     flex: 0 0 50px;
   }
+
+  .home_banner_1 {
+    display: block !important;
+  }
 }
 
-@media (max-width: 767px) {
-  .time {
-    padding: 5px;
+/* iPad Pro (1024px) */
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+  .section_slider {
+    padding: 25px 0;
   }
 
   .time_work_title {
-    font-size: 18px;
+    font-size: 28px;
+  }
+}
+
+/* iPad Mini and other small tablets (768px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .section_slider {
+    padding: 20px 0;
+  }
+
+  .time_work_title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 15px;
+  }
+}
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .section_slider {
+    padding: 15px 0;
+  }
+
+  .home-slider {
+    margin-bottom: 15px;
+  }
+
+  .home-slider .swiper-button-prev,
+  .home-slider .swiper-button-next {
+    width: 25px;
+    height: 50px;
+  }
+
+  .home-slider .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+
+  .time_work {
+    margin-top: 15px;
+  }
+
+  .time_work_title {
+    font-size: 22px;
+    line-height: 24px;
     margin-bottom: 10px;
+  }
+
+  .time {
+    padding: 8px;
+  }
+
+  .time-day {
+    margin-bottom: 8px;
+  }
+
+  .time_work_image {
+    width: 45px;
+    flex: 0 0 45px;
+  }
+
+  .time_work_content {
+    padding-left: 10px;
+  }
+
+  .policy-item {
+    padding: 3px;
+  }
+
+  .policy-text {
+    padding: 3px 0;
   }
 
   .policy-text .text {
     font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 15px;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575px) {
+  .section_slider {
+    padding: 10px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .home-slider {
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+
+  .home-slider .swiper-button-prev,
+  .home-slider .swiper-button-next {
+    width: 20px;
+    height: 40px;
+    background-size: 20px;
+  }
+
+  .home-slider .swiper-pagination {
+    bottom: 5px;
+  }
+
+  .home-slider .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+  }
+
+  .time_work {
+    margin-top: 15px;
+  }
+
+  .time_work_title {
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 8px;
+    padding: 5px;
+  }
+
+  .time {
+    padding: 5px;
+  }
+
+  .time-day {
+    margin-bottom: 8px;
+  }
+
+  .time_work_image {
+    width: 40px;
+    flex: 0 0 40px;
+  }
+
+  .time_work_content {
+    padding-left: 10px;
+  }
+
+  .policy-item {
+    padding: 3px;
+  }
+
+  .policy-text {
+    padding: 3px 0;
+  }
+
+  .policy-text .text {
+    font-size: 13px;
   }
 
   .time_small,
   .fone-slider a {
     font-size: 14px;
   }
+}
+
+/* iPhone SE and other very small devices */
+@media (max-width: 375px) {
+  .section_slider {
+    padding: 8px 0;
+  }
+
+  .home-slider .swiper-button-prev,
+  .home-slider .swiper-button-next {
+    width: 18px;
+    height: 36px;
+  }
+
+  .time_work_title {
+    font-size: 18px;
+    line-height: 20px;
+  }
 
   .time_work_image {
-    width: 40px;
-    flex: 0 0 40px;
+    width: 35px;
+    flex: 0 0 35px;
+  }
+
+  .policy-text .text {
+    font-size: 12px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 13px;
+  }
+}
+
+/* Samsung Galaxy Fold and other ultra-small devices */
+@media (max-width: 280px) {
+  .section_slider {
+    padding: 5px 0;
+  }
+
+  .home-slider .swiper-button-prev,
+  .home-slider .swiper-button-next {
+    width: 15px;
+    height: 30px;
+  }
+
+  .time_work_title {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .time_work_image {
+    width: 30px;
+    flex: 0 0 30px;
+  }
+
+  .time_work_content {
+    padding-left: 5px;
+  }
+
+  .policy-text .text {
+    font-size: 11px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 12px;
+  }
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .home-slider .swiper-slide img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Fix for Samsung Browser */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .home-slider {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 991px) and (orientation: landscape) {
+  .section_slider {
+    padding: 15px 0;
+  }
+
+  .time_work {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .col-lg-12.col-md-7 {
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+
+  .col-lg-12.col-md-5 {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+
+  .home_banner_1 {
+    display: block !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -1838,4 +2150,543 @@ body.menu-open {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+/* iPad and tablet specific styles to match the provided image */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section_slider {
+    padding: 20px 0;
+  }
+
+  .section_slider .row {
+    flex-direction: column;
+  }
+
+  /* Make slider take full width */
+  .section_slider .col-lg-9,
+  .section_slider .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .home-slider {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  /* Position time_work section below the slider */
+  .section_slider .col-lg-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Restructure the time_work row to display correctly */
+  .time_work {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 0;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Left side content column */
+  .time_work .col-lg-12.col-md-7 {
+    flex: 0 0 60%;
+    max-width: 60%;
+    padding-right: 15px;
+  }
+
+  /* Right side image column */
+  .time_work .col-lg-12.col-md-5 {
+    flex: 0 0 40%;
+    max-width: 40%;
+    display: block !important;
+    padding-left: 15px;
+  }
+
+  /* Fix for hidden-xs class to ensure image is visible */
+  .home_banner_1.hidden-xs {
+    display: block !important;
+  }
+
+  .time_work_title {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 15px;
+    color: #f57f17;
+  }
+
+  /* Style for time items */
+  .time {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    margin-bottom: 10px;
+  }
+
+  .time-day {
+    border-bottom: 1px dashed #f57f17;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  .time .row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .time_work_image {
+    width: 40px;
+    flex: 0 0 40px;
+    margin-right: 10px;
+  }
+
+  .time_work_content {
+    padding-left: 0;
+    flex: 1;
+  }
+
+  .policy-text .text {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 14px;
+  }
+
+  /* Banner styling */
+  .home_banner_1 {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .home_banner_1 img {
+    max-width: 100%;
+    border-radius: 8px;
+    height: auto;
+  }
+}
+
+/* Specific adjustments for the image shown in your reference */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Layout for the working hours and registration section as shown in the image */
+  .section_slider .col-lg-3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .section_slider .col-lg-9 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 20px;
+  }
+
+  .section_slider .row {
+    flex-direction: column;
+  }
+
+  /* Make sure the time_work row displays correctly */
+  .time_work.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Ensure the image is visible on iPad */
+  .hidden-xs {
+    display: block !important;
+  }
+}
+
+/* iPad Pro specific adjustments */
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+  .section_slider {
+    padding: 25px 0;
+  }
+
+  .time_work_title {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 16px;
+  }
+
+  .policy-text .text {
+    font-size: 16px;
+  }
+}
+
+/* Specific styles for the promotional banner with 10% discount as shown in the image */
+.promo-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.promo-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f6903d;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(15deg);
+}
+
+/* Make sure the icons are properly sized and aligned */
+.time_work_icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Specific adjustments for the image shown in your reference */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Layout for the working hours and registration section as shown in the image */
+  .section_slider .col-lg-3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .section_slider .col-lg-9 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-bottom: 20px;
+  }
+
+  .section_slider .row {
+    flex-direction: column;
+  }
+
+  /* Style for the working hours section with icons */
+  .time_work {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .time_work_title {
+    color: #f57f17;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Create the horizontal layout with icons as shown in the image */
+  .time_work_container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
+}
+
+/* iPad mini and smaller devices (768px and below) */
+@media (max-width: 768px) {
+  .section_slider {
+    padding: 15px 0;
+  }
+
+  /* Make the slider take full width */
+  .section_slider .col-lg-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  /* Make the time_work section take full width */
+  .section_slider .col-lg-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Fix the row structure to be a single row */
+  .time_work.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  /* Left column - content */
+  .time_work .col-lg-12.col-md-7 {
+    flex: 0 0 60%;
+    max-width: 60%;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Right column - image */
+  .time_work .col-lg-12.col-md-5 {
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding-left: 10px;
+  }
+
+  /* Make sure the image is visible */
+  .home_banner_1.hidden-xs {
+    display: block !important;
+  }
+
+  /* Title styling to match image 1 */
+  .time_work_title {
+    font-size: 35px;
+    line-height: 22px;
+    margin-bottom: 15px;
+    color: #f57f17;
+    text-align: left;
+  }
+
+  /* Horizontal layout for icons and text */
+  .time_work .col-lg-12.col-md-7 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Style for time items to match image 1 */
+  .time {
+    margin-bottom: 15px;
+    border-bottom: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .time-day {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+  }
+
+  /* Remove row structure inside time items */
+  .time .row {
+    display: none;
+  }
+
+  /* Create new horizontal layout */
+  .time_work_image {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .time_work_image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .time_work_content {
+    flex: 1;
+    padding-left: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .policy-item {
+    padding: 0;
+  }
+
+  .policy-text {
+    display: block;
+  }
+
+  .policy-text .text {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 14px;
+    color: #f57f17;
+    font-weight: 600;
+  }
+
+  /* Banner styling to match image 1 */
+  .home_banner_1 {
+    display: flex !important;
+    align-items: center;
+    height: 100%;
+  }
+
+  .home_banner_1 img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    padding-top: 20px;
+  }
+
+  /* Custom styling to match image 1 exactly */
+  .time_work {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Override the default row structure */
+  .time .row {
+    all: unset;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Fix icon positioning */
+  .policy-item.no-padding-lr,
+  .policy-item1.no-padding-lr {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Exact match for the image 1 layout */
+@media (max-width: 576px) {
+  .section_slider {
+    padding: 10px 0;
+  }
+
+  .time_work.row {
+    padding: 10px;
+  }
+
+  /* Left column - content */
+  .time_work .col-lg-12.col-md-7 {
+    flex: 0 0 55%;
+    max-width: 55%;
+    padding-right: 5px;
+  }
+
+  /* Right column - image */
+  .time_work .col-lg-12.col-md-5 {
+    flex: 0 0 45%;
+    max-width: 45%;
+    padding-left: 5px;
+  }
+
+  .time_work_title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .time {
+    margin-bottom: 10px;
+  }
+
+  .time_work_image {
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    margin-right: 10px;
+  }
+
+  .policy-text .text {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 13px;
+  }
+}
+
+/* Very small devices (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .time_work .col-lg-12.col-md-7 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .time_work .col-lg-12.col-md-5 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .time_work_title {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .time {
+    margin-bottom: 8px;
+  }
+
+  .time_work_image {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    margin-right: 8px;
+  }
+
+  .policy-text .text {
+    font-size: 12px;
+    margin-bottom: 1px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 12px;
+  }
 }
