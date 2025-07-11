@@ -97,6 +97,23 @@ function mobileMenuInit() {
         return false;
       };
     });
+
+    // 2. CLICK OUTSIDE TO CLOSE MENU
+    // Add document click event to close menu when clicking outside
+    document.addEventListener("click", function (e) {
+      const mainNav = document.querySelector(".main-navigation.current");
+      const menuToggleBtn = document.querySelector(".menu-toggle");
+
+      // Check if menu is open and click is outside menu
+      if (
+        mainNav &&
+        !mainNav.contains(e.target) &&
+        !menuToggleBtn.contains(e.target)
+      ) {
+        mainNav.classList.remove("current");
+        mainNav.style.display = "none";
+      }
+    });
   }
 }
 
