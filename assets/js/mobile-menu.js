@@ -2,6 +2,121 @@
 document.addEventListener("DOMContentLoaded", mobileMenuInit);
 window.addEventListener("load", mobileMenuInit);
 
+// Apply critical CSS early to prevent menu jumping
+(function () {
+  // Pre-apply fixed styles immediately when script runs
+  function applyEarlyStyles() {
+    // iPad Pro needs special handling
+    if (isIPadBasic()) {
+      // Get menu elements
+      var allMenus = document.querySelectorAll(
+        ".main-navigation, .main-navigation.d-none.d-lg-flex"
+      );
+
+      // Apply fixed styling to all navigation elements
+      allMenus.forEach(function (menu) {
+        if (menu) {
+          menu.style.display = "flex";
+          menu.style.position = "static";
+          menu.style.top = "auto";
+          menu.style.left = "auto";
+          menu.style.width = "100%";
+          menu.style.maxWidth = "100%";
+          menu.style.height = "auto";
+          menu.style.minHeight = "50px";
+          menu.style.transform = "none";
+          menu.style.opacity = "1";
+          menu.style.visibility = "visible";
+          menu.style.transition = "none";
+          menu.style.animation = "none";
+          menu.style.backgroundColor = "transparent";
+          menu.style.border = "none";
+          menu.style.boxShadow = "none";
+          menu.style.justifyContent = "flex-end";
+          menu.style.alignItems = "center";
+
+          // Also fix the menu container
+          var mainMenu = menu.querySelector(".main-menu");
+          if (mainMenu) {
+            mainMenu.style.display = "flex";
+            mainMenu.style.flexDirection = "row";
+            mainMenu.style.justifyContent = "flex-end";
+            mainMenu.style.width = "100%";
+            mainMenu.style.margin = "0";
+            mainMenu.style.padding = "0";
+          }
+        }
+      });
+    }
+  }
+
+  // Basic check if device is iPad - simplified for early execution
+  function isIPadBasic() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    return (
+      /ipad/.test(userAgent) ||
+      (/macintosh/.test(userAgent) && "ontouchend" in document) ||
+      (window.innerWidth >= 768 &&
+        window.innerWidth <= 1366 &&
+        navigator.maxTouchPoints > 1)
+    );
+  }
+
+  // Run immediately
+  applyEarlyStyles();
+
+  // Run again when DOM starts loading
+  if (document.readyState === "loading") {
+    document.addEventListener("readystatechange", function () {
+      if (
+        document.readyState === "interactive" ||
+        document.readyState === "complete"
+      ) {
+        applyEarlyStyles();
+      }
+    });
+  }
+
+  // Run again when DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", applyEarlyStyles);
+
+  // Run once more after everything is loaded
+  window.addEventListener("load", applyEarlyStyles);
+})();
+
+// Fix navigation jumping during page transitions
+(function () {
+  // Pre-set navigation styles before page fully loads to prevent flicker
+  var preInitNav = function () {
+    if (isIPad()) {
+      var mainNav = document.querySelector(".main-navigation");
+      if (mainNav) {
+        // Immediately set styles
+        mainNav.style.position = "relative";
+        mainNav.style.top = "0";
+        mainNav.style.left = "0";
+        mainNav.style.width = "100%";
+        mainNav.style.maxWidth = "100%";
+      }
+    }
+  };
+
+  // Run immediately
+  preInitNav();
+
+  // Run as soon as DOM is partially available
+  if (document.readyState === "loading") {
+    document.addEventListener("readystatechange", function () {
+      if (
+        document.readyState === "interactive" ||
+        document.readyState === "complete"
+      ) {
+        preInitNav();
+      }
+    });
+  }
+})();
+
 function mobileMenuInit() {
   console.log("Mobile menu fixed script loaded");
 
@@ -141,7 +256,13 @@ function mobileMenuInit() {
             clickCount = 0;
             const originalHref = this.getAttribute("data-original-href");
             if (originalHref) {
-              window.location.href = originalHref;
+              // Smooth page transition
+              document.body.classList.add("page-transitioning");
+
+              // Set a delay to prevent visual jank during navigation
+              setTimeout(function () {
+                window.location.href = originalHref;
+              }, 10);
             }
             return true;
           }
@@ -248,27 +369,36 @@ function applyDeviceSpecificStyles() {
   if (!mainNav) return;
 
   if (isIPad()) {
-    // iPad Pro
-    mainNav.style.top = "100px";
-    mainNav.style.width = "400px";
-    mainNav.style.left = "20px";
-    mainNav.style.maxHeight = "80vh";
-    mainNav.style.overflowY = "auto";
+    // iPad Pro - không đặt vị trí để tránh bị nhảy, giữ nguyên như desktop
+    // Không set các thuộc tính top, left, width vì đã xử lý bằng CSS
+    mainNav.style.position = "static";
+    mainNav.style.top = "auto";
+    mainNav.style.left = "auto";
+    mainNav.style.width = "100%";
+    mainNav.style.maxWidth = "100%";
+    mainNav.style.maxHeight = "none";
+    mainNav.style.overflowY = "visible";
   } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
     // iPad
     mainNav.style.top = "100px";
-    mainNav.style.width = "320px";
-    mainNav.style.left = "20px";
+    mainNav.style.width = "auto";
+    mainNav.style.minWidth = "250px";
+    mainNav.style.maxWidth = "90%";
+    mainNav.style.left = "15px";
   } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
     // Large mobile
     mainNav.style.top = "90px";
-    mainNav.style.width = "90%";
-    mainNav.style.left = "5%";
+    mainNav.style.width = "auto";
+    mainNav.style.minWidth = "250px";
+    mainNav.style.maxWidth = "90%";
+    mainNav.style.left = "15px";
   } else if (window.innerWidth < 576) {
     // Small mobile
     mainNav.style.top = "110px";
-    mainNav.style.width = "90%";
-    mainNav.style.left = "5%";
+    mainNav.style.width = "auto";
+    mainNav.style.minWidth = "250px";
+    mainNav.style.maxWidth = "90%";
+    mainNav.style.left = "15px";
   }
 }
 

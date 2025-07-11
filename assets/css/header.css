@@ -1183,23 +1183,15 @@
 
 /* FIX FOR MAIN NAVIGATION WIDTH ON MOBILE AND IPAD */
 @media (max-width: 991px) {
-  /* Ensure full width navigation when active */
-  .main-navigation.d-none.d-lg-flex.current {
-    width: 100% !important;
-    max-width: 90% !important;
-    left: 5% !important;
-    right: 5% !important;
-    box-sizing: border-box !important;
-  }
-
   /* Ensure main navigation container takes full width */
   .main-navigation.current {
     display: block !important;
     position: absolute !important;
     top: 100px !important;
-    left: 5% !important;
-    width: 90% !important;
-    max-width: none !important;
+    left: 15px !important;
+    width: auto !important;
+    min-width: 250px !important;
+    max-width: 90% !important;
     z-index: 99999 !important;
     background-color: white !important;
     border: 1px solid #f6903d !important;
@@ -1207,14 +1199,24 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
   }
 
+  /* Ensure dropdown menu container is properly sized */
+  .main-navigation.d-none.d-lg-flex.current {
+    width: auto !important;
+    min-width: 250px !important;
+    max-width: 90% !important;
+    left: 15px !important;
+    box-sizing: border-box !important;
+  }
+
   /* Force full width on specific screen sizes */
   @media (max-width: 767px) {
     .main-navigation.d-none.d-lg-flex.current,
     .main-navigation.current {
       top: 90px !important;
-      width: 90% !important;
-      left: 5% !important;
-      right: 5% !important;
+      width: auto !important;
+      min-width: 250px !important;
+      max-width: 90% !important;
+      left: 15px !important;
     }
   }
 
@@ -1222,9 +1224,10 @@
     .main-navigation.d-none.d-lg-flex.current,
     .main-navigation.current {
       top: 110px !important;
-      width: 90% !important;
-      left: 5% !important;
-      right: 5% !important;
+      width: auto !important;
+      min-width: 250px !important;
+      max-width: 90% !important;
+      left: 15px !important;
     }
   }
 }
@@ -1449,49 +1452,54 @@
     cursor: pointer !important;
   }
 
-  /* Vị trí menu khi hiển thị */
+  /* Vị trí menu khi hiển thị - giống laptop */
   .main-navigation.current {
     display: block !important;
-    position: absolute !important;
-    top: 100px !important;
-    left: 20px !important;
-    width: 400px !important;
-    max-width: 90% !important;
-    z-index: 99999 !important;
-    background-color: white !important;
-    border: 1px solid #f6903d !important;
-    border-radius: 4px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-    max-height: 80vh !important;
-    overflow-y: auto !important;
+    position: static !important; /* Thay đổi thành static để không bị nhảy */
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important; /* Full width như laptop */
+    max-width: 100% !important;
+    z-index: 1000 !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-height: none !important;
+    overflow-y: visible !important;
   }
 
-  /* Cài đặt menu items hiển thị dạng cột */
+  /* Cài đặt menu items hiển thị giống laptop */
   .main-navigation.current .main-menu {
-    flex-direction: column !important;
+    flex-direction: row !important; /* Hiển thị theo hàng ngang như laptop */
     width: 100% !important;
-    display: block !important;
+    display: flex !important;
+    justify-content: flex-end !important;
   }
 
-  /* Cài đặt hiển thị nav-item dạng block đầy đủ */
+  /* Cài đặt hiển thị nav-item */
   .main-navigation.current .nav-item {
-    display: block !important;
-    width: 100% !important;
+    display: inline-block !important;
+    width: auto !important;
     margin: 0 !important;
-    border-bottom: 1px solid #f0f0f0 !important;
+    border-bottom: none !important;
   }
 
-  /* Đảm bảo submenu hiển thị bên dưới menu cha */
+  /* Đảm bảo submenu hiển thị dưới menu cha nhưng không đẩy các mục khác */
   .main-navigation.current .nav-item.has-dropdown.active .dropdown-menu {
-    position: static !important;
-    width: 100% !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: auto !important;
+    min-width: 220px !important;
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    background-color: #f9f9f9 !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
   }
 
   /* Ngăn menu hiển thị khi hover trên iPad Pro */
@@ -1510,9 +1518,9 @@
 
   /* Tùy chỉnh hiển thị cho link */
   .main-navigation.current .nav-link {
-    display: block !important;
-    width: 100% !important;
-    padding: 12px 35px 12px 15px !important;
+    display: inline-block !important;
+    width: auto !important;
+    padding: 10px 25px 10px 15px !important;
     color: #333 !important;
     position: relative !important;
     text-decoration: none !important;
@@ -1521,7 +1529,7 @@
   /* Tùy chỉnh icon */
   .main-navigation.current .nav-item.has-dropdown .nav-link i.fas {
     position: absolute !important;
-    right: 15px !important;
+    right: 10px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     font-size: 12px !important;
@@ -1535,9 +1543,400 @@
 
   /* Tùy chỉnh menu items con */
   .main-navigation.current .dropdown-menu li a {
-    padding: 10px 15px 10px 25px !important;
+    padding: 10px 15px !important;
     font-size: 13px !important;
     color: #333 !important;
-    border-left: 3px solid #f6903d !important;
+    border-left: 3px solid transparent !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Hiệu ứng hover cho menu items con */
+  .main-navigation.current .dropdown-menu li a:hover {
+    color: #f6903d !important;
+    background-color: #f9f9f9 !important;
+    border-left-color: #f6903d !important;
+  }
+}
+
+/* FINAL CLEANUP TO PREVENT MENU JUMPING */
+@media (max-width: 1366px) {
+  /* Force consistent positioning for menu */
+  .main-navigation.current {
+    position: absolute !important;
+    display: block !important;
+    width: auto !important;
+    min-width: 250px !important;
+    max-width: 90% !important;
+    left: 15px !important;
+    background-color: white !important;
+    border: 1px solid #f6903d !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    z-index: 99999 !important;
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+
+  /* Force consistent sub-element positioning */
+  .main-navigation.current .main-menu {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Force consistent item styling */
+  .main-navigation.current .nav-item {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+  }
+
+  /* Device-specific positioning */
+  @media (min-width: 992px) and (max-width: 1366px) {
+    .main-navigation.current {
+      top: 100px !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    .main-navigation.current {
+      top: 100px !important;
+    }
+  }
+
+  @media (min-width: 576px) and (max-width: 767px) {
+    .main-navigation.current {
+      top: 90px !important;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .main-navigation.current {
+      top: 110px !important;
+    }
+  }
+}
+
+/* FINAL FIX TO PREVENT MENU JUMPING ON IPAD PRO */
+@media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
+  /* Đảm bảo menu luôn hiển thị đúng trên iPad Pro - tương tự laptop */
+  .main-navigation,
+  .main-navigation.d-none.d-lg-flex {
+    display: flex !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+    z-index: 1000 !important;
+    overflow: visible !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+
+  /* Đảm bảo menu items hiển thị đúng */
+  .main-navigation .main-menu,
+  .main-navigation.current .main-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Đảm bảo nav-item hiển thị đúng */
+  .main-navigation .nav-item,
+  .main-navigation.current .nav-item {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+    border: none !important;
+    position: relative !important;
+  }
+
+  /* Đảm bảo link hiển thị đúng */
+  .main-navigation .nav-link,
+  .main-navigation.current .nav-link {
+    display: block !important;
+    padding: 10px 25px 10px 15px !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+    position: relative !important;
+  }
+
+  /* Đảm bảo dropdown hiển thị chính xác khi active */
+  .main-navigation .nav-item.has-dropdown.active > .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: auto !important;
+    min-width: 220px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+    padding: 8px 0 !important;
+  }
+
+  /* Chỉ hiển thị dropdown khi click */
+  .main-navigation .nav-item.has-dropdown:hover .dropdown-menu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Hiển thị dropdown khi active */
+  .main-navigation .nav-item.has-dropdown.active > .dropdown-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* PREVENT NAVIGATION JUMPING DURING PAGE TRANSITIONS */
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Fix navigation height to prevent layout shifts */
+.header-main {
+  min-height: 80px; /* Đảm bảo chiều cao tối thiểu */
+  position: relative;
+  z-index: 1000;
+}
+
+/* Force iPad Pro navigation to use fixed positioning and dimensions */
+@media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
+  /* Pre-allocate space for navigation to prevent layout shifts */
+  .main-navigation,
+  .main-navigation.d-none.d-lg-flex {
+    display: flex !important;
+    position: relative !important; /* Use relative instead of static */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+    min-height: 50px !important; /* Đảm bảo chiều cao tối thiểu */
+    z-index: 1000 !important;
+    overflow: visible !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    transition: none !important; /* Disable transitions to prevent flickering */
+    transform: none !important; /* Disable transforms */
+    animation: none !important; /* Disable animations */
+  }
+
+  /* Fix menu items to prevent shifts */
+  .main-navigation .main-menu,
+  .main-navigation.current .main-menu {
+    min-height: 50px !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  /* Force hardware acceleration to prevent visual glitches */
+  .main-navigation .nav-item,
+  .main-navigation.current .nav-item {
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    perspective: 1000px !important;
+    will-change: transform !important;
+  }
+
+  /* Prevent flickering on dropdowns */
+  .main-navigation .dropdown-menu {
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* SMOOTH PAGE TRANSITIONS */
+.page-transitioning {
+  pointer-events: none;
+  opacity: 0.98;
+  transition: opacity 0.1s ease-out;
+}
+
+/* NAVIGATION STABILIZATION - PREVENT FLICKERING AND JUMPING */
+@media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
+  /* Stabilize entire navigation container */
+  .header,
+  .header-top,
+  .header-main {
+    position: relative;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Prevent nav from disappearing during navigation */
+  .main-navigation,
+  .main-navigation.d-none.d-lg-flex {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: 50px !important;
+  }
+
+  /* Stabilize menu items */
+  .main-navigation .main-menu,
+  .main-navigation.current .main-menu {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    transform: translateZ(0) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Remove all animations and transitions */
+  .main-navigation *,
+  .main-navigation.current *,
+  .main-navigation .nav-item,
+  .main-navigation.current .nav-item,
+  .main-navigation .nav-link,
+  .main-navigation.current .nav-link,
+  .main-navigation .dropdown-menu,
+  .main-navigation.current .dropdown-menu {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* PREVENT MENU JUMPING AND POSITION SHIFTING */
+@media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
+  /* Lock menu positions */
+  .main-navigation,
+  .main-navigation.d-none.d-lg-flex,
+  .main-navigation.d-none.d-lg-flex.current,
+  .main-navigation.current {
+    display: flex !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+    min-height: 50px !important;
+    z-index: 1000 !important;
+    overflow: visible !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Lock menu items */
+  .main-navigation .main-menu,
+  .main-navigation.current .main-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    position: static !important;
+  }
+
+  /* Lock each nav item */
+  .main-navigation .nav-item,
+  .main-navigation.current .nav-item {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 0 !important;
+    border: none !important;
+    position: relative !important;
+    height: auto !important;
+  }
+
+  /* Lock nav links */
+  .main-navigation .nav-link,
+  .main-navigation.current .nav-link {
+    display: inline-block !important;
+    width: auto !important;
+    padding: 10px 25px 10px 15px !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+    position: relative !important;
+    text-decoration: none !important;
+  }
+
+  /* Lock icons */
+  .main-navigation .nav-item.has-dropdown .nav-link i.fas,
+  .main-navigation.current .nav-item.has-dropdown .nav-link i.fas {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 12px !important;
+    color: #f6903d !important;
+  }
+
+  /* Lock dropdown container */
+  .main-navigation .dropdown-menu,
+  .main-navigation.current .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: auto !important;
+    min-width: 220px !important;
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    padding: 8px 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+  }
+
+  /* Ensure consistent spacing in navbar */
+  .nav-item {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Force menu placement to be static relative to parent */
+  .header-main nav,
+  .header-main .main-navigation {
+    position: static !important;
+    height: auto !important;
   }
 }

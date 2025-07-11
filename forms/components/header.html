@@ -408,11 +408,10 @@
       border: 1px solid #f6903d;
       position: absolute;
       top: 115px !important;
-      width: fit-content;
-      min-width: 200px;
-      max-width: 96%;
-      left: 2%;
-      right: auto;
+      width: auto !important;
+      min-width: 250px !important;
+      max-width: 90% !important;
+      left: 15px !important;
       background-color: #fff;
       z-index: 99999;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -511,7 +510,8 @@
 
     /* Fix menu width to match content */
     .main-navigation.current {
-      width: fit-content !important;
+      /* Removed to prevent conflict with header.css */
+      /* width: fit-content !important; */
     }
   }
 </style>
@@ -534,7 +534,8 @@
 
     /* Ensure menu width matches content */
     .main-navigation.current {
-      width: max-content !important;
+      /* Removed width setting to prevent jumping */
+      /* width: max-content !important; */
     }
 
     /* Add left border to dropdowns to match design */
@@ -551,6 +552,59 @@
       width: 100% !important;
       margin: 0 !important;
       padding: 0 !important;
+    }
+  }
+</style>
+
+<!-- Critical early CSS to prevent menu jumping on iPad Pro -->
+<style>
+  @media (min-width: 992px) and (max-width: 1366px) and (pointer: coarse) {
+    /* Force desktop-like menu on iPad Pro from the start */
+    .main-navigation,
+    .main-navigation.d-none.d-lg-flex {
+      display: flex !important;
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      height: auto !important;
+      min-height: 50px !important;
+      z-index: 1000 !important;
+      overflow: visible !important;
+      flex-direction: row !important;
+      justify-content: flex-end !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      transform: none !important;
+      transition: none !important;
+      animation: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Menu items need to be in a row from the start */
+    .main-navigation .main-menu,
+    .main-navigation.current .main-menu {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: flex-end !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Each menu item should be properly aligned */
+    .main-navigation .nav-item,
+    .main-navigation.current .nav-item {
+      display: inline-block !important;
+      width: auto !important;
+      margin: 0 !important;
+      border: none !important;
+      position: relative !important;
     }
   }
 </style>
@@ -672,9 +726,53 @@
       );
     }
 
+    // Apply early fixed styles - prevent menu jumping
+    function applyEarlyStyles() {
+      if (isIPad()) {
+        var menus = document.querySelectorAll(
+          ".main-navigation, .main-navigation.d-none.d-lg-flex"
+        );
+        menus.forEach(function (menu) {
+          if (menu) {
+            // Force menu to use consistent styling
+            menu.style.display = "flex";
+            menu.style.position = "static";
+            menu.style.top = "auto";
+            menu.style.left = "auto";
+            menu.style.width = "100%";
+            menu.style.maxWidth = "100%";
+            menu.style.transition = "none";
+            menu.style.transform = "none";
+            menu.style.animation = "none";
+            menu.style.opacity = "1";
+            menu.style.visibility = "visible";
+            menu.style.border = "none";
+            menu.style.boxShadow = "none";
+            menu.style.backgroundColor = "transparent";
+            menu.style.height = "auto";
+            menu.style.minHeight = "50px";
+
+            // Force menu items to use row layout
+            var mainMenu = menu.querySelector(".main-menu");
+            if (mainMenu) {
+              mainMenu.style.display = "flex";
+              mainMenu.style.flexDirection = "row";
+              mainMenu.style.justifyContent = "flex-end";
+              mainMenu.style.width = "100%";
+              mainMenu.style.margin = "0";
+              mainMenu.style.padding = "0";
+            }
+          }
+        });
+      }
+    }
+
     // Function to handle dropdowns
     function setupMobileMenu() {
       console.log("FIXED MOBILE MENU: Setting up menu for all devices");
+
+      // First apply fixed styles
+      applyEarlyStyles();
 
       // Toggle hamburger menu
       var menuToggle = document.querySelector(".menu-toggle");
@@ -889,41 +987,60 @@
       if (!mainNav) return;
 
       if (isIPad()) {
-        // iPad Pro
-        mainNav.style.top = "100px";
-        mainNav.style.width = "400px";
-        mainNav.style.left = "20px";
-        mainNav.style.maxHeight = "80vh";
-        mainNav.style.overflowY = "auto";
+        // iPad Pro - không đặt vị trí để tránh bị nhảy, giữ nguyên như desktop
+        // Không set các thuộc tính top, left, width vì đã xử lý bằng CSS
+        mainNav.style.position = "static";
+        mainNav.style.top = "auto";
+        mainNav.style.left = "auto";
+        mainNav.style.width = "100%";
+        mainNav.style.maxWidth = "100%";
+        mainNav.style.maxHeight = "none";
+        mainNav.style.overflowY = "visible";
       } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
         // iPad
         mainNav.style.top = "100px";
-        mainNav.style.width = "320px";
-        mainNav.style.left = "20px";
+        mainNav.style.width = "auto";
+        mainNav.style.minWidth = "250px";
+        mainNav.style.maxWidth = "90%";
+        mainNav.style.left = "15px";
       } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
         // Large mobile
         mainNav.style.top = "90px";
-        mainNav.style.width = "90%";
-        mainNav.style.left = "5%";
+        mainNav.style.width = "auto";
+        mainNav.style.minWidth = "250px";
+        mainNav.style.maxWidth = "90%";
+        mainNav.style.left = "15px";
       } else if (window.innerWidth < 576) {
         // Small mobile
         mainNav.style.top = "110px";
-        mainNav.style.width = "90%";
-        mainNav.style.left = "5%";
+        mainNav.style.width = "auto";
+        mainNav.style.minWidth = "250px";
+        mainNav.style.maxWidth = "90%";
+        mainNav.style.left = "15px";
       }
     }
+
+    // Run immediately
+    applyEarlyStyles();
 
     // Run on page load
     setupMobileMenu();
 
     // Run on DOM ready
-    document.addEventListener("DOMContentLoaded", setupMobileMenu);
+    document.addEventListener("DOMContentLoaded", function () {
+      applyEarlyStyles();
+      setupMobileMenu();
+    });
 
     // Run on window load
-    window.addEventListener("load", setupMobileMenu);
+    window.addEventListener("load", function () {
+      applyEarlyStyles();
+      setupMobileMenu();
+    });
 
     // Run on resize
     window.addEventListener("resize", function () {
+      applyEarlyStyles();
       if (window.innerWidth <= 1366 || isIPad()) {
         setupMobileMenu();
         applyDeviceSpecificStyles();
@@ -931,6 +1048,8 @@
     });
 
     // Run after a delay to catch any late-loading elements
+    setTimeout(applyEarlyStyles, 0);
+    setTimeout(applyEarlyStyles, 100);
     setTimeout(setupMobileMenu, 500);
     setTimeout(setupMobileMenu, 1000);
   })();
