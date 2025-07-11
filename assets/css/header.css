@@ -448,36 +448,90 @@
   }
 }
 
-/* iPad Mini specific styles */
+/* Improved header-top responsive layout for iPad */
+@media (max-width: 1024px) {
+  .header-top .container .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .header-top .col-md-4 {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+
+  /* First column (empty) - hide it */
+  .header-top .col-md-4:first-child {
+    display: none !important;
+  }
+
+  /* Contact info column */
+  .header-top .header-contact {
+    display: flex !important;
+    width: 50% !important;
+    padding-left: 15px !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Search column */
+  .header-top .col-md-4:last-child {
+    width: 50% !important;
+    padding-right: 15px !important;
+  }
+
+  /* Make contact text smaller */
+  .header-top .contact-info {
+    font-size: 13px !important;
+  }
+
+  /* Adjust contact items spacing */
+  .header-top .contact-item {
+    margin-right: 5px !important;
+  }
+
+  /* Make search form responsive */
+  .header-top .search-form {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* iPad Mini specific fixes */
 @media (max-width: 768px) {
-  .header {
-    background: url(//bizweb.dktcdn.net/100/063/369/themes/877483/assets/top_bg_tablet.jpg?1653971798732);
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: cover;
+  .header-top {
+    padding: 5px 0 !important;
   }
 
-  .logo img {
-    max-width: 150px;
-    margin: 0 auto;
-    display: block;
+  /* Further reduce font size */
+  .header-top .contact-info {
+    font-size: 12px !important;
   }
 
-  .search-container {
-    margin: 5px 0;
+  /* Stack contact items if needed */
+  .header-top .contact-item span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 140px !important;
   }
 
-  .mobile-menu-toggle {
-    position: absolute;
-    left: 15px;
-    top: 45px; /* Position hamburger menu button lower to match the second image */
-    z-index: 1002;
+  /* Adjust separator spacing */
+  .header-top .contact-separator {
+    margin: 0 3px !important;
+  }
+}
+
+/* Ensure both elements are visible on iPhone */
+@media (max-width: 576px) {
+  .header-top .header-contact {
+    width: 100% !important;
+    justify-content: center !important;
+    margin-bottom: 5px !important;
   }
 
-  .cart-container {
-    position: absolute;
-    top: 45px; /* Align cart with menu button */
-    right: 15px;
+  .header-top .col-md-4:last-child {
+    width: 100% !important;
   }
 }
 
@@ -1938,5 +1992,124 @@ body {
   .header-main .main-navigation {
     position: static !important;
     height: auto !important;
+  }
+}
+
+/* Better layout for iPad Mini */
+@media (min-width: 576px) and (max-width: 768px) {
+  .header-top {
+    padding: 5px 0 !important;
+    margin-bottom: 5px !important;
+  }
+
+  /* Resize contact info for better fit */
+  .header-top .contact-info {
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Hide separator when stacked */
+  .header-top .contact-separator {
+    display: none !important;
+  }
+
+  /* Make contact items full width */
+  .header-top .contact-item {
+    width: 100% !important;
+    margin-bottom: 2px !important;
+  }
+
+  /* Make sure search form has proper size */
+  .header-top .search-container {
+    padding-right: 0 !important;
+  }
+
+  .header-top .search-form {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .header-top .search-input {
+    font-size: 12px !important;
+    padding: 6px 30px 6px 10px !important;
+  }
+
+  /* Fix logo position */
+  .logo-header {
+    padding-top: 15px !important;
+  }
+
+  .logo img {
+    max-width: 150px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* Adjust mobile menu toggle position */
+  .mobile-menu-toggle {
+    top: 45px !important;
+  }
+
+  /* Adjust cart position */
+  .cart-container {
+    top: 45px !important;
+  }
+}
+
+/* Restore layout on iPad Pro */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header-top .contact-info {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  .header-top .contact-separator {
+    display: block !important;
+    margin: 0 5px !important;
+  }
+
+  .header-top .contact-item {
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+/* IMPROVED HEADER-TOP SPACING */
+@media (max-width: 1024px) {
+  /* Force proper padding */
+  .header-top .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Add padding to columns */
+  .header-top .col-md-4 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* Force contact container to proper width */
+  .header-top .header-contact {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    padding-right: 10px !important;
+  }
+
+  /* Force search container to proper width */
+  .header-top .col-md-4:last-child {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    padding-left: 10px !important;
+  }
+
+  /* Adjust icon sizes */
+  .header-top .contact-item i {
+    font-size: 12px !important;
+    margin-right: 4px !important;
   }
 }
