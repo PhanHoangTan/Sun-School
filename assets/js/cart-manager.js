@@ -136,7 +136,16 @@ class CartManager {
 
   // Get cart item count
   getCartCount() {
-    return this.cart.reduce((count, item) => count + item.quantity, 0);
+    // Sum up all item quantities in the cart
+    const totalCount = this.cart.reduce((count, item) => {
+      // Ensure quantity is treated as a number
+      const itemQuantity = parseInt(item.quantity) || 1;
+      return count + itemQuantity;
+    }, 0);
+
+    // Log for debugging
+    console.log("Current cart count:", totalCount);
+    return totalCount;
   }
 
   // Update cart count in header
@@ -148,6 +157,9 @@ class CartManager {
       cartCountElements.forEach((element) => {
         element.textContent = count;
       });
+      console.log("Updated all cart count elements to:", count);
+    } else {
+      console.warn("No .cart-count elements found in the DOM");
     }
 
     // Dispatch an event that the cart count has been updated
@@ -819,6 +831,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Make sure cart count is updated on all pages
   window.cartManager.updateCartCount();
+
+  // Also run updateCartCountFromStorage directly to ensure all cart counts are updated
+  if (typeof updateCartCountFromStorage === "function") {
+    updateCartCountFromStorage();
+  }
+
+  // Force update of all cart counts after a short delay to ensure DOM is fully ready
+  setTimeout(() => {
+    window.cartManager.updateCartCount();
+    if (typeof updateCartCountFromStorage === "function") {
+      updateCartCountFromStorage();
+    }
+    console.log("Cart count refreshed after timeout");
+  }, 500);
 
   // Add to cart buttons
   document.querySelectorAll(".add-to-cart").forEach((btn) => {
