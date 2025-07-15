@@ -1,0 +1,59 @@
+/* Search Results Page CSS */
+.search-results-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.search-results-count {
+  font-weight: 600;
+}
+
+.search-keyword {
+  color: #f6903d;
+  font-weight: 600;
+}
+
+.empty-result {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.empty-result i {
+  font-size: 50px;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+.empty-result p {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  padding: 30px 0;
+  color: #f6903d;
+  font-size: 16px;
+}
+
+.loading-spinner i {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .search-results-title {
+    font-size: 20px;
+  }
+
+  .empty-result i {
+    font-size: 40px;
+  }
+
+  .empty-result p {
+    font-size: 16px;
+  }
+}
