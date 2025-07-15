@@ -854,8 +854,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const style = document.createElement("style");
   style.textContent = `
     .cart-dropdown {
-      width: 320px;
+      width: 320px !important;
+      min-width: 300px !important;
       padding: 15px;
+      z-index: 9999 !important;
+      position: absolute !important;
+      right: 0 !important;
+      top: 100% !important;
+      background: #fff !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15) !important;
+      overflow: visible !important;
+      max-width: none !important;
     }
     
     .cart-items {
@@ -884,6 +894,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .cart-item-info {
       flex: 1;
       padding: 0 10px;
+      min-width: 0; /* Allow text to truncate */
+      width: 100%; /* Ensure it takes available space */
     }
     
     .cart-item-name {
@@ -892,6 +904,10 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #333;
       margin-bottom: 5px;
       text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
     
     .cart-item-name:hover {
@@ -970,6 +986,16 @@ document.addEventListener("DOMContentLoaded", function () {
       background: #e67e00;
       color: white;
       text-decoration: none;
+    }
+    
+    /* Fix for parent containers */
+    .cart-container {
+      position: relative !important;
+      z-index: 9999 !important;
+    }
+    
+    .header-main, .header-main .container, .header-main .row {
+      overflow: visible !important;
     }
   `;
   document.head.appendChild(style);

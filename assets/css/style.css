@@ -538,16 +538,27 @@ body {
   position: absolute;
   top: 100%;
   right: 0;
-  width: 300px;
+  width: 300px; /* Ensure width is explicitly set */
+  min-width: 300px; /* Add min-width to prevent narrowing */
   background: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 15px;
   display: none;
-  z-index: 999;
+  z-index: 9999; /* Increase z-index to ensure it appears above other elements */
+  overflow: visible !important; /* Ensure content isn't cut off */
+  max-width: none !important; /* Prevent any max-width constraints */
+  border-radius: 8px;
 }
 
 .cart-container:hover .cart-dropdown {
   display: block;
+}
+
+/* Fix for cart content to ensure it doesn't overflow or get cut off */
+.cart-dropdown .cart-content {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .empty-cart {
@@ -559,6 +570,23 @@ body {
   font-size: 48px;
   color: #ddd;
   margin-bottom: 10px;
+}
+
+/* Make sure cart container has correct positioning */
+.cart-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+  z-index: 9999; /* Match dropdown z-index */
+}
+
+/* Ensure parent elements don't cut off dropdown */
+.header-main {
+  overflow: visible !important;
+}
+
+.header-main .row {
+  overflow: visible !important;
 }
 
 /* Mobile Menu Toggle */

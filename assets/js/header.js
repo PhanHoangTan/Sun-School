@@ -208,6 +208,39 @@ document.addEventListener("DOMContentLoaded", function () {
         // window.location.href = "./GioHang.html";
       });
     }
+
+    // Fix hover issues with cart dropdown
+    const cartContainer = document.querySelector(".cart-container");
+    const cartDropdown = document.querySelector(".cart-dropdown");
+
+    if (cartContainer && cartDropdown) {
+      // Force dropdown to display when hovering over the container
+      cartContainer.addEventListener("mouseenter", function() {
+        cartDropdown.style.display = "block";
+      });
+
+      cartContainer.addEventListener("mouseleave", function(e) {
+        // Check if the mouse is entering the dropdown
+        const rect = cartDropdown.getBoundingClientRect();
+        if (
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom
+        ) {
+          cartDropdown.style.display = "none";
+        }
+      });
+
+      // Make sure dropdown stays open when hovering over it
+      cartDropdown.addEventListener("mouseenter", function() {
+        cartDropdown.style.display = "block";
+      });
+
+      cartDropdown.addEventListener("mouseleave", function() {
+        cartDropdown.style.display = "none";
+      });
+    }
   }
 
   // Update cart dropdown content based on cart data
@@ -378,6 +411,8 @@ document.addEventListener("DOMContentLoaded", function () {
         
         .cart-item-info {
           flex: 1;
+          min-width: 0; /* Allow content to shrink properly */
+          width: 100%; /* Take available space */
         }
         
         .cart-item-title {
@@ -388,6 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          width: 100%;
         }
         
         .cart-item-price {
@@ -463,6 +499,27 @@ document.addEventListener("DOMContentLoaded", function () {
         
         .cart-checkout-button:hover {
           background: #e67e00;
+        }
+        
+        /* Fix for cart dropdown positioning */
+        .cart-dropdown {
+          position: absolute !important;
+          top: 100% !important;
+          right: 0 !important;
+          width: 320px !important;
+          min-width: 300px !important;
+          z-index: 9999 !important;
+          background: #fff !important;
+          border-radius: 8px !important;
+          box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15) !important;
+          overflow: visible !important;
+          max-width: none !important;
+        }
+        
+        /* Ensure parent containers don't clip the dropdown */
+        .cart-container {
+          position: relative !important;
+          z-index: 9999 !important;
         }
       `;
       document.head.appendChild(style);
@@ -583,336 +640,39 @@ document.addEventListener("DOMContentLoaded", function () {
         // window.location.href = "./GioHang.html";
       });
     }
-  }
 
-  // Update cart dropdown content based on cart data
-  function updateCartDropdown() {
+    // Fix hover issues with cart dropdown
+    const cartContainer = document.querySelector(".cart-container");
     const cartDropdown = document.querySelector(".cart-dropdown");
-    if (!cartDropdown) return;
 
-    // Get cart data from localStorage
-    let cart = [];
-    try {
-      const savedCart = localStorage.getItem("sunschool_cart");
-      if (savedCart) {
-        cart = JSON.parse(savedCart);
-      }
-    } catch (e) {
-      console.error("Error loading cart:", e);
-    }
-
-    // If cart is empty
-    if (!cart || cart.length === 0) {
-      cartDropdown.innerHTML = `
-        <div class="empty-cart">
-          <i class="fas fa-shopping-cart"></i>
-          <p>Không có sản phẩm nào trong giỏ hàng của bạn</p>
-        </div>
-      `;
-      return;
-    }
-
-    // Calculate total price and items
-    let totalPrice = 0;
-    let totalItems = 0;
-
-    cart.forEach((item) => {
-      // Only calculate total if price is not "Liên hệ"
-      if (item.price && !item.price.includes("Liên hệ")) {
-        const priceString = item.price;
-        let numericPrice = 0;
-
-        // Extract numeric value from price string
-        const matches = priceString.match(/[\d,.]+/g);
-        if (matches && matches.length > 0) {
-          // Remove dots (thousands separators in VN) and convert to number
-          numericPrice = parseFloat(
-            matches[0].replace(/\./g, "").replace(/,/g, "")
-          );
-        }
-
-        totalPrice += numericPrice * item.quantity;
-      }
-
-      totalItems += item.quantity;
-    });
-
-    // Create HTML for cart items
-    let cartItemsHTML = "";
-
-    // Show at most 3 items in dropdown
-    const displayItems = cart.slice(0, 3);
-
-    displayItems.forEach((item) => {
-      cartItemsHTML += `
-        <div class="cart-item">
-          <div class="cart-item-image">
-            <img src="${
-              item.image.startsWith("//") ? "https:" + item.image : item.image
-            }" alt="${item.name}">
-          </div>
-          <div class="cart-item-info">
-            <h4 class="cart-item-title">${item.name}</h4>
-            <div class="cart-item-price">${item.price}</div>
-            <div class="cart-item-quantity">Số lượng: ${item.quantity}</div>
-          </div>
-        </div>
-      `;
-    });
-
-    // Show "more items" message if there are more than 3 items
-    if (cart.length > 3) {
-      cartItemsHTML += `
-        <div class="cart-more-items">
-          <span>+ ${cart.length - 3} sản phẩm khác</span>
-        </div>
-      `;
-    }
-
-    // Format total price
-    let formattedTotal = "";
-    if (cart.length > 0) {
-      if (cart[0].price.includes("₫")) {
-        formattedTotal = `${totalPrice
-          .toLocaleString("vi-VN")
-          .replace(/,/g, ".")}₫`;
-      } else if (cart[0].price.includes("đ")) {
-        formattedTotal = `${totalPrice
-          .toLocaleString("vi-VN")
-          .replace(/,/g, ".")}đ`;
-      } else {
-        formattedTotal = `${totalPrice
-          .toLocaleString("vi-VN")
-          .replace(/,/g, ".")}`;
-      }
-    } else {
-      formattedTotal = "0đ";
-    }
-
-    // Update cart dropdown content
-    cartDropdown.innerHTML = `
-      <div class="cart-items">
-        ${cartItemsHTML}
-      </div>
-      <div class="cart-dropdown-total">
-        <span class="cart-dropdown-total-label">Thành tiền:</span>
-        <span class="cart-dropdown-total-price">${formattedTotal}</span>
-      </div>
-      <div class="cart-dropdown-buttons">
-        <a href="./GioHang.html" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
-        <a href="./ThanhToan.html" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
-      </div>
-    `;
-
-    // Add event listeners for cart dropdown buttons
-    const cartButtons = cartDropdown.querySelectorAll(
-      ".cart-dropdown-buttons a"
-    );
-    cartButtons.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        // Navigate to cart page
-        window.location.href = "./GioHang.html";
+    if (cartContainer && cartDropdown) {
+      // Force dropdown to display when hovering over the container
+      cartContainer.addEventListener("mouseenter", function() {
+        cartDropdown.style.display = "block";
       });
-    });
 
-    // Add styles for cart dropdown if not already added
-    if (!document.getElementById("cart-dropdown-styles")) {
-      const style = document.createElement("style");
-      style.id = "cart-dropdown-styles";
-      style.innerHTML = `
-        /* Cart dropdown styles */
-        .cart-items {
-          max-height: 300px;
-          overflow-y: auto;
-        }
-        
-        .cart-item {
-          display: flex;
-          align-items: center;
-          padding: 10px 0;
-          border-bottom: 1px solid #eee;
-        }
-        
-        .cart-item:last-child {
-          border-bottom: none;
-        }
-        
-        .cart-item-image {
-          width: 60px;
-          height: 45px;
-          margin-right: 10px;
-          border-radius: 4px;
-          overflow: hidden;
-        }
-        
-        .cart-item-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        
-        .cart-item-info {
-          flex: 1;
-        }
-        
-        .cart-item-title {
-          font-size: 14px;
-          font-weight: bold;
-          margin: 0 0 5px;
-          color: #333;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        
-        .cart-item-price {
-          font-size: 13px;
-          color: #f6903d;
-          font-weight: bold;
-        }
-        
-        .cart-item-quantity {
-          font-size: 12px;
-          color: #666;
-        }
-        
-        .cart-more-items {
-          padding: 8px 0;
-          text-align: center;
-          font-size: 13px;
-          color: #666;
-          background: #f9f9f9;
-          border-radius: 4px;
-          margin-top: 5px;
-        }
-        
-        .cart-dropdown-total {
-          display: flex;
-          justify-content: space-between;
-          padding: 10px 0;
-          border-top: 1px solid #eee;
-          margin-top: 10px;
-          font-weight: bold;
-        }
-        
-        .cart-dropdown-total-label {
-          color: #333;
-        }
-        
-        .cart-dropdown-total-price {
-          color: #f6903d;
-        }
-        
-        .cart-dropdown-buttons {
-          display: flex;
-          gap: 10px;
-          margin-top: 10px;
-        }
-        
-        .cart-dropdown-button {
-          flex: 1;
-          padding: 8px 0;
-          text-align: center;
-          border-radius: 20px;
-          font-size: 13px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.3s ease;
-        }
-        
-        .cart-view-button {
-          background: #fff;
-          color: #f6903d;
-          border: 1px solid #f6903d;
-        }
-        
-        .cart-view-button:hover {
-          background: #fff8f3;
-        }
-        
-        .cart-checkout-button {
-          background: #f6903d;
-          color: white;
-          border: 1px solid #f6903d;
-        }
-        
-        .cart-checkout-button:hover {
-          background: #e67e00;
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  }
-
-  function initMobileMenu() {
-    // Mobile menu toggle
-    const menuToggle = document.querySelector(".menu-toggle");
-    const mainNavigation = document.querySelector(".main-navigation");
-    const body = document.querySelector("body");
-
-    if (menuToggle) {
-      menuToggle.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        if (window.innerWidth <= 575) {
-          // For mobile, toggle the mobile nav container
-          const mobileNavContainer = document.querySelector(
-            ".mobile-nav-container"
-          );
-          if (mobileNavContainer) {
-            if (mobileNavContainer.style.display === "none") {
-              mobileNavContainer.style.display = "block";
-            } else {
-              mobileNavContainer.style.display = "none";
-            }
-          }
-        } else {
-          // For tablet and up, use slide-in menu
-          mainNavigation.classList.toggle("active");
-          this.classList.toggle("active");
-
-          // Create or activate overlay
-          const overlay = document.querySelector(".menu-overlay");
-          if (overlay) {
-            overlay.classList.toggle("active");
-          }
-
-          // Prevent body scrolling when menu is open
-          if (body && mainNavigation.classList.contains("active")) {
-            body.style.overflow = "hidden";
-          } else if (body) {
-            body.style.overflow = "";
-          }
+      cartContainer.addEventListener("mouseleave", function(e) {
+        // Check if the mouse is entering the dropdown
+        const rect = cartDropdown.getBoundingClientRect();
+        if (
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom
+        ) {
+          cartDropdown.style.display = "none";
         }
       });
-    }
 
-    // Add overlay for mobile menu
-    const overlay = document.createElement("div");
-    overlay.className = "menu-overlay";
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener("click", function () {
-      if (mainNavigation.classList.contains("active")) {
-        mainNavigation.classList.remove("active");
-        menuToggle.classList.remove("active");
-        this.classList.remove("active");
-        if (body) {
-          body.style.overflow = "";
-        }
-      }
-    });
-
-    // Fix dropdown functionality
-    const dropdownItems = document.querySelectorAll(".nav-item.has-dropdown");
-
-    dropdownItems.forEach(function (item) {
-      item.addEventListener("click", function (e) {
-        if (window.innerWidth <= 991) {
-          e.stopPropagation();
-        }
+      // Make sure dropdown stays open when hovering over it
+      cartDropdown.addEventListener("mouseenter", function() {
+        cartDropdown.style.display = "block";
       });
-    });
+
+      cartDropdown.addEventListener("mouseleave", function() {
+        cartDropdown.style.display = "none";
+      });
+    }
   }
 
   function setActiveMenuItem() {
