@@ -124,6 +124,9 @@ class ProductDetailManager {
     // Render product detail
     this.renderProductDetail(product);
 
+    // Render product info section
+    this.renderProductInfo(product);
+
     // Render sidebar related products
     this.renderSidebarRelatedProducts(product);
 
@@ -324,6 +327,69 @@ class ProductDetailManager {
         </div>
       </div>
     `;
+  }
+
+  renderProductInfo(product) {
+    const infoSection = document.querySelector(".section_info");
+    if (!infoSection) {
+      console.error("Product info section not found");
+      return;
+    }
+
+    // If there's no info attribute or it's empty, hide the section
+    if (!product.info || Object.keys(product.info).length === 0) {
+      infoSection.style.display = "none";
+      return;
+    }
+
+    // Show the section
+    infoSection.style.display = "block";
+
+    // Prepare the container
+    const container = document.createElement("div");
+    container.className = "container";
+
+    // Create the info HTML
+    let infoHTML = `
+      <div class="product-info-container">
+        <div class="product-info-heading">
+          <h2>Thông tin chi tiết</h2>
+        </div>
+        <div class="product-info-content">
+    `;
+
+    // Add each info item
+    for (const [title, content] of Object.entries(product.info)) {
+      // Skip the image property as we'll handle it separately
+      if (title === "image") continue;
+
+      infoHTML += `
+        <div class="info-item">
+          <span class="info-title">${title}</span>
+          <div class="info-text">${content}</div>
+        </div>
+      `;
+    }
+
+    // Close the content div
+    infoHTML += `</div>`;
+
+    // Add image if available
+    if (product.info.image) {
+      infoHTML += `
+        <div class="info-image-container">
+          <img src="${product.info.image}" alt="Thông tin hình ảnh" class="info-image">
+        </div>
+      `;
+    }
+
+    // Close the container div
+    infoHTML += `</div>`;
+
+    // Set the HTML
+    container.innerHTML = infoHTML;
+    infoSection.innerHTML = "";
+    infoSection.appendChild(container);
   }
 
   showError(message) {
