@@ -76,7 +76,6 @@
 
 .home_csvc_item {
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
   position: relative;
@@ -99,7 +98,6 @@
   transition: transform 0.5s ease;
   position: relative;
   border-radius: 10px;
-  overflow: hidden;
 }
 
 .home_csvc_item .csvc_img::before {
@@ -186,7 +184,6 @@
 
 /* Ensure the zigzag stands out */
 .home_csvc_item.lg {
-  overflow: visible;
 }
 
 /* Make sure the divs are properly positioned relative to the zigzag */
@@ -287,7 +284,6 @@
 
 .facility-img {
   position: relative;
-  overflow: hidden;
   border-radius: 10px;
   margin-bottom: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -333,7 +329,6 @@
   margin-left: 20px;
   height: 300px;
   border-radius: 10px;
-  overflow: hidden;
   position: relative;
 }
 
