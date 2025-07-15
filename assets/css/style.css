@@ -580,6 +580,16 @@ body {
   z-index: 9999; /* Match dropdown z-index */
 }
 
+/* Override for mobile and tablet devices */
+@media (max-width: 1024px) {
+  .cart-container {
+    position: absolute !important;
+    right: 15px !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+  }
+}
+
 /* Ensure parent elements don't cut off dropdown */
 .header-main {
   overflow: visible !important;
@@ -738,10 +748,11 @@ body.menu-open {
   }
 
   .cart-container {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 1000;
+    position: absolute !important;
+    top: -100px !important;
+    right: 15px !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
   }
 }
 
