@@ -503,6 +503,91 @@ body {
   transform: translateY(0);
 }
 
+/* Cart */
+.cart-container {
+  position: relative;
+  float: right;
+  width: 50px;
+  text-align: right;
+  padding-top: 10px;
+}
+
+.cart-link {
+  display: inline-block;
+  color: #f57f17;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f57f17;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px; /* Ensure width is explicitly set */
+  min-width: 300px; /* Add min-width to prevent narrowing */
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: none;
+  z-index: 9999; /* Increase z-index to ensure it appears above other elements */
+  overflow: visible !important; /* Ensure content isn't cut off */
+  max-width: none !important; /* Prevent any max-width constraints */
+  border-radius: 8px;
+}
+
+.cart-container:hover .cart-dropdown {
+  display: block;
+}
+
+/* Fix for cart content to ensure it doesn't overflow or get cut off */
+.cart-dropdown .cart-content {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.empty-cart i {
+  font-size: 48px;
+  color: #ddd;
+  margin-bottom: 10px;
+}
+
+/* Make sure cart container has correct positioning */
+.cart-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+/* Override for mobile and tablet devices */
+@media (max-width: 1024px) {
+  .cart-container {
+    position: absolute !important;
+    right: 15px !important;
+    margin: 0 !important;
+  }
+}
+
 /* Ensure parent elements don't cut off dropdown */
 .header-main {
   overflow: visible !important;
@@ -660,6 +745,13 @@ body.menu-open {
     cursor: pointer;
   }
 
+  .cart-container {
+    position: absolute !important;
+    top: -100px !important;
+    right: 15px !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -950,17 +1042,6 @@ body.menu-open {
   }
 }
 
-/* iPad Pro (1024px) */
-@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
-  .section_slider {
-    padding: 25px 0;
-  }
-
-  .time_work_title {
-    font-size: 28px;
-  }
-}
-
 /* iPad Mini and other small tablets (768px) */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .section_slider {
@@ -975,6 +1056,162 @@ body.menu-open {
   .time_small,
   .fone-slider a {
     font-size: 15px;
+  }
+}
+
+/* iPad Air (820px-1023px) - Same layout as iPad Mini */
+@media only screen and (min-width: 820px) and (max-width: 1023px) {
+  .section_slider {
+    padding: 22px 0;
+  }
+
+  .time_work_title {
+    font-size: 23px;
+    line-height: 25px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 15px;
+  }
+
+  /* FORCE 2 column layout for iPad Air - BALANCED */
+  .section_slider .time_work.row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .section_slider .time_work .col-lg-12.col-md-7.no-padding-lr {
+    flex: 0 0 55% !important;
+    max-width: 55% !important;
+    width: 55% !important;
+    padding-right: 15px !important;
+    order: 1 !important;
+  }
+
+  .section_slider
+    .time_work
+    .col-lg-12.col-md-5.home_banner_1.hidden-xs.no-padding-lr {
+    flex: 0 0 45% !important;
+    max-width: 45% !important;
+    width: 45% !important;
+    padding-left: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    order: 2 !important;
+  }
+
+  /* Force show banner */
+  .home_banner_1.hidden-xs {
+    display: flex !important;
+    visibility: visible !important;
+  }
+}
+
+/* iPad Pro (1024px-1366px) - NUCLEAR FULL WIDTH OPTION */
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+  /* NUCLEAR - Force entire page body full width */
+  body {
+    overflow-x: hidden !important;
+  }
+
+  /* NUCLEAR - Override all containers for iPad Pro */
+  .section_slider {
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 25px 0;
+    box-sizing: border-box !important;
+  }
+
+  .time_work_title {
+    font-size: 26px;
+    line-height: 28px;
+  }
+
+  .time_small,
+  .fone-slider a {
+    font-size: 16px;
+  }
+
+  .policy-text .text {
+    font-size: 16px;
+  }
+
+  /* NUCLEAR CONTAINER - ABSOLUTELY FULL WIDTH */
+  .section_slider .container {
+    position: relative !important;
+    width: 100vw !important;
+    max-width: none !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* NUCLEAR ROW - FORCE ABSOLUTE POSITIONING */
+  .section_slider .container .row.time_work {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    min-height: 300px !important;
+  }
+
+  /* NUCLEAR COL-3 OVERRIDE - Force full width parent */
+  .col-lg-3:has(.time_work) {
+    flex: 0 0 100vw !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    position: relative !important;
+    left: calc(-50vw + 50%) !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+  }
+
+  .section_slider .container .row.time_work .col-lg-12.col-md-7.no-padding-lr {
+    flex: 0 0 55% !important;
+    max-width: 55% !important;
+    width: 55% !important;
+    padding-right: 15px !important;
+    order: 1 !important;
+    float: none !important;
+    display: block !important;
+  }
+
+  .section_slider
+    .container
+    .row.time_work
+    .col-lg-12.col-md-5.home_banner_1.hidden-xs.no-padding-lr {
+    flex: 0 0 45% !important;
+    max-width: 45% !important;
+    width: 45% !important;
+    padding-left: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    order: 2 !important;
+    float: none !important;
+    visibility: visible !important;
+  }
+
+  /* NUCLEAR - Force show banner on iPad Pro */
+  .section_slider .home_banner_1.hidden-xs,
+  .section_slider .container .home_banner_1.hidden-xs {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 
@@ -2396,27 +2633,6 @@ body.menu-open {
   /* Ensure the image is visible on iPad */
   .hidden-xs {
     display: block !important;
-  }
-}
-
-/* iPad Pro specific adjustments */
-@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
-  .section_slider {
-    padding: 25px 0;
-  }
-
-  .time_work_title {
-    font-size: 24px;
-    line-height: 26px;
-  }
-
-  .time_small,
-  .fone-slider a {
-    font-size: 16px;
-  }
-
-  .policy-text .text {
-    font-size: 16px;
   }
 }
 
