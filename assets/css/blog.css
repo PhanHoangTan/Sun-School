@@ -465,6 +465,36 @@
   border-color: transparent !important;
 }
 
+/* Additional Mobile Full Width Override */
+@media (max-width: 991px) {
+  /* Force full width for all blog elements */
+  .home-blogs * {
+    box-sizing: border-box;
+  }
+
+  .home-blogs .container-fluid,
+  .home-blogs .container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .home-blogs [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  .home-blogs .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}
+
 /* Legacy Responsive Styles for Sidebar */
 @media (max-width: 991px) {
   .sidebar-blog {
@@ -506,14 +536,65 @@
     padding: 40px 0;
   }
 
+  .home-blogs .container {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .home-blogs .row {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .home-blogs .col-lg-7,
+  .home-blogs .col-lg-5,
+  .home-blogs .col-md-12 {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
   .default_title {
     font-size: 22px;
     margin-bottom: 18px;
+    padding: 0 20px;
+  }
+
+  .blog-index {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .blog-index .col-md-12 {
+    padding: 0 !important;
+    width: 100% !important;
+    flex: none !important;
+    margin-bottom: 18px;
+  }
+
+  .first_div,
+  .second_div {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 18px;
+    flex: none !important;
+  }
+
+  .item {
+    width: 100% !important;
+    padding: 0 !important;
   }
 
   .blog-wrap {
     padding: 12px;
     gap: 12px;
+    width: calc(100% - 40px) !important;
+    margin: 0 20px 18px 20px;
+    box-sizing: border-box;
   }
 
   .img_thumb {
@@ -533,6 +614,8 @@
 
   .people_say_div {
     margin-top: 30px;
+    width: 100% !important;
+    padding: 0 20px;
   }
 }
 
@@ -543,36 +626,61 @@
   }
 
   .home-blogs .container {
-    padding: 0 10px;
-    width: 100%;
-    max-width: 100%;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
   }
 
   .home-blogs .row {
-    margin: 0;
+    margin: 0 !important;
+    width: 100% !important;
   }
 
   .home-blogs .col-lg-7,
   .home-blogs .col-lg-5,
   .home-blogs .col-md-12 {
-    padding: 0 5px;
-    width: 100%;
-    max-width: 100%;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
   }
 
   .default_title {
     font-size: 20px;
     margin-bottom: 15px;
+    padding: 0 15px;
   }
 
   .blog-index {
-    width: 100%;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .blog-index .col-md-12 {
-    padding: 0;
-    width: 100%;
+    padding: 0 !important;
+    width: 100% !important;
     margin-bottom: 15px;
+    flex: none !important;
+  }
+
+  .first_div,
+  .second_div {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 15px;
+    flex: none !important;
+  }
+
+  .item {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .no-padding-lr {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .blog-wrap {
@@ -580,12 +688,13 @@
     text-align: left;
     padding: 15px;
     gap: 0;
-    width: 100%;
-    margin: 0 0 15px 0;
+    width: calc(100% - 30px) !important;
+    margin: 0 15px 15px 15px;
+    box-sizing: border-box;
   }
 
   .img_thumb {
-    width: 100%;
+    width: 100% !important;
     height: 180px;
     margin-bottom: 12px;
     border-radius: 8px;
@@ -593,8 +702,9 @@
   }
 
   .blog-content-right {
-    width: 100%;
-    flex: none;
+    width: 100% !important;
+    flex: none !important;
+    padding: 0 !important;
   }
 
   .new-name {
@@ -622,7 +732,8 @@
 
   .people_say_div {
     margin-top: 40px;
-    width: 100%;
+    width: 100% !important;
+    padding: 0 15px;
   }
 
   .testimonial-item {
