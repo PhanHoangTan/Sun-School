@@ -465,50 +465,15 @@
   border-color: transparent !important;
 }
 
-/* Responsive Styles */
+/* Legacy Responsive Styles for Sidebar */
 @media (max-width: 991px) {
   .sidebar-blog {
     padding-right: 0;
     margin-top: 30px;
   }
 
-  .img_thumb {
-    width: 100px;
-    height: 75px;
-  }
-
-  .blog-wrap {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .img_thumb {
-    width: 100%;
-    height: 200px;
-    margin-bottom: 15px;
-  }
-
   .post-item {
     align-items: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .default_title {
-    font-size: 20px;
-  }
-
-  .new-name {
-    font-size: 15px;
-  }
-
-  .new-info {
-    font-size: 12px;
-    gap: 10px;
-  }
-
-  .blog-wrap {
-    padding: 12px;
   }
 
   .aside-blog,
@@ -531,6 +496,493 @@
 
   .post-content a {
     font-size: 13px;
+  }
+}
+
+/* Responsive Styles for Home Blogs Section */
+@media (max-width: 1024px) {
+  /* iPad landscape */
+  .home-blogs {
+    padding: 40px 0;
+  }
+
+  .default_title {
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .blog-wrap {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .img_thumb {
+    width: 110px;
+    height: 85px;
+  }
+
+  .new-name {
+    font-size: 15px;
+  }
+
+  .new-description {
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .people_say_div {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* iPad portrait and small tablets */
+  .home-blogs {
+    padding: 30px 0;
+  }
+
+  .home-blogs .container {
+    padding: 0 10px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .home-blogs .row {
+    margin: 0;
+  }
+
+  .home-blogs .col-lg-7,
+  .home-blogs .col-lg-5,
+  .home-blogs .col-md-12 {
+    padding: 0 5px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .default_title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .blog-index {
+    width: 100%;
+  }
+
+  .blog-index .col-md-12 {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .blog-wrap {
+    flex-direction: column;
+    text-align: left;
+    padding: 15px;
+    gap: 0;
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+  .img_thumb {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .blog-content-right {
+    width: 100%;
+    flex: none;
+  }
+
+  .new-name {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .new-info {
+    font-size: 12px;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .new-description {
+    font-size: 14px;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    margin-bottom: 15px;
+  }
+
+  .btn-mores {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  .people_say_div {
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  .testimonial-item {
+    margin-bottom: 20px;
+  }
+
+  .testimonial-avatar img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .testimonial-name {
+    font-size: 16px;
+  }
+
+  .testimonial-position {
+    font-size: 13px;
+  }
+
+  .testimonial-date {
+    font-size: 12px;
+  }
+
+  .testimonial-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Mobile devices */
+  .home-blogs {
+    padding: 15px 0;
+  }
+
+  .home-blogs .container {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .home-blogs .row {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .home-blogs .col-lg-7,
+  .home-blogs .col-lg-5,
+  .home-blogs .col-md-12 {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  .default_title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding: 0 10px;
+  }
+
+  .blog-index {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .blog-index .col-md-12 {
+    padding: 0 !important;
+    margin-bottom: 10px;
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  .first_div,
+  .second_div {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 10px;
+    flex: none !important;
+  }
+
+  .item {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .no-padding-lr {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .blog-wrap {
+    padding: 10px;
+    margin: 0 10px 10px 10px;
+    border-radius: 8px;
+    width: calc(100% - 20px) !important;
+    box-sizing: border-box;
+  }
+
+  .img_thumb {
+    height: 150px;
+    margin-bottom: 10px;
+    width: 100% !important;
+  }
+
+  .blog-content-right {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .new-name {
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .new-info {
+    font-size: 11px;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .new-info svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .new-description {
+    font-size: 13px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    margin-bottom: 12px;
+  }
+
+  .btn-mores {
+    padding: 8px 18px;
+    font-size: 13px;
+    border-radius: 15px;
+  }
+
+  .people_say_div {
+    margin-top: 20px;
+    width: 100% !important;
+    padding: 0 10px;
+  }
+
+  .heading-nav-container {
+    display: none;
+  }
+
+  .bg-review {
+    width: 100%;
+  }
+
+  .swiper-container {
+    width: 100% !important;
+  }
+
+  .testimonial-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .testimonial-avatar {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .testimonial-avatar img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .testimonial-info {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .testimonial-name {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .testimonial-position {
+    font-size: 12px;
+    color: #999;
+  }
+
+  .testimonial-date {
+    font-size: 11px;
+    color: #bbb;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .testimonial-content {
+    text-align: center;
+  }
+
+  .testimonial-content p {
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .quote-start,
+  .quote-end {
+    font-size: 18px;
+    color: #ff9852;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile devices */
+  .home-blogs {
+    padding: 10px 0;
+  }
+
+  .home-blogs .container {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .home-blogs .row {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .home-blogs .col-lg-7,
+  .home-blogs .col-lg-5,
+  .home-blogs .col-md-12 {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  .default_title {
+    font-size: 17px;
+    padding: 0 8px;
+    margin-bottom: 10px;
+  }
+
+  .blog-index {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .blog-index .col-md-12 {
+    padding: 0 !important;
+    width: 100% !important;
+    flex: none !important;
+    margin-bottom: 8px;
+  }
+
+  .first_div,
+  .second_div {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 8px;
+    flex: none !important;
+  }
+
+  .item {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .blog-wrap {
+    padding: 8px;
+    margin: 0 8px 8px 8px;
+    width: calc(100% - 16px) !important;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+
+  .img_thumb {
+    height: 130px;
+    width: 100% !important;
+    margin-bottom: 8px;
+  }
+
+  .blog-content-right {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .new-name {
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .new-info {
+    font-size: 10px;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .new-info svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .new-description {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    margin-bottom: 10px;
+  }
+
+  .btn-mores {
+    padding: 6px 15px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+
+  .people_say_div {
+    width: 100% !important;
+    padding: 0 8px;
+    margin-top: 15px;
+  }
+
+  .testimonial-item {
+    padding: 12px;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+  }
+
+  .testimonial-avatar img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .testimonial-name {
+    font-size: 14px;
+  }
+
+  .testimonial-position {
+    font-size: 11px;
+  }
+
+  .testimonial-date {
+    font-size: 10px;
+  }
+
+  .testimonial-content p {
+    font-size: 12px;
   }
 }
 

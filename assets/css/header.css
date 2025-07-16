@@ -592,7 +592,7 @@
   }
 
   .cart-container {
-    top: 40px;
+    top: -100px;
     right: 15px;
   }
 
@@ -1675,7 +1675,7 @@ html {
 
   /* Adjust cart position */
   .cart-container {
-    top: 45px !important;
+    top: -50px !important;
   }
 }
 

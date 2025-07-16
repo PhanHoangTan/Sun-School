@@ -503,91 +503,6 @@ body {
   transform: translateY(0);
 }
 
-/* Cart */
-.cart-container {
-  position: relative;
-  float: right;
-  width: 50px;
-  text-align: right;
-  padding-top: 10px;
-}
-
-.cart-link {
-  display: inline-block;
-  color: #f57f17;
-  text-decoration: none;
-  font-size: 24px;
-}
-
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #f57f17;
-  color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cart-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 300px; /* Ensure width is explicitly set */
-  min-width: 300px; /* Add min-width to prevent narrowing */
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  display: none;
-  z-index: 9999; /* Increase z-index to ensure it appears above other elements */
-  overflow: visible !important; /* Ensure content isn't cut off */
-  max-width: none !important; /* Prevent any max-width constraints */
-  border-radius: 8px;
-}
-
-.cart-container:hover .cart-dropdown {
-  display: block;
-}
-
-/* Fix for cart content to ensure it doesn't overflow or get cut off */
-.cart-dropdown .cart-content {
-  width: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.empty-cart {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.empty-cart i {
-  font-size: 48px;
-  color: #ddd;
-  margin-bottom: 10px;
-}
-
-/* Make sure cart container has correct positioning */
-.cart-container {
-  position: relative;
-  display: inline-block;
-  margin-left: 20px;
-}
-
-/* Override for mobile and tablet devices */
-@media (max-width: 1024px) {
-  .cart-container {
-    position: absolute !important;
-    right: 15px !important;
-    margin: 0 !important;
-  }
-}
-
 /* Ensure parent elements don't cut off dropdown */
 .header-main {
   overflow: visible !important;
@@ -745,13 +660,6 @@ body.menu-open {
     cursor: pointer;
   }
 
-  .cart-container {
-    position: absolute !important;
-    top: -100px !important;
-    right: 15px !important;
-    margin: 0 !important;
-    z-index: 9999 !important;
-  }
 }
 
 @media (max-width: 767px) {
