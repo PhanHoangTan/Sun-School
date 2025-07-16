@@ -1176,7 +1176,6 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .cart-container {
     position: absolute !important;
-    top: -100px !important;
     right: 15px !important;
     margin: 0 !important;
     z-index: 9999 !important;
@@ -1187,41 +1186,53 @@
 @media (max-width: 767px) {
   .cart-container {
     position: absolute !important;
-    top: -100px !important;
     right: 15px !important;
     margin: 0 !important;
     z-index: 9999 !important;
   }
 }
 
-/* Ensure all containers respect viewport width */
+/* SỬA LỖI CONTAINER VÀ RESPONSIVE - ĐẢM BẢO CÁC PHẦN TỬ CON TUÂN THEO PADDING CỦA CONTAINER */
+
+/* Đảm bảo tất cả container tuân theo kích thước viewport */
 .container,
 .container-fluid {
   max-width: 100%;
   box-sizing: border-box;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
+/* Sửa lỗi row bị căng sát viền */
 .row {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* Fix mobile layout specifically */
-@media (max-width: 767px) {
+/* SỬA LỖI CHO TẤT CẢ CÁC THIẾT BỊ */
+@media (max-width: 1200px) {
   .container,
   .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
-    max-width: 100%;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
+  /* Đảm bảo row không vượt ra ngoài container */
   .row {
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
+  /* Sửa lỗi các cột bị căng sát viền */
   .col,
   .col-1,
   .col-2,
@@ -1260,15 +1271,112 @@
   .col-md-9,
   .col-md-10,
   .col-md-11,
-  .col-md-12 {
-    padding-left: 15px;
-    padding-right: 15px;
+  .col-md-12,
+  .col-lg,
+  .col-lg-1,
+  .col-lg-2,
+  .col-lg-3,
+  .col-lg-4,
+  .col-lg-5,
+  .col-lg-6,
+  .col-lg-7,
+  .col-lg-8,
+  .col-lg-9,
+  .col-lg-10,
+  .col-lg-11,
+  .col-lg-12 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+}
+
+/* SỬA LỖI CHO TABLET */
+@media (max-width: 768px) {
+  .container,
+  .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
-  .header {
-    width: 100%;
-    max-width: 100vw;
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
+
+  /* Giảm padding cho tablet để tận dụng không gian */
+  .col,
+  [class*="col-"] {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+/* SỬA LỖI CHO MOBILE */
+@media (max-width: 576px) {
+  .container,
+  .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Giảm padding cho mobile để tận dụng không gian */
+  .col,
+  [class*="col-"] {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+  /* Đảm bảo header không bị tràn */
+  .header {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* SỬA LỖI CÁC PHẦN TỬ CON TRONG HEADER */
+.header-top .container,
+.header-main .container {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.header-top .row,
+.header-main .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Đảm bảo các phần tử con tuân theo padding của container */
+.header-contact,
+.search-container,
+.logo-header,
+.main-navigation {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Sửa lỗi search form bị tràn */
+.search-form {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.search-input {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* PREVENT NAVIGATION JUMPING DURING PAGE TRANSITIONS */
