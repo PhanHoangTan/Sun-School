@@ -156,7 +156,7 @@
   width: 50px;
   text-align: right;
   padding-top: 10px;
-  z-index: 9999;
+  z-index: 999 !important;
   overflow: visible !important;
   margin-left: 20px;
 }
