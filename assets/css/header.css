@@ -156,7 +156,7 @@
   width: 50px;
   text-align: right;
   padding-top: 10px;
-  z-index: 999 !important;
+  z-index: 9 !important;
   overflow: visible !important;
   margin-left: 20px;
 }
@@ -585,19 +585,17 @@
     height: auto;
   }
 
-  /* Position hamburger menu to match second image */
+
   .mobile-menu-toggle {
     left: 15px;
-    top: 40px; /* Match position in second image */
+    top: 40px; 
   }
 
-  /* Position cart icon to match second image */
   .cart-container {
     top: 40px;
     right: 15px;
   }
 
-  /* Style search box to match second image */
   .search-container {
     margin-top: 0;
     margin-bottom: 15px;
@@ -1165,7 +1163,6 @@
 @media (max-width: 1024px) {
   .cart-container {
     position: absolute !important;
-    top: -100px !important;
     right: 15px !important;
     margin: 0 !important;
     z-index: 9999 !important;
@@ -1188,7 +1185,6 @@
     position: absolute !important;
     right: 15px !important;
     margin: 0 !important;
-    z-index: 9999 !important;
   }
 }
 

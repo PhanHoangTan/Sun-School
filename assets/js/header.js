@@ -542,7 +542,6 @@ function updateCartDropdown() {
       /* Ensure parent containers don't clip the dropdown */
       .cart-container {
         position: relative !important;
-        z-index: 9999 !important;
       }
     `;
     document.head.appendChild(style);

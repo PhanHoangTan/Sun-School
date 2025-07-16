@@ -1017,7 +1017,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* Fix for parent containers */
     .cart-container {
       position: relative !important;
-      z-index: 9999 !important;
+
     }
     
     .header-main, .header-main .container, .header-main .row {
