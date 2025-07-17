@@ -519,101 +519,71 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Swiper Slider JS -->
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
-    <script src="./assets/js/header.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/header.js"></script>    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/mobile-menu.js"></script>
     <!-- Script removed as TinTuc.html doesn't have the home_csvc section -->
-<!-- <script src="./assets/js/facilities-new.js"></script> -->
+    <!-- <script src="./assets/js/facilities-new.js"></script> -->
     <script src="./assets/js/blog.js"></script>
     <script src="./assets/js/kinh-nghiem-hay.js"></script>
     <script src="./assets/js/brand-partners.js"></script>
     <script src="./assets/js/footer.js"></script>
     <script src="./assets/js/scroll-top.js"></script>
 
-    <!-- Inline JavaScript for Dropdown Fix -->
+    <!-- Mobile Menu JavaScript -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        console.log("Dropdown script loaded");
-
-        // Fix dropdown functionality
-        const dropdownItems = document.querySelectorAll(
-          ".nav-item.has-dropdown"
-        );
-        console.log("Found dropdown items:", dropdownItems.length);
-
-        dropdownItems.forEach(function (item, index) {
+        // Mobile menu dropdown functionality
+        const dropdownItems = document.querySelectorAll(".nav-item.has-dropdown");
+        
+        dropdownItems.forEach(function (item) {
           const link = item.querySelector(".nav-link");
           const dropdown = item.querySelector(".dropdown-menu");
-
-          console.log("Processing dropdown item", index, dropdown);
-
-          // Prevent default click behavior on dropdown parent links
+          
           if (link && dropdown) {
+            // Handle click on mobile
             link.addEventListener("click", function (e) {
-              console.log("Dropdown link clicked, preventing default");
-              e.preventDefault();
-              e.stopPropagation();
-              return false;
+              const isMobile = window.innerWidth <= 768;
+              if (isMobile) {
+                e.preventDefault();
+                dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+              }
             });
-          }
-
-          // Force show dropdown on hover
-          item.addEventListener("mouseenter", function () {
-            console.log("Mouse entered dropdown item");
-            if (dropdown) {
-              // Force show immediately
-              dropdown.style.display = "block";
-              dropdown.style.opacity = "1";
-              dropdown.style.visibility = "visible";
-              dropdown.style.transform = "translateY(0)";
-              dropdown.style.zIndex = "999999";
-              dropdown.style.position = "absolute";
-              dropdown.style.top = "100%";
-              dropdown.style.left = "0";
-            }
-          });
-
-          item.addEventListener("mouseleave", function () {
-            console.log("Mouse left dropdown item");
-            if (dropdown) {
-              setTimeout(() => {
+            
+            // Handle hover on desktop
+            item.addEventListener("mouseenter", function () {
+              const isMobile = window.innerWidth <= 768;
+              if (!isMobile && dropdown) {
+                dropdown.style.display = "block";
+                dropdown.style.opacity = "1";
+                dropdown.style.visibility = "visible";
+              }
+            });
+            
+            item.addEventListener("mouseleave", function () {
+              const isMobile = window.innerWidth <= 768;
+              if (!isMobile && dropdown) {
                 dropdown.style.opacity = "0";
                 dropdown.style.visibility = "hidden";
-                dropdown.style.transform = "translateY(-10px)";
                 setTimeout(() => {
                   dropdown.style.display = "none";
                 }, 300);
-              }, 100);
-            }
-          });
-
-          // Also handle dropdown hover to prevent it from closing
-          if (dropdown) {
-            dropdown.addEventListener("mouseenter", function () {
-              dropdown.style.display = "block";
-              dropdown.style.opacity = "1";
-              dropdown.style.visibility = "visible";
-              dropdown.style.transform = "translateY(0)";
+              }
             });
           }
         });
 
-        // Additional fallback - force hover states
-        setTimeout(() => {
-          const style = document.createElement("style");
-          style.innerHTML = `
+        // CSS fallback for hover states
+        const style = document.createElement("style");
+        style.innerHTML = `
+          @media (min-width: 769px) {
             .nav-item.has-dropdown:hover .dropdown-menu {
               display: block !important;
               opacity: 1 !important;
               visibility: visible !important;
-              transform: translateY(0) !important;
-              z-index: 999999 !important;
-              position: absolute !important;
-              top: 100% !important;
-              left: 0 !important;
             }
-          `;
-          document.head.appendChild(style);
-        }, 100);
+          }
+        `;
+        document.head.appendChild(style);
       });
     </script>
 
@@ -636,15 +606,15 @@
                 // Remove active class from all items
                 menuItems.forEach(item => item.classList.remove('active'));
                 
-                // Set active class based on path
-                if (currentPath === '/' || currentPath.includes('index.html')) {
+                // Set active class based on path - this is a values page, highlight related menu
+                if (currentPath.includes('GiaTriChoBe')) {
+                  // Values page - highlight education or about menu
+                  const aboutItem = document.querySelector('.main-menu .nav-item:nth-child(6)');
+                  if (aboutItem) aboutItem.classList.add('active');
+                } else if (currentPath === '/' || currentPath.includes('index.html')) {
                   // Home page
                   const homeItem = document.querySelector('.main-menu .nav-item:first-child');
                   if (homeItem) homeItem.classList.add('active');
-                } else if (currentPath.includes('TinTuc.html')) {
-                  // News page
-                  const newsItem = document.querySelector('.main-menu .nav-item:nth-child(5)');
-                  if (newsItem) newsItem.classList.add('active');
                 } else {
                   // Handle other pages based on path
                   menuItems.forEach(item => {
