@@ -665,6 +665,7 @@
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
     <script src="./assets/js/header.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/mobile-menu.js"></script>
     <!-- Script removed as TinTuc.html doesn't have the home_csvc section -->
 <!-- <script src="./assets/js/facilities-new.js"></script> -->
     <script src="./assets/js/blog.js"></script>
@@ -673,10 +674,10 @@
     <script src="./assets/js/footer.js"></script>
     <script src="./assets/js/scroll-top.js"></script>
 
-    <!-- Inline JavaScript for Dropdown Fix -->
+    <!-- Mobile Menu JavaScript -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        console.log("Dropdown script loaded");
+        console.log("Mobile menu script loaded");
 
         // Fix dropdown functionality
         const dropdownItems = document.querySelectorAll(
@@ -693,9 +694,7 @@
           // Prevent default click behavior on dropdown parent links
           if (link && dropdown) {
             link.addEventListener("click", function (e) {
-              console.log("Dropdown link clicked, preventing default");
               e.preventDefault();
-              e.stopPropagation();
               return false;
             });
           }
@@ -704,38 +703,26 @@
           item.addEventListener("mouseenter", function () {
             console.log("Mouse entered dropdown item");
             if (dropdown) {
-              // Force show immediately
               dropdown.style.display = "block";
               dropdown.style.opacity = "1";
               dropdown.style.visibility = "visible";
               dropdown.style.transform = "translateY(0)";
-              dropdown.style.zIndex = "999999";
-              dropdown.style.position = "absolute";
-              dropdown.style.top = "100%";
-              dropdown.style.left = "0";
             }
           });
 
           item.addEventListener("mouseleave", function () {
             console.log("Mouse left dropdown item");
             if (dropdown) {
-              setTimeout(() => {
-                dropdown.style.opacity = "0";
-                dropdown.style.visibility = "hidden";
-                dropdown.style.transform = "translateY(-10px)";
-                setTimeout(() => {
-                  dropdown.style.display = "none";
-                }, 300);
-              }, 100);
+              dropdown.style.display = "none";
+              dropdown.style.opacity = "0";
+              dropdown.style.visibility = "hidden";
+              dropdown.style.transform = "translateY(-10px)";
             }
           });
 
           // Also handle dropdown hover to prevent it from closing
           if (dropdown) {
             dropdown.addEventListener("mouseenter", function () {
-              dropdown.style.display = "block";
-              dropdown.style.opacity = "1";
-              dropdown.style.visibility = "visible";
               dropdown.style.transform = "translateY(0)";
             });
           }
@@ -750,10 +737,6 @@
               opacity: 1 !important;
               visibility: visible !important;
               transform: translateY(0) !important;
-              z-index: 999999 !important;
-              position: absolute !important;
-              top: 100% !important;
-              left: 0 !important;
             }
           `;
           document.head.appendChild(style);
@@ -761,50 +744,49 @@
       });
     </script>
 
-    <!-- Script to load header component (client-side implementation) -->
+    <!-- Script to load header component -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Load the header component (for client-side implementation)
-        const headerContainer = document.getElementById("header-container");
+      document.addEventListener("DOMContentLoaded", function() {
+        // Load the header component
+        const headerContainer = document.getElementById('header-container');
         if (headerContainer) {
-          fetch("./forms/components/header.html")
-            .then((response) => response.text())
-            .then((data) => {
+          fetch('./forms/components/header.html')
+            .then(response => response.text())
+            .then(data => {
               headerContainer.innerHTML = data;
-              
+
               // Set active class based on current page
               setTimeout(() => {
                 const currentPath = window.location.pathname;
-                const menuItems = document.querySelectorAll('.main-menu .nav-item');
-                
+                const menuItems = document.querySelectorAll(
+                  ".main-menu .nav-item"
+                );
+
                 // Remove active class from all items
-                menuItems.forEach(item => item.classList.remove('active'));
-                
+                menuItems.forEach((item) => item.classList.remove("active"));
+
                 // Set active class based on path
-                if (currentPath === '/' || currentPath.includes('index.html')) {
+                if (currentPath === "/" || currentPath.includes("index.html")) {
                   // Home page
-                  const homeItem = document.querySelector('.main-menu .nav-item:first-child');
-                  if (homeItem) homeItem.classList.add('active');
-                } else if (currentPath.includes('TinTuc.html')) {
-                  // News page
-                  const newsItem = document.querySelector('.main-menu .nav-item:nth-child(5)');
-                  if (newsItem) newsItem.classList.add('active');
-                } else {
-                  // Handle other pages based on path
-                  menuItems.forEach(item => {
-                    const link = item.querySelector('.nav-link');
-                    if (link && link.getAttribute('href') && currentPath.includes(link.getAttribute('href'))) {
-                      item.classList.add('active');
-                    }
-                  });
+                  const homeItem = document.querySelector(
+                    '.main-menu .nav-item a[href*="index"]'
+                  );
+                  if (homeItem) homeItem.parentElement.classList.add("active");
+                } else if (currentPath.includes("TinTuc")) {
+                  // News pages
+                  const newsItem = document.querySelector(
+                    '.main-menu .nav-item a[href*="TinTuc"]'
+                  );
+                  if (newsItem) newsItem.parentElement.classList.add("active");
                 }
               }, 100); // Small delay to ensure DOM is updated
             })
-            .catch((error) => {
-              console.error("Error loading header component:", error);
+            .catch(error => {
+              console.error('Error loading header component:', error);
             });
         }
       });
     </script>
+
   </body>
 </html>
