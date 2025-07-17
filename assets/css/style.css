@@ -2511,9 +2511,6 @@ body.menu-open {
     flex-wrap: nowrap;
     margin-top: 0;
     padding: 15px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   }
 
   /* Left side content column */
@@ -2701,8 +2698,6 @@ body.menu-open {
 
   /* Style for the working hours section with icons */
   .time_work {
-    background-color: #fff;
-    border-radius: 10px;
     padding: 15px;
     margin-top: 0;
     display: flex;
@@ -2875,12 +2870,6 @@ body.menu-open {
     padding-top: 20px;
   }
 
-  /* Custom styling to match image 1 exactly */
-  .time_work {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  }
 
   /* Override the default row structure */
   .time .row {
