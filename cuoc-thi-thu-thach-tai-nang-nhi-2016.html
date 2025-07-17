@@ -42,7 +42,7 @@
     <!-- Override Bootstrap breadcrumb styles with our custom styles -->
     <style>
       /* Additional breadcrumb overrides if needed */
-      
+
       /* Responsive layout fixes for mobile and tablet */
       @media (max-width: 991px) {
         /* Force the main container to be flex column */
@@ -50,7 +50,7 @@
           display: flex !important;
           flex-direction: column !important;
         }
-        
+
         /* 1. Main article content appears FIRST */
         .megamenu-right.col-lg-7 {
           order: 1 !important;
@@ -59,7 +59,7 @@
           max-width: 100% !important;
           flex: none !important;
         }
-        
+
         /* 2. Sidebar appears SECOND, but we'll reorder its children */
         .sidebar-blog.col-lg-5 {
           order: 2 !important;
@@ -67,65 +67,65 @@
           max-width: 100% !important;
           flex: none !important;
         }
-        
+
         /* Reorder sidebar content */
         .sidebar-blog {
           display: flex !important;
           flex-direction: column !important;
         }
-        
+
         /* 2a. Featured news section comes first in sidebar */
         .sidebar-blog .aside-blog {
           order: 1 !important;
           margin-bottom: 20px;
         }
-        
+
         /* 2b. Tags section comes last in sidebar */
         .sidebar-blog .widget-sidebar-item.blog_tags {
           order: 2 !important;
           margin-top: 20px;
         }
-        
+
         /* Ensure featured news items maintain their order */
         .aside-blog {
           display: flex !important;
           flex-direction: column !important;
         }
-        
+
         .aside-blog > div:first-child {
           order: 1 !important;
         }
-        
+
         .new-item {
           margin-bottom: 15px;
         }
       }
-      
+
       /* iPad Mini and smaller tablets */
       @media (max-width: 768px) and (min-width: 481px) {
         .megamenu-right {
           margin-bottom: 40px;
         }
-        
+
         .sidebar-blog {
           margin-top: 0 !important;
         }
       }
-      
+
       /* Mobile phones */
       @media (max-width: 480px) {
         .megamenu-right {
           margin-bottom: 30px;
         }
-        
+
         .sidebar-blog {
           margin-top: 0 !important;
         }
-        
+
         .new-item {
           margin-bottom: 20px;
         }
-        
+
         .widget-sidebar-item.blog_tags {
           margin-top: 30px;
         }
