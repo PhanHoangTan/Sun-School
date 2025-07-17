@@ -259,14 +259,7 @@ body {
   font-weight: 500;
 }
 
-/* Main Navigation */
-.main-navigation {
-  float: left;
-  width: calc(100% - 50px);
-  overflow: visible !important;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+
 
 .main-navigation::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
@@ -466,42 +459,6 @@ body {
   text-decoration: none;
 }
 
-/* Additional dropdown styling for better functionality */
-.main-navigation .nav-item.has-dropdown {
-  position: relative;
-}
-
-.main-navigation .nav-item.has-dropdown .nav-link {
-  position: relative;
-}
-
-.main-navigation .dropdown-menu {
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 0;
-  min-width: 220px;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  padding: 8px 0;
-  list-style: none;
-  display: none;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1000;
-  text-align: left;
-  white-space: normal;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(-10px);
-}
-
-.main-navigation .nav-item.has-dropdown:hover .dropdown-menu {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
 
 /* Cart */
 .cart-container {
@@ -684,12 +641,7 @@ body.menu-open {
   z-index: 99999 !important;
 }
 
-/* Responsive Styles */
-@media (min-width: 992px) {
-  .main-navigation {
-    display: flex !important;
-  }
-}
+
 
 @media (max-width: 991px) {
   .logo-header {
@@ -702,19 +654,6 @@ body.menu-open {
     display: block;
   }
 
-  .main-navigation {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 280px;
-    height: 100vh;
-    background: #fff;
-    z-index: 999;
-    overflow-y: auto;
-    transition: left 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
 
   .main-navigation.show {
     left: 0;
