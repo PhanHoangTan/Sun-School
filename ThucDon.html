@@ -370,6 +370,7 @@
     <script src="./assets/js/footer.js"></script>
     <script src="./assets/js/scroll-top.js"></script>
     <script src="./assets/js/brand-partners.js"></script>
+    <script src="./assets/js/mobile-menu.js"></script>
     <script>
       // Initialize Swiper for brand partners
       var brandSwiper = new Swiper(".brand-swiper", {
@@ -402,6 +403,51 @@
             spaceBetween: 40,
           },
         },
+      });
+
+      // Mobile Menu JavaScript
+      document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const dropdown = document.querySelector('.mobile-dropdown');
+        
+        if (menuToggle && dropdown) {
+          menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdown.classList.toggle('show');
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !dropdown.contains(e.target)) {
+              dropdown.classList.remove('show');
+            }
+          });
+
+          // Prevent dropdown from closing when clicking inside
+          dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+          });
+        }
+
+        // Header component loading
+        fetch('./forms/components/header.html')
+          .then(response => response.text())
+          .then(data => {
+            const headerContainer = document.getElementById('header-container');
+            if (headerContainer) {
+              headerContainer.innerHTML = data;
+              
+              // Set active page
+              const currentPage = window.location.pathname.split('/').pop();
+              if (currentPage.includes('ThucDon')) {
+                const activeLink = document.querySelector('a[href="ThucDon.html"]');
+                if (activeLink) {
+                  activeLink.classList.add('active');
+                }
+              }
+            }
+          })
+          .catch(error => console.error('Error loading header:', error));
       });
     </script>
   </body>
