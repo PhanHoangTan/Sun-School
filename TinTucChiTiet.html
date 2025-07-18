@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chi tiết tin tức - SunShine School</title>
 
@@ -46,18 +45,28 @@
     <main>
       <!-- Breadcrumb -->
       <div class="container mt-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb breadcrumb-custom">
-            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="TinTuc.html">Tin tức</a></li>
-            <li
-              class="breadcrumb-item active"
-              aria-current="page"
-              id="breadcrumb-title">
-              Chi tiết tin tức
-            </li>
-          </ol>
-        </nav>
+        <!-- Breadcrumb -->
+        <section class="bread-crumb">
+          <div class="container">
+            <div class="breadcrumb-wrapper">
+              <div class="breadcrumb-content">
+                <ul class="breadcrumb">
+                  <li class="home">
+                    <a href="index.html">Trang chủ</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    <a href="TinTuc.html">Tin tức</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    <span id="breadcrumb-title">Chi tiết tin tức</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <section class="mb25">

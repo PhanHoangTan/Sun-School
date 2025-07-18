@@ -41,6 +41,228 @@
     <!-- Override Bootstrap breadcrumb styles with our custom styles -->
     <style>
       /* Additional breadcrumb overrides if needed */
+
+      /* Loading spinner */
+      .loading-spinner {
+        padding: 20px;
+      }
+
+      .spinner-border {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      /* Article layout */
+      .blog-wrap {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .blog-wrap:last-child {
+        border-bottom: none;
+      }
+
+      .img_thumb {
+        width: 200px;
+        height: 150px;
+        margin-right: 20px;
+        display: block;
+        overflow: hidden;
+        border-radius: 5px;
+        flex-shrink: 0;
+      }
+
+      .img_thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .blog-content-right {
+        flex: 1;
+      }
+
+      .new-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      .new-name a {
+        color: #333;
+        text-decoration: none;
+      }
+
+      .new-name a:hover {
+        color: #007bff;
+      }
+
+      .new-info {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 10px;
+      }
+
+      .new-info span {
+        margin-right: 15px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .new-info svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+        fill: #888;
+      }
+
+      .new-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 15px;
+      }
+
+      .btn-mores {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 12px;
+        transition: background-color 0.3s;
+      }
+
+      .btn-mores:hover {
+        background-color: #0056b3;
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Pagination styles */
+      .nav_pagi {
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page-item {
+        list-style: none;
+        margin: 0 2px;
+      }
+
+      .page-link {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .page-link:hover {
+        background-color: #f8f9fa;
+        border-color: #007bff;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+      }
+
+      .page-item.active .page-link:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        color: #fff;
+      }
+
+      .page-item.disabled .page-link {
+        background-color: #f8f9fa;
+        border-color: #ddd;
+        color: #6c757d;
+        cursor: not-allowed;
+      }
+
+      .page-prev .page-link,
+      .page-next .page-link {
+        padding: 8px 12px;
+      }
+
+      .page-prev .page-link img,
+      .page-next .page-link img {
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+      }
+
+      .page-prev .page-link:hover img,
+      .page-next .page-link:hover img {
+        opacity: 1;
+      }
+
+      /* Tags styles */
+      .big_tag_2 {
+        list-style: none;
+        display: inline-block;
+        margin: 5px 5px 5px 0;
+      }
+
+      .big_tag_2 a {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #f8f9fa;
+        color: #333;
+        text-decoration: none;
+        border-radius: 3px;
+        font-size: 12px;
+        transition: background-color 0.3s;
+      }
+
+      .big_tag_2 a:hover {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .blog-wrap {
+          flex-direction: column;
+        }
+
+        .img_thumb {
+          width: 100%;
+          height: 200px;
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+
+        .pagination {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .page-link {
+          padding: 8px 12px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -59,11 +281,11 @@
             <div class="breadcrumb-content">
               <ul class="breadcrumb">
                 <li class="home">
-                  <a href="/">Trang chủ</a>
+                  <a href="index.html">Trang chủ</a>
                   <i class="fa-solid fa-chevron-right"></i>
                 </li>
                 <li>
-                  <span>Tin tức</span>
+                  <span>Tin tức - Trang 2</span>
                 </li>
               </ul>
             </div>
@@ -78,313 +300,79 @@
               <aside class="aside-blog">
                 <div style="margin-bottom: 15px">
                   <h2 class="default_title">
-                    <a
-                      href="https://sunshine-school-theme.mysapo.net/tin-tuc"
-                      title="Tin nổi bật"
-                      >Tin nổi bật</a
-                    >
+                    <a href="TinTuc.html" title="Tin nổi bật">Tin nổi bật</a>
                   </h2>
                 </div>
 
-                <div class="new-item col-lg-12 no-padding-lr first">
-                  <div class="blog-wrap d-flex">
-                    <a
-                      class="img_thumb"
-                      href="./cuoc-thi-thu-thach-tai-nang-nhi-2016.html"
-                      title="Cuộc thi thử thách tài năng nhí 2016">
-                      <img
-                        class="img-responsive"
-                        src="https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/000.png?v=1457513361690"
-                        alt="Cuộc thi thử thách tài năng nhí 2016" />
-                    </a>
-                    <div class="blog-content-right">
-                      <h3 class="new-name">
-                        <a
-                          href="./cuoc-thi-thu-thach-tai-nang-nhi-2016.html"
-                          title="Cuộc thi thử thách tài năng nhí 2016"
-                          >Cuộc thi thử thách tài năng nhí 2016</a
-                        >
-                      </h3>
-                      <p class="new-info">
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512">
-                            <path
-                              d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
-                          </svg>
-                          09/ 03/ 2016
-                        </span>
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512">
-                            <path
-                              d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
-                          </svg>
-                          6 Bình luận
-                        </span>
-                      </p>
-                      <p class="new-description">
-                        Một sân chơi bổ ích và ý nghĩa để các bé có thể thư giãn
-                        sau một thời gian học tập cũng như hệ thống lại các kiến
-                        thức đã học.
-                        <br />
-                      </p>
-                      <a
-                        class="btn-mores"
-                        href="https://sunshine-school-theme.mysapo.net/cuoc-thi-thu-thach-tai-nang-nhi-2016"
-                        title=""
-                        >Khám phá</a
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <div class="new-item col-lg-12 no-padding-lr">
-                  <div class="blog-wrap d-flex">
-                    <a
-                      class="img_thumb"
-                      href="./toi-truong-hang-say-rinh-ngay-qua-tang.html"
-                      title="Tới trường hăng say - Rinh ngay quà tặng">
-                      <img
-                        class="img-responsive"
-                        src="https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/08-db2deccc-c4bc-4a53-b57d-73766584ceeb.jpg?v=1457513149243"
-                        alt="Tới trường hăng say - Rinh ngay quà tặng" />
-                    </a>
-                    <div class="blog-content-right">
-                      <h3 class="new-name">
-                        <a
-                          href="./toi-truong-hang-say-rinh-ngay-qua-tang.html"
-                          title="Tới trường hăng say - Rinh ngay quà tặng"
-                          >Tới trường hăng say - Rinh ngay quà tặng</a
-                        >
-                      </h3>
-                      <p class="new-info">
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512">
-                            <path
-                              d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
-                          </svg>
-                          09/ 03/ 2016
-                        </span>
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512">
-                            <path
-                              d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
-                          </svg>
-                          2 Bình luận
-                        </span>
-                      </p>
-                      <p class="new-description">
-                        Nhân dịp chào đón năm mới, trường mầm non Sunshine
-                        School lì xì cho gia đình mình một phần quà lớn đầu năm
-                        như lời chúc các bé nhà mình thêm một tuổi mới thật vui
-                        vẻ, mạnh khỏe, học giỏi và đáng yêu như mọi năm^_^ Nếu
-                        Ba mẹ đang tìm trường học ...
-                        <br />
-                      </p>
-                      <a
-                        class="btn-mores"
-                        href="https://sunshine-school-theme.mysapo.net/toi-truong-hang-say-rinh-ngay-qua-tang"
-                        title=""
-                        >Khám phá</a
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <div class="new-item col-lg-12 no-padding-lr last">
-                  <div class="blog-wrap d-flex">
-                    <a
-                      class="img_thumb"
-                      href="./lam-sao-giup-tre-phat-trien-ngon-ngu.html"
-                      title="Làm sao giúp trẻ phát triển ngôn ngữ?">
-                      <img
-                        class="img-responsive"
-                        src="https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/1.png?v=1511937239013"
-                        alt="Làm sao giúp trẻ phát triển ngôn ngữ?" />
-                    </a>
-                    <div class="blog-content-right">
-                      <h3 class="new-name">
-                        <a
-                          href="./lam-sao-giup-tre-phat-trien-ngon-ngu.html"
-                          title="Làm sao giúp trẻ phát triển ngôn ngữ?"
-                          >Làm sao giúp trẻ phát triển ngôn ngữ?</a
-                        >
-                      </h3>
-                      <p class="new-info">
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512">
-                            <path
-                              d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
-                          </svg>
-                          09/ 03/ 2016
-                        </span>
-                        <span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 512 512">
-                            <path
-                              d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
-                          </svg>
-                          0 Bình luận
-                        </span>
-                      </p>
-                      <p class="new-description">
-                        Vì tính chất công việc nên chị An không có nhiều thời
-                        gian ở bên cạnh để dạy dỗ con, phần vì bé Vy là con một,
-                        lại nhút nhát, hay khóc nhiều nên chị không nỡ gửi bé đi
-                        mầm non.
-                        <br />
-                      </p>
-                      <a
-                        class="btn-mores"
-                        href="https://sunshine-school-theme.mysapo.net/lam-sao-giup-tre-phat-trien-ngon-ngu"
-                        title=""
-                        >Khám phá</a
-                      >
+                <!-- Featured articles will be loaded here -->
+                <div id="featured-articles-container">
+                  <!-- Loading spinner -->
+                  <div class="loading-spinner text-center">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Đang tải...</span>
                     </div>
                   </div>
                 </div>
               </aside>
 
               <div class="widget-sidebar-item blog_tags">
-                <h2 class="default_title">Tag</h2>
-                <ul class="widget-sidebar-list blog_tags_ul">
-                  <li class="big_tag_2">
-                    <a
-                      href="https://sunshine-school-theme.mysapo.net/tin-tuc/ch%C6%B0%C6%A1ng%20tr%C3%ACnh%20h%E1%BB%8Dc"
-                      title="Show articles matching tag chương trình học"
-                      >chương trình học</a
-                    >
-                  </li>
-                  <li class="big_tag_2">
-                    <a
-                      href="https://sunshine-school-theme.mysapo.net/tin-tuc/h%E1%BB%8Dc%20ph%C3%AD"
-                      title="Show articles matching tag học phí"
-                      >học phí</a
-                    >
-                  </li>
-                  <li class="big_tag_2">
-                    <a
-                      href="https://sunshine-school-theme.mysapo.net/tin-tuc/l%E1%BB%8Bch%20h%E1%BB%8Dc"
-                      title="Show articles matching tag lịch học"
-                      >lịch học</a
-                    >
-                  </li>
-                  <li class="big_tag_2">
-                    <a
-                      href="https://sunshine-school-theme.mysapo.net/tin-tuc/th%E1%BB%B1c%20%C4%91%C6%A1n"
-                      title="Show articles matching tag thực đơn"
-                      >thực đơn</a
-                    >
-                  </li>
-                </ul>
+                <h2 class="default_title">Tags</h2>
+                <div
+                  id="tags-container"
+                  class="widget-sidebar-list blog_tags_ul">
+                  <!-- Tags will be loaded here -->
+                </div>
               </div>
             </div>
 
             <div class="col-lg-7 order-1 order-lg-2">
               <div class="row">
-                <section class="section-blog">
+                <section class="section-blog col-12">
                   <div class="col-lg-12" style="margin-bottom: 15px">
-                    <h1 class="default_title">Tin tức</h1>
+                    <h1 class="default_title">Tin tức - Trang 2</h1>
                   </div>
 
-                  <div class="col-lg-12 col-12 m-bt-20">
-                    <div class="blog-wrap d-flex">
-                      <a
-                        class="img_thumb"
-                        href="/khuyen-mai-lop-tieng-anh-danh-cho-lop-mam.html"
-                        title="Khuyến mãi lớp tiếng anh dành cho lớp mầm">
-                        <img
-                          class="img-responsive"
-                          src="//bizweb.dktcdn.net/thumb/large/100/063/369/articles/04.jpg?v=1457511289893"
-                          alt="Khuyến mãi lớp tiếng anh dành cho lớp mầm" />
-                      </a>
-                      <div class="blog-content-right">
-                        <h3 class="new-name">
-                          <a
-                            href="/khuyen-mai-lop-tieng-anh-danh-cho-lop-mam.html"
-                            title="Khuyến mãi lớp tiếng anh dành cho lớp mầm"
-                            >Khuyến mãi lớp tiếng anh dành cho lớp mầm</a
-                          >
-                        </h3>
-                        <p class="new-info">
-                          <span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 448 512">
-                              <path
-                                d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
-                            </svg>
-                            09/ 03/ 2016
-                          </span>
-                          <span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 512 512">
-                              <path
-                                d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
-                            </svg>
-                            0 Bình luận
-                          </span>
-                        </p>
+                  <div class="main-content">
+                    <!-- Loading spinner -->
+                    <div
+                      id="loading-container"
+                      class="text-center"
+                      style="padding: 40px 0">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Đang tải...</span>
+                      </div>
+                      <p class="mt-3">Đang tải tin tức...</p>
+                    </div>
 
-                        <p class="new-description">
-                          Khóa học được thiết kế dành riêng cho các bé từ 3-6
-                          tuổi. Đây là tuổi lý tưởng nhất để các em bắt đầu học
-                          tiếng Anh vì các em có thể đạt được chất giọng hay
-                          nhất, phát âm và ngữ điệu tốt, giao tiếp tự nhiên và
-                          dung nạp từ vựng tốt nhất.
-                          <br />
-                        </p>
+                    <!-- Main articles container -->
+                    <div id="main-articles-container" style="display: none">
+                      <!-- Articles will be loaded here -->
+                    </div>
 
-                        <a
-                          class="btn-mores"
-                          href="/khuyen-mai-lop-tieng-anh-danh-cho-lop-mam"
-                          title=""
-                          >Khám phá</a
-                        >
+                    <!-- Pagination -->
+                    <div
+                      id="pagination-container"
+                      class="col-lg-12"
+                      style="display: none">
+                      <div class="text-center">
+                        <nav class="clearfix relative nav_pagi w_100">
+                          <ul class="pagination clearfix" id="pagination-list">
+                            <!-- Pagination will be loaded here -->
+                          </ul>
+                        </nav>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-lg-12">
-                    <div class="text-center">
-                      <nav class="clearfix relative nav_pagi w_100">
-                        <ul class="pagination clearfix">
-                          <li class="page-item page-next">
-                            <a class="page-link page-icon" href="./TinTuc.html">
-                              <img
-                                src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/pre-min.png?1653971798732"
-                                alt="Previous" />
-                            </a>
-                          </li>
-
-                          <li class="page-item">
-                            <a class="page-link" href="./TinTuc.html">1</a>
-                          </li>
-
-                          <li class="active page-item disabled">
-                            <a class="page-link" href="#">2</a>
-                          </li>
-
-                          <li class="page-item disabled">
-                            <a class="page-link page-icon" href="#">
-                              <img
-                                src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/next-min.png?1653971798732"
-                                alt="Next" />
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
+                    <!-- Error message -->
+                    <div
+                      id="error-container"
+                      class="text-center"
+                      style="display: none; padding: 40px 0">
+                      <h4>Không thể tải tin tức</h4>
+                      <p>
+                        Vui lòng thử lại sau hoặc
+                        <a href="TinTuc.html">quay lại trang tin tức chính</a>
+                      </p>
                     </div>
                   </div>
                 </section>
@@ -905,6 +893,278 @@
             });
         }
       });
+    </script>
+
+    <!-- Script to load news articles dynamically for Page 2 -->
+    <script>
+      // Global variables for pagination
+      let allArticles = [];
+      let currentPage = 2; // This is page 2
+      const articlesPerPage = 3;
+      let totalPages = 1;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load news articles from JSON
+        loadNewsArticles();
+      });
+
+      function loadNewsArticles() {
+        fetch("./assets/db/news-articles.json")
+          .then((response) => response.json())
+          .then((data) => {
+            allArticles = data.articles;
+            totalPages = Math.ceil(allArticles.length / articlesPerPage);
+
+            // Display articles for page 2
+            updateMainArticles(allArticles);
+            updateFeaturedArticles(allArticles);
+            updateTags(data.tags);
+          })
+          .catch((error) => {
+            console.error("Error loading news articles:", error);
+            showError();
+          });
+      }
+
+      function updateMainArticles(articles) {
+        const loadingContainer = document.getElementById("loading-container");
+        const mainContainer = document.getElementById(
+          "main-articles-container"
+        );
+        const paginationContainer = document.getElementById(
+          "pagination-container"
+        );
+
+        // Calculate articles for current page
+        const startIndex = (currentPage - 1) * articlesPerPage;
+        const endIndex = startIndex + articlesPerPage;
+        const articlesForPage = articles.slice(startIndex, endIndex);
+
+        // Clear main container
+        mainContainer.innerHTML = "";
+
+        // If no articles for this page, show message
+        if (articlesForPage.length === 0) {
+          mainContainer.innerHTML = `
+            <div class="col-12 text-center" style="padding: 40px 0;">
+              <h4>Không có bài viết nào</h4>
+              <p><a href="TinTuc.html">Quay lại trang tin tức chính</a></p>
+            </div>
+          `;
+        } else {
+          // Display articles
+          articlesForPage.forEach((article, index) => {
+            const articleHTML = `
+              <div class="col-lg-12 col-12 m-bt-20">
+                <div class="blog-wrap d-flex">
+                  <a class="img_thumb" href="./tintucchitiet.html?slug=${
+                    article.slug
+                  }" title="${article.title}">
+                    <img class="img-responsive" src="${
+                      article.featured_image.url
+                    }" alt="${article.featured_image.alt}" />
+                  </a>
+                  <div class="blog-content-right">
+                    <h3 class="new-name">
+                      <a href="./tintucchitiet.html?slug=${
+                        article.slug
+                      }" title="${article.title}">${article.title}</a>
+                    </h3>
+                    <p class="new-info">
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
+                        </svg>
+                        ${formatDate(article.published_date)}
+                      </span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
+                        </svg>
+                        ${article.comments.count} Bình luận
+                      </span>
+                    </p>
+                    <p class="new-description">
+                      ${article.excerpt}
+                      <br />
+                    </p>
+                    <a class="btn-mores" href="./tintucchitiet.html?slug=${
+                      article.slug
+                    }" title="">Khám phá</a>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            mainContainer.innerHTML += articleHTML;
+          });
+        }
+
+        // Generate pagination
+        generatePagination();
+
+        // Hide loading and show content
+        loadingContainer.style.display = "none";
+        mainContainer.style.display = "block";
+        paginationContainer.style.display = "block";
+      }
+
+      function generatePagination() {
+        const paginationList = document.getElementById("pagination-list");
+        if (!paginationList) return;
+
+        paginationList.innerHTML = "";
+
+        // Previous button
+        if (currentPage > 1) {
+          const prevLi = document.createElement("li");
+          prevLi.className = "page-item page-prev";
+          prevLi.innerHTML = `
+            <a class="page-link page-icon" href="TinTuc.html?page=${
+              currentPage - 1
+            }">
+              <img src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/pre-min.png?1653971798732" alt="Previous" />
+            </a>
+          `;
+          paginationList.appendChild(prevLi);
+        }
+
+        // Page number buttons
+        for (let i = 1; i <= totalPages; i++) {
+          const pageLi = document.createElement("li");
+          pageLi.className =
+            i === currentPage ? "page-item active" : "page-item";
+
+          if (i === 1) {
+            pageLi.innerHTML = `<a class="page-link" href="TinTuc.html">${i}</a>`;
+          } else {
+            pageLi.innerHTML = `<a class="page-link" href="TinTuc-page${i}.html">${i}</a>`;
+          }
+
+          paginationList.appendChild(pageLi);
+        }
+
+        // Next button
+        if (currentPage < totalPages) {
+          const nextLi = document.createElement("li");
+          nextLi.className = "page-item page-next";
+          if (currentPage + 1 === 1) {
+            nextLi.innerHTML = `
+              <a class="page-link page-icon" href="TinTuc.html">
+                <img src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/next-min.png?1653971798732" alt="Next" />
+              </a>
+            `;
+          } else {
+            nextLi.innerHTML = `
+              <a class="page-link page-icon" href="TinTuc-page${
+                currentPage + 1
+              }.html">
+                <img src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/next-min.png?1653971798732" alt="Next" />
+              </a>
+            `;
+          }
+          paginationList.appendChild(nextLi);
+        }
+      }
+
+      function updateFeaturedArticles(articles) {
+        const featuredArticles = articles
+          .filter((article) => article.featured)
+          .slice(0, 3);
+        const featuredContainer = document.getElementById(
+          "featured-articles-container"
+        );
+
+        if (featuredContainer) {
+          featuredContainer.innerHTML = "";
+
+          featuredArticles.forEach((article, index) => {
+            const itemClass =
+              index === 0
+                ? "new-item col-lg-12 no-padding-lr first"
+                : index === featuredArticles.length - 1
+                ? "new-item col-lg-12 no-padding-lr last"
+                : "new-item col-lg-12 no-padding-lr";
+
+            const articleHTML = `
+              <div class="${itemClass}">
+                <div class="blog-wrap d-flex">
+                  <a class="img_thumb" href="./tintucchitiet.html?slug=${
+                    article.slug
+                  }" title="${article.title}">
+                    <img class="img-responsive" src="${
+                      article.featured_image.url
+                    }" alt="${article.featured_image.alt}" />
+                  </a>
+                  <div class="blog-content-right">
+                    <h3 class="new-name">
+                      <a href="./tintucchitiet.html?slug=${
+                        article.slug
+                      }" title="${article.title}">${article.title}</a>
+                    </h3>
+                    <p class="new-info">
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
+                        </svg>
+                        ${formatDate(article.published_date)}
+                      </span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
+                        </svg>
+                        ${article.comments.count} Bình luận
+                      </span>
+                    </p>
+                    <p class="new-description">
+                      ${article.excerpt.substring(0, 120)}...
+                      <br />
+                    </p>
+                    <a class="btn-mores" href="./tintucchitiet.html?slug=${
+                      article.slug
+                    }" title="">Khám phá</a>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            featuredContainer.innerHTML += articleHTML;
+          });
+        }
+      }
+
+      function updateTags(tags) {
+        const tagsContainer = document.getElementById("tags-container");
+        if (tagsContainer) {
+          tagsContainer.innerHTML = "";
+
+          tags.slice(0, 8).forEach((tag) => {
+            const tagHTML = `
+              <li class="big_tag_2">
+                <a href="TinTuc.html?tag=${tag.slug}" title="Show articles matching tag ${tag.name}">${tag.name}</a>
+              </li>
+            `;
+            tagsContainer.innerHTML += tagHTML;
+          });
+        }
+      }
+
+      function showError() {
+        const loadingContainer = document.getElementById("loading-container");
+        const errorContainer = document.getElementById("error-container");
+
+        loadingContainer.style.display = "none";
+        errorContainer.style.display = "block";
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("vi-VN", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+      }
     </script>
   </body>
 </html>
