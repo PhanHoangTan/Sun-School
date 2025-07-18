@@ -12,7 +12,8 @@
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     
     <!-- Custom CSS - loaded after Bootstrap to override its styles -->
     <link rel="stylesheet" href="./assets/css/style.css" />
@@ -41,6 +42,123 @@
     <!-- Override Bootstrap breadcrumb styles with our custom styles -->
     <style>
       /* Additional breadcrumb overrides if needed */
+      
+      /* Enhanced pagination styles */
+      .nav_pagi {
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+      
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .page-item {
+        list-style: none;
+        margin: 0 2px;
+      }
+      
+      .page-link {
+        display: inline-block;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+      
+      .page-link:hover {
+        background-color: #f8f9fa;
+        border-color: #007bff;
+        color: #007bff;
+        text-decoration: none;
+      }
+      
+      .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+      }
+      
+      .page-item.active .page-link:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        color: #fff;
+      }
+      
+      .page-item.disabled .page-link {
+        background-color: #f8f9fa;
+        border-color: #ddd;
+        color: #6c757d;
+        cursor: not-allowed;
+      }
+      
+      .page-item.disabled .page-link:hover {
+        background-color: #f8f9fa;
+        border-color: #ddd;
+        color: #6c757d;
+      }
+      
+      .page-prev .page-link,
+      .page-next .page-link {
+        padding: 8px 12px;
+      }
+      
+      .page-prev .page-link img,
+      .page-next .page-link img {
+        width: 16px;
+        height: 16px;
+        opacity: 0.7;
+      }
+      
+      .page-prev .page-link:hover img,
+      .page-next .page-link:hover img {
+        opacity: 1;
+      }
+      
+      /* Loading state for pagination */
+      .pagination-loading {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+      
+      /* Responsive pagination */
+      @media (max-width: 768px) {
+        .pagination {
+          flex-wrap: wrap;
+          gap: 3px;
+        }
+        
+        .page-link {
+          padding: 8px 12px;
+          font-size: 14px;
+        }
+        
+        .page-prev .page-link,
+        .page-next .page-link {
+          padding: 8px 10px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .page-link {
+          padding: 6px 10px;
+          font-size: 13px;
+        }
+        
+        .page-prev .page-link,
+        .page-next .page-link {
+          padding: 6px 8px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -87,7 +205,7 @@
                   <div class="blog-wrap d-flex">
                     <a
                       class="img_thumb"
-                      href="./cuoc-thi-thu-thach-tai-nang-nhi-2016.html"
+                      href="./tintucchitiet.html?slug=cuoc-thi-thu-thach-tai-nang-nhi-2016"
                       title="Cuộc thi thử thách tài năng nhí 2016">
                       <img
                         class="img-responsive"
@@ -97,7 +215,7 @@
                     <div class="blog-content-right">
                       <h3 class="new-name">
                         <a
-                          href="./cuoc-thi-thu-thach-tai-nang-nhi-2016.html"
+                          href="./tintucchitiet.html?slug=cuoc-thi-thu-thach-tai-nang-nhi-2016"
                           title="Cuộc thi thử thách tài năng nhí 2016"
                           >Cuộc thi thử thách tài năng nhí 2016</a
                         >
@@ -142,7 +260,7 @@
                   <div class="blog-wrap d-flex">
                     <a
                       class="img_thumb"
-                      href="./toi-truong-hang-say-rinh-ngay-qua-tang.html"
+                      href="./tintucchitiet.html?slug=toi-truong-hang-say-rinh-ngay-qua-tang"
                       title="Tới trường hăng say - Rinh ngay quà tặng">
                       <img
                         class="img-responsive"
@@ -152,7 +270,7 @@
                     <div class="blog-content-right">
                       <h3 class="new-name">
                         <a
-                          href="./toi-truong-hang-say-rinh-ngay-qua-tang.html"
+                          href="./tintucchitiet.html?slug=toi-truong-hang-say-rinh-ngay-qua-tang"
                           title="Tới trường hăng say - Rinh ngay quà tặng"
                           >Tới trường hăng say - Rinh ngay quà tặng</a
                         >
@@ -199,7 +317,7 @@
                   <div class="blog-wrap d-flex">
                     <a
                       class="img_thumb"
-                      href="./lam-sao-giup-tre-phat-trien-ngon-ngu.html"
+                      href="./tintucchitiet.html?slug=lam-sao-giup-tre-phat-trien-ngon-ngu"
                       title="Làm sao giúp trẻ phát triển ngôn ngữ?">
                       <img
                         class="img-responsive"
@@ -209,7 +327,7 @@
                     <div class="blog-content-right">
                       <h3 class="new-name">
                         <a
-                          href="./lam-sao-giup-tre-phat-trien-ngon-ngu.html"
+                          href="./tintucchitiet.html?slug=lam-sao-giup-tre-phat-trien-ngon-ngu"
                           title="Làm sao giúp trẻ phát triển ngôn ngữ?"
                           >Làm sao giúp trẻ phát triển ngôn ngữ?</a
                         >
@@ -243,7 +361,7 @@
                       </p>
                       <a
                         class="btn-mores"
-                        href="https://sunshine-school-theme.mysapo.net/lam-sao-giup-tre-phat-trien-ngon-ngu"
+                        href="./tintucchitiet.html?slug=lam-sao-giup-tre-phat-trien-ngon-ngu"
                         title=""
                         >Khám phá</a
                       >
@@ -297,7 +415,7 @@
                     <div class="blog-wrap d-flex">
                       <a
                         class="img_thumb"
-                        href="./cuoc-thi-thu-thach-tai-nang-nhi-2016.html"
+                        href="./tintucchitiet.html?slug=cuoc-thi-thu-thach-tai-nang-nhi-2016"
                         title="Cuộc thi thử thách tài năng nhí 2016">
                         <img
                           class="img-responsive"
@@ -307,7 +425,7 @@
                       <div class="blog-content-right">
                         <h3 class="new-name">
                           <a
-                            href="./cuoc-thi-thu-thach-tai-nang-nhi-2016.html"
+                            href="./tintucchitiet.html?slug=cuoc-thi-thu-thach-tai-nang-nhi-2016"
                             title="Cuộc thi thử thách tài năng nhí 2016"
                             >Cuộc thi thử thách tài năng nhí 2016</a
                           >
@@ -351,7 +469,7 @@
                     <div class="blog-wrap d-flex">
                       <a
                         class="img_thumb"
-                        href="./toi-truong-hang-say-rinh-ngay-qua-tang.html"
+                        href="./tintucchitiet.html?slug=toi-truong-hang-say-rinh-ngay-qua-tang"
                         title="Tới trường hăng say - Rinh ngay quà tặng">
                         <img
                           class="img-responsive"
@@ -361,7 +479,7 @@
                       <div class="blog-content-right">
                         <h3 class="new-name">
                           <a
-                            href="./toi-truong-hang-say-rinh-ngay-qua-tang.html"
+                            href="./tintucchitiet.html?slug=toi-truong-hang-say-rinh-ngay-qua-tang"
                             title="Tới trường hăng say - Rinh ngay quà tặng"
                             >Tới trường hăng say - Rinh ngay quà tặng</a
                           >
@@ -396,7 +514,7 @@
                         </p>
                         <a
                           class="btn-mores"
-                          href="https://sunshine-school-theme.mysapo.net/toi-truong-hang-say-rinh-ngay-qua-tang"
+                          href="./tintucchitiet.html?slug=toi-truong-hang-say-rinh-ngay-qua-tang"
                           title=""
                           >Khám phá</a
                         >
@@ -408,7 +526,7 @@
                     <div class="blog-wrap d-flex">
                       <a
                         class="img_thumb"
-                        href="./lam-sao-giup-tre-phat-trien-ngon-ngu.html"
+                        href="./tintucchitiet.html?slug=lam-sao-giup-tre-phat-trien-ngon-ngu"
                         title="Làm sao giúp trẻ phát triển ngôn ngữ?">
                         <img
                           class="img-responsive"
@@ -418,7 +536,7 @@
                       <div class="blog-content-right">
                         <h3 class="new-name">
                           <a
-                            href="./lam-sao-giup-tre-phat-trien-ngon-ngu.html"
+                            href="./tintucchitiet.html?slug=lam-sao-giup-tre-phat-trien-ngon-ngu"
                             title="Làm sao giúp trẻ phát triển ngôn ngữ?"
                             >Làm sao giúp trẻ phát triển ngôn ngữ?</a
                           >
@@ -430,15 +548,15 @@
                               viewBox="0 0 448 512">
                               <path
                                 d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
-                            </svg>
-                            09/ 03/ 2016
-                          </span>
-                          <span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 512 512">
-                              <path
-                                d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
+                          </svg>
+                          09/ 03/ 2016
+                        </span>
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512">
+                            <path
+                              d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
                           </svg>
                           0 Bình luận
                         </span>
@@ -452,7 +570,7 @@
                       </p>
                       <a
                         class="btn-mores"
-                        href="https://sunshine-school-theme.mysapo.net/lam-sao-giup-tre-phat-trien-ngon-ngu"
+                        href="./tintucchitiet.html?slug=lam-sao-giup-tre-phat-trien-ngon-ngu"
                         title=""
                         >Khám phá</a
                       >
@@ -786,6 +904,242 @@
             });
         }
       });
+    </script>
+
+    <!-- Script to load news articles dynamically -->
+    <script>
+      // Global variables for pagination
+      let allArticles = [];
+      let currentPage = 1;
+      const articlesPerPage = 3;
+      let totalPages = 1;
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Get page number from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageParam = urlParams.get('page');
+        if (pageParam) {
+          currentPage = parseInt(pageParam) || 1;
+        }
+
+        // Load news articles from JSON
+        loadNewsArticles();
+      });
+
+      function loadNewsArticles() {
+        fetch('./assets/db/news-articles.json')
+          .then(response => response.json())
+          .then(data => {
+            allArticles = data.articles;
+            totalPages = Math.ceil(allArticles.length / articlesPerPage);
+            
+            // Update featured articles in sidebar
+            updateFeaturedArticles(allArticles);
+            
+            // Update main articles list with pagination
+            updateMainArticles(allArticles);
+            
+            // Update tags
+            updateTags(data.tags);
+          })
+          .catch(error => {
+            console.error('Error loading news articles:', error);
+          });
+      }
+
+      function updateFeaturedArticles(articles) {
+        const featuredArticles = articles.filter(article => article.featured).slice(0, 3);
+        const sidebarContainer = document.querySelector('.sidebar-blog .aside-blog');
+        
+        if (sidebarContainer) {
+          let htmlContent = `
+            <div style="margin-bottom: 15px">
+              <h2 class="default_title">
+                <a href="TinTuc.html" title="Tin nổi bật">Tin nổi bật</a>
+              </h2>
+            </div>
+          `;
+
+          featuredArticles.forEach((article, index) => {
+            const classNames = index === 0 ? 'first' : (index === featuredArticles.length - 1 ? 'last' : '');
+            htmlContent += `
+              <div class="new-item col-lg-12 no-padding-lr ${classNames}">
+                <div class="blog-wrap d-flex">
+                  <a class="img_thumb" href="./tintucchitiet.html?slug=${article.slug}" title="${article.title}">
+                    <img class="img-responsive" src="${article.featured_image.url}" alt="${article.featured_image.alt}" />
+                  </a>
+                  <div class="blog-content-right">
+                    <h3 class="new-name">
+                      <a href="./tintucchitiet.html?slug=${article.slug}" title="${article.title}">${article.title}</a>
+                    </h3>
+                    <p class="new-info">
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
+                        </svg>
+                        ${formatDate(article.published_date)}
+                      </span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                          <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
+                        </svg>
+                        ${article.comments.count} Bình luận
+                      </span>
+                    </p>
+                    <p class="new-description">
+                      ${article.excerpt}
+                      <br />
+                    </p>
+                    <a class="btn-mores" href="./tintucchitiet.html?slug=${article.slug}" title="">Khám phá</a>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+
+          // Add improved pagination
+          htmlContent += generatePagination();
+
+          mainContainer.innerHTML = htmlContent;
+        }
+      }
+
+      function generatePagination() {
+        if (totalPages <= 1) return '';
+
+        let paginationHtml = `
+          <div class="col-lg-12">
+            <div class="text-center">
+              <nav class="clearfix relative nav_pagi w_100">
+                <ul class="pagination clearfix">
+        `;
+
+        // Previous button
+        if (currentPage > 1) {
+          paginationHtml += `
+            <li class="page-item page-prev">
+              <a class="page-link" href="?page=${currentPage - 1}" onclick="changePage(${currentPage - 1}); return false;">
+                <img src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/prev-min.png?1653971798732" alt="Previous" />
+              </a>
+            </li>
+          `;
+        }
+
+        // Page numbers
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        // Adjust start page if we're near the end
+        if (endPage - startPage + 1 < maxVisiblePages) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        // First page and ellipsis
+        if (startPage > 1) {
+          paginationHtml += `
+            <li class="page-item">
+              <a class="page-link" href="?page=1" onclick="changePage(1); return false;">1</a>
+            </li>
+          `;
+          if (startPage > 2) {
+            paginationHtml += `
+              <li class="page-item disabled">
+                <span class="page-link">...</span>
+              </li>
+            `;
+          }
+        }
+
+        // Page number buttons
+        for (let i = startPage; i <= endPage; i++) {
+          paginationHtml += `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+              <a class="page-link" href="?page=${i}" onclick="changePage(${i}); return false;">${i}</a>
+            </li>
+          `;
+        }
+
+        // Last page and ellipsis
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1) {
+            paginationHtml += `
+              <li class="page-item disabled">
+                <span class="page-link">...</span>
+              </li>
+            `;
+          }
+          paginationHtml += `
+            <li class="page-item">
+              <a class="page-link" href="?page=${totalPages}" onclick="changePage(${totalPages}); return false;">${totalPages}</a>
+            </li>
+          `;
+        }
+
+        // Next button
+        if (currentPage < totalPages) {
+          paginationHtml += `
+            <li class="page-item page-next">
+              <a class="page-link" href="?page=${currentPage + 1}" onclick="changePage(${currentPage + 1}); return false;">
+                <img src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/next-min.png?1653971798732" alt="Next" />
+              </a>
+            </li>
+          `;
+        }
+
+        paginationHtml += `
+                </ul>
+              </nav>
+            </div>
+          </div>
+        `;
+
+        return paginationHtml;
+      }
+
+      function changePage(page) {
+        currentPage = page;
+        
+        // Update URL without reloading page
+        const url = new URL(window.location);
+        url.searchParams.set('page', page);
+        window.history.pushState({}, '', url);
+        
+        // Update articles display
+        updateMainArticles(allArticles);
+        
+        // Scroll to top of news section
+        document.querySelector('.section-blog').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+
+      function updateTags(tags) {
+        const tagsContainer = document.querySelector('.widget-sidebar-item.blog_tags .widget-sidebar-list');
+        if (tagsContainer) {
+          let htmlContent = '';
+          tags.slice(0, 6).forEach(tag => {
+            htmlContent += `
+              <li class="big_tag_2">
+                <a href="TinTuc.html?tag=${tag.slug}" title="Xem bài viết về ${tag.name}">
+                  ${tag.name}
+                </a>
+              </li>
+            `;
+          });
+          tagsContainer.innerHTML = htmlContent;
+        }
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('vi-VN', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
     </script>
 
   </body>

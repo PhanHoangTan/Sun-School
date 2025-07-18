@@ -1,0 +1,419 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "slug": "cuoc-thi-thu-thach-tai-nang-nhi-2016",
+      "title": "Cuộc thi thử thách tài năng nhí 2016",
+      "description": "Một sân chơi bổ ích và ý nghĩa để các bé có thể thư giãn sau một thời gian học tập cũng như hệ thống lại các kiến thức đã học.",
+      "excerpt": "Một sân chơi bổ ích và ý nghĩa để các bé có thể thư giãn sau một thời gian học tập cũng như hệ thống lại các kiến thức đã học.",
+      "content": "CUỘC THI THỬ THÁCH TÀI NĂNG NHÍ\n\n1. Nội dung cuộc thi:\n\nCuộc thi dành cho các bé từ 3-6 tuổi với nhiều hoạt động thú vị như:\n- Thi vẽ tranh theo chủ đề\n- Thi hát, múa, kể chuyện\n- Thi trình diễn tài năng đặc biệt\n- Các trò chơi trí tuệ phù hợp với độ tuổi\n\n2. Thời gian và địa điểm:\n- Thời gian: 9h00 ngày 15/03/2016\n- Địa điểm: Sân vườn trường mầm non Sunshine School\n\n3. Giải thưởng:\n- Giải nhất: 1 suất học bổng toàn phần\n- Giải nhì: 2 suất học bổng 50%\n- Giải ba: 3 suất học bổng 30%\n- Giải khuyến khích: Quà tặng ý nghĩa\n\n4. Đăng ký tham gia:\nPhụ huynh có thể đăng ký cho bé tham gia bằng cách liên hệ trực tiếp với trường hoặc gọi hotline: 0123-456-789",
+      "featured_image": {
+        "url": "https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/000.png?v=1457513361690",
+        "alt": "Cuộc thi thử thách tài năng nhí 2016"
+      },
+      "author": {
+        "name": "Sunshine School",
+        "avatar": null
+      },
+      "published_date": "2016-03-09",
+      "published_time": "15:49:00",
+      "updated_date": "2016-03-09",
+      "category": {
+        "id": 1,
+        "name": "Hoạt động trường",
+        "slug": "hoat-dong-truong"
+      },
+      "tags": [
+        {
+          "id": 1,
+          "name": "chương trình học",
+          "slug": "chuong-trinh-hoc"
+        },
+        {
+          "id": 2,
+          "name": "học phí",
+          "slug": "hoc-phi"
+        },
+        {
+          "id": 3,
+          "name": "lịch học",
+          "slug": "lich-hoc"
+        },
+        {
+          "id": 4,
+          "name": "thực đơn",
+          "slug": "thuc-don"
+        }
+      ],
+      "comments": {
+        "count": 6,
+        "enabled": true,
+        "list": [
+          {
+            "id": 1,
+            "author": "Admin Test",
+            "content": "test comment",
+            "date": "2019-06-15T20:53:35",
+            "avatar": "./assets/img/default-user-avatar_3-min.png"
+          },
+          {
+            "id": 2,
+            "author": "Trần Văn Tuấn",
+            "content": "tôi đang test chức năng",
+            "date": "2019-06-15T13:53:35",
+            "avatar": "./assets/img/default-user-avatar_3-min.png"
+          },
+          {
+            "id": 3,
+            "author": "1",
+            "content": "1",
+            "date": "2017-11-03T13:22:11",
+            "avatar": "./assets/img/default-user-avatar_3-min.png"
+          },
+          {
+            "id": 4,
+            "author": "rfergr",
+            "content": "ẻgr",
+            "date": "2017-04-24T11:43:42",
+            "avatar": "./assets/img/default-user-avatar_3-min.png"
+          },
+          {
+            "id": 5,
+            "author": "a",
+            "content": "ádasdas",
+            "date": "2016-08-05T09:35:51",
+            "avatar": "./assets/img/default-user-avatar_3-min.png"
+          }
+        ]
+      },
+      "meta": {
+        "views": 1247,
+        "likes": 23,
+        "shares": 5
+      },
+      "seo": {
+        "meta_title": "Cuộc thi thử thách tài năng nhí 2016 - Sunshine School",
+        "meta_description": "Tham gia cuộc thi thử thách tài năng nhí 2016 - sân chơi bổ ích để các bé thư giãn và phát triển tài năng. Nhiều giải thưởng hấp dẫn.",
+        "meta_keywords": "cuộc thi, tài năng nhí, trẻ em, mầm non, sunshine school"
+      },
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "slug": "toi-truong-hang-say-rinh-ngay-qua-tang",
+      "title": "Tới trường hăng say - Rinh ngay quà tặng",
+      "description": "Nhân dịp chào đón năm mới, trường mầm non Sunshine School lì xì cho gia đình mình một phần quà lớn đầu năm như lời chúc các bé nhà mình thêm một tuổi mới thật vui vẻ, mạnh khỏe, học giỏi và đáng yêu như mọi năm.",
+      "excerpt": "Nhân dịp chào đón năm mới, trường mầm non Sunshine School lì xì cho gia đình mình một phần quà lớn đầu năm như lời chúc các bé nhà mình thêm một tuổi mới thật vui vẻ, mạnh khỏe, học giỏi và đáng yêu như mọi năm. Nếu Ba mẹ đang tìm trường học ...",
+      "content": "Nhân dịp chào đón năm mới, trường mầm non Sunshine School lì xì cho gia đình mình một phần quà lớn đầu năm như lời chúc các bé nhà mình thêm một tuổi mới thật vui vẻ, mạnh khỏe, học giỏi và đáng yêu như mọi năm.\n\nNếu Ba mẹ đang tìm trường học cho bé sau Tết??? Thì đây sẽ là một tin cực vui không thể bỏ qua.\n\n20 SUẤT HỌC BỔNG GIẢM ĐẾN 20% HỌC PHÍ CẢ NĂM HỌC\nkhi đăng kí cho bé học trước ngày 01/03/2016\n\nHãy cho bé một năm học mới bổ ích và nhận lì xì ngay hôm nay nào! Bố mẹ đừng ngần ngại, hãy gọi cho Sunshine School để được tư vấn thật tận tình về khóa học đáng mơ ước tại Maple Bear nhé!\n\nTại Sunshine School, chúng tôi sử dụng chương trình giáo dục mầm non tiên tiến được xây dựng bởi các chuyên gia giáo dục Canada nhằm xây dựng nền tảng vững chắc để phát triển mọi khía cạnh: trí tuệ, sáng tạo, tình cảm, xã hội và thể chất.\n\n• Phương pháp Best Practice với mục tiêu phát triển toàn diện thể chất và trí não của bé thông qua các bài học sinh động, thú vị được sắp xếp theo khung giờ khoa học.\n\n• Maple Bear tạo dựng một môi trường quốc tế tối ưu để bé phát triển khả năng ngôn ngữ khi được khuyến khích giao tiếp với nhau hoàn toàn bằng Anh ngữ.\n\n• Hệ thống phòng học được xây dựng theo chuẩn mực quốc tế với đầy đủ trang thiết bị hiện đại.",
+      "featured_image": {
+        "url": "https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/08-db2deccc-c4bc-4a53-b57d-73766584ceeb.jpg?v=1457513149243",
+        "alt": "Tới trường hăng say - Rinh ngay quà tặng"
+      },
+      "author": {
+        "name": "Sunshine School",
+        "avatar": null
+      },
+      "published_date": "2016-03-09",
+      "published_time": "15:45:00",
+      "updated_date": "2016-03-09",
+      "category": {
+        "id": 2,
+        "name": "Khuyến mãi",
+        "slug": "khuyen-mai"
+      },
+      "tags": [
+        {
+          "id": 1,
+          "name": "chương trình học",
+          "slug": "chuong-trinh-hoc"
+        },
+        {
+          "id": 2,
+          "name": "học phí",
+          "slug": "hoc-phi"
+        },
+        {
+          "id": 5,
+          "name": "khuyến mãi",
+          "slug": "khuyen-mai"
+        },
+        {
+          "id": 6,
+          "name": "năm mới",
+          "slug": "nam-moi"
+        }
+      ],
+      "comments": {
+        "count": 2,
+        "enabled": true,
+        "list": []
+      },
+      "meta": {
+        "views": 892,
+        "likes": 15,
+        "shares": 3
+      },
+      "seo": {
+        "meta_title": "Tới trường hăng say - Rinh ngay quà tặng - Sunshine School",
+        "meta_description": "Nhân dịp năm mới, Sunshine School tặng 20 suất học bổng giảm đến 20% học phí. Đăng ký ngay trước 01/03/2016!",
+        "meta_keywords": "khuyến mãi, học bổng, mầm non, sunshine school, năm mới"
+      },
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "slug": "lam-sao-giup-tre-phat-trien-ngon-ngu",
+      "title": "Làm sao giúp trẻ phát triển ngôn ngữ?",
+      "description": "Vì tính chất công việc nên chị An không có nhiều thời gian ở bên cạnh để dạy dỗ con, phần vì bé Vy là con một, lại nhút nhát, hay khóc nhiều nên chị không nỡ gửi bé đi mầm non.",
+      "excerpt": "Vì tính chất công việc nên chị An không có nhiều thời gian ở bên cạnh để dạy dỗ con, phần vì bé Vy là con một, lại nhút nhát, hay khóc nhiều nên chị không nỡ gửi bé đi mầm non.",
+      "content": "Câu chuyện của chị An và bé Vy:\n\nVì tính chất công việc nên chị An không có nhiều thời gian ở bên cạnh để dạy dỗ con, phần vì bé Vy là con một, lại nhút nhát, hay khóc nhiều nên chị không nỡ gửi bé đi mầm non.\n\nTuy nhiên, khi bé Vy được 3 tuổi, chị An nhận thấy con mình chậm phát triển ngôn ngữ so với các bạn cùng tuổi. Bé ít nói, từ vựng nghèo nàn và thường xuyên cáu gắt khi không thể diễn đạt được ý của mình.\n\nCách giúp trẻ phát triển ngôn ngữ:\n\n1. TẠO MÔI TRƯỜNG NGÔN NGỮ PHONG PHÚ\n- Nói chuyện với bé thường xuyên\n- Đọc sách cho bé mỗi ngày\n- Hát các bài hát vui nhộn\n- Kể chuyện trước khi ngủ\n\n2. KHUYẾN KHÍCH BÉ GIAO TIẾP\n- Đặt câu hỏi mở để bé trả lời\n- Lắng nghe và phản hồi tích cực\n- Không sửa lỗi ngay lập tức\n- Mở rộng câu của bé\n\n3. SỬ DỤNG CÁC HOẠT ĐỘNG VUI CHƠI\n- Chơi trò chơi từ vựng\n- Hát karaoke cùng bé\n- Xem phim hoạt hình có giáo dục\n- Tham gia các hoạt động nhóm\n\n4. TẠO THÓI QUEN ĐỌC SÁCH\n- Chọn sách phù hợp với độ tuổi\n- Đọc sách cùng bé mỗi ngày\n- Hỏi bé về nội dung câu chuyện\n- Khuyến khích bé kể lại\n\nKết quả:\nSau 6 tháng áp dụng các phương pháp trên và cho bé học tại Sunshine School, bé Vy đã có những tiến bộ đáng kể trong khả năng ngôn ngữ. Bé trở nên tự tin hơn, biết diễn đạt cảm xúc và giao tiếp tốt với bạn bè.",
+      "featured_image": {
+        "url": "https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/1.png?v=1511937239013",
+        "alt": "Làm sao giúp trẻ phát triển ngôn ngữ?"
+      },
+      "author": {
+        "name": "Cô Minh Hạnh",
+        "avatar": null
+      },
+      "published_date": "2016-03-09",
+      "published_time": "14:30:00",
+      "updated_date": "2017-11-29",
+      "category": {
+        "id": 3,
+        "name": "Kinh nghiệm hay",
+        "slug": "kinh-nghiem-hay"
+      },
+      "tags": [
+        {
+          "id": 7,
+          "name": "phát triển ngôn ngữ",
+          "slug": "phat-trien-ngon-ngu"
+        },
+        {
+          "id": 8,
+          "name": "kinh nghiệm nuôi con",
+          "slug": "kinh-nghiem-nuoi-con"
+        },
+        {
+          "id": 9,
+          "name": "giáo dục sớm",
+          "slug": "giao-duc-som"
+        },
+        {
+          "id": 10,
+          "name": "kỹ năng giao tiếp",
+          "slug": "ky-nang-giao-tiep"
+        }
+      ],
+      "comments": {
+        "count": 0,
+        "enabled": true,
+        "list": []
+      },
+      "meta": {
+        "views": 1523,
+        "likes": 34,
+        "shares": 12
+      },
+      "seo": {
+        "meta_title": "Làm sao giúp trẻ phát triển ngôn ngữ? - Sunshine School",
+        "meta_description": "Hướng dẫn cách giúp trẻ phát triển ngôn ngữ hiệu quả. Chia sẻ kinh nghiệm nuôi dạy con từ các chuyên gia giáo dục.",
+        "meta_keywords": "phát triển ngôn ngữ, trẻ em, giáo dục sớm, kinh nghiệm nuôi con"
+      },
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "slug": "khuyen-mai-lop-tieng-anh-danh-cho-lop-mam",
+      "title": "Khuyến mãi lớp tiếng Anh dành cho lớp mầm",
+      "description": "Chương trình khuyến mãi đặc biệt cho các lớp tiếng Anh dành cho trẻ em mầm non tại Sunshine School. Giảm giá lên đến 30% học phí.",
+      "excerpt": "Chương trình khuyến mãi đặc biệt cho các lớp tiếng Anh dành cho trẻ em mầm non tại Sunshine School. Cơ hội tuyệt vời để bé bắt đầu học tiếng Anh từ sớm.",
+      "content": "CHƯƠNG TRÌNH KHUYẾN MÃI LỚP TIẾNG ANH CHO TRẺ MẦM NON\n\nSunshine School hân hạnh thông báo chương trình khuyến mãi đặc biệt dành cho các lớp tiếng Anh mầm non:\n\n🎯 ƯU ĐÃI HẤP DẪN:\n• Giảm 30% học phí tháng đầu\n• Tặng bộ sách tiếng Anh trị giá 500.000đ\n• Miễn phí test đầu vào\n• Tặng 2 buổi học thử miễn phí\n\n📚 CHƯƠNG TRÌNH HỌC:\n• Phương pháp học qua vui chơi\n• Giáo viên bản xứ kinh nghiệm\n• Lớp học nhỏ (tối đa 8 bé/lớp)\n• Học 3 buổi/tuần, mỗi buổi 60 phút\n\n🎨 HOẠT ĐỘNG PHONG PHONG:\n• Học qua games, songs & stories\n• Thực hành với đồ chơi giáo dục\n• Hoạt động nghệ thuật bằng tiếng Anh\n• Presentation skills cho bé\n\n📋 ĐIỀU KIỆN THAM GIA:\n• Độ tuổi: 3-6 tuổi\n• Đăng ký trước ngày 31/03/2016\n• Cam kết học tối thiểu 3 tháng\n• Nộp hồ sơ trực tiếp tại trường\n\n📞 LIÊN HỆ ĐĂNG KÝ:\nHotline: 0123-456-789\nEmail: info@sunshineeschool.edu.vn\nĐịa chỉ: 123 Đường ABC, Quận 1, TP.HCM\n\nHãy đăng ký ngay để bé có cơ hội học tiếng Anh trong môi trường tốt nhất với mức giá ưu đãi!",
+      "featured_image": {
+        "url": "https://bizweb.dktcdn.net/thumb/large/100/063/369/articles/english-class-promotion.jpg",
+        "alt": "Khuyến mãi lớp tiếng Anh dành cho lớp mầm"
+      },
+      "author": {
+        "name": "Ms. Sarah Johnson",
+        "avatar": null
+      },
+      "published_date": "2016-03-15",
+      "published_time": "10:00:00",
+      "updated_date": "2016-03-15",
+      "category": {
+        "id": 4,
+        "name": "Tiếng Anh",
+        "slug": "tieng-anh"
+      },
+      "tags": [
+        {
+          "id": 5,
+          "name": "khuyến mãi",
+          "slug": "khuyen-mai"
+        },
+        {
+          "id": 11,
+          "name": "tiếng anh",
+          "slug": "tieng-anh"
+        },
+        {
+          "id": 12,
+          "name": "lớp mầm",
+          "slug": "lop-mam"
+        },
+        {
+          "id": 13,
+          "name": "giáo viên bản xứ",
+          "slug": "giao-vien-ban-xu"
+        }
+      ],
+      "comments": {
+        "count": 0,
+        "enabled": true,
+        "list": []
+      },
+      "meta": {
+        "views": 756,
+        "likes": 18,
+        "shares": 7
+      },
+      "seo": {
+        "meta_title": "Khuyến mãi lớp tiếng Anh mầm non - Giảm 30% - Sunshine School",
+        "meta_description": "Chương trình khuyến mãi lớp tiếng Anh cho trẻ mầm non. Giảm 30% học phí, tặng sách, học thử miễn phí. Đăng ký ngay!",
+        "meta_keywords": "tiếng anh mầm non, khuyến mãi, học tiếng anh, sunshine school"
+      },
+      "status": "published",
+      "featured": false
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Hoạt động trường",
+      "slug": "hoat-dong-truong",
+      "description": "Các hoạt động, sự kiện diễn ra tại trường",
+      "color": "#FF6B6B"
+    },
+    {
+      "id": 2,
+      "name": "Khuyến mãi",
+      "slug": "khuyen-mai",
+      "description": "Các chương trình khuyến mãi, ưu đãi học phí",
+      "color": "#4ECDC4"
+    },
+    {
+      "id": 3,
+      "name": "Kinh nghiệm hay",
+      "slug": "kinh-nghiem-hay",
+      "description": "Chia sẻ kinh nghiệm nuôi dạy con từ các chuyên gia",
+      "color": "#45B7D1"
+    },
+    {
+      "id": 4,
+      "name": "Tiếng Anh",
+      "slug": "tieng-anh",
+      "description": "Thông tin về các lớp học tiếng Anh",
+      "color": "#96CEB4"
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "chương trình học",
+      "slug": "chuong-trinh-hoc",
+      "count": 3
+    },
+    {
+      "id": 2,
+      "name": "học phí",
+      "slug": "hoc-phi",
+      "count": 3
+    },
+    {
+      "id": 3,
+      "name": "lịch học",
+      "slug": "lich-hoc",
+      "count": 1
+    },
+    {
+      "id": 4,
+      "name": "thực đơn",
+      "slug": "thuc-don",
+      "count": 1
+    },
+    {
+      "id": 5,
+      "name": "khuyến mãi",
+      "slug": "khuyen-mai",
+      "count": 2
+    },
+    {
+      "id": 6,
+      "name": "năm mới",
+      "slug": "nam-moi",
+      "count": 1
+    },
+    {
+      "id": 7,
+      "name": "phát triển ngôn ngữ",
+      "slug": "phat-trien-ngon-ngu",
+      "count": 1
+    },
+    {
+      "id": 8,
+      "name": "kinh nghiệm nuôi con",
+      "slug": "kinh-nghiem-nuoi-con",
+      "count": 1
+    },
+    {
+      "id": 9,
+      "name": "giáo dục sớm",
+      "slug": "giao-duc-som",
+      "count": 1
+    },
+    {
+      "id": 10,
+      "name": "kỹ năng giao tiếp",
+      "slug": "ky-nang-giao-tiep",
+      "count": 1
+    },
+    {
+      "id": 11,
+      "name": "tiếng anh",
+      "slug": "tieng-anh",
+      "count": 1
+    },
+    {
+      "id": 12,
+      "name": "lớp mầm",
+      "slug": "lop-mam",
+      "count": 1
+    },
+    {
+      "id": 13,
+      "name": "giáo viên bản xứ",
+      "slug": "giao-vien-ban-xu",
+      "count": 1
+    }
+  ],
+  "config": {
+    "articles_per_page": 6,
+    "enable_comments": true,
+    "enable_likes": true,
+    "enable_shares": true,
+    "auto_excerpt_length": 150,
+    "date_format": "DD/MM/YYYY",
+    "time_format": "HH:mm:ss"
+  },
+  "meta": {
+    "total_articles": 4,
+    "published_articles": 4,
+    "draft_articles": 0,
+    "featured_articles": 3,
+    "last_updated": "2025-07-17T10:30:00Z",
+    "version": "1.0"
+  }
+}
