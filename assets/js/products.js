@@ -8,6 +8,15 @@ class ProductManager {
     this.productsPerPage = 6;
     this.currentPage = 1;
     this.init();
+    
+    // Listen for screen resize to re-render products for mobile layout
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        this.renderProducts();
+      }, 250);
+    });
   }
 
   async init() {
@@ -181,10 +190,20 @@ class ProductManager {
 
   createProductHTML(product) {
     const colDiv = document.createElement("div");
-    colDiv.className =
-      this.currentView === "list"
-        ? "col-12"
-        : "col-lg-4 col-md-4 col-sm-6 col-6";
+    
+    // Check if we're on mobile for single column layout
+    const isMobile = window.innerWidth <= 575;
+    
+    if (isMobile) {
+      // Force single column on mobile
+      colDiv.className = "col-12";
+    } else {
+      // Normal responsive columns for larger screens
+      colDiv.className =
+        this.currentView === "list"
+          ? "col-12"
+          : "col-lg-4 col-md-4 col-sm-6 col-6";
+    }
 
     const discountBadge = product.hasDiscount
       ? `<div class="sale_tag"><span class="smart">${product.discount}</span></div>`
@@ -200,8 +219,36 @@ class ProductManager {
       priceHtml = product.price;
     }
 
-    if (this.currentView === "list") {
-      // List view layout - with single line content
+    // Mobile layout - horizontal card style like image 2
+    if (isMobile) {
+      colDiv.innerHTML = `
+        <div class="item_product_main mobile-horizontal-layout">
+          <div class="mobile-product-card">
+            <div class="mobile-product-image">
+              ${discountBadge}
+              <a href="ChiTietSanPham.html?product=${product.id}" title="${product.name}">
+                <img src="${product.image}" alt="${product.name}" />
+              </a>
+            </div>
+            <div class="mobile-product-info">
+              <h3 class="mobile-product-name">
+                <a href="ChiTietSanPham.html?product=${product.id}" title="${product.name}">${product.name}</a>
+              </h3>
+              <div class="mobile-product-description">${product.description || ""}</div>
+              <div class="mobile-price-box">
+                ${priceHtml}
+              </div>
+              <div class="mobile-product-action">
+                <button class="btn-add-to-cart mobile-add-btn" data-product-id="${product.id}" data-action="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (this.currentView === "list") {
+      // List view layout for desktop/tablet
       colDiv.innerHTML = `
         <div class="item_product_main list-item-layout">
           <div class="row">
@@ -245,7 +292,7 @@ class ProductManager {
         </div>
       `;
     } else {
-      // Grid view layout - updated for image 2 style
+      // Grid view layout for desktop/tablet
       colDiv.innerHTML = `
         <div class="item_product_main">
           <div class="product-thumbnail">
