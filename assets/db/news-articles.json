@@ -48,43 +48,7 @@
       "comments": {
         "count": 6,
         "enabled": true,
-        "list": [
-          {
-            "id": 1,
-            "author": "Admin Test",
-            "content": "test comment",
-            "date": "2019-06-15T20:53:35",
-            "avatar": "./assets/img/default-user-avatar_3-min.png"
-          },
-          {
-            "id": 2,
-            "author": "Trần Văn Tuấn",
-            "content": "tôi đang test chức năng",
-            "date": "2019-06-15T13:53:35",
-            "avatar": "./assets/img/default-user-avatar_3-min.png"
-          },
-          {
-            "id": 3,
-            "author": "1",
-            "content": "1",
-            "date": "2017-11-03T13:22:11",
-            "avatar": "./assets/img/default-user-avatar_3-min.png"
-          },
-          {
-            "id": 4,
-            "author": "rfergr",
-            "content": "ẻgr",
-            "date": "2017-04-24T11:43:42",
-            "avatar": "./assets/img/default-user-avatar_3-min.png"
-          },
-          {
-            "id": 5,
-            "author": "a",
-            "content": "ádasdas",
-            "date": "2016-08-05T09:35:51",
-            "avatar": "./assets/img/default-user-avatar_3-min.png"
-          }
-        ]
+        "comments_file": "./comments.json"
       },
       "meta": {
         "views": 1247,
@@ -147,7 +111,7 @@
       "comments": {
         "count": 2,
         "enabled": true,
-        "list": []
+        "comments_file": "./comments.json"
       },
       "meta": {
         "views": 892,
@@ -208,9 +172,9 @@
         }
       ],
       "comments": {
-        "count": 0,
+        "count": 3,
         "enabled": true,
-        "list": []
+        "comments_file": "./comments.json"
       },
       "meta": {
         "views": 1523,
@@ -271,9 +235,9 @@
         }
       ],
       "comments": {
-        "count": 0,
+        "count": 2,
         "enabled": true,
-        "list": []
+        "comments_file": "./comments.json"
       },
       "meta": {
         "views": 756,

@@ -1,0 +1,427 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "article_id": 1,
+      "user_id": 101,
+      "user_name": "Admin Test",
+      "user_avatar": "./assets/img/default-user-avatar_3-min.png",
+      "content": "Cuộc thi rất ý nghĩa! Bé nhà mình đã tham gia và rất thích thú với các hoạt động.",
+      "created_date": "2019-06-15",
+      "created_time": "20:53:35",
+      "updated_date": "2019-06-15",
+      "updated_time": "20:53:35",
+      "status": "approved",
+      "likes": 3,
+      "replies": []
+    },
+    {
+      "id": 2,
+      "article_id": 1,
+      "user_id": 102,
+      "user_name": "Trần Văn Tuấn",
+      "user_avatar": "./assets/img/default-user-avatar_2-min.png",
+      "content": "Mong trường tổ chức nhiều hoạt động như thế này. Các bé sẽ phát triển toàn diện hơn.",
+      "created_date": "2019-06-15",
+      "created_time": "13:53:35",
+      "updated_date": "2019-06-15",
+      "updated_time": "13:53:35",
+      "status": "approved",
+      "likes": 5,
+      "replies": [
+        {
+          "id": 201,
+          "user_id": 103,
+          "user_name": "Cô Minh Hạnh",
+          "user_avatar": "./assets/img/teacher-avatar-1.png",
+          "content": "Cảm ơn phụ huynh đã quan tâm. Chúng tôi sẽ tiếp tục tổ chức nhiều hoạt động bổ ích cho các bé.",
+          "created_date": "2019-06-16",
+          "created_time": "09:15:22",
+          "status": "approved",
+          "likes": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "article_id": 1,
+      "user_id": 104,
+      "user_name": "Phạm Thị Lan",
+      "user_avatar": "./assets/img/default-user-avatar_1-min.png",
+      "content": "Giải thưởng rất hấp dẫn! Con mình đã đăng ký tham gia rồi.",
+      "created_date": "2017-11-03",
+      "created_time": "13:22:11",
+      "updated_date": "2017-11-03",
+      "updated_time": "13:22:11",
+      "status": "approved",
+      "likes": 1,
+      "replies": []
+    },
+    {
+      "id": 4,
+      "article_id": 1,
+      "user_id": 105,
+      "user_name": "Nguyễn Văn Nam",
+      "user_avatar": "./assets/img/default-user-avatar_4-min.png",
+      "content": "Thời gian tổ chức có phù hợp với lịch làm việc không ạ?",
+      "created_date": "2017-04-24",
+      "created_time": "11:43:42",
+      "updated_date": "2017-04-24",
+      "updated_time": "11:43:42",
+      "status": "approved",
+      "likes": 0,
+      "replies": [
+        {
+          "id": 202,
+          "user_id": 106,
+          "user_name": "Ban Tổ Chức",
+          "user_avatar": "./assets/img/admin-avatar.png",
+          "content": "Cuộc thi diễn ra vào thứ 7 để phụ huynh có thể tham gia cùng con em mình ạ.",
+          "created_date": "2017-04-24",
+          "created_time": "15:30:15",
+          "status": "approved",
+          "likes": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "article_id": 1,
+      "user_id": 107,
+      "user_name": "Lê Thị Hoa",
+      "user_avatar": "./assets/img/default-user-avatar_5-min.png",
+      "content": "Rất mong được xem các màn trình diễn của các bé!",
+      "created_date": "2016-08-05",
+      "created_time": "09:35:51",
+      "updated_date": "2016-08-05",
+      "updated_time": "09:35:51",
+      "status": "approved",
+      "likes": 7,
+      "replies": []
+    },
+    {
+      "id": 6,
+      "article_id": 1,
+      "user_id": 108,
+      "user_name": "Hoàng Minh Đức",
+      "user_avatar": "./assets/img/default-user-avatar_6-min.png",
+      "content": "Cảm ơn trường đã tạo cơ hội cho các bé thể hiện tài năng.",
+      "created_date": "2016-03-12",
+      "created_time": "16:45:30",
+      "updated_date": "2016-03-12",
+      "updated_time": "16:45:30",
+      "status": "approved",
+      "likes": 4,
+      "replies": []
+    },
+    {
+      "id": 7,
+      "article_id": 2,
+      "user_id": 109,
+      "user_name": "Vũ Thị Mai",
+      "user_avatar": "./assets/img/default-user-avatar_7-min.png",
+      "content": "Chương trình khuyến mãi rất hấp dẫn! Tôi sẽ đăng ký cho con ngay.",
+      "created_date": "2016-03-10",
+      "created_time": "08:30:15",
+      "updated_date": "2016-03-10",
+      "updated_time": "08:30:15",
+      "status": "approved",
+      "likes": 6,
+      "replies": []
+    },
+    {
+      "id": 8,
+      "article_id": 2,
+      "user_id": 110,
+      "user_name": "Đặng Văn Sơn",
+      "user_avatar": "./assets/img/default-user-avatar_8-min.png",
+      "content": "Phương pháp giáo dục Canada nghe có vẻ rất tốt. Có thể tìm hiểu thêm không ạ?",
+      "created_date": "2016-03-11",
+      "created_time": "14:20:45",
+      "updated_date": "2016-03-11",
+      "updated_time": "14:20:45",
+      "status": "approved",
+      "likes": 3,
+      "replies": [
+        {
+          "id": 203,
+          "user_id": 111,
+          "user_name": "Phòng Tuyển Sinh",
+          "user_avatar": "./assets/img/admission-avatar.png",
+          "content": "Phụ huynh có thể liên hệ hotline 0123-456-789 để được tư vấn chi tiết về chương trình học ạ.",
+          "created_date": "2016-03-11",
+          "created_time": "16:45:20",
+          "status": "approved",
+          "likes": 5
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "article_id": 3,
+      "user_id": 112,
+      "user_name": "Bùi Thị Ngọc",
+      "user_avatar": "./assets/img/default-user-avatar_9-min.png",
+      "content": "Bài viết rất hữu ích! Con tôi cũng đang gặp vấn đề tương tự về ngôn ngữ.",
+      "created_date": "2017-12-01",
+      "created_time": "10:15:30",
+      "updated_date": "2017-12-01",
+      "updated_time": "10:15:30",
+      "status": "approved",
+      "likes": 8,
+      "replies": []
+    },
+    {
+      "id": 10,
+      "article_id": 3,
+      "user_id": 113,
+      "user_name": "Cao Văn Thành",
+      "user_avatar": "./assets/img/default-user-avatar_10-min.png",
+      "content": "Cảm ơn cô đã chia sẻ những kinh nghiệm quý báu này.",
+      "created_date": "2017-12-02",
+      "created_time": "09:45:12",
+      "updated_date": "2017-12-02",
+      "updated_time": "09:45:12",
+      "status": "approved",
+      "likes": 5,
+      "replies": [
+        {
+          "id": 204,
+          "user_id": 103,
+          "user_name": "Cô Minh Hạnh",
+          "user_avatar": "./assets/img/teacher-avatar-1.png",
+          "content": "Rất vui khi bài viết có thể giúp ích cho các phụ huynh. Nếu có thắc mắc gì, hãy liên hệ với tôi nhé.",
+          "created_date": "2017-12-02",
+          "created_time": "11:30:45",
+          "status": "approved",
+          "likes": 3
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "article_id": 3,
+      "user_id": 114,
+      "user_name": "Phạm Văn Hùng",
+      "user_avatar": "./assets/img/default-user-avatar_11-min.png",
+      "content": "Tôi đã áp dụng các phương pháp này và thấy con tiến bộ rõ rệt. Cảm ơn nhiều!",
+      "created_date": "2018-01-15",
+      "created_time": "15:20:18",
+      "updated_date": "2018-01-15",
+      "updated_time": "15:20:18",
+      "status": "approved",
+      "likes": 12,
+      "replies": []
+    },
+    {
+      "id": 12,
+      "article_id": 4,
+      "user_id": 115,
+      "user_name": "Ngô Thị Linh",
+      "user_avatar": "./assets/img/default-user-avatar_12-min.png",
+      "content": "Lớp tiếng Anh cho bé mầm non rất cần thiết. Giá cả hợp lý, chất lượng tốt!",
+      "created_date": "2016-03-16",
+      "created_time": "11:30:25",
+      "updated_date": "2016-03-16",
+      "updated_time": "11:30:25",
+      "status": "approved",
+      "likes": 4,
+      "replies": []
+    },
+    {
+      "id": 13,
+      "article_id": 4,
+      "user_id": 116,
+      "user_name": "Trương Văn Khoa",
+      "user_avatar": "./assets/img/default-user-avatar_13-min.png",
+      "content": "Giáo viên bản xứ sẽ giúp con phát âm chuẩn hơn. Tôi sẽ đăng ký cho con học thử.",
+      "created_date": "2016-03-17",
+      "created_time": "14:15:40",
+      "updated_date": "2016-03-17",
+      "updated_time": "14:15:40",
+      "status": "approved",
+      "likes": 6,
+      "replies": [
+        {
+          "id": 205,
+          "user_id": 117,
+          "user_name": "Ms. Sarah Johnson",
+          "user_avatar": "./assets/img/teacher-avatar-2.png",
+          "content": "Welcome! We're excited to meet your child and help them start their English learning journey.",
+          "created_date": "2016-03-17",
+          "created_time": "16:20:15",
+          "status": "approved",
+          "likes": 8
+        }
+      ]
+    }
+  ],
+  "comment_stats": {
+    "total_comments": 13,
+    "total_replies": 5,
+    "comments_by_article": {
+      "1": 6,
+      "2": 2,
+      "3": 3,
+      "4": 2
+    },
+    "approved_comments": 13,
+    "pending_comments": 0,
+    "rejected_comments": 0
+  },
+  "config": {
+    "enable_comments": true,
+    "enable_replies": true,
+    "enable_likes": true,
+    "auto_approve": false,
+    "max_comment_length": 1000,
+    "max_reply_depth": 1,
+    "show_user_avatar": true,
+    "date_format": "DD/MM/YYYY",
+    "time_format": "HH:mm:ss",
+    "comments_per_page": 10
+  },
+  "users": [
+    {
+      "id": 101,
+      "name": "Admin Test",
+      "email": "admin@sunshineeschool.edu.vn",
+      "role": "admin",
+      "avatar": "./assets/img/default-user-avatar_3-min.png",
+      "joined_date": "2019-01-01"
+    },
+    {
+      "id": 102,
+      "name": "Trần Văn Tuấn",
+      "email": "tuan.tran@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_2-min.png",
+      "joined_date": "2019-05-15"
+    },
+    {
+      "id": 103,
+      "name": "Cô Minh Hạnh",
+      "email": "minhanh@sunshineeschool.edu.vn",
+      "role": "teacher",
+      "avatar": "./assets/img/teacher-avatar-1.png",
+      "joined_date": "2016-01-01"
+    },
+    {
+      "id": 104,
+      "name": "Phạm Thị Lan",
+      "email": "lan.pham@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_1-min.png",
+      "joined_date": "2017-09-10"
+    },
+    {
+      "id": 105,
+      "name": "Nguyễn Văn Nam",
+      "email": "nam.nguyen@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_4-min.png",
+      "joined_date": "2017-03-20"
+    },
+    {
+      "id": 106,
+      "name": "Ban Tổ Chức",
+      "email": "events@sunshineeschool.edu.vn",
+      "role": "staff",
+      "avatar": "./assets/img/admin-avatar.png",
+      "joined_date": "2016-01-01"
+    },
+    {
+      "id": 107,
+      "name": "Lê Thị Hoa",
+      "email": "hoa.le@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_5-min.png",
+      "joined_date": "2016-07-12"
+    },
+    {
+      "id": 108,
+      "name": "Hoàng Minh Đức",
+      "email": "duc.hoang@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_6-min.png",
+      "joined_date": "2016-02-28"
+    },
+    {
+      "id": 109,
+      "name": "Vũ Thị Mai",
+      "email": "mai.vu@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_7-min.png",
+      "joined_date": "2016-03-05"
+    },
+    {
+      "id": 110,
+      "name": "Đặng Văn Sơn",
+      "email": "son.dang@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_8-min.png",
+      "joined_date": "2016-03-08"
+    },
+    {
+      "id": 111,
+      "name": "Phòng Tuyển Sinh",
+      "email": "admission@sunshineeschool.edu.vn",
+      "role": "staff",
+      "avatar": "./assets/img/admission-avatar.png",
+      "joined_date": "2016-01-01"
+    },
+    {
+      "id": 112,
+      "name": "Bùi Thị Ngọc",
+      "email": "ngoc.bui@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_9-min.png",
+      "joined_date": "2017-11-15"
+    },
+    {
+      "id": 113,
+      "name": "Cao Văn Thành",
+      "email": "thanh.cao@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_10-min.png",
+      "joined_date": "2017-11-20"
+    },
+    {
+      "id": 114,
+      "name": "Phạm Văn Hùng",
+      "email": "hung.pham@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_11-min.png",
+      "joined_date": "2018-01-10"
+    },
+    {
+      "id": 115,
+      "name": "Ngô Thị Linh",
+      "email": "linh.ngo@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_12-min.png",
+      "joined_date": "2016-03-12"
+    },
+    {
+      "id": 116,
+      "name": "Trương Văn Khoa",
+      "email": "khoa.truong@email.com",
+      "role": "parent",
+      "avatar": "./assets/img/default-user-avatar_13-min.png",
+      "joined_date": "2016-03-14"
+    },
+    {
+      "id": 117,
+      "name": "Ms. Sarah Johnson",
+      "email": "sarah@sunshineeschool.edu.vn",
+      "role": "teacher",
+      "avatar": "./assets/img/teacher-avatar-2.png",
+      "joined_date": "2016-02-01"
+    }
+  ],
+  "meta": {
+    "total_users": 17,
+    "last_updated": "2025-07-23T10:30:00Z",
+    "version": "1.0"
+  }
+}
