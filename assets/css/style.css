@@ -259,8 +259,6 @@ body {
   font-weight: 500;
 }
 
-
-
 .main-navigation::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
@@ -459,7 +457,6 @@ body {
   text-decoration: none;
 }
 
-
 /* Cart */
 .cart-container {
   position: relative;
@@ -641,8 +638,6 @@ body.menu-open {
   z-index: 99999 !important;
 }
 
-
-
 @media (max-width: 991px) {
   .logo-header {
     display: flex;
@@ -653,7 +648,6 @@ body.menu-open {
   .mobile-menu-toggle {
     display: block;
   }
-
 
   .main-navigation.show {
     left: 0;
@@ -2218,19 +2212,19 @@ body.menu-open {
 
 @media (max-width: 1200px) {
   .bg-review {
-    height: 450px;
+    height: 380px;
   }
 }
 
 @media (max-width: 991px) {
   .bg-review {
-    height: 350px;
+    height: 320px;
   }
 }
 
 @media (max-width: 767px) {
   .bg-review {
-    height: 400px;
+    height: 350px;
   }
 }
 
@@ -2808,7 +2802,6 @@ body.menu-open {
     object-fit: contain;
     padding-top: 20px;
   }
-
 
   /* Override the default row structure */
   .time .row {
