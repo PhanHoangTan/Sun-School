@@ -520,6 +520,121 @@
   }
 }
 
+/* IPAD AIR SPECIFIC FIX - 1180x820 và các độ phân giải tương tự */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .header-top .container .row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+    padding: 0 15px !important;
+  }
+
+  /* Ẩn cột đầu tiên để tiết kiệm không gian */
+  .header-top .col-md-4:first-child {
+    display: none !important;
+  }
+
+  /* Contact info - căn trái, cùng hàng với search */
+  .header-top .col-md-4.header-contact {
+    flex: 1 1 50% !important;
+    max-width: 50% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding-left: 0 !important;
+    padding-right: 15px !important;
+  }
+
+  /* Search container - căn phải, cùng hàng với contact */
+  .header-top .col-md-4:last-child {
+    flex: 1 1 50% !important;
+    max-width: 50% !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding-right: 0 !important;
+    padding-left: 15px !important;
+  }
+
+  /* Contact info styling - đảm bảo cùng hàng */
+  .header-top .contact-info {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    height: 40px !important; /* Đảm bảo cùng chiều cao với search */
+  }
+
+  .header-top .contact-item {
+    display: flex !important;
+    align-items: center !important;
+    margin-right: 10px !important;
+  }
+
+  .header-top .contact-item i {
+    margin-right: 5px !important;
+    font-size: 12px !important;
+  }
+
+  .header-top .contact-separator {
+    margin: 0 8px !important;
+    color: #ccc !important;
+  }
+
+  /* Search form styling cho iPad Air - đảm bảo cùng hàng */
+  .header-top .search-container {
+    width: 100% !important;
+    max-width: 200px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    height: 40px !important; /* Đảm bảo cùng chiều cao với contact */
+  }
+
+  .header-top .search-form {
+    width: 100% !important;
+    max-width: 200px !important;
+    display: flex !important;
+    border: 1px solid #ddd !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    height: 40px !important; /* Chiều cao cố định */
+  }
+
+  .header-top .search-input {
+    flex: 1 !important;
+    border: none !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+    outline: none !important;
+    background: transparent !important;
+    height: 100% !important; /* Chiều cao 100% của form */
+  }
+
+  .header-top .search-button {
+    background: #f57f17 !important;
+    border: none !important;
+    padding: 0 12px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: background 0.3s ease !important;
+    height: 100% !important; /* Chiều cao 100% của form */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .header-top .search-button:hover {
+    background: #e09700 !important;
+  }
+
+  .header-top .search-button i {
+    font-size: 12px !important;
+  }
+}
+
 /* iPad Mini specific fixes */
 @media (max-width: 768px) {
   .header-top {
@@ -542,6 +657,129 @@
   /* Adjust separator spacing */
   .header-top .contact-separator {
     margin: 0 3px !important;
+  }
+}
+
+/* IPAD AIR LANDSCAPE SPECIFIC - 1180x820 */
+@media (max-width: 1180px) and (min-width: 1024px) and (orientation: landscape) {
+  .header-top {
+    padding: 8px 0 !important;
+  }
+
+  .header-top .container {
+    max-width: 100% !important;
+    padding: 0 20px !important;
+  }
+
+  .header-top .container .row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+    height: 40px !important; /* Fixed height để đảm bảo cùng hàng */
+  }
+
+  /* Ẩn cột trống */
+  .header-top .col-md-4:first-child {
+    display: none !important;
+  }
+
+  /* Contact info - bên trái */
+  .header-top .col-md-4.header-contact {
+    flex: 1 1 auto !important;
+    max-width: 60% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    height: 40px !important;
+    padding: 0 !important;
+  }
+
+  /* Search - bên phải */
+  .header-top .col-md-4:last-child {
+    flex: 0 0 auto !important;
+    max-width: 40% !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    height: 40px !important;
+    padding: 0 !important;
+  }
+
+  /* Contact styling */
+  .header-top .contact-info {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    height: 40px !important;
+    line-height: 40px !important;
+  }
+
+  .header-top .contact-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-right: 8px !important;
+    height: 40px !important;
+  }
+
+  .header-top .contact-item i {
+    margin-right: 4px !important;
+    font-size: 11px !important;
+  }
+
+  .header-top .contact-separator {
+    margin: 0 6px !important;
+    color: #ccc !important;
+    height: 40px !important;
+    line-height: 40px !important;
+  }
+
+  /* Search styling cho iPad Air */
+  .header-top .search-container {
+    width: 180px !important;
+    max-width: 180px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    height: 40px !important;
+  }
+
+  .header-top .search-form {
+    width: 100% !important;
+    display: flex !important;
+    border: 1px solid #ddd !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    height: 32px !important; /* Chiều cao vừa phải */
+  }
+
+  .header-top .search-input {
+    flex: 1 !important;
+    border: none !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+    outline: none !important;
+    background: transparent !important;
+    height: 100% !important;
+    line-height: normal !important;
+  }
+
+  .header-top .search-button {
+    background: #f57f17 !important;
+    border: none !important;
+    padding: 0 10px !important;
+    color: white !important;
+    cursor: pointer !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .header-top .search-button i {
+    font-size: 11px !important;
   }
 }
 
@@ -585,10 +823,9 @@
     height: auto;
   }
 
-
   .mobile-menu-toggle {
     left: 15px;
-    top: 40px; 
+    top: 40px;
   }
 
   .cart-container {
