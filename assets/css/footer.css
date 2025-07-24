@@ -48,6 +48,69 @@
   padding: 0 10px;
 }
 
+/* Widget container - Wrapper cho cột đầu tiên (logo + info + social) */
+.widget-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Đảm bảo logo nằm gọn trong container */
+.widget-container .footer-logo {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 20px !important;
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
+
+.widget-container .footer-logo img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Info menu nằm gọn trong container */
+.widget-container .widget-menu.infomation {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Time work items */
+.widget-container .widget-menu.infomation .time_work {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.widget-container .widget-menu.infomation .time_work .item {
+  width: 100% !important;
+  max-width: 100% !important;
+  word-wrap: break-word !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Social icons nằm gọn trong container */
+.widget-container .social_icon {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.widget-container .social_icon ul {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex-wrap: wrap !important;
+  box-sizing: border-box !important;
+}
+
 .widget-title {
   color: #000;
   font-size: 18px;
@@ -321,6 +384,15 @@
     padding: 0 5px;
   }
 
+  /* Widget container responsive */
+  .widget-container {
+    padding: 0 5px !important;
+  }
+
+  .widget-container .footer-logo img {
+    max-width: 90% !important;
+  }
+
   .widget-title {
     font-size: 16px;
   }
@@ -382,6 +454,39 @@
 
   .widget-item {
     padding: 0 2px;
+  }
+
+  /* Widget container cho mobile */
+  .widget-container {
+    padding: 0 2px !important;
+  }
+
+  .widget-container .footer-logo img {
+    max-width: 85% !important;
+  }
+
+  .widget-container .widget-menu.infomation .time_work .item {
+    margin-bottom: 8px !important;
+  }
+
+  .widget-container .widget-menu.infomation .time_work .item svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .widget-container .widget-menu.infomation .time_work .item a,
+  .widget-container .widget-menu.infomation .time_work .item span {
+    font-size: 11px !important;
+  }
+
+  .widget-container .social_icon ul li a {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .widget-container .social_icon ul li a svg {
+    width: 12px !important;
+    height: 12px !important;
   }
 
   .footer .hidden-xs {
@@ -1121,6 +1226,137 @@
 
   .copyright {
     font-size: 9px;
+  }
+}
+
+/* ===========================================
+   SPECIFIC FIX FOR IPAD 1024px & 1180px OVERFLOW ISSUE
+   Addresses the horizontal scroll problem shown in screenshot
+   =========================================== */
+@media (max-width: 1200px) and (min-width: 1024px) {
+  /* FORCE WRAP LAYOUT FOR PROBLEMATIC WIDTHS */
+  .footer .widget .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2 COLUMNS PER ROW INSTEAD OF 4 TO FIT PROPERLY */
+  .footer .widget .col-lg-3,
+  .footer .widget .col-md-6,
+  .footer .widget .hidden-xs.col-lg-3,
+  .footer .widget .hidden-xs.col-md-6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+    min-width: 0 !important;
+    padding: 0 15px 20px 15px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    float: none !important;
+  }
+
+  /* WIDGET CONTAINER CHO IPAD 1024px-1200px */
+  .widget-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .widget-container .footer-logo img {
+    max-width: 80% !important;
+  }
+
+  .widget-container .widget-menu.infomation .time_work .item a,
+  .widget-container .widget-menu.infomation .time_work .item span {
+    font-size: 13px !important;
+  }
+
+  .widget-container .social_icon ul li a {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .widget-container .social_icon ul li a svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  /* FACEBOOK IFRAME - FORCE RESPONSIVE */
+  .footer .fb-page,
+  .footer .fb_iframe_widget {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .footer .fb-page iframe,
+  .footer .fb_iframe_widget iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 120px !important;
+    border: none !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ENSURE CONTAINER DOESN'T OVERFLOW */
+  .footer .widget {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 45px 0 0 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .footer .widget .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* OVERRIDE PADDING CLASSES */
+  .footer .no-padding-l,
+  .footer .no-padding-r,
+  .footer .no-padding-lr,
+  .footer [class*="no-padding"] {
+    padding: 0 15px 20px 15px !important;
+  }
+
+  /* WIDGET ITEMS SAFETY */
+  .footer .widget-item {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* TYPOGRAPHY ADJUSTMENTS */
+  .widget-title {
+    font-size: 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .widget-menu li a {
+    font-size: 13px !important;
+  }
+
+  .footer-logo img {
+    max-width: 160px !important;
+    height: auto !important;
   }
 }
 
