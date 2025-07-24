@@ -81,6 +81,33 @@
           width: 44px !important;
           height: 44px !important;
         }
+        
+        /* TESTIMONIALS SECTION - FIX NAVIGATION BUTTONS POSITION */
+        .people_say_div .heading-nav-container .swiper-button-prev,
+        .people_say_div .heading-nav-container .swiper-button-next {
+          top: 0 !important;
+          margin-top: 0 !important;
+          position: relative !important;
+        }
+        
+        /* TESTIMONIALS - ALIGN TITLE AND BUTTONS ON SAME LINE */
+        .people_say_div {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          flex-wrap: wrap !important;
+        }
+        
+        .people_say_div .default_title {
+          margin-bottom: 0 !important;
+          flex: 1 !important;
+        }
+        
+        .people_say_div .heading-nav-container {
+          flex-shrink: 0 !important;
+          position: relative !important;
+          top: 0 !important;
+        }
       }
     </style>
     <style>
