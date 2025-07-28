@@ -85,5 +85,34 @@
         "slug": "giao-duc-mam-non"
       }
     ]
+  },
+  {
+    "id": 4,
+    "title": "Chương trình học dành cho lớp mầm",
+    "ageGroup": "1-2 tuổi",
+    "className": "Lớp mầm",
+    "program": "LITTLE DINOSAUR",
+    "published_date": "09/03/2016",
+    "published_time": "14:33:47",
+    "comments": {
+      "count": 0
+    },
+    "slug": "chuong-trinh-hoc-danh-cho-lop-mam",
+    "featured_image": {
+      "url": "//bizweb.dktcdn.net/thumb/large/100/063/369/articles/09.jpg?v=1457508831867",
+      "alt": "Chương trình học dành cho lớp mầm"
+    },
+    "content": "Trẻ ở lứa tuổi này còn quá nhỏ để có thể tuân theo một lịch trình cố định, các bé sống trong từng khoảnh khắc và hài lòng với những điều giản đơn. Đôi khi chúng cũng rất dễ nổi nóng nhưng lại nhanh chóng vui vẻ trở lại, ngoài ra, sự tập trung của trẻ còn ngắn và chúng rất dễ mất hứng thú nên chương trình học của nhóm Little Dinosaur cần có sự linh hoạt.\n\nCác hoạt động dành cho trẻ lứa tuổi này chủ yếu là giác quan vì trẻ học thông qua việc sờ, ngửi, nếm, nhìn và nghe. Trẻ còn học thông qua vận động vì thế chúng tôi luôn để cho các hoạt động diễn ra liên tục trong suốt cả ngày. Giai đoạn này sẽ bao gồm nhiều hoạt động liên quan đến âm nhạc và vận động, các trải nghiệm giác quan.\n\nMục tiêu của chúng tôi là mang đến tiếng cười và trí tò mò cho trẻ.\n\nNhóm Little Dinosaur giới hạn 6-8 trẻ / lớp với tỷ lệ 2 trẻ / 1 giáo viên.",
+    "excerpt": "Trẻ ở lứa tuổi này còn quá nhỏ để có thể tuân theo một lịch trình cố định, các bé sống trong từng khoảnh khắc và hài lòng với những điều giản đơn.",
+    "tags": [
+      {
+        "name": "Chương trình học",
+        "slug": "chuong-trinh-hoc"
+      },
+      {
+        "name": "Giáo dục mầm non",
+        "slug": "giao-duc-mam-non"
+      }
+    ]
   }
 ]
