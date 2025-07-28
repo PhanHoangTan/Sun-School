@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết chương trình học - SunShine School</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+    <!-- Custom CSS - loaded after Bootstrap to override its styles -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/facilities.css" />
+    <link rel="stylesheet" href="./assets/css/blog.css" />
+    <link rel="stylesheet" href="./assets/css/kinh-nghiem-hay.css" />
+    <link rel="stylesheet" href="./assets/css/brand-partners.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
+    <link rel="stylesheet" href="./assets/css/scroll-top.css" />
+    <link rel="stylesheet" href="./assets/css/breadcrumb.css" />
+    <link rel="stylesheet" href="./assets/css/article-detail.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet" />
+    <!-- Swiper Slider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+    <!-- Testimonial CSS -->
+    <link rel="stylesheet" href="./assets/css/testimonials.css" />
+    <!-- Services CSS -->
+    <link rel="stylesheet" href="./assets/css/services.css" />
+    <style>
+      /* Brand Partners Mobile Responsive */
+      @media (max-width: 575.98px) {
+        .section_brand {
+          padding: 20px 0 !important;
+        }
+
+        .section_brand .container {
+          padding: 0 15px !important;
+          max-width: 100% !important;
+        }
+
+        .brand-swiper {
+          height: 80px !important;
+          overflow: visible !important;
+        }
+
+        .brand-swiper .swiper-slide {
+          height: 70px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .brand-swiper .swiper-slide img {
+          height: 60px !important;
+          max-width: 100px !important;
+          object-fit: contain !important;
+          width: auto !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+          width: 44px !important;
+          height: 44px !important;
+          margin-top: -22px !important;
+        }
+
+        .swiper-button-next {
+          right: 10px !important;
+        }
+
+        .swiper-button-prev {
+          left: 10px !important;
+        }
+      }
+
+      /* Comments Styling */
+      .comments-section {
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid #eee;
+      }
+
+      .comment-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #333;
+      }
+
+      .comment-item {
+        margin-bottom: 25px;
+      }
+
+      .comment-box {
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #e8e8e8;
+      }
+
+      .comment-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .comment-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+        object-fit: cover;
+        border: 2px solid #ddd;
+      }
+
+      .comment-info {
+        flex: 1;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        color: #333;
+        font-size: 16px;
+      }
+
+      .comment-date {
+        color: #666;
+        font-size: 13px;
+        margin-top: 2px;
+      }
+
+      .comment-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .comment-likes {
+        color: #666;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .comment-likes:hover {
+        color: #ff6b6b;
+      }
+
+      .comment-likes i {
+        margin-right: 5px;
+      }
+
+      .comment-content {
+        line-height: 1.6;
+        color: #444;
+        font-size: 15px;
+      }
+
+      .comment-replies {
+        margin-top: 20px;
+        margin-left: 30px;
+      }
+
+      .comment-reply .comment-box {
+        background: #fff;
+        border-left: 3px solid #ff8c00;
+      }
+
+      .comment-reply .comment-avatar {
+        width: 40px;
+        height: 40px;
+      }
+
+      .no-comments {
+        text-align: center;
+        padding: 40px 20px;
+        color: #666;
+      }
+
+      .comment-form {
+        margin-top: 40px;
+        padding: 30px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border: 1px solid #e9ecef;
+      }
+
+      .comment-form h4 {
+        color: #333;
+        margin-bottom: 25px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .comment-form .form-group {
+        margin-bottom: 20px;
+      }
+
+      .comment-form label {
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 8px;
+      }
+
+      .comment-form .form-control {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+      }
+
+      .comment-form .form-control:focus {
+        border-color: #ff8c00;
+        box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+      }
+
+      .comment-form textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      /* Mobile responsive for comments */
+      @media (max-width: 768px) {
+        .comment-replies {
+          margin-left: 15px;
+        }
+
+        .comment-avatar {
+          width: 40px;
+          height: 40px;
+        }
+
+        .comment-reply .comment-avatar {
+          width: 35px;
+          height: 35px;
+        }
+
+        .comment-box {
+          padding: 15px;
+        }
+
+        .comment-form {
+          padding: 20px 15px;
+        }
+      }
+
+      /* Course Detail Styling */
+      .course-detail {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+      }
+
+      .course-detail-header {
+        background: linear-gradient(135deg, #ff8c00, #ff6b6b);
+        color: white;
+        padding: 30px;
+        margin-bottom: 0;
+      }
+
+      .course-detail-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .course-detail-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .course-detail-program {
+        background: rgba(255,255,255,0.2);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .course-detail-age {
+        background: rgba(255,255,255,0.2);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .course-detail-date {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+
+      .course-detail-content {
+        padding: 30px;
+      }
+
+      .course-sections {
+        padding: 0 30px 30px;
+      }
+
+      .course-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #ff8c00;
+      }
+
+      .course-section h3 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .course-section p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+
+      .course-section ul {
+        color: #666;
+        margin-left: 20px;
+      }
+
+      .course-section ul li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      /* Sidebar Styling */
+      .sidebar {
+        margin-top: 20px;
+      }
+
+      .sidebar-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 25px;
+        margin-bottom: 25px;
+      }
+
+      .sidebar-card h4 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        border-bottom: 2px solid #ff8c00;
+        padding-bottom: 10px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .info-item:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        font-weight: 500;
+        color: #555;
+      }
+
+      .info-value {
+        color: #333;
+        font-weight: 600;
+      }
+
+      .related-course {
+        display: block;
+        padding: 15px;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .related-course:hover {
+        background: #e9ecef;
+        border-left-color: #ff8c00;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .related-course-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+
+      .related-course-age {
+        font-size: 12px;
+        color: #666;
+      }
+
+      /* Mobile responsive for course detail */
+      @media (max-width: 768px) {
+        .course-detail-header {
+          padding: 20px;
+        }
+
+        .course-detail-title {
+          font-size: 22px;
+        }
+
+        .course-detail-meta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .course-detail-content {
+          padding: 20px;
+        }
+
+        .course-sections {
+          padding: 0 20px 20px;
+        }
+
+        .course-section {
+          padding: 15px;
+        }
+
+        .sidebar {
+          margin-top: 30px;
+        }
+
+        .sidebar-card {
+          padding: 20px;
+        }
+      }
+
+      /* Additional course detail styling */
+      .course-detail .lead {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 0;
+      }
+
+      .course-section i {
+        color: #ff8c00;
+        margin-right: 8px;
+      }
+
+      .related-course:hover .related-course-title {
+        color: #ff8c00;
+      }
+
+      .related-course-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+        transition: color 0.3s ease;
+      }
+
+      .related-course-age {
+        font-size: 13px;
+        color: #666;
+      }
+
+      .spinner-border {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .course-detail-container {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <main>
+      <!-- Breadcrumb -->
+      <div class="container mt-3">
+        <!-- Breadcrumb -->
+        <section class="bread-crumb">
+          <div class="container">
+            <div class="breadcrumb-wrapper">
+              <div class="breadcrumb-content">
+                <ul class="breadcrumb">
+                  <li class="home">
+                    <a href="index.html">Trang chủ</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    <a href="ChuongTrinhHoc.html">Chương trình học</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </li>
+                  <li>
+                    <span id="breadcrumb-title">Chi tiết chương trình học</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="mb25">
+        <div class="container">
+          <div class="row">
+            <!-- Sidebar -->
+            <div class="sidebar-blog col-lg-5 order-2 order-lg-1">
+              <aside class="aside-blog">
+                <div style="margin-bottom: 15px">
+                  <h2 class="default_title">
+                    <a href="ChuongTrinhHoc.html" title="Tin nổi bật">Tin nổi bật</a>
+                  </h2>
+                </div>
+                <!-- Featured articles will be loaded here -->
+                <div id="featured-articles">
+                  <div class="loading-spinner">
+                    <div class="spinner"></div>
+                  </div>
+                </div>
+              </aside>
+
+              <div class="widget-sidebar-item blog_tags">
+                <h2 class="default_title">Tags</h2>
+                <div id="tags-container">
+                  <!-- Tags will be loaded here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="megamenu-right col-lg-7 col-md-12 order-lg-2 order-1">
+              <div class="article-container">
+                <!-- Loading spinner -->
+                <div id="loading-container" class="loading-spinner">
+                  <div class="spinner"></div>
+                </div>
+
+                <!-- Error message -->
+                <div
+                  id="error-container"
+                  class="error-message"
+                  style="display: none">
+                  <h4>Không tìm thấy chương trình học</h4>
+                  <p>
+                    Chương trình học bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.
+                  </p>
+                  <a href="ChuongTrinhHoc.html" class="btn btn-primary"
+                    >Quay lại danh sách chương trình học</a
+                  >
+                </div>
+
+                <!-- Article content -->
+                <div id="article-content" style="display: none">
+                  <div class="article-header">
+                    <h1 class="article-title" id="article-title">
+                      Đang tải...
+                    </h1>
+                    <div class="article-meta" id="article-meta">
+                      <!-- Article meta will be loaded here -->
+                    </div>
+                  </div>
+
+                  <div class="article-content" id="article-body">
+                    <!-- Article content will be loaded here -->
+                  </div>
+
+                  <!-- Comments section -->
+                  <div class="comments-section" id="comments-section">
+                    <h4 class="comment-title">
+                      Bình luận (<span id="comment-count">0</span>)
+                    </h4>
+                    <div id="comments-list">
+                      <!-- Comments will be loaded here -->
+                    </div>
+                  </div>
+
+                  <!-- Comment form -->
+                  <div class="comment-form">
+                    <h4>Viết bình luận</h4>
+                    <form id="comment-form">
+                      <div class="form-group">
+                        <label for="comment-name">Họ tên *</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="comment-name"
+                          required />
+                      </div>
+                      <div class="form-group">
+                        <label for="comment-email">Email *</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="comment-email"
+                          required />
+                      </div>
+                      <div class="form-group">
+                        <label for="comment-content"
+                          >Nội dung bình luận *</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="comment-content"
+                          rows="4"
+                          required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-mores">
+                        Gửi bình luận
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brand partners section -->
+      <section class="section_brand">
+        <div class="container">
+          <div class="brand">
+            <div
+              class="brand-swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
+              style="cursor: grab">
+              <div
+                class="swiper-wrapper"
+                style="transform: translate3d(0px, 0px, 0px)">
+                <div
+                  class="swiper-slide swiper-slide-active"
+                  style="width: 100px; margin-right: 40px">
+                  <a href="#" title="Đối tác 1">
+                    <img
+                      width="100"
+                      height="60"
+                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_1.jpg?1676015309640"
+                      alt="Đối tác 1"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide swiper-slide-next"
+                  style="width: 100px; margin-right: 40px">
+                  <a href="#" title="Đối tác 2">
+                    <img
+                      width="100"
+                      height="60"
+                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_2.jpg?1676015309640"
+                      alt="Đối tác 2"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 100px; margin-right: 40px">
+                  <a href="#" title="Đối tác 3">
+                    <img
+                      width="100"
+                      height="60"
+                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_3.jpg?1676015309640"
+                      alt="Đối tác 3"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 100px; margin-right: 40px">
+                  <a href="#" title="Đối tác 4">
+                    <img
+                      width="100"
+                      height="60"
+                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_4.jpg?1676015309640"
+                      alt="Đối tác 4"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 100px; margin-right: 40px">
+                  <a href="#" title="Đối tác 5">
+                    <img
+                      width="100"
+                      height="60"
+                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_5.jpg?1676015309640"
+                      alt="Đối tác 5"
+                      class="img-responsive" />
+                  </a>
+                </div>
+                <div
+                  class="swiper-slide"
+                  style="width: 100px; margin-right: 40px">
+                  <a href="#" title="Đối tác 6">
+                    <img
+                      width="100"
+                      height="60"
+                      src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/img_brand_6.jpg?1676015309640"
+                      alt="Đối tác 6"
+                      class="img-responsive" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+      <div class="widget">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 no-padding-l">
+              <div class="widget-item">
+                <a class="footer-logo" href="#"
+                  ><img
+                    width="195"
+                    height="77"
+                    alt="SunShine School Theme"
+                    src="https://bizweb.dktcdn.net/100/063/369/themes/877483/assets/logo_white.png"
+                /></a>
+                <!-- End .widget-title -->
+                <div class="widget-menu infomation">
+                  <div class="time_work">
+                    <div class="item">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="phone-alt"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-phone-alt fa-w-16">
+                        <path
+                          fill="currentColor"
+                          d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"
+                          class=""></path>
+                      </svg>
+                      <a class="fone" href="tel:18006750">1800 6750</a>
+                    </div>
+                    <div class="item">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="map-marker-alt"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                        class="svg-inline--fa fa-map-marker-alt fa-w-12">
+                        <path
+                          fill="currentColor"
+                          d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                          class=""></path>
+                      </svg>
+                      <span class="dc">
+                        Tầng 6, 266 Đội Cấn, Ba Đình, Hà Nội
+                      </span>
+                    </div>
+                    <div class="item">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="envelope"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-envelope fa-w-16">
+                        <path
+                          fill="currentColor"
+                          d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+                          class=""></path>
+                      </svg>
+                      <a href="mailto:support@sapo.vn">support@sapo.vn</a>
+                    </div>
+                  </div>
+                  <div class="social_icon">
+                    <ul>
+                      <li>
+                        <a
+                          target="_blank"
+                          title="Facebook"
+                          href="https://www.facebook.com/"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                              d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          title="Linkedin"
+                          href="https://www.linkedin.com/"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                              d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg
+                        ></a>
+                      </li>
+                      <li>
+                        <a
+                          target="_blank"
+                          title="Twitter"
+                          href="https://twitter.com/"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512">
+                            <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                            <path
+                              d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- End .widget-menu -->
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 no-padding-l">
+              <div class="widget-item">
+                <h4 class="widget-title">Tin nhà trường</h4>
+                <!-- End .widget-title -->
+                <ul class="widget-menu">
+                  <li><a href="./index.html" class="has_icon">Trang chủ</a></li>
+                  <li>
+                    <a href="./SanPham.html" class="has_icon">Sản phẩm</a>
+                  </li>
+                  <li>
+                    <a href="./ChuongTrinhGiaoDuc.html" class="has_icon"
+                      >Chương trình giáo dục</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./ChuongTrinhHoc.html" class="has_icon"
+                      >Tuyển sinh</a
+                    >
+                  </li>
+                  <li><a href="./TinTuc.html" class="has_icon">Tin tức</a></li>
+                  <li>
+                    <a href="./GioiThieu.html" class="has_icon">Giới thiệu</a>
+                  </li>
+                </ul>
+                <!-- End .widget-menu -->
+              </div>
+              <!-- End .widget-item -->
+            </div>
+
+            <div class="col-lg-3 col-md-6 no-padding-l">
+              <div class="widget-item">
+                <h4 class="widget-title">Kinh nghiệm hay</h4>
+                <!-- End .widget-title -->
+                <ul class="widget-menu">
+                  <li><a href="./index.html" class="has_icon">Trang chủ</a></li>
+                  <li>
+                    <a href="./SanPham.html" class="has_icon">Sản phẩm</a>
+                  </li>
+                  <li>
+                    <a href="./ChuongTrinhGiaoDuc.html" class="has_icon"
+                      >Chương trình giáo dục</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./ChuongTrinhHoc.html" class="has_icon"
+                      >Tuyển sinh</a
+                    >
+                  </li>
+                  <li><a href="./TinTuc.html" class="has_icon">Tin tức</a></li>
+                  <li>
+                    <a href="./GioiThieu.html" class="has_icon">Giới thiệu</a>
+                  </li>
+                </ul>
+                <!-- End .widget-menu -->
+              </div>
+              <!-- End .widget-item -->
+            </div>
+            <div class="hidden-xs col-lg-3 col-md-6 no-padding-lr">
+              <div class="widget-item">
+                <h4 class="widget-title">Facebook</h4>
+                <!-- End .widget-title -->
+                <div
+                  class="fb-page fb_iframe_widget"
+                  data-href="https://www.facebook.com/sapo.vn/"
+                  data-small-header="false"
+                  data-adapt-container-width="true"
+                  data-hide-cover="false"
+                  data-show-facepile="true">
+                  <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsapo.vn%2F&tabs&width=255&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                    width="255"
+                    height="130"
+                    style="border: none; overflow: hidden"
+                    scrolling="no"
+                    frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+                <!-- End .widget-menu -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End .widget -->
+      <div class="hidden-xs hidden-sm">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="plane_fly_lg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 copyright-pr no-padding-r">
+              <div
+                class="copyright"
+                style="white-space: nowrap; display: inline-block">
+                © Bản quyền thuộc về <b>Awesome Team</b> | Cung cấp bởi
+                <a
+                  href="https://www.sapo.vn/"
+                  rel="nofollow"
+                  title="Sapo"
+                  target="_blank"
+                  >Sapo</a
+                >
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 no-padding-l">
+              <div class="pull-right">
+                <ul class="bottom_linklist">
+                  <li>
+                    <a href="./index.html" title="Trang chủ">Trang chủ</a>
+                  </li>
+                  <li>
+                    <a href="./SanPham.html" title="Sản phẩm">Sản phẩm</a>
+                  </li>
+                  <li>
+                    <a
+                      href="./ChuongTrinhGiaoDuc.html"
+                      title="Chương trình giáo dục"
+                      >Chương trình giáo dục</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./ChuongTrinhHoc.html" title="Tuyển sinh"
+                      >Tuyển sinh</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div id="back-to-top" class="back-to-top">
+      <a class="top" href="#" title="Scroll to top">
+        <i class="fa fa-angle-up"></i>
+      </a>
+    </div>
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper Slider JS -->
+    <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+    <script src="./assets/js/header.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/mobile-menu.js"></script>
+    <script src="./assets/js/blog.js"></script>
+    <script src="./assets/js/kinh-nghiem-hay.js"></script>
+    <script src="./assets/js/brand-partners.js"></script>
+    <script src="./assets/js/footer.js"></script>
+    <script src="./assets/js/scroll-top.js"></script>
+
+    <!-- Mobile Menu JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu dropdown functionality
+        const dropdownItems = document.querySelectorAll(
+          ".nav-item.has-dropdown"
+        );
+
+        dropdownItems.forEach(function (item) {
+          const link = item.querySelector(".nav-link");
+          const dropdown = item.querySelector(".dropdown-menu");
+
+          if (link && dropdown) {
+            // Handle click on mobile
+            link.addEventListener("click", function (e) {
+              const isMobile = window.innerWidth <= 768;
+              if (isMobile) {
+                e.preventDefault();
+                dropdown.style.display =
+                  dropdown.style.display === "block" ? "none" : "block";
+              }
+            });
+
+            // Handle hover on desktop
+            item.addEventListener("mouseenter", function () {
+              const isMobile = window.innerWidth <= 768;
+              if (!isMobile && dropdown) {
+                dropdown.style.display = "block";
+              }
+            });
+
+            item.addEventListener("mouseleave", function () {
+              const isMobile = window.innerWidth <= 768;
+              if (!isMobile && dropdown) {
+                dropdown.style.display = "none";
+              }
+            });
+          }
+        });
+
+        // CSS fallback for hover states
+        const style = document.createElement("style");
+        style.innerHTML = `
+          @media (min-width: 769px) {
+            .nav-item.has-dropdown:hover .dropdown-menu {
+              display: block !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      });
+    </script>
+
+    <!-- Script to load header component -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load the header component
+        const headerContainer = document.getElementById("header-container");
+        if (headerContainer) {
+          fetch("./forms/components/header.html")
+            .then((response) => response.text())
+            .then((data) => {
+              headerContainer.innerHTML = data;
+              // Set active class based on current page
+              setTimeout(() => {
+                const currentPath = window.location.pathname;
+                const navLinks = document.querySelectorAll(".nav-link");
+                navLinks.forEach((link) => {
+                  if (link.getAttribute("href") === "TinTuc.html") {
+                    link.classList.add("active");
+                  }
+                });
+              }, 100);
+            })
+            .catch((error) => {
+              console.error("Error loading header component:", error);
+            });
+        }
+      });
+    </script>
+
+    <!-- Main course loading script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get course ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get("id");
+
+        if (!courseId) {
+          showError("Không tìm thấy chương trình học được yêu cầu.");
+          return;
+        }
+
+        // Load course data
+        loadCourseData(courseId);
+      });
+
+      function loadCourseData(id) {
+        fetch("./assets/db/Course.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const course = data.find((course) => course.id == id);
+            if (course) {
+              displayCourse(course);
+              loadFeaturedCourses(
+                data.filter((c) => c.id != id)
+              );
+              loadTags();
+            } else {
+              showError("Chương trình học không tồn tại.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error loading course data:", error);
+            showError("Có lỗi xảy ra khi tải dữ liệu chương trình học.");
+          });
+      }
+
+      function displayCourse(course) {
+        // Hide loading spinner
+        document.getElementById("loading-container").style.display = "none";
+
+        // Show course content
+        document.getElementById("article-content").style.display = "block";
+
+        // Update page title and meta
+        document.title = course.title + " - SunShine School";
+        
+        // Update breadcrumb
+        document.getElementById("breadcrumb-title").textContent = course.title;
+
+        // Update course title
+        document.getElementById("article-title").textContent = course.title;
+
+        // Update course meta
+        const metaHtml = `
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16">
+              <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
+            </svg>
+            ${course.published_date}
+          </span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+              <path d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"></path>
+            </svg>
+            ${course.published_time}
+          </span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+              <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
+            </svg>
+            ${course.comments.count} Bình luận
+          </span>
+        `;
+        document.getElementById("article-meta").innerHTML = metaHtml;
+
+        // Update course content
+        const contentHtml = formatCourseContent(course);
+        document.getElementById("article-body").innerHTML = contentHtml;
+
+        // Update comment count
+        document.getElementById("comment-count").textContent = course.comments.count;
+
+        // Load empty comments (since courses don't have comments yet)
+        displayComments([]);
+      }
+
+      function formatCourseContent(course) {
+        let content = course.content;
+
+        // Add featured image if exists
+        if (course.featured_image && course.featured_image.url) {
+          content =
+            `<div class="article-image">
+            <img src="${course.featured_image.url}" alt="${course.featured_image.alt}" />
+          </div>` + content;
+        }
+
+        // Format content with proper HTML structure
+        content = content.replace(/\n\n/g, "</p><p>");
+        content = content.replace(/\n/g, "<br>");
+        content = "<p>" + content + "</p>";
+
+        // Add tags
+        if (course.tags && course.tags.length > 0) {
+          const tagsHtml = course.tags
+            .map(
+              (tag) =>
+                `<a href="ChuongTrinhHoc.html?tag=${tag.slug}" class="tag-item">${tag.name}</a>`
+            )
+            .join(" ");
+          content += `<div class="article-tags" style="margin-top: 30px;">
+            <h5>Tags:</h5>
+            ${tagsHtml}
+          </div>`;
+        }
+
+        return content;
+      }
+
+      function displayComments(comments) {
+        if (comments && comments.length > 0) {
+          // Comments display logic would go here
+          document.getElementById("comments-list").innerHTML = 
+            '<div class="no-comments"><p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p></div>';
+        } else {
+          document.getElementById("comments-list").innerHTML =
+            '<div class="no-comments"><p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p></div>';
+        }
+      }
+
+      function loadFeaturedCourses(courses) {
+        const featuredCourses = courses.slice(0, 3);
+
+        const featuredHtml = featuredCourses
+          .map(
+            (course, index) => `
+          <div class="new-item col-lg-12 no-padding-lr ${
+            index === 0
+              ? "first"
+              : index === featuredCourses.length - 1
+              ? "last"
+              : ""
+          }">
+            <div class="blog-wrap d-flex">
+              <a class="img_thumb" href="ChuongTrinhHocChiTiet.html?id=${
+                course.id
+              }" title="${course.title}">
+                <img class="img-responsive" src="${
+                  course.featured_image.url
+                }" alt="${course.featured_image.alt}" />
+              </a>
+              <div class="blog-content-right">
+                <h3 class="new-name">
+                  <a href="ChuongTrinhHocChiTiet.html?id=${course.id}" title="${
+              course.title
+            }">${course.title}</a>
+                </h3>
+                <p class="new-info">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16">
+                      <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"></path>
+                    </svg>
+                    ${course.published_date}
+                  </span>
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+                      <path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"></path>
+                    </svg>
+                    ${course.comments.count} Bình luận
+                  </span>
+                </p>
+                <p class="new-description">
+                  ${course.excerpt}
+                </p>
+                <a class="btn-mores" href="ChuongTrinhHocChiTiet.html?id=${
+                  course.id
+                }" title="">Khám phá</a>
+              </div>
+            </div>
+          </div>
+        `
+          )
+          .join("");
+
+        document.getElementById("featured-articles").innerHTML = featuredHtml;
+      }
+
+      function loadTags() {
+        const tags = [
+          { name: "Chương trình học", slug: "chuong-trinh-hoc", count: 3 },
+          { name: "Giáo dục mầm non", slug: "giao-duc-mam-non", count: 3 },
+          { name: "Phát triển trẻ em", slug: "phat-trien-tre-em", count: 2 },
+          { name: "Kỹ năng xã hội", slug: "ky-nang-xa-hoi", count: 2 }
+        ];
+
+        const tagsHtml = tags
+          .map(
+            (tag) => `
+          <a href="ChuongTrinhHoc.html?tag=${tag.slug}" class="tag-item" title="Xem chương trình về ${tag.name}">
+            ${tag.name} (${tag.count})
+          </a>
+        `
+          )
+          .join(" ");
+
+        document.getElementById("tags-container").innerHTML = tagsHtml;
+      }
+
+      function showError(message) {
+        document.getElementById("loading-container").style.display = "none";
+        document.getElementById("error-container").style.display = "block";
+        document
+          .getElementById("error-container")
+          .querySelector("p").textContent = message;
+      }
+
+      // Comment form handling
+      document.addEventListener("DOMContentLoaded", function() {
+        const commentForm = document.getElementById("comment-form");
+        if (commentForm) {
+          commentForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("comment-name").value;
+            const email = document.getElementById("comment-email").value;
+            const content = document.getElementById("comment-content").value;
+
+            if (name && email && content) {
+              // Here you would typically send the comment to your backend
+              alert(
+                "Cảm ơn bạn đã gửi bình luận! Bình luận sẽ được duyệt trước khi hiển thị."
+              );
+
+              // Reset form
+              this.reset();
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

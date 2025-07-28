@@ -1,0 +1,89 @@
+[
+  {
+    "id": 1,
+    "title": "Chương trình học dành cho lớn",
+    "ageGroup": "5-6 tuổi",
+    "className": "Lớp xanh",
+    "program": "PRESCHOOL",
+    "published_date": "09/03/2016",
+    "published_time": "14:37:52",
+    "comments": {
+      "count": 0
+    },
+    "slug": "chuong-trinh-hoc-danh-cho-lon",
+    "featured_image": {
+      "url": "//bizweb.dktcdn.net/thumb/large/100/063/369/articles/10.jpg?v=1457509076287",
+      "alt": "Chương trình học dành cho lớn"
+    },
+    "content": "PRESCHOOL là chương trình dành cho trẻ 5-6 tuổi. Trẻ ở lứa tuổi này đang trên đà phát triển một cách toàn diện về thể chất, nhận thức và tình cảm xã hội.\n\nChương trình của chúng tôi chú trọng đến các hoạt động khoa học, toán học, xã hội học, ngôn ngữ, mỹ thuật, âm nhạc và vận động.\n\nChúng tôi khuyến khích phát triển ngôn ngữ cho trẻ thông qua các hoạt động nhận biết âm, chữ, hát, đọc thơ, đóng kịch.\n\nCác kỹ năng toán học của trẻ được trau dồi qua các bài tập tư duy tập trung vào phân loại, tập hợp nhóm, ghép số với hình ... Thời gian này cũng là lúc trẻ thể hiện rõ nhất những gì mình khám phá, tìm tòi được thông qua mỹ thuật. Trong từng giờ và trong mỗi hoạt động, giáo viên tạo cho trẻ cơ hội để sáng tạo, giao tiếp và hợp tác với nhau bất kể theo nhóm nhỏ hay cả lớp, mục đích của chúng tôi là giúp trẻ phát triển kỹ năng xã hội, kỹ năng làm việc nhóm, kỹ năng chia sẻ và quan tâm đến nhau.\n\nĐể giúp trẻ chuẩn bị tốt cho bậc tiểu học, chúng tôi có chương trình cho trẻ làm quen với các dạng bài kiểm tra đầu vào đồng thời trang bị kiến thức và kỹ năng để trẻ tự tin khi bước vào bậc tiểu học.",
+    "excerpt": "PRESCHOOL là chương trình dành cho trẻ 5-6 tuổi. Trẻ ở lứa tuổi này đang trên đà phát triển một cách toàn diện về thể chất, nhận thức và tình cảm xã hội.",
+    "tags": [
+      {
+        "name": "Chương trình học",
+        "slug": "chuong-trinh-hoc"
+      },
+      {
+        "name": "Giáo dục mầm non",
+        "slug": "giao-duc-mam-non"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chương trình học dành cho lớp lá",
+    "ageGroup": "4-5 tuổi",
+    "className": "Lớp lá",
+    "program": "ADVENTURER",
+    "published_date": "09/03/2016",
+    "published_time": "14:36:22",
+    "comments": {
+      "count": 0
+    },
+    "slug": "chuong-trinh-hoc-danh-cho-lop-la",
+    "featured_image": {
+      "url": "//bizweb.dktcdn.net/thumb/large/100/063/369/articles/08.jpg?v=1457508986737",
+      "alt": "Chương trình học dành cho lớp lá"
+    },
+    "content": "ADVENTURER là chương trình dành cho trẻ 4-5 tuổi, đây là thời kỳ trẻ không ngừng tìm kiếm câu trả lời cho những thắc mắc của chính mình ; chúng thể hiện trí tò mò cao độ và sự ham học hỏi vô tận vì thế chương trình Adventurer của chúng tôi được soạn thảo nhằm khuyến khích trí tưởng tượng, lòng nhiệt tình khám phá của trẻ.\n\nCác hoạt động hàng ngày được tổ chức theo hình thức cá nhân hoặc theo nhóm giúp thúc đẩy sự hợp tác. Trẻ có nhiều cơ hội tham gia vào các buổi thảo luận với giáo viên hoặc với nhóm qua đó trẻ học cách chờ đợi đến lượt, học cách lắng nghe và chia sẻ.\n\nNgày qua ngày, các kỹ năng xã hội, nhận thức, thể chất của trẻ được trau dồi tạo ra nền tảng vững chắc cho con đường học tập tương lai.",
+    "excerpt": "ADVENTURER là chương trình dành cho trẻ 4-5 tuổi, đây là thời kỳ trẻ không ngừng tìm kiếm câu trả lời cho những thắc mắc của chính mình.",
+    "tags": [
+      {
+        "name": "Chương trình học",
+        "slug": "chuong-trinh-hoc"
+      },
+      {
+        "name": "Giáo dục mầm non",
+        "slug": "giao-duc-mam-non"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Chương trình học dành cho lớp trồi",
+    "ageGroup": "2-3 tuổi",
+    "className": "Lớp chồi",
+    "program": "DISCOVERY",
+    "published_date": "09/03/2016",
+    "published_time": "14:35:00",
+    "comments": {
+      "count": 0
+    },
+    "slug": "chuong-trinh-hoc-danh-cho-lop-choi",
+    "featured_image": {
+      "url": "//bizweb.dktcdn.net/thumb/large/100/063/369/articles/07.jpg?v=1457508922870",
+      "alt": "Chương trình học dành cho lớp trồi"
+    },
+    "content": "DISCOVERY là chương trình dành cho trẻ từ 2-3 tuổi. Ở lứa tuổi này, trẻ học tốt nhất thông qua các trải nghiệm giác quan và các trò chơi.\n\nVới mối quan hệ gần gũi, thân thiết, giáo viên giúp trẻ phát triển sự tự tin, trí tò mò khám phá học hỏi.\n\nTính độc lập cũng được chú trọng phát triển cho trẻ từ giai đoạn này. Trẻ được hướng dẫn tỉ mỉ cách làm các công việc tự phục vụ bản thân như ăn uống, vệ sinh.\n\nTrong từng hoạt động, chúng tôi đều đưa ra mục tiêu phát triển kỹ năng được tích hợp trong âm nhạc, mỹ thuật, vận động, các trò chơi xếp hình và sách truyện.\n\nNhóm Discovery giới hạn từ 9-12 trẻ / lớp với tỷ lệ 3 trẻ / 1 giáo viên.",
+    "excerpt": "DISCOVERY là chương trình dành cho trẻ từ 2-3 tuổi. Ở lứa tuổi này, trẻ học tốt nhất thông qua các trải nghiệm giác quan và các trò chơi.",
+    "tags": [
+      {
+        "name": "Chương trình học",
+        "slug": "chuong-trinh-hoc"
+      },
+      {
+        "name": "Giáo dục mầm non",
+        "slug": "giao-duc-mam-non"
+      }
+    ]
+  }
+]
