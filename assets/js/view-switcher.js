@@ -36,10 +36,16 @@ $(document).ready(function () {
           $this.append($thumbnail);
           $this.append($info);
 
-          // Remove the row structure
+          // Remove the row structure and custom classes
           $this.find(".row").remove();
-          $this.find(".col-lg-4.image").contents().unwrap();
-          $this.find(".col-lg-8.info").contents().unwrap();
+          $this.find(".list-image-col").contents().unwrap();
+          $this.find(".list-info-col").contents().unwrap();
+
+          // Reset inline styles
+          $this.removeAttr("style");
+          $this.find(".row").removeAttr("style");
+          $this.find(".list-image-col").removeAttr("style");
+          $this.find(".list-info-col").removeAttr("style");
 
           // Remove single-line styling
           $this.find(".desproduct").removeAttr("style");
@@ -69,30 +75,70 @@ $(document).ready(function () {
           var $thumbnail = $this.find(".product-thumbnail").first().detach();
           var $info = $this.find(".product-info").first().detach();
 
-          // Create row structure
-          var $row = $('<div class="row"></div>');
-          var $imageCol = $('<div class="col-lg-4 image"></div>').append(
-            $thumbnail
-          );
-          var $infoCol = $('<div class="col-lg-8 info"></div>').append($info);
+          // Create row structure with explicit CSS for responsive
+          var $row = $('<div class="row no-gutters"></div>');
+          var $imageCol = $('<div class="list-image-col"></div>').append($thumbnail);
+          var $infoCol = $('<div class="list-info-col"></div>').append($info);
 
           $row.append($imageCol).append($infoCol);
           $this.append($row);
 
-          // Add single-line styling to description
-          if ($this.find(".desproduct").length) {
-            $this
-              .find(".desproduct")
-              .attr(
-                "style",
-                "white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-              );
+          // Force responsive behavior with inline styles
+          $this.css({
+            'display': 'block',
+            'width': '100%',
+            'margin-bottom': '15px'
+          });
+
+          $row.css({
+            'display': 'flex',
+            'flex-wrap': 'wrap',
+            'margin': '0',
+            'width': '100%'
+          });
+
+          // Desktop and Tablet: side by side
+          if (window.innerWidth >= 768) {
+            $imageCol.css({
+              'flex': '0 0 33.333333%',
+              'max-width': '33.333333%',
+              'padding': '0'
+            });
+            $infoCol.css({
+              'flex': '0 0 66.666667%',
+              'max-width': '66.666667%',
+              'padding': '0 15px'
+            });
           } else {
-            $this
-              .find(".product-info")
-              .append(
-                '<div class="desproduct" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chương trình học được thiết kế phù hợp với lứa tuổi và khả năng tiếp thu của học viên.</div>'
-              );
+            // Mobile: stacked
+            $imageCol.css({
+              'flex': '0 0 100%',
+              'max-width': '100%',
+              'padding': '0'
+            });
+            $infoCol.css({
+              'flex': '0 0 100%',
+              'max-width': '100%',
+              'padding': '15px'
+            });
+          }
+
+          // Add single-line styling to description for non-mobile
+          if (window.innerWidth >= 768) {
+            if ($this.find(".desproduct").length) {
+              $this
+                .find(".desproduct")
+                .attr(
+                  "style",
+                  "white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                );
+            } else {
+              $this
+                .find(".product-info")
+                .append(
+                  '<div class="desproduct" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chương trình học được thiết kế phù hợp với lứa tuổi và khả năng tiếp thu của học viên.</div>'
+                );
+            }
           }
         }
       });
@@ -105,6 +151,65 @@ $(document).ready(function () {
   // Load saved view preference
   var savedView = localStorage.getItem("product_view") || "grid";
   $('.switch-view[data-view="' + savedView + '"]').trigger("click");
+
+  // Handle window resize for responsive list view
+  let resizeTimeout;
+  $(window).on('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+      // Only apply if in list view
+      if ($(".product-list-wrapper").hasClass("products-view-list")) {
+        $(".item_product_main.list-item-layout").each(function() {
+          var $this = $(this);
+          var $row = $this.find(".row");
+          var $imageCol = $this.find(".list-image-col");
+          var $infoCol = $this.find(".list-info-col");
+          
+          if ($row.length && $imageCol.length && $infoCol.length) {
+            if (window.innerWidth >= 768) {
+              // Desktop/Tablet: side by side
+              $imageCol.css({
+                'flex': '0 0 33.333333%',
+                'max-width': '33.333333%',
+                'padding': '0'
+              });
+              $infoCol.css({
+                'flex': '0 0 66.666667%',
+                'max-width': '66.666667%',
+                'padding': '0 15px'
+              });
+              
+              // Apply single-line text for description
+              $this.find(".desproduct").css({
+                'white-space': 'nowrap',
+                'overflow': 'hidden',
+                'text-overflow': 'ellipsis'
+              });
+            } else {
+              // Mobile: stacked
+              $imageCol.css({
+                'flex': '0 0 100%',
+                'max-width': '100%',
+                'padding': '0'
+              });
+              $infoCol.css({
+                'flex': '0 0 100%',
+                'max-width': '100%',
+                'padding': '15px'
+              });
+              
+              // Remove single-line text for mobile
+              $this.find(".desproduct").css({
+                'white-space': 'normal',
+                'overflow': 'visible',
+                'text-overflow': 'unset'
+              });
+            }
+          }
+        });
+      }
+    }, 250);
+  });
 });
 
 // Export functions for external use if needed
