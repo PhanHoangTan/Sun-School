@@ -1421,7 +1421,7 @@
   .cart-container {
     position: absolute !important;
     right: 15px !important;
-    margin: 0 !important;
+    margin-top: 100px !important;
   }
 }
 

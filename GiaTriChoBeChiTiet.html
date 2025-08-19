@@ -259,7 +259,7 @@
       .course-detail {
         background: #fff;
         border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         overflow: hidden;
       }
 
@@ -285,7 +285,7 @@
       }
 
       .course-detail-program {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         padding: 5px 12px;
         border-radius: 15px;
         font-weight: 500;
@@ -293,7 +293,7 @@
       }
 
       .course-detail-age {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         padding: 5px 12px;
         border-radius: 15px;
         font-weight: 500;
@@ -352,7 +352,7 @@
       .sidebar-card {
         background: #fff;
         border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         padding: 25px;
         margin-bottom: 25px;
       }
@@ -492,8 +492,14 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     </style>
   </head>
@@ -536,7 +542,9 @@
               <aside class="aside-blog">
                 <div style="margin-bottom: 15px">
                   <h2 class="default_title">
-                    <a href="GiaTriChoBe.html" title="Giá trị cho bé">Giá trị cho bé</a>
+                    <a href="GiaTriChoBe.html" title="Giá trị cho bé"
+                      >Giá trị cho bé</a
+                    >
                   </h2>
                 </div>
                 <!-- Featured articles will be loaded here -->
@@ -1120,9 +1128,7 @@
             const benefit = data.find((benefit) => benefit.id == id);
             if (benefit) {
               displayCourse(benefit);
-              loadFeaturedCourses(
-                data.filter((b) => b.id != id)
-              );
+              loadFeaturedCourses(data.filter((b) => b.id != id));
               loadTags();
             } else {
               showError("Bài viết về giá trị cho bé không tồn tại.");
@@ -1143,7 +1149,7 @@
 
         // Update page title and meta
         document.title = course.title + " - SunShine School";
-        
+
         // Update breadcrumb
         document.getElementById("breadcrumb-title").textContent = course.title;
 
@@ -1178,7 +1184,8 @@
         document.getElementById("article-body").innerHTML = contentHtml;
 
         // Update comment count
-        document.getElementById("comment-count").textContent = course.comments.count;
+        document.getElementById("comment-count").textContent =
+          course.comments.count;
 
         // Load empty comments (since courses don't have comments yet)
         displayComments([]);
@@ -1220,7 +1227,7 @@
       function displayComments(comments) {
         if (comments && comments.length > 0) {
           // Comments display logic would go here
-          document.getElementById("comments-list").innerHTML = 
+          document.getElementById("comments-list").innerHTML =
             '<div class="no-comments"><p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p></div>';
         } else {
           document.getElementById("comments-list").innerHTML =
@@ -1290,7 +1297,7 @@
           { name: "Chương trình học", slug: "chuong-trinh-hoc", count: 3 },
           { name: "Giáo dục mầm non", slug: "giao-duc-mam-non", count: 3 },
           { name: "Phát triển trẻ em", slug: "phat-trien-tre-em", count: 2 },
-          { name: "Kỹ năng xã hội", slug: "ky-nang-xa-hoi", count: 2 }
+          { name: "Kỹ năng xã hội", slug: "ky-nang-xa-hoi", count: 2 },
         ];
 
         const tagsHtml = tags
@@ -1315,7 +1322,7 @@
       }
 
       // Comment form handling
-      document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function () {
         const commentForm = document.getElementById("comment-form");
         if (commentForm) {
           commentForm.addEventListener("submit", function (e) {
