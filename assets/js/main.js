@@ -1,4 +1,4 @@
-// Main JavaScript for the SunShine School theme
+﻿// Main JavaScript for the SunShine School theme
 
 document.addEventListener("DOMContentLoaded", function () {
   // Update cart count from localStorage

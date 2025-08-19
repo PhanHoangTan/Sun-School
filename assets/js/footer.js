@@ -1,4 +1,4 @@
-// Footer JavaScript for the SunShine School theme
+﻿// Footer JavaScript for the SunShine School theme
 
 document.addEventListener("DOMContentLoaded", function () {
   // Social media icon interactions

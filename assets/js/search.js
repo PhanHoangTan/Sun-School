@@ -1,4 +1,4 @@
-// Search Results JavaScript
+﻿// Search Results JavaScript
 
 class SearchManager {
   constructor() {
@@ -62,7 +62,7 @@ class SearchManager {
 
   async loadProducts() {
     try {
-      const response = await fetch("./assets/db/products.json");
+      const response = await fetch("assets/db/products.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

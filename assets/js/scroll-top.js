@@ -1,4 +1,4 @@
-// Scroll to top functionality
+﻿// Scroll to top functionality
 document.addEventListener("DOMContentLoaded", function () {
   // Create the back-to-top button
   const backToTopButton = document.querySelector(".back-to-top");

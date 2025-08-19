@@ -1,4 +1,4 @@
-// Product Management JavaScript
+﻿// Product Management JavaScript
 class ProductManager {
   constructor() {
     this.products = [];
@@ -43,7 +43,7 @@ class ProductManager {
   async loadProducts() {
     try {
       console.log("Fetching products from ./assets/db/products.json");
-      const response = await fetch("./assets/db/products.json");
+      const response = await fetch("assets/db/products.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

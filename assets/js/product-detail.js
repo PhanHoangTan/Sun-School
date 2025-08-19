@@ -1,4 +1,4 @@
-// Product Detail Manager JavaScript
+﻿// Product Detail Manager JavaScript
 class ProductDetailManager {
   constructor() {
     this.currentProduct = null;
@@ -20,7 +20,7 @@ class ProductDetailManager {
 
   async loadProducts() {
     try {
-      const response = await fetch("./assets/db/products.json");
+      const response = await fetch("assets/db/products.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

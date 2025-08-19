@@ -1,4 +1,4 @@
-// Mobile Menu functionality - FIXED VERSION
+﻿// Mobile Menu functionality - FIXED VERSION
 document.addEventListener("DOMContentLoaded", mobileMenuInit);
 window.addEventListener("load", mobileMenuInit);
 

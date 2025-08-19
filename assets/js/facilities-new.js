@@ -1,4 +1,4 @@
-// Facility section animations and interactions
+﻿// Facility section animations and interactions
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Facilities JS loaded");
 

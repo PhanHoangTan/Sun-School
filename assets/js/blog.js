@@ -1,4 +1,4 @@
-// Blog Section JS
+﻿// Blog Section JS
 $(document).ready(function () {
   // Function to adjust heights of blog items
   function adjustBlogHeights() {

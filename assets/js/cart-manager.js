@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Cart Manager
  * Handles all cart operations for the SunSchool site
  */
@@ -551,8 +551,8 @@ class CartManager {
           <span class="total-price">${this.formatPrice(totalPrice)}</span>
         </div>
         <div class="cart-actions">
-          <a href="./GioHang.html" class="btn-view-cart">Xem giỏ hàng</a>
-          <a href="./ThanhToan.html" class="btn-checkout">Thanh toán</a>
+          <a href="GioHang.html" class="btn-view-cart">Xem giỏ hàng</a>
+          <a href="ThanhToan.html" class="btn-checkout">Thanh toán</a>
         </div>
       </div>
     `;
@@ -596,7 +596,7 @@ class CartManager {
           </div>
           <p class="empty-cart-message">Không có sản phẩm nào trong giỏ hàng của bạn</p>
           <div class="empty-cart-actions">
-            <a href="./SanPham.html" class="btn btn-primary">Tiếp tục mua sắm</a>
+            <a href="SanPham.html" class="btn btn-primary">Tiếp tục mua sắm</a>
           </div>
         </div>
       `;
@@ -814,7 +814,7 @@ class CartManager {
       checkoutButton.addEventListener("click", (e) => {
         e.preventDefault();
         // Redirect to checkout page instead of showing alert
-        window.location.href = "./ThanhToan.html";
+        window.location.href = "ThanhToan.html";
       });
     }
   }

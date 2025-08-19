@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+﻿document.addEventListener("DOMContentLoaded", function () {
   // Initialize Swiper for brand partners
   const brandSwiper = new Swiper(".brand-swiper", {
     slidesPerView: 3,

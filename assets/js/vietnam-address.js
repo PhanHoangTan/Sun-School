@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Vietnam Address Manager
  * Handles loading and managing Vietnamese address data (provinces, districts, wards)
  */
@@ -16,7 +16,7 @@ class VietnamAddressManager {
     }
 
     try {
-      const response = await fetch("./assets/db/vietnam_addresses.json");
+      const response = await fetch("assets/db/vietnam_addresses.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

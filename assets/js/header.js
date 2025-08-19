@@ -1,4 +1,4 @@
-// Header JavaScript for the SunShine School theme
+﻿// Header JavaScript for the SunShine School theme
 
 document.addEventListener("DOMContentLoaded", function () {
   // Load header component
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Prevent FOUC (Flash of Unstyled Content) before header loads
     headerContainer.style.opacity = "0";
 
-    fetch("./forms/components/header.html")
+    fetch("forms/components/header.html")
       .then((response) => response.text())
       .then((data) => {
         headerContainer.innerHTML = data;
@@ -66,50 +66,50 @@ function generateMobileNav() {
 
   // Define menu items to match the image
   const menuItems = [
-    { label: "Trang chủ", url: "./index.html", hasSubmenu: false },
+    { label: "Trang chủ", url: "index.html", hasSubmenu: false },
     {
       label: "Sản phẩm",
-      url: "./SanPham.html",
+      url: "SanPham.html",
       hasSubmenu: true,
       submenu: [
-        { label: "Tất cả sản phẩm", url: "./SanPham.html" },
+        { label: "Tất cả sản phẩm", url: "SanPham.html" },
         {
           label: "Giá trị cho bé",
-          url: "./SanPham.html?category=Giá trị cho bé",
+          url: "SanPham.html?category=Giá trị cho bé",
         },
         {
           label: "Chương trình học",
-          url: "./SanPham.html?category=Chương trình học",
+          url: "SanPham.html?category=Chương trình học",
         },
       ],
     },
     {
       label: "Chương trình giáo dục",
-      url: "./ChuongTrinhGiaoDuc.html",
+      url: "ChuongTrinhGiaoDuc.html",
       hasSubmenu: true,
       submenu: [
-        { label: "Giá trị cho bé", url: "./GiaTriChoBe.html" },
-        { label: "Chương trình học", url: "./ChuongTrinhGiaoDuc.html" },
+        { label: "Giá trị cho bé", url: "GiaTriChoBe.html" },
+        { label: "Chương trình học", url: "ChuongTrinhGiaoDuc.html" },
       ],
     },
     {
       label: "Tuyển sinh",
-      url: "./ChuongTrinhHoc.html",
+      url: "ChuongTrinhHoc.html",
       hasSubmenu: true,
       submenu: [
-        { label: "Chương trình học", url: "./ChuongTrinhHoc.html" },
-        { label: "Học phí", url: "./HocPhi.html" },
-        { label: "Thực đơn", url: "./ThucDon.html" },
+        { label: "Chương trình học", url: "ChuongTrinhHoc.html" },
+        { label: "Học phí", url: "HocPhi.html" },
+        { label: "Thực đơn", url: "ThucDon.html" },
       ],
     },
-    { label: "Tin tức", url: "./TinTuc.html", hasSubmenu: false },
+    { label: "Tin tức", url: "TinTuc.html", hasSubmenu: false },
     {
       label: "Giới thiệu",
-      url: "./GioiThieu.html",
+      url: "GioiThieu.html",
       hasSubmenu: true,
       submenu: [
-        { label: "Về chúng tôi", url: "./GioiThieu.html" },
-        { label: "Cơ sở vật chất", url: "./CoSoVatChat.html" },
+        { label: "Về chúng tôi", url: "GioiThieu.html" },
+        { label: "Cơ sở vật chất", url: "CoSoVatChat.html" },
       ],
     },
   ];
@@ -230,7 +230,7 @@ function initCartDropdown() {
     cartIcon.addEventListener("click", function (e) {
       // Allow normal navigation to GioHang.html
       // e.preventDefault();
-      // window.location.href = "./GioHang.html";
+      // window.location.href = "GioHang.html";
     });
   }
 
@@ -382,8 +382,8 @@ function updateCartDropdown() {
       <span class="cart-dropdown-total-price">${formattedTotal}</span>
     </div>
     <div class="cart-dropdown-buttons">
-      <a href="./GioHang.html" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
-      <a href="./ThanhToan.html" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
+      <a href="GioHang.html" class="cart-dropdown-button cart-view-button">GIỎ HÀNG</a>
+      <a href="ThanhToan.html" class="cart-dropdown-button cart-checkout-button">THANH TOÁN</a>
     </div>
   `;
 
@@ -392,7 +392,7 @@ function updateCartDropdown() {
   cartButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       // Navigate to cart page
-      window.location.href = "./GioHang.html";
+      window.location.href = "GioHang.html";
     });
   });
 

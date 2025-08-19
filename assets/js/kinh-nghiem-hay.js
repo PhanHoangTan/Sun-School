@@ -1,4 +1,4 @@
-// Kinh Nghiem Hay section JS
+﻿// Kinh Nghiem Hay section JS
 $(document).ready(function () {
   // Function to adjust heights of blog items
   function adjustKinhNghiemHayHeights() {

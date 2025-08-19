@@ -1,4 +1,4 @@
-// Facility section animations and interactions
+﻿// Facility section animations and interactions
 document.addEventListener("DOMContentLoaded", function () {
   // Check if element is in viewport function
   function isElementInViewport(el) {

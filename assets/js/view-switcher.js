@@ -1,4 +1,4 @@
-// View Switcher JavaScript - Handles Grid/List view switching functionality
+﻿// View Switcher JavaScript - Handles Grid/List view switching functionality
 
 $(document).ready(function () {
   // View mode switching
